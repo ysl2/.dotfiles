@@ -1,0 +1,26 @@
+[user]
+	name = ysl2
+	email = songli.yu@outlook.com
+
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    features = side-by-side line-numbers decorations
+    whitespace-error-style = 22 reverse
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+
+[diff]
+	submodule = log
+[status]
+	submodulesummary = 1
+[submodule]
+	recurse = true
+[push]
+	recurseSubmodules = on-demand
+[credential]
+	helper = store

@@ -1,0 +1,341 @@
+
+{
+  //Snippet
+  "coc.preferences.hoverTarget": "preview",
+  "coc.preferences.enableFloatHighlight": true,
+  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.messageLevel": "error",
+  "coc.source.around.firstMatch": false,
+  "coc.source.buffer.firstMatch": false,
+  "coc.source.syntax.firstMatch": false,
+  "suggest.detailMaxLength": 60,
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.autoTrigger": "always",
+  "suggest.timeout": 5000,
+  "suggest.enablePreview": true,
+  "suggest.floatEnable": true,
+  "suggest.detailField": "preview",
+  "suggest.snippetIndicator": "",
+  "suggest.triggerCompletionWait": 100,
+  "suggest.echodocSupport": true,
+  //"suggest.detailField": "abbr",
+  "suggest.completionItemKindLabels": {
+    "class": "\uf0e8",
+    "color": "\ue22b",
+    "constant": "\uf8fe",
+    "default": "\uf29c",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "event": "\ufacd",
+    "field": "\uf93d",
+    "file": "\uf723",
+    "folder": "\uf115",
+    "function": "\u0192",
+    "interface": "\uf417",
+    "keyword": "\uf1de",
+    "method": "\uf6a6",
+    "module": "\uf40d",
+    "operator": "\uf915",
+    "property": "\ue624",
+    "reference": "\ufa46",
+    "snippet": "\ue60b",
+    "struct": "\ufb44",
+    "text": "\ue612",
+    "typeParameter": "\uf728",
+    "unit": "\uf475",
+    "value": "\uf89f",
+    "variable": "\ue71b"
+  },
+  //"diagnostic.signOffset": 9999999,
+  "diagnostic.signOffset": 1,
+  "diagnostic.errorSign": "\uf467",
+  "diagnostic.warningSign": "\uf071",
+  "diagnostic.infoSign": "\uf129",
+  "diagnostic.hintSign": "\uf864",
+  //"diagnostic.displayByAle": "false",
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.refreshAfterSave": false,
+  "diagnostic.checkCurrentLine": false,
+  "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+  "diagnostic.virtualText": true,
+  "codeLens.enable": true,
+  "list.previewHighlightGroup": "Statement",
+  //git
+  // "git.enableGutters": true,
+  // "git.branchCharacter": "\uf418",
+  // "git.addGBlameToBufferVar": true,
+  //"git.addGBlameToVirtualText": true,
+  //"git.virtualTextPrefix": " ❯❯❯ ",
+  // "git.addedSign.hlGroup": "GitGutterAdd",
+  // "git.changedSign.hlGroup": "GitGutterChange",
+  // "git.removedSign.hlGroup": "GitGutterDelete",
+  // "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  // "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  // "git.addedSign.text": "▋",
+  // "git.changedSign.text": "▋",
+  // "git.removedSign.text": "▋",
+  // "git.topRemovedSign.text": "▔",
+  // "git.changeRemovedSign.text": "▋",
+  //CocList
+  "list.source.files.defaultOptions": ["--auto-preview"],
+  "list.source.outline.defaultOptions": ["--auto-preview"],
+  //prettier
+  //"coc.preferences.formatOnSaveFiletypes": [
+    //  "html",
+    //  "css",
+    //  "markdown",
+    //  "javascript",
+    //  "javascriptreact",
+    //  "typescript",
+    //  "typescriptreact",
+    //  "go",
+    //  "json"
+    //],
+    "prettier.statusItemText": "ⓟ ",
+    "prettier.eslintIntegration": true,
+    "prettier.tslintIntegration": false,
+    "prettier.stylelintIntegration": true,
+    "prettier.disableSuccessMessage": true,
+    //emmet
+    "emmet.includeLanguages": {
+      "vue-html": "html",
+      "javascript": "javascriptreact",
+      "typescriptreact": "typescriptreact"
+    },
+    //imselect
+    "imselect.enableStatusItem": false,
+    //multiple curssor
+    "cursors.nextKey": "<C-n>",
+    "cursors.previousKey": "<C-p>",
+    "cursors.cancelKey": "<esc>",
+    //sessions
+    "session.directory": "~/.cache/vim/session",
+    // yank
+    "yank.enableCompletion": false,
+    // python
+    // "python.formatting.provider": "autopep8",
+    // "python.formatting.autopep8Args": [
+      //     "--max-line-length=200"
+      //     "--generated-members=torch.*",
+      // ],
+      // "coc.preferences.formatOnType": true,
+      // "coc.preferences.formatOnSaveFiletypes": [
+        //     "python"
+        // ],
+        // coc-explorer
+        "explorer.file.column.git.showIgnored": true,
+        "explorer.file.column.indent.indentLine": true,
+        "explorer.file.showHiddenFiles": false,
+        "explorer.buffer.showHiddenBuffers": false,
+        //"explorer.icon.expanded": "▾",
+        //"explorer.icon.collapsed": "▸",
+        "explorer.icon.enableNerdfont": true,
+        "explorer.quitOnOpen": false,
+        "explorer.floating.width": -20,
+        "explorer.floating.height": -10,
+        //"explorer.openAction.strategy": "vsplit.intelligent",
+        //"explorer.openAction.strategy": "sourceWindow",
+        "explorer.width": 30,
+        //    === TheCW START ===
+        //"explorer.width": 38,
+        "explorer.sources": [
+          {
+            "name": "buffer",
+            "expand": false
+          },
+          {
+            "name": "file",
+            "expand": true
+          }
+        ],
+        //    === TheCW END ===
+        "explorer.keyMappingMode": "none",
+        "explorer.keyMappings.global": {
+          // function keys
+          "<tab>": "toggleSelection",
+          "A": "actionMenu",
+          "<2-LeftMouse>": [
+            "expandable?",
+            ["expanded?", "collapse", "expand"],
+            "open"
+          ],
+          // h
+          "h": ["wait", "collapse"],
+          "<C-h>": ["wait", "collapse:recursive"],
+          "<A-h>": ["wait", "collapse:all"],
+          // j
+          "j": "nodeNext",
+          "gj": ["wait", "expandableNext"],
+          "J": ["wait", "toggleSelection", "normal:j"],
+          // k
+          "k": "nodePrev",
+          "gk": ["wait", "expandablePrev"],
+          "K": ["wait", "toggleSelection", "normal:k"],
+          // l & open file
+          "l": ["wait", "expandable?", "expand", "open"],
+          "L": ["wait", "expandable?", "expand", "open:tab"],
+          "<C-l>": ["wait", "expand:recursive"],
+          "<A-l>": ["wait", "expand:all"],
+          "s": "open:vsplit",
+          "S": "open:split",
+          // check file status
+          "<cr>": ["wait", "expandable?", "expand", "preview:content"],
+          ";": ["wait", "expandable?", "expand", "preview:labeling"],
+          "o": ["wait", "expandable?", "expand", "previewOnHover:toggle:content"],
+          "u": ["wait", "expandable?", "expand", "previewOnHover:toggle:labeling"],
+          // jump
+          "i": ["wait", "expandable?", "expand", "cd", "open"],
+          "I": ["wait", "gotoParent"],
+          // operations
+          "yp": "copyFilepath",
+          "yn": "copyFilename",
+          "yy": "copyFile",
+          "dd": "cutFile",
+          "pp": "pasteFile",
+          "dD": "deleteForever",
+
+          "T": "addFile",
+          "M": "addDirectory",
+          "a": "rename",
+
+          "zh": "toggleHidden",
+          "r": "refresh",
+
+          "?": "help",
+          "q": "quit",
+          "<esc>": "esc",
+          "@": "systemExecute",
+          "gd": "listDrive",
+
+          "f": "search",
+          "F": "searchRecursive",
+
+          "gf": "gotoSource:file",
+          "gb": "gotoSource:buffer",
+
+          "[[": ["wait", "sourcePrev"],
+            "]]": ["wait", "sourceNext"],
+
+            "[i": ["wait", "indentPrev"],
+              "]i": ["wait", "indentNext"],
+
+              "[m": ["wait", "markPrev:modified"],
+                "]m": ["wait", "markNext:modified"],
+
+                "[g": ["wait", "markPrev:diagnosticError:diagnosticWarning"],
+                  "]g": ["wait", "markNext:diagnosticError:diagnosticWarning"],
+                  "[G": ["wait", "markPrev:diagnosticError"],
+                    "]G": ["wait", "markNext:diagnosticError"],
+
+                    "[c": ["wait", "markPrev:git"],
+                      "]c": ["wait", "markNext:git"],
+                      "<<": "gitStage",
+                      ">>": "gitUnstage"
+        },
+        // eslint
+        "eslint.filetypes": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "eslint.autoFix": true,
+        "eslint.autoFixOnSave": true,
+        // coc-actions
+        "coc-actions.hideCursor": false,
+        "coc-actions.showActionKind": true,
+        // Cspell
+        "cSpell.fixSpellingWithRenameProvider": true,
+        "cSpell.showStatus": false,
+        "cSpell.enabledLanguageIds": [
+          "asciidoc",
+          "c",
+          "cpp",
+          "csharp",
+          "css",
+          "git-commit",
+          "gitcommit",
+          "go",
+          "haskell",
+          "html",
+          "java",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "jsonc",
+          "latex",
+          "less",
+          "markdown",
+          "php",
+          "plaintext",
+          "python",
+          "pug",
+          "restructuredtext",
+          "rust",
+          "scala",
+          "scss",
+          "text",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+          "yml",
+          "vim"
+        ],
+        "languageserver": {
+          // call coc#config ('languageserver', {
+            //  'lua': {
+              //   "cwd": "full path of lua-language-server directory", (not sure this one is really necessary)
+              //   "command": "full path to lua-language-server executable",
+              //   "args": ["-E", "-e", "LANG=en", "[full path of lua-language-server directory]/main.lua"],
+              //   "filetypes": ["lua"],
+              //   "rootPatterns": [".git/"]
+              //  }
+              //  })
+              "lua": {
+                "command": "lua-lsp",
+                "filetypes": ["lua"]
+              },
+              "swift": {
+                "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+                "args": [],
+                "filetypes": ["swift"],
+                "initializationOptions": {},
+                "settings": {}
+              },
+              "golang": {
+                "command": "gopls",
+                "rootPatterns": ["go.mod"],
+                "filetypes": ["go"],
+                "initializationOptions": {
+                  "gocodeCompletionEnabled": true,
+                  "diagnosticsEnabled": true,
+                  "lintTool": "golint"
+                }
+              },
+              "bash": {
+                "command": "bash-language-server",
+                "args": ["start"],
+                "filetypes": ["sh"],
+                "ignoredRootPaths": ["~"]
+              },
+              "ccls": {
+                "command": "ccls",
+                "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+                "rootPatterns": [
+                  ".ccls",
+                  ".ccls-root",
+                  "compile_commands.json",
+                  ".git/",
+                  ".hg/"
+                ],
+                "initializationOptions": {
+                  "cache": {
+                    "directory": "/tmp/ccls"
+                  }
+                }
+              }
+        }
+}

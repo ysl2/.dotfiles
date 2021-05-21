@@ -1,0 +1,30 @@
+[
+  {
+    "name": "my-notes",
+    "rootPath": "/home/yusoli/Documents/00-Github/00-my-notes",
+    "paths": [],
+    "group": "",
+    "enabled": true
+  },
+  {
+    "name": "javaweb-self-practice",
+    "rootPath": "/home/yusoli/Documents/00-Github/javaweb-self-practice",
+    "paths": [],
+    "group": "",
+    "enabled": true
+  },
+  {
+    "name": "javaweb",
+    "rootPath": "/home/yusoli/Downloads/02-就业课(2.1)-JavaWeb",
+    "paths": [],
+    "group": "",
+    "enabled": true
+  },
+  {
+    "name": "jevakallio.dev",
+    "rootPath": "/home/yusoli/Documents/00-Github/jevakallio.dev",
+    "paths": [],
+    "group": "",
+    "enabled": true
+  }
+]

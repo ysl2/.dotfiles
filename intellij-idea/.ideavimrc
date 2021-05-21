@@ -1,0 +1,50 @@
+let mapleader = '\'
+
+set relativenumber
+set number
+
+" search
+set hlsearch
+set incsearch
+set smartcase
+set ignorecase
+
+" plugins
+set ideajoin  " 数据库执行内联要用到，系统推荐的
+set easymotion
+set surround
+set keep-english-in-normal-and-restore-in-insert
+
+" edit vimrc
+nnoremap <leader>V :e ~/.ideavimrc<CR>
+" nnoremap <leader>vw :w!<CR>
+noremap <leader>M <ESC>:w<CR>:source ~/.ideavimrc<CR>
+
+" intellij built in key map
+nnoremap <leader>a :action GotoAction<CR>
+nnoremap <leader>b :action Bookmarks<CR>
+nnoremap <leader>c :action GotoClass<CR>
+nnoremap <leader>s :action SearchEverywhere<CR>
+nnoremap <leader>f :action FindInPath<CR>
+nnoremap <leader>gd :action Git.CompareWithBranch<CR>
+nnoremap <leader>gr :action Git.ResolveConflicts<CR
+nnoremap <leader>ga :action Annotate<CR>
+nnoremap <leader>or :action FileMenu<CR>
+nnoremap <leader>r :action RecentFiles<CR>
+nnoremap <leader>p :action FileStructurePopup<CR>
+
+" navigation
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gb :action JumpToLastChange<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gr :action RenameElement<CR>
+
+" code actions
+nnoremap U :action FindUsages<CR>
+nnoremap R :action RenameElement<CR>
+nnoremap == :action ReformatCode<CR>
+vnoremap = :action ReformatCode<CR>
+nnoremap gc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+nnoremap <leader>n :action Run<CR>

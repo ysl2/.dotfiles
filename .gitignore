@@ -1,0 +1,8 @@
+ranger/.config/ranger/plugins/__pycache__/*
+ranger/.config/ranger/colorschemes/__pycache__/*
+ranger/.config/ranger/folders.conf
+nvim/.config/nvim/tmp/
+*.class
+.RESTORE-BY-JAVA/assets/*
+my-git-upload.sh
+my-package-upload.sh

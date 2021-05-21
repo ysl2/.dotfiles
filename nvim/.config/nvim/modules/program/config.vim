@@ -1,0 +1,123 @@
+" ===
+" === vim-dadbod & vim-dadbod-ui
+" ===
+let g:db_ui_show_help = 0
+let g:db_ui_win_position = 'left'
+let g:db_ui_use_nerd_fonts = 1
+let g:db_ui_winwidth = 35
+let g:db_ui_save_location = $DATA_PATH . '/db_ui_queries'
+let g:dbs = initself#load_db_from_env()
+
+
+" ===
+" === vista
+" ===
+let g:vista#renderer#enable_icon = 1
+let g:vista_disable_statusline = 1
+let g:vista_default_executive = 'ctags'
+let g:vista_echo_cursor_strategy = 'floating_win'
+let g:vista_vimwiki_executive = 'markdown'
+let g:vista_executive_for = {
+            \ 'vimwiki': 'markdown',
+            \ 'pandoc': 'markdown',
+            \ 'markdown': 'toc',
+            \ 'yaml': 'coc',
+            \ 'typescript': 'coc',
+            \ 'typescriptreact': 'coc',
+            \ }
+
+" ===
+" === gutentags
+" ===
+" === 注意`gutentags_exclude_filetypes` 中的python。这个是被迫加上的。因为gutentags与codefmt插件发生了冲突。在此字段加入python可以避免此问题。
+" ===
+let g:gutentags_cache_dir = $DATA_PATH . '/tags'
+let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project','go.mod','/usr/local', 'package.json',]
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_missing = 1
+" let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_new = 0
+" let g:gutentags_generate_on_empty_buffer = 0
+" let g:gutentags_ctags_extra_args = ['--tag-relative=yes', '--fields=+ailmnS']
+let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
+let g:gutentags_add_default_project_roots = 0
+let g:gutentags_exclude_filetypes = [ 'defx', 'denite', 'vista', 'magit', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git' ]
+" let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
+let g:gutentags_ctags_exclude = [
+            \  '*.git', '*.svn', '*.hg',
+            \  'cache', 'build', 'dist', 'bin', 'node_modules', 'bower_components',
+            \  '*-lock.json',  '*.lock',
+            \  '*.min.*',
+            \  '*.bak',
+            \  '*.zip',
+            \  '*.pyc',
+            \  '*.class',
+            \  '*.sln',
+            \  '*.csproj', '*.csproj.user',
+            \  '*.tmp',
+            \  '*.cache',
+            \  '*.vscode',
+            \  '*.pdb',
+            \  '*.exe', '*.dll', '*.bin',
+            \  '*.mp3', '*.ogg', '*.flac',
+            \  '*.swp', '*.swo',
+            \  '.DS_Store', '*.plist',
+            \  '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png', '*.svg',
+            \  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+            \  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
+            \]
+
+
+" ===
+" === vim-quickrun
+" ===
+let g:quickrun_config = {
+            \   "_" : {
+            \       "outputter" : "message",
+            \   },
+            \}
+let g:quickrun_no_default_key_mappings = 1
+
+
+" ===
+" === vim-quickrun-runner-nvimterm
+" ===
+let g:quickrun_config._ = {
+            \"_" : {
+            \       "outputter" : "message",
+            \       "runner/nvimterm/into": 1
+            \}
+            \ }
+if has('nvim')
+    let g:quickrun_config._['runner'] = 'nvimterm'
+endif
+
+
+" ===
+" === quickrun.vim
+" ===
+" You can add .quickrun file into your project folder and write your shell there. The plugin will find that file and run commands there.
+let g:quickrun_known_file_types = {
+            \"cpp": ["!g++ %", "./a.out"],
+            \"c": ["!gcc %", "./a.out"],
+            \"php": ["!php %"],
+            \"vim": ["source %"],
+            \"py": ["!python %"],
+            \"go": ["!go test"],
+            \}
+
+
+" ===
+" === vimspector
+" ===
+" 此插件设置参考：https://www.5axxw.com/wiki/content/jifl0q
+" 此插件需要在项目路径下写一个`.vimspector.json`
+" `.vimspector.json`文件内置变量参考：https://puremourning.github.io/vimspector/configuration.html#predefined-variables
+let g:vimspector_install_gadgets = [
+            \'vscode-cpptools',
+            \'debugpy',
+            \'vscode-bash-debug',
+            \'debugger-for-chrome',
+            \'vscode-java-debug',
+            \]
+

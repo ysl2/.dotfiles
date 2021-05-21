@@ -1,0 +1,69 @@
+" ===
+" === nerdtree
+" ===
+
+" 打开文件默认开启文件树
+" autocmd VimEnter * NERDTree
+
+" 设置颜色
+autocmd ColorScheme * highlight NERDTreeFile ctermfg=251
+autocmd ColorScheme * highlight Normal ctermbg=NONE
+
+" 当nerdtree是最后一个窗口时自动关闭
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+"     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Open the existing NERDTree on each new tab.
+" autocmd BufWinEnter * silent NERDTreeMirror
+
+" 显示行号
+let NERDTreeShowLineNumbers=1
+
+" 按大写I显示隐藏文件。如果下面这个值设置为1，则默认显示隐藏文件
+let NERDTreeShowHidden=0
+
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" 设置当前目录为nerdtree的起始目录
+let NERDTreeChDirMode=2
+
+" 使得窗口有更好看的效果
+let NERDChristmasTree=1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" 双击鼠标左键打开文件
+let NERDTreeMouseMode=1
+
+" 设置窗口宽度为25
+let NERDTreeWinSize=25
+
+" 若值为1，则打开一个文件时nerdtree分栏自动关闭
+let NERDTreeQuitOnOpen=0
+
+" 开启Nerdtree时自动显示Bookmarks
+let NERDTreeShowBookmarks=1
+
+" 忽略以下文件的显示
+let NERDTreeIgnore=['\.pyc','\~$','\.swp']
+
+" git图标样式
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }

@@ -1,0 +1,30 @@
+# /etc/systemd/system/rclone.service
+# I'm good :)
+
+[Unit]
+Description=RClone Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+Restart=on-abort
+RestartSec=5
+KillMode=none
+
+ExecStart=/usr/bin/rclone \
+  mount onedrive-qq: \
+  %h/Public/onedrive-qq \
+  --config %h/.config/rclone/rclone.conf \
+    --fast-list \
+    --vfs-cache-mode writes \
+    --vfs-cache-max-size 100M \
+    --log-level INFO \
+    --log-file /tmp/rclone-onedrive-qq.log \
+    --umask 022
+
+ExecStop=/bin/fusermount -u \
+  %h/Public/onedrive-qq
+
+[Install]
+WantedBy=default.target

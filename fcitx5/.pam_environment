@@ -1,0 +1,6 @@
+# https://blog.csdn.net/m0_47627464/article/details/113790309
+
+INPUT_METHOD  DEFAULT=fcitx5
+GTK_IM_MODULE DEFAULT=fcitx5
+QT_IM_MODULE  DEFAULT=fcitx5
+XMODIFIERS    DEFAULT=\@im=fcitx5

@@ -1,0 +1,4 @@
+bind-addr: 192.168.3.5:8080
+auth: password
+password: 123456
+cert: false

@@ -1,0 +1,10 @@
+/usr/lib
+├── acorn@8.2.4
+├── env-paths@2.2.1
+├── node-gyp@8.0.0
+├── npm@7.12.1
+├── prettier@2.2.1
+├── request@2.88.2
+├── semver@7.3.5
+└── yarn@1.22.10
+
