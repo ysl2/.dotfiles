@@ -82,15 +82,15 @@ let g:quickrun_no_default_key_mappings = 1
 " ===
 " === vim-quickrun-runner-nvimterm
 " ===
-let g:quickrun_config._ = {
-            \"_" : {
-            \       "outputter" : "message",
-            \       "runner/nvimterm/into": 1
-            \}
-            \ }
-if has('nvim')
-    let g:quickrun_config._['runner'] = 'nvimterm'
-endif
+" let g:quickrun_config._ = {
+"             \"_" : {
+"             \       "outputter" : "message",
+"             \       "runner/nvimterm/into": 1
+"             \}
+"             \ }
+" if has('nvim')
+"     let g:quickrun_config._['runner'] = 'nvimterm'
+" endif
 
 
 " ===

@@ -234,7 +234,8 @@ nnoremap <silent> \v :<C-u>Vista!!<CR>
 nnoremap <silent> <leader>r :QuickRun<CR>
 
 " 使用quickrun插件，因此下面这个可以不用了
-" noremap <leader>r :call CompileRunGcc()<CR>
+" 但是quickrun没法接收输入。因此这个还是留着备用吧
+noremap <leader>R :call CompileRunGcc()<CR>
 
 
 " ===
