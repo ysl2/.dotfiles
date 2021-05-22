@@ -89,115 +89,80 @@ let g:xtabline_settings.last_open_first = 1
 " ===
 " === lightline.vim
 " ===
-let g:lightline = {
-            \    'colorscheme': 'nord',
-            \    'active': {
-                \        'left': [
-                    \           ['mode', 'paste'],
-                    \           ['filename'],
-                    \           ['curfunction'],
-                    \        ],
-                    \        'right': [
-                        \            ['lineinfo'],
-                        \            ['fileencoding'],
-                        \            ['battery'],
-                        \            ['diagnostic'],
-                        \        ]
-                        \    },
-                        \    'inactive': {
-                            \        'left': [['mode'], ['filename']],
-                            \        'right': [['lineinfo'], ['fileencoding'],],
-                            \    },
-                            \    'tabline': {
-                                \        'left': [['buffers']],
-                                \        'right': [['gitbranch', 'gitstatus'], ['cocstatus']],
-                                \   },
-                                \    'component_function': {
-                                    \        'mode': 'LightlineModeOrPlugin',
-                                    \        'filename': 'LightlineFilename',
-                                    \        'filepath': 'LightLineFilepath',
-                                    \        'fileencoding': 'LightlineFileencoding',
-                                    \        'lineinfo': 'LightlineLineinfo',
-                                    \        'cocstatus': 'coc#status',
-                                    \        'curfunction': 'LightlineFunction',
-                                    \    },
-                                    \    'component_expand': {
-                                        \        'diagnostic': 'LightlineDiagnostic',
-                                        \        'buffers': 'lightline#bufferline#buffers',
-                                        \        'gitbranch': 'LightlineGitBranch',
-                                        \        'gitstatus': 'LightlineGitStatus',
-                                        \	 },
-                                        \    'component_type': {
-                                            \        'diagnostic': 'error',
-                                            \        'buffers': 'tabsel',
-                                            \        'gitbranch': 'tabsel',
-                                            \        'gitstatus': 'raw',
-                                            \        'cocstatus': 'tabsel',
-                                            \    },
-                                            \    'component_raw': {'buffers': 1},
-                                            \ }
-" \    'separator': { 'left': '', 'right': '' },
-" \    'subseparator': { 'left': '', 'right': '' },
-" \    'tabline_separator': {'left': '', 'right': ''},
-" \    'tabline_subseparator': {'left': '', 'right': ''},
 
+let g:lightline = get(g:, 'lightline', {})
+let g:lightline.active = get(g:, 'lightline.active', {})
 
-let g:lightline#bufferline#show_number=2
-let g:lightline#bufferline#enable_devicons=1
-let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline.active.left =  [
+\   [ 'mode', 'paste' ],
+\   [ 'gitstatus', 'readonly', 'filename', 'modified' ]
+\ ]
 
-let g:lightline#bufferline#number_map = {
-            \ 0: '➓ ', 1: '❶ ', 2: '❷ ', 3: '❸ ', 4: '❹ ',
-            \ 5: '❺ ', 6: '❻ ', 7: '❼ ', 8: '❽ ', 9: '❾ '}
+let g:lightline.colorscheme = 'nord'
 
+" let g:lightline.mode_map = {
+" \   'n' : 'Normal',
+" \   'i' : 'Insert',
+" \   'R' : 'Replace',
+" \   'v' : 'Visual',
+" \   'V' : 'V-Line',
+" \   "\<C-v>": 'V-Block',
+" \   'c' : 'Command',
+" \   's' : 'Select',
+" \   'S' : 'S-Line',
+" \   "\<C-s>": 'S-Block',
+" \   't': 'Terminal',
+" \ }
+let g:lightline.mode_map = {
+\   'n' : '',
+\   'i' : '',
+\   'R' : '﯒',
+\   'v' : '',
+\   'V' : '',
+\   "\<C-v>": '',
+\   'c' : '',
+\   's' : 'Select',
+\   'S' : 'S-Line',
+\   "\<C-s>": 'S-Block',
+\   't': '',
+\ }
 
-let s:panel_ignore = {'coc-explorer': 'Explorer', 'list': '', 'dashboard': '', 'packager': 'Packager', 'vista': 'Vista'}
+let g:lightline.component = get(g:, 'lightline.component', {})
 
-function! LightlineModeOrPlugin()
-    return !has_key(s:panel_ignore, &ft) ? lightline#mode() : get(s:panel_ignore, &ft, '')
-endfunction
+" %3l is right aligned padding for 3 digits for current row. -2v is left
+" aligned padding for current column
+let g:lightline.component.lineinfo = " %3l 並%-2v"
+" let g:lightline.component.lineinfo = " %3l הּ %-2v"
 
-function! LightlineGitBranch()
-    let gstatus = FugitiveHead()
-    return !has_key(s:panel_ignore, &ft) || gstatus ? ' '.gstatus : ''
-endfunction
+let g:lightline.component_function = get(g:, 'lightline.component_function', {})
 
-function! LightlineFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
+let LightlineReadonly = {-> &readonly ? "" : ''}
+let g:lightline.component_function.readonly = 'LightlineReadonly'
 
-function! LightlineFilename()
-    let fname = expand('%:t')
-    return !has_key(s:panel_ignore, &ft) ? (fname !=# '' ? fname . ' '.WebDevIconsGetFileTypeSymbol().' ' : '[No Name]')  : ''
-endfunction
+let LightlineFiletype = {->
+\   winwidth(0) <= 70   ? '' :
+\   !strlen(&filetype)  ? '' :
+\
+\   &filetype . (exists('*WebDevIconsGetFileTypeSymbol')
+\       ? ' ' . WebDevIconsGetFileTypeSymbol() : ''
+\   )
+\ }
+let g:lightline.component_function.filetype = 'LightlineFiletype'
 
-function! LightLineFilepath()
-    return '' != expand('%:F') && !has_key(s:panel_ignore, &ft) ? expand('%:F') : ''
-endfunction
+let LightlineFileformat = {->
+\   winwidth(0) <= 70   ? '' :
+\
+\   &fileformat . (exists('*WebDevIconsGetFileFormatSymbol')
+\       ? ' ' . WebDevIconsGetFileFormatSymbol() : ''
+\   )
+\ }
+let g:lightline.component_function.fileformat = 'LightlineFileformat'
 
-function! LightlineFileencoding()
-    return !has_key(s:panel_ignore, &ft) ?
-                \(&fenc !=# '' ? &fenc . ' ' . WebDevIconsGetFileFormatSymbol() : &enc. ' ' . WebDevIconsGetFileFormatSymbol() ): ''
-endfunction
+" function! MyFilename()
+"     return (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+"         \  &ft == 'unite' ? unite#get_status_string() :
+"         \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') :
+"         \ '' != expand('%:p') ? expand('%:p') : '[No Name]')
+" endfunction
+" let g:lightline.component_function.filename = 'MyFilename'
 
-function! LightlineLineinfo()
-    return !has_key(s:panel_ignore, &ft) ? ' '.line('.').':'. col('.').'  ' . '☰ '.line('.') * 100 / line('$') . '%'	 : ''
-endfunction
-
-function! LightlineGitStatus() abort
-    let status = get(b:, 'coc_git_status', '')
-    return status
-endfunction
-
-function! LightlineDiagnostic() abort
-    let info = get(b:, 'coc_diagnostic_info', {})
-    if empty(info) | return '' | endif
-    let msgs = []
-    if get(info, 'error', 0)
-        call add(msgs, g:coc_status_error_sign . info['error'])
-    endif
-    if get(info, 'warning', 0)
-        call add(msgs, g:coc_status_warning_sign . info['warning'])
-    endif
-    return join(msgs, ' ')
-endfunction

@@ -22,6 +22,6 @@ function! CleanNoNameEmptyBuffers()
 endfunction
 
 "设置自动清理缓冲区
-autocmd BufLeave * :call CleanNoNameEmptyBuffers()
+autocmd BufLeave * silent! :call CleanNoNameEmptyBuffers()
 
 
