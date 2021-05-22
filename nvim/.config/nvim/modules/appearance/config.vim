@@ -114,17 +114,17 @@ let g:lightline.colorscheme = 'nord'
 " \   't': 'Terminal',
 " \ }
 let g:lightline.mode_map = {
-\   'n' : '',
-\   'i' : '',
+\   'n' : ' Mute',
+\   'i' : ' Talk',
 \   'R' : '﯒',
-\   'v' : '',
-\   'V' : '',
-\   "\<C-v>": '',
-\   'c' : '',
+\   'v' : ' Pick',
+\   'V' : ' Pick',
+\   "\<C-v>": ' Pick',
+\   'c' : ' Call',
 \   's' : 'Select',
 \   'S' : 'S-Line',
 \   "\<C-s>": 'S-Block',
-\   't': '',
+\   't': ' Term',
 \ }
 
 let g:lightline.component = get(g:, 'lightline.component', {})
