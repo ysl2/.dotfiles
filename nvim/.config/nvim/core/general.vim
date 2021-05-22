@@ -240,7 +240,9 @@ endif
 " set cursorline
 set autoread                    " Auto readfile
 " 设置允许行超过当前屏幕（wrap | nowrap）
-set nowrap                      " No wrap by default
+" 这个不是格式化的时候自动折行，而是当行超过屏幕的时候。将此行分为多行显示
+" 如果设置成nowrap，一整段话将不会折行，无限向右显示。这会导致一行非常长。因此建议设置此项为`wrap`
+set wrap                      " No wrap by default
 set linebreak                   " Break long lines at 'breakat'
 " set breakat=\ \	;:,!?           " Long lines break chars
 set nostartofline               " Cursor in same column for few commands

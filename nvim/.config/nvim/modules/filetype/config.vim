@@ -27,7 +27,7 @@ let g:instant_markdown_slow = 0
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_autoscroll = 1
 let g:instant_markdown_browser = "google-chrome-stable --new-window"
-let g:instant_markdown_port = 8888
+let g:instant_markdown_port = 8090
 let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 
 " let g:instant_markdown_open_to_the_world = 1
