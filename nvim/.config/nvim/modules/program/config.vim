@@ -71,12 +71,12 @@ let g:gutentags_ctags_exclude = [
 " ===
 " === vim-quickrun
 " ===
-let g:quickrun_config = {
-            \   "_" : {
-            \       "outputter" : "message",
-            \   },
-            \}
-let g:quickrun_no_default_key_mappings = 1
+" let g:quickrun_config = {
+"             \   "_" : {
+"             \       "outputter" : "message",
+"             \   },
+"             \}
+" let g:quickrun_no_default_key_mappings = 1
 
 
 " ===
@@ -104,6 +104,7 @@ let g:quickrun_known_file_types = {
             \"vim": ["source %"],
             \"py": ["!python %"],
             \"go": ["!go test"],
+            \"sh": ["!time bash %"]
             \}
 
 

@@ -143,7 +143,7 @@ nmap <leader>A  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <Leader>F  <Plug>(coc-fix-current)
+nmap <leader>F  <Plug>(coc-fix-current)
 
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)

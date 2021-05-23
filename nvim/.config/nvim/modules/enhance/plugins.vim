@@ -1,5 +1,5 @@
 " jarvim new
-Plug 'https://hub.fastgit.org/rhysd/accelerated-jk.git'
+" Plug 'https://hub.fastgit.org/rhysd/accelerated-jk.git'
 
 " jarvim new
 Plug 'https://hub.fastgit.org/simnalamburt/vim-mundo.git'
@@ -30,8 +30,12 @@ Plug 'https://hub.fastgit.org/kdheepak/lazygit.nvim.git', { 'branch': 'nvim-v0.4
 Plug 'https://hub.fastgit.org/wincent/terminus.git'
 
 
-" format code
+" ===
+" === file & code format
+" ===
 " Plug 'https://hub.fastgit.org/google/vim-maktaba.git'
 " Plug 'https://hub.fastgit.org/google/vim-codefmt.git'
 Plug 'https://hub.fastgit.org/vim-autoformat/vim-autoformat.git'
+" jarvim new
+Plug 'https://hub.fastgit.org/editorconfig/editorconfig-vim.git'
 

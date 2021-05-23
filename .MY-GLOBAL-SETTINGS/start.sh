@@ -9,7 +9,7 @@ my_traverse() {
     target_file=${dot_file##${CUR_DIR}/}
     target_dir=${target_file%/*}
     my_link ${dot_file} /${target_file} /${target_dir}
-  else
+  elif [[ -d "$1" ]]; then
     cd "$1"
     for item in $(ls -A); do
       my_traverse "${item}"
