@@ -10,34 +10,7 @@ if [[ ! -e "${MYZSH}"/.lock/brew.lock ]]; then
     return
 fi
 
-
 # ===
-# === source script
+# === source
 # ===
-for item in $(ls "${MYZSH}"/script); do
-    source "${MYZSH}"/script/"${item}"
-done
-
-
-# ===
-# === source omz
-# ===
-for item in $(ls "${MYZSH}"/omz); do
-    source "${MYZSH}"/omz/"${item}"
-done
-
-
-# ===
-# === source others (e.g conda)
-# ===
-for item in $(ls "${MYZSH}"/func); do
-    source "${MYZSH}"/func/"${item}"
-done
-
-
-# ===
-# === source aliases
-# ===
-source "${MYZSH}"/aliases.zsh
-
-
+source "${MYZSH}"/sources.zsh
