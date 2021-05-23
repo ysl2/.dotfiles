@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# This script is used for linking `~/.dotfiles/.MY-GLOBAL-SETTINGS/*` to root
-# ('/') folder
-
-# NOTE: The script position must be `~/.dotfiles/${somefolder}/start.sh`
+# NOTE: This script is used for linking `~/.dotfiles/${stow_tags}/*` to home ('~/') folder
+#
+# NOTE: The script position must be `~/.dotfiles/${some_hidden_folder}/start.sh`
 # e.g. `~/.dotfiles/.RESTORE-BY_JAVA/start.sh`
+# The folder ${some_hidden_folder} must be a hidden folder!!!
+#
+# NOTE: All the unhidden folders in `~/.dotfiles/` will be considered as a stow tag
+# folder, and will be restored by stow.
 
 my_traverse() {
   if [[ -f "$1" ]]; then
@@ -63,6 +66,9 @@ for item in $(ls "${CUR_DIR}"); do
 done
 if [[ -e "${CONFLICT_DIR}"/conflict.sh ]]; then
   echo 'Conflict detected. So I stopped normally. :-)'
+  echo '# ---------------------------------------------' >>"${CONFLICT_DIR}"/conflict.sh
+  echo "rm -f "${CONFLICT_DIR}"/conflict.sh" >>"${CONFLICT_DIR}"/conflict.sh
+  echo "rm -rf "${CONFLICT_DIR}"" >>"${CONFLICT_DIR}"/conflict.sh
   exit 0
 else
   rm -rf "${CONFLICT_DIR}"
