@@ -1,4 +1,12 @@
 # ===
+# === source manual
+# ===
+for item in $(ls "${MYZSH}"/manual); do
+    sh "${MYZSH}"/manual/"${item}"
+done
+
+
+# ===
 # === source script
 # ===
 for item in $(ls "${MYZSH}"/script); do
