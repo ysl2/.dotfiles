@@ -31,8 +31,10 @@ my_traverse() {
 # $2: target_file
 # $3: target_dir
 my_link() {
-  echo "[create dir] "$3""
-  mkdir -p "$3"
+  if [[ ! -e "$3" ]]; then
+    echo "[create dir] "$3""
+    mkdir -p "$3"
+  fi
   if [[ -L "$2" ]]; then
     echo "[delete link] "$2""
     rm "$2"
