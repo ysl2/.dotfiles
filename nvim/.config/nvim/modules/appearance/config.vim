@@ -25,15 +25,15 @@
 " ===
 " === dashboard-nvim
 " ===
-" let g:dashboard_custom_shortcut={
-"             \ 'book_marks' : 'SPC f b',
-"             \ 'change_colorscheme' : 'SPC t c',
-"             \ 'find_file' : 'SPC f f',
-"             \ 'find_history' : 'SPC f h',
-"             \ 'find_word' : 'SPC f a',
-"             \ 'last_session' : 'SPC s l',
-"             \ 'new_file' : 'SPC c n',
-"             \ }
+let g:dashboard_custom_shortcut={
+            \ 'book_marks' : 'SPC f m',
+            \ 'change_colorscheme' : 'SPC f c',
+            \ 'find_file' : 'SPC f f',
+            \ 'find_history' : 'SPC f h',
+            \ 'find_word' : 'SPC f a',
+            \ 'last_session' : 'SPC s l',
+            \ 'new_file' : 'SPC c n',
+            \ }
 " let g:dashboard_custom_header = [
 "             \ '██████████████████  ████████',
 "             \ '██████████████████  ████████',

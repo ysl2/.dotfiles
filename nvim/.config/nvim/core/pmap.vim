@@ -158,22 +158,22 @@ noremap <leader>= :Autoformat<CR>
 " === vim-clap
 " ===
 " used by dashboard
-nnoremap <silent> <Leader>fb :<C-u>Clap marks<CR>
-nnoremap <silent> <Leader>tc :<C-u>Clap colors<CR>
+nnoremap <silent> <Leader>fm :<C-u>Clap marks<CR>
+nnoremap <silent> <Leader>fc :<C-u>Clap colors<CR>
 nnoremap <silent> <Leader>ff :<C-u>Clap files ++finder=rg --ignore --hidden --files<cr>
 nnoremap <silent> <Leader>fh :<C-u>Clap history<CR>
 nnoremap <silent> <Leader>fa :<C-u>Clap grep2<CR>
 "like emacs counsel-find-file
-nnoremap <silent> <Leader>bb :<C-u>Clap buffers<CR>
+nnoremap <silent> <Leader>fB :<C-u>Clap buffers<CR>
+nnoremap <silent> <Leader>fW :<C-u>Clap windows<CR>
+nnoremap <silent> <Leader>fC :<C-u>Clap personalconf<CR>
 nnoremap <silent> <C-x><C-f> :<C-u>Clap filer<CR>
 nnoremap <silent> <Leader>fg :<C-u>Clap gfiles<CR>
 nnoremap <silent> <Leader>fw :<C-u>Clap grep ++query=<cword><cr>
 nnoremap <silent> <Leader>fq :<C-u>Clap grep<CR>
-nnoremap <silent> <Leader>fW :<C-u>Clap windows<CR>
 nnoremap <silent> <Leader>fl :<C-u>Clap loclist<CR>
 nnoremap <silent> <Leader>fu :<C-u>Clap git_diff_files<CR>
 nnoremap <silent> <Leader>fv :<C-u>Clap grep ++query=@visual<CR>
-nnoremap <silent> <Leader>oc :<C-u>Clap personalconf<CR>
 
 
 " ===
@@ -231,11 +231,11 @@ nnoremap <silent> \v :<C-u>Vista!!<CR>
 " ===
 " TOTE: There are many modules use the keymap below
 " Check the config.vim file
-nnoremap <silent> <A-j> :w<CR>:QuickRun<CR>
+nnoremap <silent> <leader>r :w<CR>:QuickRun<CR>
 
 " 使用quickrun插件，因此下面这个可以不用了
 " 但是quickrun没法接收输入。因此这个还是留着备用吧
-nnoremap <A-k> :call CompileRunGcc()<CR>
+nnoremap <leader>R :call CompileRunGcc()<CR>
 
 
 " ===
