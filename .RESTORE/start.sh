@@ -12,11 +12,8 @@
 my_traverse() {
   if [[ -f "$1" ]]; then
     dot_file=$(pwd)/"$1"
-    # echo "${dot_file}"
     target_file="${HOME}"/${dot_file##${CUR_DIR}/${TEMP_DIR}/}
-    # echo "${target_file}"
     target_dir=${target_file%/*}
-    # echo "${target_dir}"
     my_link "${dot_file}" "${target_file}" "${target_dir}"
   elif [[ -d "$1" ]]; then
     cd "$1"
@@ -31,10 +28,10 @@ my_traverse() {
 # $2: target_file
 # $3: target_dir
 my_link() {
-  echo mkdir -p "$3"
+  echo "[create dir] "$3""
   mkdir -p "$3"
   if [[ -L "$2" ]]; then
-    echo rm "$2"
+    echo "[delete link] "$2""
     rm "$2"
   elif [[ -e "$2" ]]; then
     if [[ -s "${CONFLICT_DIR}"/conflict.sh ]]; then
@@ -75,7 +72,7 @@ else
 fi
 for item in $(ls "${CUR_DIR}"); do
   if [[ -d "${item}" ]]; then
-    echo stow -R "${item}"
+    echo "[stow start] "${item}""
     stow -R "${item}"
   fi
 done
