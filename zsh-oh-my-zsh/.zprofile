@@ -2,8 +2,11 @@
 #
 # 方式1. 在输入密码后自动进入图形界面
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx
+    exec startx
 fi
 #
 # 方式2. 在输入密码后，再输入startx进入图形界面
 # [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && exec startx
+if [[ -e /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
