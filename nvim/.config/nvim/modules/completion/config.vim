@@ -102,7 +102,7 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 
 " Remap for rename current word
-nmap <Leader>cn <Plug>(coc-rename)
+nmap <Leader>R <Plug>(coc-rename)
 
 " Use :Format for format current buffer
 command! -nargs=0 Format :call CocAction('format')
