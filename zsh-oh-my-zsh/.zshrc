@@ -15,7 +15,7 @@ fi
 # === source script
 # ===
 for item in $(ls "${MYZSH}"/script); do
-    echo source "${MYZSH}"/script/"${item}"
+    source "${MYZSH}"/script/"${item}"
 done
 
 
@@ -23,7 +23,7 @@ done
 # === source omz
 # ===
 for item in $(ls "${MYZSH}"/omz); do
-    echo source "${MYZSH}"/omz/"${item}"
+    source "${MYZSH}"/omz/"${item}"
 done
 
 
@@ -31,13 +31,13 @@ done
 # === source others (e.g conda)
 # ===
 for item in $(ls "${MYZSH}"/func); do
-    echo source "${MYZSH}"/func/"${item}"
+    source "${MYZSH}"/func/"${item}"
 done
 
 
 # ===
 # === source aliases
 # ===
-echo source "${MYZSH}"/aliases.zsh
+source "${MYZSH}"/aliases.zsh
 
 
