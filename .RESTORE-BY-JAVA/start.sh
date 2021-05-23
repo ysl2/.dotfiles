@@ -3,21 +3,8 @@
 # This script is used for linking `~/.dotfiles/.MY-GLOBAL-SETTINGS/*` to root
 # ('/') folder
 
-# my_create_dir() {
-#   if [[ -f "$1" ]]; then
-#     return
-#     # dot_file=$(pwd)/"$1"
-#     # target_file=${dot_file##${CUR_DIR}/}
-#     # target_dir=${target_file%/*}
-#     # my_link "${dot_file}" /"${target_file}" /"${target_dir}"
-#   elif [[ -d "$1" ]]; then
-#     cd "$1"
-#     for item in $(ls -A); do
-#       my_create_dir "${item}"
-#     done
-#     cd ..
-#   fi
-# }
+# NOTE: The script position must be `~/.dotfiles/${somefolder}/start.sh`
+# e.g. `~/.dotfiles/.RESTORE-BY_JAVA/start.sh`
 
 my_traverse() {
   if [[ -f "$1" ]]; then
@@ -42,8 +29,10 @@ my_traverse() {
 # $3: target_dir
 my_link() {
   echo mkdir -p "$3"
+  mkdir -p "$3"
   if [[ -L "$2" ]]; then
     echo rm "$2"
+    rm "$2"
   elif [[ -e "$2" ]]; then
     if [[ -s "${CONFLICT_DIR}"/conflict.sh ]]; then
       rm "${CONFLICT_DIR}"/conflict.sh
@@ -75,7 +64,12 @@ done
 if [[ -e "${CONFLICT_DIR}"/conflict.sh ]]; then
   echo 'Conflict detected. So I stopped normally. :-)'
   exit 0
+else
+  rm -rf "${CONFLICT_DIR}"
 fi
 for item in $(ls "${CUR_DIR}"); do
-  echo stow -R "${item}"
+  if [[ -d "${item}" ]]; then
+    echo stow -R "${item}"
+    stow -R "${item}"
+  fi
 done
