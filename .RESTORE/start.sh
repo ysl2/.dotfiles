@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# RESTORE DOTFILES
+# ================
+#
 # NOTE: This script is used for linking `~/.dotfiles/${stow_tags}/*` to home ('~/') folder
 #
 # NOTE: The script position must be `~/.dotfiles/${some_hidden_folder}/start.sh`

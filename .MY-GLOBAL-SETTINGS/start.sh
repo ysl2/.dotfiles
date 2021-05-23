@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# This script is used for linking `~/.dotfiles/.MY-GLOBAL-SETTINGS/*` to root
+# RESTORE GLOBAL SETTINGS
+# ========================
+#
+# This script is used for linking `~/.dotfiles/${some_hidden_folder}/*` to root
 # ('/') folder
+#
+# NOTE: The script position must be `~/.dotfiles/${some_hidden_folder}/start.sh`
+# All the folders and it's files under the ${some_hidden_folder} will be relinked to root
 
 my_traverse() {
   if [[ -f "$1" ]]; then
