@@ -2,8 +2,6 @@
 # === self settings ===
 # =====================
 export MYZSH="${HOME}"/.myzsh
-# export MYLOCK="${MYZSH}"/.lock
-# export MYSCRIPT="${MYZSH}"/script
 
 
 
