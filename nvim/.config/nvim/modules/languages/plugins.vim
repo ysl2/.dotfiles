@@ -2,7 +2,7 @@
 " Plug 'https://hub.fastgit.org/HerringtonDarkholme/yats.vim.git' , {'for' : [ 'typescript', 'typescriptreact' ]}
 
 " jarvim new
-Plug 'https://hub.fastgit.org/arzg/vim-sh.git', {'for': [ 'sh','zsh' ]}
+" Plug 'https://hub.fastgit.org/arzg/vim-sh.git', {'for': [ 'sh','zsh' ]}
 
 " jarvim new
 Plug 'https://hub.fastgit.org/othree/html5.vim.git', {'for': 'html'}

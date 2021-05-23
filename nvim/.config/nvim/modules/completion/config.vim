@@ -25,6 +25,7 @@ let g:coc_global_extensions =[
             \ 'coc-pyright',
             \ 'coc-tabnine',
             \ 'coc-java',
+            \ 'coc-sh',
             \]
 
 
