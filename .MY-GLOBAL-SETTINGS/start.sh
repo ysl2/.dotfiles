@@ -28,15 +28,18 @@ my_traverse() {
 # $2: target_file
 # $3: target_dir
 my_link() {
-  echo sudo mkdir -p "$3"
+  if [[ ! -e "$3" ]]; then
+    echo "[create dir] "$3""
+    sudo mkdir -p "$3"
+  fi
   if [[ -L "$2" ]]; then
-    echo sudo rm "$2"
+    echo "[delete link] "$2""
     sudo rm "$2"
   elif [[ -e "$2" ]]; then
-    echo sudo mv "$2" "$2"_bak
+    echo "[backup original] "$2""
     sudo mv "$2" "$2"_bak
   fi
-  echo sudo ln -s "$1" "$2"
+  echo "[create link] "$2""
   sudo ln -s "$1" "$2"
 }
 
