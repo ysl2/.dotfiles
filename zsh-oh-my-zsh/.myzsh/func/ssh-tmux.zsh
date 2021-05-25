@@ -1,1 +1,1 @@
-function ssht () {/usr/bin/ssh -t $@ "tmux attach || tmux new";}
+function ssht () {/usr/bin/ssh -t $@ "tmux new -A";}
