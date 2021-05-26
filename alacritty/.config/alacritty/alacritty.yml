@@ -178,45 +178,45 @@ font:
 draw_bold_text_with_bright_colors: true
 
 # Colors (Dracula)
-colors:
-  # COLORSCHEME: Eighties.dark.yml
-  primary:
-    # hard contrast: background = '#f9f5d7'
-    background: '#2d2d2d'
-    foreground: '#d3d0c8'
-  cursor:
-    text: '#2d2d2d'
-    cursor: '#d3d0c8'
-  normal:
-    black: '#2d2d2d'
-    red: '#f2777a'
-    green: '#99cc99'
-    yellow: '#ffcc66'
-    blue: '#6699cc'
-    magenta: '#cc99cc'
-    cyan: '#66cccc'
-    white: '#d3d0c8'
-  bright:
-    black: '#747369'
-    red: '#f2777a'
-    green: '#99cc99'
-    yellow: '#ffcc66'
-    blue: '#6699cc'
-    magenta: '#cc99cc'
-    cyan: '#66cccc'
-    white: '#f2f0ec'
-  dim:
-    black: '#232323'
-    red: '#74423f'
-    green: '#5e6547'
-    yellow: '#8b7653'
-    blue: '#556b79'
-    magenta: '#6e4962'
-    cyan: '#5c8482'
-    white: '#828282'
-  indexed_colors: []
-  name: Eighties (dark)
-  author: Chris Kempson
+# colors:
+#   # COLORSCHEME: Eighties.dark.yml
+#   primary:
+#     # hard contrast: background = '#f9f5d7'
+#     background: '#2d2d2d'
+#     foreground: '#d3d0c8'
+#   cursor:
+#     text: '#2d2d2d'
+#     cursor: '#d3d0c8'
+#   normal:
+#     black: '#2d2d2d'
+#     red: '#f2777a'
+#     green: '#99cc99'
+#     yellow: '#ffcc66'
+#     blue: '#6699cc'
+#     magenta: '#cc99cc'
+#     cyan: '#66cccc'
+#     white: '#d3d0c8'
+#   bright:
+#     black: '#747369'
+#     red: '#f2777a'
+#     green: '#99cc99'
+#     yellow: '#ffcc66'
+#     blue: '#6699cc'
+#     magenta: '#cc99cc'
+#     cyan: '#66cccc'
+#     white: '#f2f0ec'
+#   dim:
+#     black: '#232323'
+#     red: '#74423f'
+#     green: '#5e6547'
+#     yellow: '#8b7653'
+#     blue: '#556b79'
+#     magenta: '#6e4962'
+#     cyan: '#5c8482'
+#     white: '#828282'
+#   indexed_colors: []
+#   name: Eighties (dark)
+#   author: Chris Kempson
 
 # Visual Bell
 #
@@ -792,5 +792,5 @@ key_bindings:
 #  - { key: F12,      mods: Super,   chars: "\x1b[24;3~"                      }
 #  - { key: NumpadEnter,             chars: "\n"                              }
 
-# import:
-#   - ~/.config/alacritty/dracula.yml
+import:
+  - ~/.config/alacritty/theme/nord.yml

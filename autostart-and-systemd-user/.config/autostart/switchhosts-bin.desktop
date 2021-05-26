@@ -6,3 +6,5 @@ Icon=switchhosts-bin
 Name=SwitchHosts
 Terminal=false
 Type=Application
+X-GNOME-Autostart-enabled=true
+
