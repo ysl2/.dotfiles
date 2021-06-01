@@ -60,6 +60,13 @@ fi
 cd ..
 CUR_DIR=$(pwd)
 TEMP_DIR=''
+# remove previous links by stow
+for item in $(ls "${CUR_DIR}"); do
+  if [[ -d "${item}" ]]; then
+    echo "[stow clear] "${item}""
+    stow -D "${item}"
+  fi
+done
 for item in $(ls "${CUR_DIR}"); do
   if [[ -d "${item}" ]]; then
     TEMP_DIR="${item}"
