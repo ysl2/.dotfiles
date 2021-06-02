@@ -1,0 +1,2 @@
+REPOSITORY                TAG       IMAGE ID       CREATED        SIZE
+danysk/manjaro-with-yay   latest    9507060b5910   7 months ago   2.2GB
