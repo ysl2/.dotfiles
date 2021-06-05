@@ -10,11 +10,13 @@ astroid
 attrs
 autopep8
 backcall
+bcrypt
 beautifulsoup4
 black
 Brlapi
 btrfsutil
 CacheControl
+cached-property
 ceph
 ceph-volume
 cephfs
@@ -33,6 +35,10 @@ decorator
 distlib
 distro
 dnspython
+docker
+docker-compose
+docker-pycreds
+dockerpty
 docopt
 docstring-to-markdown
 docutils
@@ -75,6 +81,7 @@ ordered-set
 orjson
 packaging
 pacman-mirrors
+paramiko
 parso
 pathspec
 pep517
@@ -106,6 +113,7 @@ Pygments
 PyGObject
 pylint
 PyMySQL
+PyNaCl
 pynvim
 pyOpenSSL
 pyparsing
@@ -118,6 +126,7 @@ pysmbc
 PySocks
 pyte
 python-daemon
+python-dotenv
 python-libtorrent
 python-xlib
 pyvim
@@ -142,6 +151,7 @@ sqlparse
 tabulate
 team
 terminaltables
+texttable
 thefuck
 toml
 traitlets
@@ -155,6 +165,7 @@ validate
 waitress
 wcwidth
 webencodings
+websocket-client
 websockets
 Werkzeug
 wheel
