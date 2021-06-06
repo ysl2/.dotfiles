@@ -70,7 +70,7 @@ fi
 
 # p10k或者starship自动配置的内容。这部分需要在omz初始化完成后再进行
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-if [ "$ZSH_THEME" == "powerlevel10k/powerlevel10k" ]; then
+if [[ "$ZSH_THEME" == "powerlevel10k/powerlevel10k" ]]; then
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 else
     # starship配置的内容
