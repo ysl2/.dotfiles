@@ -91,6 +91,7 @@ ply
 pm2ml
 Powerpill
 progress
+prompt-toolkit
 protobuf
 psutil
 ptyprocess
@@ -104,6 +105,7 @@ pycurl
 pydantic
 pyflakes
 pygls
+Pygments
 PyGObject
 pylint
 PyNaCl
