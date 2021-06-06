@@ -57,7 +57,7 @@ alias TL='rm ~/.tmux/.tmux.lock'
 
 # 重置zsh用的快捷键
 alias S='source ~/.zshrc'
-alias L='rm ~/.zsh.lock'
+alias L='rm "${MYZSH}"/.lock/omz.lock'
 alias K='kquitapp5 plasmashell && kstart5 plasmashell'
 
 # 把`ctrl c`改为zle进入normal mode
