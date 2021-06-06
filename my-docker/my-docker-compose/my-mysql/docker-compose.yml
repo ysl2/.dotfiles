@@ -9,11 +9,11 @@ services:
       - MYSQL_ROOT_PASSWORD=Yu970629!
       - TZ=Asia/Shanghai
     volumes:
-      - /home/ubuntu/share-linux/mariadb:/config
+      - ~/docker-volumes/mariadb:/config
     ports:
       - 3306:3306
     restart: unless-stopped
-  
+
   adminer:
     image: adminer
     container_name: adminer

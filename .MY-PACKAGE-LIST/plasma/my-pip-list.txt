@@ -23,10 +23,8 @@ cephfs
 cephfs-shell
 cffi
 chardet
-cli-helpers
 click
 colorama
-configobj
 contextlib2
 cryptography
 cupshelpers
@@ -71,7 +69,6 @@ matplotlib-inline
 mccabe
 MemoizeDB
 msgpack
-mycli
 mypy-extensions
 neovim
 netsnmp-python
@@ -94,11 +91,9 @@ ply
 pm2ml
 Powerpill
 progress
-prompt-toolkit
 protobuf
 psutil
 ptyprocess
-pyaes
 pyalpm
 PyAudio
 pycairo
@@ -109,15 +104,12 @@ pycurl
 pydantic
 pyflakes
 pygls
-Pygments
 PyGObject
 pylint
-PyMySQL
 PyNaCl
 pynvim
 pyOpenSSL
 pyparsing
-pyperclip
 PyQt5
 PyQt5-sip
 PyQtWebEngine
@@ -147,10 +139,7 @@ setuptools
 six
 smdv
 soupsieve
-sqlparse
-tabulate
 team
-terminaltables
 texttable
 thefuck
 toml
@@ -161,7 +150,6 @@ typing-extensions
 udiskie
 ueberzug
 urllib3
-validate
 waitress
 wcwidth
 webencodings
