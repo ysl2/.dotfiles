@@ -2,6 +2,7 @@
 # === Aliases
 # ===
 alias g.="cd ~/.dotfiles"
+alias g,="cd ~/.dotfiles-main"
 alias gv='cd ~/.config/nvim/'
 alias gV='cd ~/.dotfiles/nvim/.config/nvim/'
 alias gc='cd ~/.config/coc/'
