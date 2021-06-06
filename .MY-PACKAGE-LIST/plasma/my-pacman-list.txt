@@ -54,6 +54,7 @@ dmidecode
 dmraid
 dnsmasq
 docker
+docker-compose
 dolphin
 dolphin-plugins
 dosfstools
@@ -459,6 +460,7 @@ xz
 yakuake
 yay
 zensu
+zerotier-one
 zip
 zoxide
 zsh

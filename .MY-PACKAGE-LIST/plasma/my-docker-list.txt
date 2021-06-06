@@ -1,0 +1,4 @@
+REPOSITORY                    TAG       IMAGE ID       CREATED        SIZE
+adminer                       latest    eef7a6f4e6eb   2 days ago     90.3MB
+ghcr.io/linuxserver/mariadb   latest    d6543d932fbf   2 weeks ago    352MB
+danysk/manjaro-with-yay       latest    9507060b5910   7 months ago   2.2GB
