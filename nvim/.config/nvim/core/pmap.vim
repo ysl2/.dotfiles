@@ -143,6 +143,11 @@ noremap <leader>= :Autoformat<CR>
 
 " TODO: No keymap yet.
 
+" ===
+" === md-img-paste
+" ===
+autocmd FileType markdown nnoremap <silent> <C-p> :call mdip#MarkdownClipboardImage()<CR>
+
 
 
 " -------------------------------------------------

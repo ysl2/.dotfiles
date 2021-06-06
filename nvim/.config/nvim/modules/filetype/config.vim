@@ -1,4 +1,7 @@
-"vim-markdown
+" ===
+" === vim-markdown
+" ===
+let g:vim_markdown_math = 1
 let g:vim_markdown_folding_level = 1
 let g:vim_markdown_folding_style_pythonic = 1
 let g:vim_markdown_frontmatter = 1
@@ -22,17 +25,27 @@ let g:vim_markdown_fenced_languages = [
   \ 'py=python'
   \ ]
 
-"Markdwon Preview
+
+" ===
+" === vim-instant-markdown
+" ===
 let g:instant_markdown_slow = 0
 let g:instant_markdown_autostart = 0
+let g:instant_markdown_open_to_the_world = 1
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_allow_external_content = 1
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_mermaid = 1
+" let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
 let g:instant_markdown_autoscroll = 1
-let g:instant_markdown_browser = "google-chrome-stable --new-window"
 let g:instant_markdown_port = 8090
-let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+" let g:instant_markdown_python = 1
 
-" let g:instant_markdown_open_to_the_world = 1
-" let g:instant_markdown_allow_unsafe_content = 1
-" let g:instant_markdown_allow_external_content = 0
-" let g:instant_markdown_mathjax = 1
-"let g:instant_markdown_mermaid = 1
-"let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "google-chrome-stable --new-window"
+
+
+" ===
+" === md-img-paste
+" ===
+let g:mdip_imgdir = 'assets'
+
