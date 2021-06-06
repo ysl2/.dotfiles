@@ -8,7 +8,6 @@ Plug 'https://hub.fastgit.org/instant-markdown/vim-instant-markdown.git', {'for'
 Plug 'https://hub.fastgit.org/mzlogin/vim-markdown-toc.git', {'for': 'markdown'}
 " Plug 'https://hub.fastgit.org/dkarter/bullets.vim.git'
 Plug 'https://hub.fastgit.org/ysl2/md-img-paste.vim.git', {'for': 'markdown'}
-" Plug 'https://hub.fastgit.org/ferrine/md-img-paste.vim.git', {'for': 'markdown'}
 
 " jarvim new
 Plug 'https://hub.fastgit.org/cespare/vim-toml.git', {'for': 'toml'}

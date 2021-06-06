@@ -47,6 +47,5 @@ let g:instant_markdown_browser = "google-chrome-stable --new-window"
 " ===
 " === md-img-paste
 " ===
-let g:mdip_imgdir = 'assets'
-let g:mdip_imgname = 'image'
-let g:mdip_imgdir_filename_prefix = 0
+let g:mdip_imgdir = 'assets' . "/" . expand('%:t:r')
+" let g:mdip_imgname = 'image'
