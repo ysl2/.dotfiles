@@ -2,13 +2,13 @@
 
 THIS=$(pwd)
 cd ~/.config
-git clone http://hub.fastgit.org/catsout/wallpaper-engine-kde-plugin.git
+git clone https://hub.fastgit.org/catsout/wallpaper-engine-kde-plugin.git
 cd wallpaper-engine-kde-plugin
 mkdir -p build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 sudo make install
-cd ..
+cd ../..
 plasmapkg2 -i wallpaper-engine-kde-plugin/plugin
 killall plasmashell && kstart5 plasmashell
 cd "${THIS}"
