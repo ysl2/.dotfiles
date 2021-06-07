@@ -21,6 +21,7 @@ automake
 avahi
 b43-fwcutter
 baidunetdisk-bin
+base
 bash
 bash-language-server
 bat
@@ -37,6 +38,7 @@ cdrdao
 cht.sh
 clash
 clashup
+cmake
 coreutils
 cpupower
 crda
@@ -226,6 +228,7 @@ mlocate
 mobile-broadband-provider-info
 modemmanager
 mpd
+mpv
 mtpfs
 mtr
 ncdu
