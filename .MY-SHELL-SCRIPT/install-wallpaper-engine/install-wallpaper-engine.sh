@@ -13,6 +13,8 @@ plasmapkg2 -i wallpaper-engine-kde-plugin/plugin
 killall plasmashell && kstart5 plasmashell
 cd "${THIS}"
 
+echo "YuSoLi: Almost finished. You need to launch Steam and turn on 'Steam Play' checkbox in settings."
+
 # If any error occurs, follow the steps below to rollback.
 #
 # 1. print `ctrl alt T` to open terminal, then input these commands:
