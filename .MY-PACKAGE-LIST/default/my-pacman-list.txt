@@ -286,6 +286,7 @@ powerpill
 powertop
 print-manager
 procps-ng
+proton
 psmisc
 pulseaudio-bluetooth
 pulseaudio-ctl
