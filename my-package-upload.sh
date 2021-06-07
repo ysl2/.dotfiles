@@ -10,4 +10,4 @@ sudo pacman -Qeq >my-pacman-list.txt
 yay -Qeq >my-yay-list.txt
 pip list | awk '{print $1}' >my-pip-list.txt
 npm list -g --depth=0 >my-npm-list.txt
-docker images >my-docker-list.txt
+docker images | awk '{print $1}' >my-docker-list.txt

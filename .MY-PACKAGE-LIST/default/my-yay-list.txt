@@ -213,7 +213,6 @@ manjaro-settings-manager-kcm
 manjaro-settings-manager-knotifier
 manjaro-system
 manjaro-wallpapers-18.0
-mariadb
 maven
 mdadm
 memtest86+
@@ -229,7 +228,6 @@ modemmanager
 mpd
 mtpfs
 mtr
-mycli
 ncdu
 neofetch
 neovim-nightly-bin
