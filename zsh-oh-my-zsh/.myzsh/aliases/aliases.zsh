@@ -15,6 +15,8 @@ alias up="cd .."
 # 功能性别名
 alias ex="extract"
 alias cht="cht.sh"
+alias t='tmux'
+alias ta='tmux attach'
 alias ra="ranger"
 alias gi='tig'
 alias lg='lazygit'
@@ -50,6 +52,7 @@ alias ryay='yay --color=always'
 # 拉取更新用的
 alias sss='sudo pacman -Syu --noconfirm'
 alias yyy='yay -Syu --noconfirm'
+alias goodbye='systemctl suspend'
 
 # 刷新tmux的快捷键
 alias TS='tmux source-file ~/.tmux.conf'
