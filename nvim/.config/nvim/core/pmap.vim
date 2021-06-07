@@ -103,9 +103,9 @@ nnoremap <silent> \t :<C-u>FloatermToggle<CR>
 
 
 " ===
-" === indentLine
+" === indent-blankline.vim
 " ===
-nnoremap <silent> <Leader>\ :IndentLinesToggle<CR>
+nnoremap <silent> <Leader>\ :IndentBlanklineToggle<CR>
 
 
 " ===
