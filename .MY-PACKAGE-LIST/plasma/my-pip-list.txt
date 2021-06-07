@@ -40,6 +40,7 @@ dockerpty
 docopt
 docstring-to-markdown
 docutils
+filelock
 flake8
 Flask
 Flask-Cors
@@ -69,6 +70,7 @@ matplotlib-inline
 mccabe
 MemoizeDB
 msgpack
+multidict
 mypy-extensions
 neovim
 netsnmp-python
@@ -152,6 +154,7 @@ typing-extensions
 udiskie
 ueberzug
 urllib3
+virtualenv
 waitress
 wcwidth
 webencodings
@@ -162,4 +165,5 @@ wheel
 wrapt
 XCGF
 XCPF
+yarl
 zipp
