@@ -1,0 +1,12 @@
+[Unit]
+Description=Start x11vnc
+After=default.target display-manager.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/x11vnc -ncache 0 -noxdamage --display :0
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
