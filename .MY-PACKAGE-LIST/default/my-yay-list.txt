@@ -24,6 +24,7 @@ baidunetdisk-bin
 base
 bash
 bash-language-server
+bashtop
 bat
 biber
 bison
@@ -405,6 +406,7 @@ wps-office-cn
 wps-office-fonts
 wqy-microhei
 wqy-zenhei
+x11vnc
 xclip
 xdg-desktop-portal
 xdg-desktop-portal-kde
