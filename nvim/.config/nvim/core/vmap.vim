@@ -7,6 +7,7 @@ noremap <leader><leader>4 :tabe ~/.dotfiles-main/nvim/.config/nvim/coc-settings.
 " See plugin/bufkill.vim
 " use emacs keybind
 inoremap <C-c> <ESC>
+noremap <C-a> <Nop>
 noremap <C-z> <C-a>
 " nmap <C-x>k :BD<CR>
 "Write buffer (save)
