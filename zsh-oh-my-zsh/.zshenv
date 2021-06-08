@@ -78,10 +78,12 @@ export yay_outer=(
         python \
         bat \
         ncdu \
+        dutree \
         exa \
         ripgrep \
         peco \
         htop \
+        bashtop \
         git-delta-git \
         bottom \
         mtr \
