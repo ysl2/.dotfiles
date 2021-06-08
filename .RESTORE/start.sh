@@ -39,9 +39,6 @@ my_link() {
     echo "[delete link] "$2""
     rm "$2"
   elif [[ -e "$2" ]]; then
-    if [[ -s "${CONFLICT_DIR}"/conflict.sh ]]; then
-      rm "${CONFLICT_DIR}"/conflict.sh
-    fi
     if [[ ! -e "${CONFLICT_DIR}"/conflict.sh ]]; then
       touch "${CONFLICT_DIR}"/conflict.sh
       chmod 777 "${CONFLICT_DIR}"/conflict.sh
@@ -54,6 +51,9 @@ my_link() {
 CONFLICT_DIR=$(pwd)/assets
 if [[ ! -e ${CONFLICT_DIR} ]]; then
   mkdir -p "${CONFLICT_DIR}"
+fi
+if [[ -e "${CONFLICT_DIR}"/conflict.sh ]]; then
+  rm "${CONFLICT_DIR}"/conflict.sh
 fi
 
 # jump to `~/.dotfiles` dir
