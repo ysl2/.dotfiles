@@ -77,4 +77,3 @@ else
     eval "$(starship init zsh)"
 fi
 
-

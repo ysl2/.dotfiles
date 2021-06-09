@@ -38,4 +38,3 @@ else
     ZSH_THEME=${MY_THEME:-"robbyrussell"}
 fi
 
-

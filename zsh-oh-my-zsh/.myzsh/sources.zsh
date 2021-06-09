@@ -1,16 +1,8 @@
 # ===
-# === source manual
+# === install needed
 # ===
-for item in $(\ls "${MYZSH}"/manual); do
-    sh "${MYZSH}"/manual/"${item}"
-done
-
-
-# ===
-# === source script
-# ===
-for item in $(\ls "${MYZSH}"/script); do
-    source "${MYZSH}"/script/"${item}"
+for item in $(\ls "${MYZSH}"/install); do
+    sh "${MYZSH}"/install/"${item}"
 done
 
 
