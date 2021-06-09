@@ -28,7 +28,7 @@ else
     HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
 fi
 
-if [[ -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
+if [[ -e ${HOMEBREW_REPOSITORY}/bin/brew && -e "${MYZSH}"/.lock/omz.lock ]]; then
     export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.bfsu.edu.cn/linuxbrew-bottles/bottles #ckbrew
     # eval $(/home/linuxbrew/.linuxbrew/Homebrew/bin/brew shellenv) #ckbrew
     eval $("${HOMEBREW_REPOSITORY}"/bin/brew shellenv) #ckbrew
