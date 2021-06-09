@@ -29,8 +29,8 @@ if [[ ! -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
     cd
     rm Homebrew.sh
     wget https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh
-    sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/g' Homebrew1.sh
-    sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/homebrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/g' Homebrew1.sh
+    sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/g' Homebrew.sh
+    sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/homebrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/g' Homebrew.sh
     bash Homebrew.sh
     rm Homebrew.sh
     cd "${THIS}"
