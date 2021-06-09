@@ -6,5 +6,7 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 
 if [[ -e /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.bfsu.edu.cn/linuxbrew-bottles/bottles #ckbrew
+    eval $(/home/linuxbrew/.linuxbrew/Homebrew/bin/brew shellenv) #ckbrew
 fi
+
