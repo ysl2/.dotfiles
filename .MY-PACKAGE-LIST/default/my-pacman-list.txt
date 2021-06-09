@@ -309,7 +309,6 @@ reiserfsprogs
 ripgrep
 rsync
 ruby
-ruby-build
 rust
 s-nail
 samba

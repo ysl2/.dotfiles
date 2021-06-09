@@ -1,7 +1,10 @@
 # =====================
 # === self settings ===
 # =====================
+
 export MYZSH="${HOME}"/.myzsh
+export DOTFILES_MAIN="${HOME}"/.dotfiles-main
+export DOTFILES="${HOME}"/.dotfiles
 
 
 # 设置自己想要的主题。如果想直接使用默认的，这一项可以空着
