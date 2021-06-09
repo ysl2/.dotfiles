@@ -27,11 +27,16 @@ if [[ ! -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
   echo 'YuSoLi: Start installing brew...'
   THIS=$(pwd)
   cd
+  mv ~/.zprofile ~/.zprofile_bak
   rm Homebrew.sh
   wget https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh
   sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/' Homebrew.sh
   sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/homebrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/homebrew-bottles\\\/bottles-portable-ruby/' Homebrew.sh
   bash Homebrew.sh
   rm Homebrew.sh
+  if [[ -e ~/.zprofile && -e ~/.zprofile_bak ]]; then
+    rm ~/.zprofile
+    mv ~/.zprofile_bak ~/.zprofile
+  fi
   cd "${THIS}"
 fi
