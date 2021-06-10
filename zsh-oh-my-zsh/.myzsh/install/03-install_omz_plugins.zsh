@@ -7,11 +7,6 @@ if [[ ! -e "${MYZSH}"/.lock/omz.lock ]]; then
   # 然后yay下载包
   yay -S $yay_packages $yay_outer --needed --noconfirm
   # 再git下载包
-  # 通过普通用户的ssh链接下载。因此如果没有设置ssh,就报错退出。
-  if [[ ! -e ~/.ssh ]]; then
-    echo "YSL: no github ssh key found." >&2
-    exit 1
-  fi
   for item in $git_packages; do
     # 如果目标位置已经有相应的包，就不下载了。否则就下载。并且从镜像站下载
     # ${item##*/}用于裁剪路径格式，从`作者/仓库名`格式中获取到`仓库名`
