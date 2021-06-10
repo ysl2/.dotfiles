@@ -4,7 +4,8 @@ DATA=~/my-docker/my-docker-volumes/
 
 cd $DATA
 git clone https://hub.fastgit.org/yeszao/dnmp.git
-\mv dnmp/* my-dnmp/
+mv -n dnmp/* my-dnmp/
 rm -rf dnmp
 cd my-dnmp
+exit 0
 docker-compose up -d
