@@ -109,17 +109,29 @@ let g:rnvimr_action = {
 "   autocmd FileType rust AutoFormatBuffer rustfmt
 "   autocmd FileType vue AutoFormatBuffer prettier
 " augroup END
-autocmd FileType python let b:codefmt_formatter = 'autopep8'
+" autocmd FileType python let b:codefmt_formatter = 'autopep8'
 
 
-" ===
-" === vim-autoformat
-" ===
+" ======================
+" === vim-autoformat ===
+" ======================
+
 " 用于格式化
 let g:autoformat_verbosemode=0
+
 " 自定义格式化工具举例
 " expand('%:p')用于输出当前文件的绝对路径
-let g:formatdef_googleformatjava = "'google-java-format '.expand('%:p')"
-let g:formatters_java = ['googleformatjava']
-" 下面这个google-java-format使用部分格式化选项，失败
-" let g:formatdef_java = "'google-java-format --lines '.a:firstline.':'.a:lastline' '.expand('%:p')"
+
+
+" ===
+" === java formatter
+" ===
+let g:formatdef_google_format_java = "'google-java-format '.expand('%:p')"
+let g:formatters_java = ['google_format_java']
+
+
+" ===
+" === sql formatter
+" ===
+let g:formatdef_sqlformat = '"sqlformat --indent_width ".shiftwidth()." --keywords upper --identifiers lower -"'
+let g:formatters_sql = ['sqlformat']
