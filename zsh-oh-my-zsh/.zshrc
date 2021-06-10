@@ -3,6 +3,6 @@ unsetopt nomatch
 
 
 # ===
-# === source
+# === start
 # ===
-source "${MYZSH}"/sources.zsh
+source "${MYZSH}"/start.zsh
