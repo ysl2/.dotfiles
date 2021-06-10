@@ -25,53 +25,53 @@ services:
     networks:
       - default
 
-#  php:
-#    build:
-#      context: ./services/php
-#      args:
-#        PHP_VERSION: php:${PHP_VERSION}-fpm-alpine
-#        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
-#        PHP_EXTENSIONS: ${PHP_EXTENSIONS}
-#        TZ: "$TZ"
-#    container_name: php
-#    expose:
-#      - 9501
-#    extra_hosts:
-#      - "www.site1.com:172.17.0.1"
-#    volumes:
-#      - ${SOURCE_DIR}:/www/:rw
-#      - ${PHP_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
-#      - ${PHP_FPM_CONF_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
-#      - ${PHP_LOG_DIR}:/var/log/php
-#      - ${DATA_DIR}/composer:/tmp/composer
-#    restart: always
-#    cap_add:
-#      - SYS_PTRACE
-#    networks:
-#      - default
-
-  php56:
+  php:
     build:
       context: ./services/php
       args:
-        PHP_VERSION: php:${PHP56_VERSION}-fpm-alpine
+        PHP_VERSION: php:${PHP_VERSION}-fpm-alpine
         CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
-        PHP_EXTENSIONS: ${PHP56_EXTENSIONS}
+        PHP_EXTENSIONS: ${PHP_EXTENSIONS}
         TZ: "$TZ"
-    container_name: php56
+    container_name: php
     expose:
       - 9501
+    extra_hosts:
+      - "www.site1.com:172.21.0.1"
     volumes:
       - ${SOURCE_DIR}:/www/:rw
-      - ${PHP56_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
-      - ${PHP56_FPM_CONF_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
-      - ${PHP56_LOG_DIR}:/var/log/php
+      - ${PHP_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
+      - ${PHP_FPM_CONF_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
+      - ${PHP_LOG_DIR}:/var/log/php
       - ${DATA_DIR}/composer:/tmp/composer
     restart: always
     cap_add:
       - SYS_PTRACE
     networks:
       - default
+
+#  php56:
+#    build:
+#      context: ./services/php
+#      args:
+#        PHP_VERSION: php:${PHP56_VERSION}-fpm-alpine
+#        CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
+#        PHP_EXTENSIONS: ${PHP56_EXTENSIONS}
+#        TZ: "$TZ"
+#    container_name: php56
+#    expose:
+#      - 9501
+#    volumes:
+#      - ${SOURCE_DIR}:/www/:rw
+#      - ${PHP56_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
+#      - ${PHP56_FPM_CONF_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
+#      - ${PHP56_LOG_DIR}:/var/log/php
+#      - ${DATA_DIR}/composer:/tmp/composer
+#    restart: always
+#    cap_add:
+#      - SYS_PTRACE
+#    networks:
+#      - default
 
 #  php54:
 #    build:
@@ -94,35 +94,35 @@ services:
 #    networks:
 #      - default
 
-#  mysql:
-#    image: mysql:${MYSQL_VERSION}
-#    container_name: mysql
-#    ports:
-#      - "${MYSQL_HOST_PORT}:3306"
-#    volumes:
-#      - ${MYSQL_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
-#      - ${DATA_DIR}/mysql:/var/lib/mysql/:rw
-#    restart: always
-#    networks:
-#      - default
-#    environment:
-#      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-#      TZ: "$TZ"
-
-  mysql5:
-    image: mysql:${MYSQL5_VERSION}
-    container_name: mysql5
+  mysql:
+    image: mysql:${MYSQL_VERSION}
+    container_name: mysql
     ports:
-      - "${MYSQL5_HOST_PORT}:3306"
+      - "${MYSQL_HOST_PORT}:3306"
     volumes:
-      - ${MYSQL5_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
-      - ${DATA_DIR}/mysql5:/var/lib/mysql/:rw
+      - ${MYSQL_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
+      - ${DATA_DIR}/mysql:/var/lib/mysql/:rw
     restart: always
     networks:
       - default
     environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL5_ROOT_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       TZ: "$TZ"
+
+#  mysql5:
+#    image: mysql:${MYSQL5_VERSION}
+#    container_name: mysql5
+#    ports:
+#      - "${MYSQL5_HOST_PORT}:3306"
+#    volumes:
+#      - ${MYSQL5_CONF_FILE}:/etc/mysql/conf.d/mysql.cnf:ro
+#      - ${DATA_DIR}/mysql5:/var/lib/mysql/:rw
+#    restart: always
+#    networks:
+#      - default
+#    environment:
+#      MYSQL_ROOT_PASSWORD: "${MYSQL5_ROOT_PASSWORD}"
+#      TZ: "$TZ"
 
 #  openresty:
 #    image:  openresty/openresty:${OPENRESTY_VERSION}
@@ -225,7 +225,7 @@ services:
 #       - default
 #    command:
 #       --auth
-
+#
 #  adminmongo:
 #    image: mrvautin/adminmongo
 #    container_name: adminmongo
