@@ -24,7 +24,12 @@ else
 fi
 
 if [[ -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
-  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/linuxbrew-bottles/bottles #ckbrew
+  #HomeBrew 下载源 install
+  if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles #ckbrew
+  else
+    export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/linuxbrew-bottles/bottles #ckbrew
+  fi
   eval $("${HOMEBREW_REPOSITORY}"/bin/brew shellenv) #ckbrew
 fi
 
