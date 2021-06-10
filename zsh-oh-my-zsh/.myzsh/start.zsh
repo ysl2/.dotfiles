@@ -7,7 +7,7 @@ done
 
 
 # ===
-# === source omz
+# === source environmental settings
 # ===
 for item in $(\ls "${MYZSH}"/source); do
   source "${MYZSH}"/source/"${item}"
