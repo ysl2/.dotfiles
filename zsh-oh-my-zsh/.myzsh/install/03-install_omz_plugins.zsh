@@ -1,8 +1,3 @@
-# === 注意:在此文件中并没有添加"加入锁文件"的代码。
-# === 原因是在source oh-my-zsh.sh的时候，还需要输出插件列表
-# === 必须在输出结束之后再添加锁文件
-# === 见"source_oh_my_zsh_plugins"相关文件内容
-
 # 下载上面提到的所有包（omz的包除外。omz的包本身就有，直接调用即可）
 # 通过"${MYZSH}"/.lock/omz.lock文件来锁住更新。如果更改了yay列表或者git列表，就删掉此文件，就会重新自动yay获取更新和git拉取仓库了
 # 快捷键L解锁
@@ -32,4 +27,7 @@ if [[ ! -e "${MYZSH}"/.lock/omz.lock ]]; then
       rm -rf ${ZSH_CUSTOM}/plugins/${item}
     fi
   done
+  # 创建锁文件，下次打开zsh就不检测包了。
+  touch "${MYZSH}"/.lock/omz.lock
 fi
+
