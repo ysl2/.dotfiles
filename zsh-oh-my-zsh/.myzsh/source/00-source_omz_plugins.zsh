@@ -2,11 +2,17 @@
 # 这条必须优先执行
 source $ZSH/oh-my-zsh.sh
 
-# 启用所有yay的间接设置（如果有）
-YAY_ZSH="/usr/share/zsh"
-if [[ -e ${YAY_ZSH}/plugins ]]; then
-  for item in $(find ${YAY_ZSH}/plugins -maxdepth 2 -name "*.plugin.zsh"); do
-    source $item
+if [[ ! -e "${MYZSH}"/.lock/omz.lock ]]; then
+  # 每次解除锁之后，都会输出一次自己加载了哪些插件。然后再加上锁，下次就不会输出了。
+  # 这个输出的作用是为了debug。
+  echo ''
+  echo "YSL: Plugin list"
+  echo "================"
+  for item in $plugins; do
+    echo $item
   done
-fi
+  echo "================"
 
+  # 创建锁文件，下次打开zsh就不检测包了。
+  touch "${MYZSH}"/.lock/omz.lock
+fi

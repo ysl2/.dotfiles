@@ -57,47 +57,43 @@ export CARGO_HTTP_MULTIPLEXING=false
 # ===
 # 注意：如果更改了包，必须按L解锁，然后再按S刷新配置。否则会因为锁文件的存在而无法同步包。
 
-# 0. pip: 这是通过pip下载的包
-pip_outer=(
-  ipython \
-)
+# # 0. pip: 这是通过pip下载的包
+# pip_outer=(
+#   ipython \
+# )
+#
+# # 1. yay: 这是外部的包，但是属于间接依赖。这一部分不会被添加到omz插件中。
+# yay_outer=(
+#   starship \
+#     powerpill \
+#     alacritty-ligatures-git \
+#     nerd-fonts-fira-code \
+#     fd \
+#     cht.sh \
+#     ranger \
+#     tig \
+#     lazygit \
+#     lazydocker \
+#     python \
+#     bat \
+#     ncdu \
+#     dutree \
+#     exa \
+#     ripgrep \
+#     peco \
+#     htop \
+#     bashtop \
+#     git-delta-git \
+#     bottom \
+#     mtr \
+#     pydf \
+#     lftp \
+#     zoxide \
+#   )
 
-# 1. yay: 这是外部的包，但是属于间接依赖。这一部分不会被添加到omz插件中。
-yay_outer=(
-  starship \
-    powerpill \
-    alacritty-ligatures-git \
-    nerd-fonts-fira-code \
-    fd \
-    cht.sh \
-    ranger \
-    tig \
-    lazygit \
-    lazydocker \
-    python \
-    bat \
-    ncdu \
-    dutree \
-    exa \
-    ripgrep \
-    peco \
-    htop \
-    bashtop \
-    git-delta-git \
-    bottom \
-    mtr \
-    pydf \
-    lftp \
-    zoxide \
-  )
-
-# 2. yay: 这是外部的包，并且这部分会被加到omz中。
-yay_packages=(
-  git \
-    fzf \
-    autojump \
-    tmux \
-  )
+# # 2. yay: 这是外部的包，并且这部分会被加到omz中。
+# yay_packages=(
+#   )
 
 # 3. git: 这是需要git下载的包
 git_packages=(
@@ -112,6 +108,9 @@ plugins=(
   vi-mode \
     extract \
     colored-man-pages \
-    $yay_packages
+    git \
+    fzf \
+    autojump \
+    tmux \
   )
-
+  # $yay_packages
