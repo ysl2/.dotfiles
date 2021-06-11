@@ -1,16 +1,15 @@
 # ===
 # === Aliases
 # ===
+alias gh="cd"
+alias up="cd .."
 alias g.="cd ~/.dotfiles"
 alias g,="cd ~/.dotfiles-main"
 alias gv='cd ~/.config/nvim/'
-alias gV='cd ~/.dotfiles/nvim/.config/nvim/'
+alias gV='cd ~/.dotfiles-main/nvim/.config/nvim/'
 alias gc='cd ~/.config/coc/'
-alias oo='cd ~/Documents/00-Github/; code ./00-my-notes; cd -'
-
-alias gh="cd"
-alias up="cd .."
 # 下面这个需要根据不同的电脑进行更改
+alias oo='cd ~/Documents/00-Github/; code ./00-my-notes; cd -'
 
 # 功能性别名
 alias ex="extract"
@@ -35,6 +34,7 @@ alias grep='rg'
 alias igrep='peco'
 alias top='htop'
 alias btop='bashtop'
+alias ctop='ctop'
 alias diff='delta'
 alias hack='btm'
 alias traceroute='mtr'
@@ -42,6 +42,7 @@ alias df='pydf'
 alias ftp='lftp'
 alias cd='z'
 alias cdi='zi'
+alias wireshark='tcpdump'
 
 alias rls='exa --color=always'
 alias rless='less -r'
