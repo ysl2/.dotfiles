@@ -25,5 +25,7 @@ done
 # ===
 # === source aliases
 # ===
-source "${MYZSH}"/aliases/aliases.zsh
+for item in $(\ls "${MYZSH}"/aliases); do
+  source "${MYZSH}"/aliases/"${item}"
+done
 
