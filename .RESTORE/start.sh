@@ -3,14 +3,17 @@
 # RESTORE DOTFILES
 # ================
 #
-# NOTE: This script is used for linking `~/.dotfiles/${stow_tags}/*` to home ('~/') folder
+# NOTE: This script is used for linking `~/.dotfiles/${"${STOW}"_tags}/*` to home ('~/') folder
 #
 # NOTE: The script position must be `~/.dotfiles/${some_hidden_folder}/start.sh`
 # e.g. `~/.dotfiles/.RESTORE-BY_JAVA/start.sh`
 # The folder ${some_hidden_folder} must be a hidden folder!!!
 #
-# NOTE: All the unhidden folders in `~/.dotfiles/` will be considered as a stow tag
-# folder, and will be restored by stow.
+# NOTE: All the unhidden folders in `~/.dotfiles/` will be considered as a "${STOW}" tag
+# folder, and will be restored by "${STOW}".
+
+# Set which version of stow to use:
+STOW=xstow
 
 my_traverse() {
   if [[ -f "$1" ]]; then
@@ -60,11 +63,11 @@ fi
 cd ..
 CUR_DIR=$(pwd)
 TEMP_DIR=''
-# remove previous links by stow
+# remove previous links by "${STOW}"
 for item in $(ls "${CUR_DIR}"); do
   if [[ -d "${item}" ]]; then
-    echo "[stow clear] "${item}""
-    stow -D "${item}"
+    echo "["${STOW}" clear] "${item}""
+    "${STOW}" -D "${item}"
   fi
 done
 for item in $(ls "${CUR_DIR}"); do
@@ -84,7 +87,7 @@ else
 fi
 for item in $(ls "${CUR_DIR}"); do
   if [[ -d "${item}" ]]; then
-    echo "[stow start] "${item}""
-    stow -R "${item}"
+    echo "["${STOW}" start] "${item}""
+    "${STOW}" -R "${item}"
   fi
 done

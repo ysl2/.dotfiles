@@ -10,8 +10,10 @@ The latest version (before 2021-05-18) may cause a lot of problems.
 
 If the bug occurs, downgrage stow will be a good choice.
 
-```text
+```bash
+# Arch
 sudo pacman -U https://archive.archlinux.org/packages/s/stow/stow-2.2.2-5-any.pkg.tar.xz
+# ubuntu: sudo apt install <package>=<version>
 ```
 
 ## How to use
