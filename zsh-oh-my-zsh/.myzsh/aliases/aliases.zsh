@@ -85,7 +85,6 @@ alias goodbye='systemctl suspend'
 # ===
 # 刷新tmux的快捷键
 alias TS='tmux source-file ~/.tmux.conf'
-alias TL='rm ~/.tmux/.tmux.lock'
 
 
 # ===
@@ -95,7 +94,6 @@ alias TL='rm ~/.tmux/.tmux.lock'
 alias S='source ~/.zshrc'
 alias L='rm "${MYZSH}"/.lock/omz.lock'
 alias K='kquitapp5 plasmashell && kstart5 plasmashell'
-
 
 
 # # ===
@@ -118,5 +116,4 @@ alias K='kquitapp5 plasmashell && kstart5 plasmashell'
 # alias asd="alacritty-colorscheme -C $COLOR_DIR -T"
 # # zxc查看当前主题名字
 # alias zxc="alacritty-colorscheme -s"
-
 
