@@ -67,14 +67,16 @@ export ZSH_CUSTOM="${ZSH}/custom"
 # ===
 # 1. git: 这是需要git下载的包
 git_packages=(
-  zsh-users/zsh-autosuggestions \
+  zpm-zsh/colors \
+    zpm-zsh/autoenv \
+    zsh-users/zsh-autosuggestions \
     zsh-users/zsh-syntax-highlighting \
     zsh-users/zsh-completions \
     zdharma/history-search-multi-word
   )
 
 # 2. omz: 启用omz自带的插件
-plugins=(
+omz_plugins=(
   vi-mode \
     extract \
     colored-man-pages \

@@ -13,6 +13,8 @@ if [[ ! -e "${MYZSH}"/.lock/omz.lock ]]; then
   done
 fi
 
+plugins=($omz_plugins)
+
 # 把git的包添加到omz
 # 这条必须在锁文件外面
 for ((i = 0; i <= ${#git_packages[*]}; ++i)); do

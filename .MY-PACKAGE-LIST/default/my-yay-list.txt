@@ -69,7 +69,6 @@ ecryptfs-utils
 efibootmgr
 emovix
 ethtool
-exa
 exfat-utils
 f2fs-tools
 fcitx5
@@ -170,7 +169,6 @@ kwayland-integration
 kwin
 kwrited
 lazydocker
-lazygit
 less
 lftp
 lib32-libcanberra
@@ -328,9 +326,7 @@ spectacle
 spectre-meltdown-checker
 spice-vdagent
 sshfs
-starship
 steam-manjaro
-stow
 subversion
 sudo
 switchhosts-bin
@@ -462,6 +458,7 @@ xorg-xwayland
 xorg-xwd
 xorg-xwud
 xsettingsd
+xstow
 xunlei-bin
 xz
 yakuake
