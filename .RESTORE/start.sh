@@ -13,7 +13,7 @@
 # folder, and will be restored by "${STOW}".
 
 # Set which version of stow to use:
-STOW=xstow
+STOW=stow
 
 my_traverse() {
   if [[ -f "$1" ]]; then
