@@ -1,7 +1,16 @@
 # ============
 # === PATH ===
 # ============
-export PATH=$PATH:~/.cargo/bin
+function addToPATH {
+  case ":$PATH:" in
+    *":$1:"*) :;; # already there
+    *) PATH="$1:$PATH";; # or PATH="$PATH:$1"
+  esac
+}
+addToPATH ~/.cargo/bin
+addToPATH /usr/local/go/bin
+addToPATH ~/go/bin
+
 
 
 # =====================
