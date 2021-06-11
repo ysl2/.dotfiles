@@ -46,6 +46,7 @@ crda
 cronie
 cryptsetup
 ctags
+ctop
 debtap
 deepin.com.qq.office
 deepin.com.wechat
@@ -340,6 +341,7 @@ systemd-kcm
 systemd-sysvcompat
 systemsettings
 tar
+tcpdump
 terminus-font
 texinfo
 texlive-bibtexextra
