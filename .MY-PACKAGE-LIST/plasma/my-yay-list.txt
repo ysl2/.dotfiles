@@ -46,6 +46,7 @@ crda
 cronie
 cryptsetup
 ctags
+ctop
 debtap
 deepin.com.qq.office
 deepin.com.wechat
@@ -285,6 +286,7 @@ poppler-data
 powerdevil
 powerpill
 powertop
+prettyping
 print-manager
 procps-ng
 proton
@@ -326,7 +328,6 @@ spectacle
 spectre-meltdown-checker
 spice-vdagent
 sshfs
-starship
 steam-manjaro
 stow
 subversion
@@ -340,6 +341,7 @@ systemd-kcm
 systemd-sysvcompat
 systemsettings
 tar
+tcpdump
 terminus-font
 texinfo
 texlive-bibtexextra
