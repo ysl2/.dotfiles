@@ -17,3 +17,4 @@ docker images | awk '{print $1}' >my-docker-list.txt
 brew list >my-brew-list.txt
 # cargo install --list
 ls ~/.cargo/bin >my-cargo-list.txt
+ls ~/go/bin >my-go-list.txt
