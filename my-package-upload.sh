@@ -15,3 +15,5 @@ pip3 freeze >my-pip-freeze.txt
 npm list -g --depth=0 >my-npm-list.txt
 docker images | awk '{print $1}' >my-docker-list.txt
 brew list >my-brew-list.txt
+# cargo install --list
+ls ~/.cargo/bin >my-cargo-list.txt

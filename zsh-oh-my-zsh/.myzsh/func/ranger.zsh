@@ -10,7 +10,7 @@ ranger () {
 
 ${ranger_cmd[@]} "$@"
 if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-  cd -- "$(cat "$tempfile")" || return
+  \cd -- "$(cat "$tempfile")" || return
 fi
 command rm -f -- "$tempfile" 2>/dev/null
 }
