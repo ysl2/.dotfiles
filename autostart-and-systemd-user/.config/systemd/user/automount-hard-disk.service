@@ -1,9 +1,9 @@
 [Unit]
-Description="Automount hard disk" 
+Description="Automount hard disk"
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/bash /home/yusoli/.dotfiles/.MY-SHELL-SCRIPT/auto-mount-disk/auto-mount-disk.sh
+ExecStart=/usr/bin/bash /home/yusoli/.dotfiles-main/.MY-SHELL-SCRIPT/auto-mount-disk/auto-mount-disk.sh
 
 [Install]
 WantedBy=default.target
