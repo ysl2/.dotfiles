@@ -1,16 +1,44 @@
+# ============
+# === PATH ===
+# ============
+export PATH=$PATH:~/.cargo/bin
+
+
 # =====================
 # === self settings ===
 # =====================
-
+export EDITOR=nvim
 export MYZSH="${HOME}"/.myzsh
 export DOTFILES_MAIN="${HOME}"/.dotfiles-main
 export DOTFILES="${HOME}"/.dotfiles
-
 
 # 设置自己想要的主题。如果想直接使用默认的，这一项可以空着
 # 注意$ZSH_THEME和$MY_THEME是不一样的！！！
 # 如果有p10k，那么默认就是p10k。但是注意：p10k不能显示conda的base
 MY_THEME="ys"
+
+
+
+# =========================
+# === language specific ===
+# =========================
+
+
+# ===
+# === go
+# ===
+# Go语言开启go module
+export GO111MODULE=on
+# Go语言切换国内软件源
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+
+
+# ===
+# === rust
+# ===
+# rust加入环境变量，参考: https://www.cnblogs.com/ilovewindy/p/13625948.html
+export CARGO_HTTP_MULTIPLEXING=false
+
 
 
 # =================
@@ -23,33 +51,6 @@ MY_THEME="ys"
 # ===
 export ZSH="${HOME}/.oh-my-zsh"
 export ZSH_CUSTOM="${ZSH}/custom"
-
-
-# ===
-# === OMZ: Plugin Specific
-# ===
-# OMZ: 设置复制粘帖的时候取消幻灯片效果
-export DISABLE_MAGIC_FUNCTIONS=true
-# OMZ: tmux
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_AUTOSTART_ONCE=true
-export ZSH_TMUX_AUTOCONNECT=true
-export ZSH_TMUX_AUTOQUIT=true
-# OMZ: vi-mode
-export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-export VI_MODE_SET_CURSOR=true
-export MODE_INDICATOR="%F{yellow}+%f"
-# OMZ: fzf
-export FZF_DEFAULT_COMMAND='fd -uu'
-export DISABLE_FZF_KEY_BINDINGS=true
-
-export EDITOR=nvim
-# Go语言开启go module
-export GO111MODULE=on
-# Go语言切换国内软件源
-export GOPROXY=https://mirrors.aliyun.com/goproxy/
-# rust加入环境变量，参考: https://www.cnblogs.com/ilovewindy/p/13625948.html
-export CARGO_HTTP_MULTIPLEXING=false
 
 
 # ===
@@ -73,3 +74,22 @@ plugins=(
     autojump \
     tmux
   )
+
+
+# ===
+# === OMZ: Plugin Specific
+# ===
+# OMZ: 设置复制粘帖的时候取消幻灯片效果
+export DISABLE_MAGIC_FUNCTIONS=true
+# OMZ: tmux
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART_ONCE=true
+export ZSH_TMUX_AUTOCONNECT=true
+export ZSH_TMUX_AUTOQUIT=true
+# OMZ: vi-mode
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export VI_MODE_SET_CURSOR=true
+export MODE_INDICATOR="%F{yellow}+%f"
+# OMZ: fzf
+export FZF_DEFAULT_COMMAND='fd -uu'
+export DISABLE_FZF_KEY_BINDINGS=true
