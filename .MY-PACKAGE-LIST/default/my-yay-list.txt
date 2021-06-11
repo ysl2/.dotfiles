@@ -286,6 +286,7 @@ poppler-data
 powerdevil
 powerpill
 powertop
+prettyping
 print-manager
 procps-ng
 proton

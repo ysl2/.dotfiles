@@ -46,6 +46,7 @@ Flask==2.0.1
 Flask-Cors==3.0.10
 greenlet==1.0.0
 html5lib==1.1
+httpie==2.4.0
 idna==3.1
 importlib-metadata==4.0.1
 iniconfig==1.1.1

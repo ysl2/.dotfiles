@@ -48,6 +48,7 @@ Flask
 Flask-Cors
 greenlet
 html5lib
+httpie
 idna
 importlib-metadata
 iniconfig
