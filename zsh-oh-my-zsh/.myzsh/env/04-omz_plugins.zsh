@@ -20,8 +20,8 @@ omz_plugins=(
     git \
     fzf \
     autojump \
+    tmux
   )
-    # tmux
 
 
 # ===

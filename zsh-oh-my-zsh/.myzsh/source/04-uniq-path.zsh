@@ -1,2 +1,2 @@
-# typeset -U PATH
-# typeset -U FPATH
+typeset -U PATH
+typeset -U FPATH
