@@ -2,6 +2,8 @@
 # === OMZ: Plugin List
 # ===
 # 1. git: 这是需要git下载的包
+# 注意重名问题。有可能第三方包名与omz内置的包名相同。此时会发生意想不到的后果。
+# 比如：第三方包并没有下载，而是直接使用的内置的包。（举例：tmux与zpm-zsh/tmux）
 git_packages=(
   zpm-zsh/colors \
     zpm-zsh/autoenv \
@@ -40,3 +42,4 @@ export MODE_INDICATOR="%F{yellow}+%f"
 # OMZ: fzf
 export FZF_DEFAULT_COMMAND='fd -uu'
 export DISABLE_FZF_KEY_BINDINGS=true
+

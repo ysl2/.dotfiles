@@ -1,7 +1,3 @@
-autoload -Uz compinit
-compinit
-
-
 # ===
 # === set environment
 # ===

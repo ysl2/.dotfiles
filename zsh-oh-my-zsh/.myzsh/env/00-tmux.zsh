@@ -15,6 +15,10 @@ function notmux () {
 }
 
 if [[ -z "$TMUX" && ! -e "${MYZSH}"/.lock/notmux.lock ]]; then
-  source "${ZSH}"/plugins/tmux/tmux.plugin.zsh
+  if [[ ! -e "$ZSH_CUSTOM"/plugins/tmux ]]; then
+    git clone https://hub.fastgit.org/zpm-zsh/tmux.git "$ZSH_CUSTOM"/plugins/tmux
+  fi
+  export TMUX_MOTD=false
+  source "$ZSH_CUSTOM"/plugins/tmux/tmux.plugin.zsh
 fi
 
