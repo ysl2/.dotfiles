@@ -1,5 +1,5 @@
 # ranger退出时跳转到在ranger里的目录
-ranger () {
+function ranger () {
   local IFS=$'\t\n'
   local tempfile="$(mktemp -t tmp.XXXXXX)"
   local ranger_cmd=(

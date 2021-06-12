@@ -1,6 +1,6 @@
 # 如果终端输入onconda，则启用anaconda。否则则不启用。
 # 如果启用CONDA，zsh启动将会非常慢。如果不是必须要用，建议别开CONDA
-onconda () {
+function onconda () {
   if [[ ! -e "${MYZSH}"/.lock/conda.flag ]]; then
     touch "${MYZSH}"/.lock/conda.flag
   fi
@@ -8,7 +8,7 @@ onconda () {
   echo "Anaconda on"
 }
 
-noconda () {
+function noconda () {
   if [[ -e "${MYZSH}"/.lock/conda.flag ]]; then
     rm "${MYZSH}"/.lock/conda.flag
   fi

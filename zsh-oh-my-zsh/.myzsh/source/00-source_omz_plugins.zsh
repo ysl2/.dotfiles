@@ -2,9 +2,7 @@
 # 这条必须优先执行
 source $ZSH/oh-my-zsh.sh
 
-if [[ ! -e "${MYZSH}"/.lock/omz-echo.lock ]]; then
-  # 每次解除锁之后，都会输出一次自己加载了哪些插件。然后再加上锁，下次就不会输出了。
-  # 这个输出的作用是为了debug。
+function zplug () {
   echo ''
   echo "YuSoLi: Plugin list"
   echo "================"
@@ -12,6 +10,10 @@ if [[ ! -e "${MYZSH}"/.lock/omz-echo.lock ]]; then
     echo $item
   done
   echo "================"
+}
 
+if [[ ! -e "${MYZSH}"/.lock/omz-echo.lock ]]; then
+  zplug
   touch "${MYZSH}"/.lock/omz-echo.lock
 fi
+
