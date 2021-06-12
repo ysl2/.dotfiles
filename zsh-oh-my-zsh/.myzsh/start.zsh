@@ -1,3 +1,7 @@
+autoload -Uz compinit
+compinit
+
+
 # ===
 # === set environment
 # ===
@@ -6,6 +10,7 @@ for item in "${MYZSH}"/env/*.zsh; do
   # source "${MYZSH}"/install/"${item}"
   source $item
 done
+
 
 # ===
 # === install needed
