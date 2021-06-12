@@ -12,9 +12,9 @@ fi
 
 # 设置主题。如果上面定义了MY_THEME就用上面的。否则就用默认的
 if [[ -e ${HOME}/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
-  ZSH_THEME=${MY_THEME:-"powerlevel10k/powerlevel10k"}
+  ZSH_THEME=${ZSH_THEME:-"powerlevel10k/powerlevel10k"}
 else
-  ZSH_THEME=${MY_THEME:-"robbyrussell"}
+  ZSH_THEME=${ZSH_THEME:-"robbyrussell"}
 fi
 
 # p10k或者starship自动配置的内容。这部分需要在omz初始化完成后再进行

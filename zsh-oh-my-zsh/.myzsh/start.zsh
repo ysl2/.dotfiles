@@ -1,4 +1,13 @@
 # ===
+# === set environment
+# ===
+# for item in $(\ls "${MYZSH}"/install); do
+for item in "${MYZSH}"/env/*.zsh; do
+  # source "${MYZSH}"/install/"${item}"
+  source $item
+done
+
+# ===
 # === install needed
 # ===
 # for item in $(\ls "${MYZSH}"/install); do
