@@ -14,6 +14,13 @@ function notmux () {
   mynotice
 }
 
+# init tmux
+# if [[ ! -f "${MYZSH}"/.lock/tmux.lock ]]; then
+if [[ ! -d ~/.tmux ]]; then
+  git clone https://hub.fastgit.org/gpakosz/.tmux.git ~/.tmux
+  ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
+fi
+
 if [[ -z "$TMUX" && ! -e "${MYZSH}"/.lock/notmux.lock ]]; then
   if [[ ! -e "$ZSH_CUSTOM"/plugins/tmux ]]; then
     git clone https://hub.fastgit.org/zpm-zsh/tmux.git "$ZSH_CUSTOM"/plugins/tmux
