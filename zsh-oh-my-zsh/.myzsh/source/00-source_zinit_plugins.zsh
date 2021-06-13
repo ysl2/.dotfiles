@@ -80,7 +80,7 @@ zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/lib/theme-and-appeara
 # vi
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/vi-mode/vi-mode.plugin.zsh'
 # fzf
-zinit ice lucid atinit"
+zinit ice lucid wait atinit"
 export DISABLE_FZF_KEY_BINDINGS=true
 "
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/fzf/fzf.plugin.zsh'
