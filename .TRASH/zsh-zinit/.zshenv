@@ -1,0 +1,1 @@
+export MYZSH="${HOME}"/.myzsh

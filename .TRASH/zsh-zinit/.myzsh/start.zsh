@@ -21,7 +21,7 @@ done
 # === source environmental settings
 # ===
 # for item in $(\ls "${MYZSH}"/source); do
-for item in "${MYZSH}"/source/*/*.zsh; do
+for item in "${MYZSH}"/source/*.zsh; do
   # source "${MYZSH}"/source/"${item}"
   source $item
 done
