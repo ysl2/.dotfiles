@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo 'This branch is not master.'
+exit 0
+
 DE_WM=${DESKTOP_SESSION:-"default"}
 
 mkdir -p .MY-PACKAGE-LIST

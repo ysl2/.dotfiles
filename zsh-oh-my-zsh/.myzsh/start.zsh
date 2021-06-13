@@ -17,7 +17,6 @@ for item in "${MYZSH}"/install/*.zsh; do
   source $item
 done
 
-
 # ===
 # === source environmental settings
 # ===
