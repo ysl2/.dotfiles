@@ -1,5 +1,8 @@
 # 如果终端输入onconda，则启用anaconda。否则则不启用。
 # 如果启用CONDA，zsh启动将会非常慢。如果不是必须要用，建议别开CONDA
+
+# export PATH="/opt/anaconda/bin:$PATH"
+
 function onconda () {
   if [[ ! -e "${MYZSH}"/.lock/conda.flag ]]; then
     touch "${MYZSH}"/.lock/conda.flag
@@ -20,9 +23,6 @@ function noconda () {
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if [[ -e "${MYZSH}"/.lock/conda.flag ]]; then
-  if [[ $(yay -Qeq | grep anaconda) == 1 ]]; then
-    yay -S anaconda
-  fi
   __conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
     eval "$__conda_setup"
