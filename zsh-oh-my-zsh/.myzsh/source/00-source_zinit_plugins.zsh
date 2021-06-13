@@ -1,17 +1,13 @@
 # 剩下的没有安装的插件：
-# git_packages=(
-#     zsh-users/zsh-syntax-highlighting \
-#   )
-#
 # omz_plugins=(
 #     extract \
 #   )
 
 
 
-# ==========================
-# === Load Speed Checker ===
-# ==========================
+# =========================================
+# === Load Plugin Loading Speed Checker ===
+# =========================================
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -95,7 +91,7 @@ zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/autojump/auto
 # extract
 # zinit ice svn lucid wait='1'
 # zinit ice lucid wait='1'
-# zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/extract/extract.plugin.zsh'
+# zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/extract'
 
 # # tmux 配置字段参考这里：https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
 # zinit ice lucid atinit"
@@ -116,6 +112,7 @@ zinit light zdharma/history-search-multi-word
 
 zinit ice lucid wait atinit='zpcompinit' from"hub.fastgit.org"
 zinit light zdharma/fast-syntax-highlighting
+# zinit light zsh-users/zsh-syntax-highlighting
 
 zinit ice lucid wait blockf atpull'zinit creinstall -q .' from"hub.fastgit.org"
 zinit light zsh-users/zsh-completions
@@ -147,4 +144,4 @@ zinit light romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # ### End of Zinit's installer chunk
 # # 主题结束
-#
+
