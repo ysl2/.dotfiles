@@ -158,7 +158,6 @@ sqlformat==0.1.3
 sqlparse==0.4.1
 team==1.0
 texttable==1.6.3
-thefuck==3.30
 toml==0.10.2
 tqdm==4.61.0
 traitlets==5.0.5

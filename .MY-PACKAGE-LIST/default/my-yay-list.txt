@@ -69,7 +69,6 @@ ecryptfs-utils
 efibootmgr
 emovix
 ethtool
-exa
 exfat-utils
 f2fs-tools
 fcitx5
@@ -362,7 +361,6 @@ texlive-pictures
 texlive-pstricks
 texlive-publishers
 texlive-science
-thefuck
 thunderbird
 thunderbird-i18n-en-us
 thunderbird-i18n-zh-cn
