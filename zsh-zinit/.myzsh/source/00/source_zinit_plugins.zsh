@@ -132,6 +132,9 @@ zinit light kutsan/zsh-system-clipboard
 # zinit ice lucid wait='1' from"hub.fastgit.org"
 # zinit light romkatv/zsh-defer
 
+zinit ice from"hub.fastgit.org"
+zinit light zpm-zsh/ls
+
 
 # ===
 # === Theme

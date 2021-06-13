@@ -162,7 +162,6 @@ sqlformat
 sqlparse
 team
 texttable
-thefuck
 toml
 tqdm
 traitlets
