@@ -467,5 +467,4 @@ yay
 zensu
 zerotier-one
 zip
-zoxide
 zsh

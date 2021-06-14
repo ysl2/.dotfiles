@@ -40,3 +40,9 @@ Plug 'https://hub.fastgit.org/kevinoid/vim-jsonc.git',{'for': ['json','jsonc']}
 " ===
 " jarvim new
 Plug 'https://hub.fastgit.org/ekalinin/Dockerfile.vim.git',{'for':['Dockerfile','docker-compose']}
+
+
+" ===
+" === zinit syntax
+" ===
+Plug 'https://hub.fastgit.org/zinit-zsh/zplugin-vim-syntax.git'
