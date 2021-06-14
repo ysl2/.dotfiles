@@ -26,5 +26,9 @@ case $THEME in
     zinit ice lucid pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
     zinit light sindresorhus/pure
     ;;
+  zemoji)
+    zinit ice depth=1 from"hub.fastgit.org"
+    zinit light therzka/zemoji
+    ;;
 esac
 
