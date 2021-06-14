@@ -1,25 +1,17 @@
 # ===
 # === zinit self plugins
 # ===
-zinit ice from"hub.fastgit.org"
-zinit light zinit-zsh/z-a-bin-gem-node
 
-zinit ice from"hub.fastgit.org"
-zinit light zinit-zsh/z-a-patch-dl
+zinit from"hub.fastgit.org" for \
+  zinit-zsh/z-a-bin-gem-node \
+  zinit-zsh/z-a-patch-dl \
+  zinit-zsh/z-a-submods \
+  zdharma/zui \
+  zdharma/zplugin-crasis \
+  zinit-zsh/z-a-test \
+
+# zinit自己的增强插件结束
 
 # 下面这个插件下载速度巨慢，因此关掉
 #zinit ice from"hub.fastgit.org"
 #zinit light zinit-zsh/z-a-man
-
-zinit ice from"hub.fastgit.org"
-zinit light zinit-zsh/z-a-test
-
-zinit ice from"hub.fastgit.org"
-zinit light zinit-zsh/z-a-submods
-
-# 下面这两个是一组的
-zinit ice from"hub.fastgit.org"
-zinit light zdharma/zui
-zinit ice from"hub.fastgit.org"
-zinit light zdharma/zplugin-crasis
-# zinit自己的增强插件结束
