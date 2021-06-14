@@ -24,3 +24,5 @@
 	recurseSubmodules = on-demand
 [credential]
 	helper = store
+[url "https://hub.fastgit.org"]
+	insteadOf = https://github.com
