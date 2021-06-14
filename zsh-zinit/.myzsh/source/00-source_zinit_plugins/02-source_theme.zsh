@@ -11,7 +11,9 @@ case $THEME in
     ;;
   p10k)
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    zinit ice depth=1 from"hub.fastgit.org"
+    zinit ice depth=1 from"hub.fastgit.org" atinit"
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$cyan
+    "
     zinit light romkatv/powerlevel10k
     ;;
   pure)
