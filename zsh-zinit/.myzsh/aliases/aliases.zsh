@@ -94,7 +94,7 @@ alias TS='tmux source-file ~/.tmux.conf'
 # ===
 # 重置zsh用的快捷键
 alias S='source ~/.zshrc'
-alias L='rm "${MYZSH}"/.lock/omz.lock; rm "${MYZSH}"/.lock/omz-echo.lock'
+# alias L='rm "${MYZSH}"/.lock/omz.lock; rm "${MYZSH}"/.lock/omz-echo.lock'
 alias K='kquitapp5 plasmashell && kstart5 plasmashell'
 
 
