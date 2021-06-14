@@ -12,7 +12,7 @@ function onproxy () {
 }
 
 # 关闭代理
-noproxy () {
+function noproxy () {
   unset http_proxy
   unset https_proxy
   unset all_proxy
