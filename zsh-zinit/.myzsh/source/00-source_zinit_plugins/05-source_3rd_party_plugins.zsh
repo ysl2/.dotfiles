@@ -1,8 +1,13 @@
 # ===
 # === 3rd party plugins
 # ===
-zinit ice lucid wait'1' from"hub.fastgit.org"
-zinit light zdharma/history-search-multi-word
+
+# If shell output error: `compdef: unknown command or service`,
+# please execute command: `rm -f ~/.zcompdump*`
+zinit from"hub.fastgit.org" for \
+  zpm-zsh/material-colors \
+  zpm-zsh/ls
+
 
 zinit wait lucid from'hub.fastgit.org' for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
@@ -11,6 +16,16 @@ zinit wait lucid from'hub.fastgit.org' for \
   zsh-users/zsh-completions \
   atload"!_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions
+
+
+zinit wait lucid from"hub.fastgit.org" for \
+  zpm-zsh/colors \
+  zpm-zsh/autoenv
+
+
+zinit ice wait'1' lucid from"hub.fastgit.org"
+zinit light zdharma/history-search-multi-word
+
 
 # zinit ice lucid wait atinit='zpcompinit' from"hub.fastgit.org"
 # zinit light zdharma/fast-syntax-highlighting
@@ -22,17 +37,9 @@ zinit wait lucid from'hub.fastgit.org' for \
 # zinit ice lucid wait atload='_zsh_autosuggest_start' from"hub.fastgit.org"
 # zinit light zsh-users/zsh-autosuggestions
 
-zinit ice lucid wait from"hub.fastgit.org"
-zinit light zpm-zsh/colors
-
-zinit ice lucid wait from"hub.fastgit.org"
-zinit light zpm-zsh/autoenv
-
-zinit ice lucid wait'1' from"hub.fastgit.org"
-zinit light kutsan/zsh-system-clipboard
+# zinit ice lucid wait'1' from"hub.fastgit.org"
+# zinit light kutsan/zsh-system-clipboard
 
 # zinit ice lucid wait='1' from"hub.fastgit.org"
 # zinit light romkatv/zsh-defer
 
-zinit ice from"hub.fastgit.org"
-zinit light zpm-zsh/ls
