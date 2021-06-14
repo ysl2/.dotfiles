@@ -24,6 +24,10 @@ zinit ice lucid wait='1'
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 # autojump
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/autojump/autojump.plugin.zsh'
+# command-not-found
+zinit ice lucid wait='1'
+zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/command-not-found/command-not-found.plugin.zsh'
+
 # extract
 # zinit ice svn lucid wait='1'
 # zinit ice lucid wait='1'
