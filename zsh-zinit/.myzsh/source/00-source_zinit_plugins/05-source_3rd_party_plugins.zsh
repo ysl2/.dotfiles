@@ -4,9 +4,9 @@
 
 # If shell output error: `compdef: unknown command or service`,
 # please execute command: `rm -f ~/.zcompdump*`
-alias ls='ls'
 zinit from"hub.fastgit.org" for \
   zpm-zsh/material-colors \
+  atinit"alias ls='ls'" \
   zpm-zsh/ls
 
 
