@@ -17,7 +17,11 @@ function showdebug () {
       rm "${MYZSH}"/.lock/debug.lock
       flag=1
     fi
-    time zsh -i -c echo
+    if [[ $(hyperfine &>/dev/null; echo $?) != 127 ]]; then
+      hyperfine "zsh -i -c 'exit'"
+    else
+      time zsh -i -c 'exit'
+    fi
     if [[ $flag == 1 ]]; then
       touch "${MYZSH}"/.lock/debug.lock
     fi
