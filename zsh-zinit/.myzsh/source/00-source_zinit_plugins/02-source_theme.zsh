@@ -26,7 +26,9 @@ case $THEME in
     ;;
   p9k)
     [[ ! -f ~/.p9k.zsh ]] || source ~/.p9k.zsh
-    zinit ice depth=1 from"gitee.com"
+    zinit ice depth=1 from"gitee.com" atinit"
+    POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+    "
     zinit light m12uch1/powerlevel9k
     ;;
   pure)
