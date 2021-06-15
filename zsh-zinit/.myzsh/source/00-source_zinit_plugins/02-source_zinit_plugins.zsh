@@ -2,7 +2,7 @@
 # === zinit self plugins
 # ===
 
-zinit from"hub.fastgit.org" for \
+zinit light-mode from"hub.fastgit.org" for \
   zinit-zsh/z-a-bin-gem-node \
   zinit-zsh/z-a-patch-dl \
   zinit-zsh/z-a-submods \

@@ -12,12 +12,12 @@ zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/lib/theme-and-appeara
 # vi
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/vi-mode/vi-mode.plugin.zsh'
 # fzf
-zinit ice lucid wait atinit"
+zinit ice lucid wait'1' atinit"
 export DISABLE_FZF_KEY_BINDINGS=true
 "
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/fzf/fzf.plugin.zsh'
 # git
-zinit ice lucid wait
+zinit ice lucid wait'1'
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh'
 # colored-man-pages
 zinit ice lucid wait'1'

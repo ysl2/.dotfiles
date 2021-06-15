@@ -127,6 +127,7 @@ gzip
 haveged
 htop
 hunspell-en_us
+hyperfine
 hyphen-en
 illyria-wallpaper
 inetutils
