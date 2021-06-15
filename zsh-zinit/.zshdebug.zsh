@@ -1,11 +1,11 @@
 function ondebug () {
   rm -f ~/zsh_profile.*
-  touch "${MYZSH}"/.lock/debug.lock
+  touch "${MYZSH}"/.lock/debug.flag
 }
 
 function nodebug () {
-  if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
-    rm "${MYZSH}"/.lock/debug.lock
+  if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
+    rm "${MYZSH}"/.lock/debug.flag
   fi
   rm -f ~/zsh_profile.*
 }
@@ -13,8 +13,8 @@ function nodebug () {
 function showdebug () {
   if [[ -z "$1" ]]; then
     local flag=0
-    if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
-      rm "${MYZSH}"/.lock/debug.lock
+    if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
+      rm "${MYZSH}"/.lock/debug.flag
       flag=1
     fi
     if [[ $(hyperfine &>/dev/null; echo $?) != 127 ]]; then
@@ -23,7 +23,7 @@ function showdebug () {
       time zsh -i -c 'exit'
     fi
     if [[ $flag == 1 ]]; then
-      touch "${MYZSH}"/.lock/debug.lock
+      touch "${MYZSH}"/.lock/debug.flag
     fi
   else
     if [[ -f "$1" ]]; then
@@ -68,7 +68,7 @@ function _sort_timings () {
 # For debug mode
 # function `ondebug` `nodebug` to control this
 function _start_debug () {
-  if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+  if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
     # Another zsh debug helper
     zmodload zsh/zprof
   fi
@@ -76,7 +76,7 @@ function _start_debug () {
 
 
 function _stop_debug () {
-  if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+  if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
     # Another zsh debug helper
     zprof
   fi
@@ -87,7 +87,7 @@ function _stop_debug () {
 # For debug mode
 # function `ondebug` `nodebug` to control this
 # function _start_debug () {
-#   if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+#   if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
 #     zmodload zsh/datetime
 #     setopt PROMPT_SUBST
 #     PS4='+$EPOCHREALTIME %N:%i> '
@@ -104,7 +104,7 @@ function _stop_debug () {
 #
 #
 # function _stop_debug () {
-#   if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+#   if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
 #     # Another zsh debug helper
 #     # zprof
 #     unsetopt XTRACE

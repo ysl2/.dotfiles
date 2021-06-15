@@ -1,11 +1,11 @@
 # 判断是Linux还是Mac os
+
 OS="$(uname)"
 if [[ "$OS" == "Linux" ]]; then
   HOMEBREW_ON_LINUX=1
 elif [[ "$OS" != "Darwin" ]]; then
   echo "Homebrew 只运行在 Mac OS 或 Linux."
 fi
-
 #设置一些平台地址
 if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
   #Mac
@@ -34,4 +34,4 @@ if [[ -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
 fi
 
 
-
+# "${HOMEBREW_REPOSITORY}"/bin/brew $@

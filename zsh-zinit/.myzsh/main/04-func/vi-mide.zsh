@@ -17,18 +17,6 @@ precmd_functions+=(_fix_cursor)
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-
-# [[ $- == *i* ]]
-
-# 把`ctrl c`改为zle进入normal mode
+# # 把`ctrl c`改为zle进入normal mode
 bindkey '^c' vi-cmd-mode
-# # 把中断信号改为`ctrl e`
-stty intr '^E' &>/dev/null
-
-# stty -a
-
-# function terminate-current-job() { kill -s TERM %+ ; }
-# zle -N terminate-current-job terminate-current-job
-# bindkey "^/" terminate-current-job
-
 
