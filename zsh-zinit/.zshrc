@@ -1,4 +1,4 @@
-source "${MYZSH}"/debug.zsh
+source "${HOME}"/.zshdebug.zsh
 _start_debug
 # ==============================================================
 

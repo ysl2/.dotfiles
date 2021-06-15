@@ -1,0 +1,109 @@
+# YuSoLi
+
+# tmux查看快捷键：<prefix> + ?
+
+
+
+
+
+# ===
+# === 界面样式设置
+# ===
+
+set -g default-terminal 'tmux-256color'
+set -ga terminal-overrides ',xterm-256color:RGB'
+# set -g default-terminal "screen-256color"
+# # tell Tmux that outside terminal supports true color
+# set -ga terminal-overrides ",xterm-256color*:Tc"
+# setw -g aggressive-resize on
+# # 下面这两条加上之后，如果设置了开机进入CLI，会导致zsh无法logout
+# # set -g default-shell $SHELL
+# # set -g default-command "${SHELL}"
+# # 窗口下方下划线
+# set -g window-status-current-style "underscore"
+# # 设置历史命令
+# # set -sg history-file ~/.tmux_history
+
+
+
+
+
+# ===
+# === 快捷键设置
+# ===
+
+# 除了官方以外的可用快捷键列表：
+# a [b] e g [h] [j] [k] [l] [u] [v] y
+
+## 设置主键为 C-a
+## 在实体机中前缀键是C-a，在虚拟机中前缀键是C-a C-a（C-a两次）
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+## 设置第二主键为 C-b
+#set-option -g prefix2 C-b
+# 设置第二主键为 C-a
+#set-option -g prefix2 C-a
+
+# 快速刷新tmux配置
+bind C-r source-file ~/.tmux.conf \; display "Refreshed tmux configure."
+
+# 设置ESC无延迟
+set -sg escape-time 0
+
+# vim方式选择窗口
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# 调整边缘（可递归操作）
+# bind -r C-h resizep -L 5
+# bind -r C-j resizep -D 5
+# bind -r C-k resizep -U 5
+# bind -r C-l resizep -R 5
+
+# 竖向分屏
+bind-key v split-window -h
+# 横向分屏
+bind-key b split-window -v
+
+# 把当前光标下的pane合并到指定的window中（与`<prefix> + !`配合使用）
+# 需要在冒号后面指定当前pane要被放到哪个window。-h表示竖向分屏，-v表示横向分屏
+#bind-key u command-prompt -I "join-pane -h -t :"
+bind-key u command-prompt "join-pane -t :'%%' -h"
+
+
+# ===
+# === 鼠标设置
+# ===
+set -g mouse on
+unbind -n MouseDrag1Pane
+unbind -T copy-mode MouseDrag1Pane
+
+
+# ===
+# === vi模式设置
+# ===
+set-window-option -g mode-keys vi
+setw -g monitor-activity on
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
+
+set -g status-keys vi
+set -g history-limit 10000
+
+
+# ===
+# === 剪贴板设置
+# ===
+
+# copy to macOS clipboard
+#if -b 'command -v pbcopy > /dev/null 2>&1' 'bind y run -b "tmux save-buffer - | pbcopy"'
+#if -b 'command -v reattach-to-user-namespace > /dev/null 2>&1' 'bind y run -b "tmux save-buffer - | reattach-to-user-namespace pbcopy"'
+## copy to X11 clipboard
+#if -b 'command -v xsel > /dev/null 2>&1' 'bind y run -b "tmux save-buffer - | xsel -i -b"'
+#if -b '! command -v xsel > /dev/null 2>&1 && command -v xclip > /dev/null 2>&1' 'bind y run -b "tmux save-buffer - | xclip -i -selection clipboard >/dev/null 2>&1"'
+## copy to Windows clipboard
+#if -b 'command -v clip.exe > /dev/null 2>&1' 'bind y run -b "tmux save-buffer - | clip.exe"'
+#
