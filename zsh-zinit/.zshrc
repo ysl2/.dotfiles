@@ -10,6 +10,8 @@ if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
   exec 3>&2 2>$logfile
 
   setopt XTRACE
+  # Another zsh debug helper
+  zmodload zsh/zprof
 fi
 
 # ===================================================================================
@@ -41,6 +43,8 @@ fi
 # For debug mode
 # function `ondebug` `nodebug` to control this
 if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+  # Another zsh debug helper
+  zprof
   unsetopt XTRACE
   exec 2>&3 3>&-
 fi
