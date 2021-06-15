@@ -174,7 +174,6 @@ lazygit
 less
 lftp
 lib32-libcanberra
-lib32-libcanberra-pulse
 lib32-libva-intel-driver
 lib32-libva-mesa-driver
 lib32-libva-vdpau-driver
@@ -183,8 +182,6 @@ lib32-mesa-vdpau
 lib32-vulkan-intel
 lib32-vulkan-radeon
 libcanberra
-libcanberra-gstreamer
-libcanberra-pulse
 libdvdcss
 libktorrent
 libreoffice-fresh
