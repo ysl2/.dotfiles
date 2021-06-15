@@ -11,11 +11,19 @@ case $THEME in
     ;;
   p10k)
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    # zinit ice depth=1 from"hub.fastgit.org"
+    zinit ice depth=1 from"hub.fastgit.org" atinit"
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=#00B7EB
+    "
+    zinit light romkatv/powerlevel10k
+    ;;
+  p9k)
+    [[ ! -f ~/.p9k.zsh ]] || source ~/.p9k.zsh
     # zinit ice depth=1 from"hub.fastgit.org" atinit"
     # typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$cyan
     # "
-    zinit ice depth=1 from"hub.fastgit.org"
-    zinit light romkatv/powerlevel10k
+    zinit ice depth=1 from"gitee.com"
+    zinit light m12uch1/powerlevel9k
     ;;
   pure)
     # zinit ice lucid wait="!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from="hub.fastgit.org"

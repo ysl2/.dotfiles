@@ -98,6 +98,7 @@ gawk
 gcc
 gcc-libs
 gettext
+gifski
 gimp
 glibc
 gnome-boxes
@@ -270,6 +271,7 @@ pandoc
 partitionmanager
 pciutils
 peco
+peek
 perl
 perl-file-mimeinfo
 phonon-qt5-gstreamer
