@@ -11,6 +11,6 @@ source "${MYZSH}"/start.zsh
 # ===
 # === machine specific
 # ===
-if [[ -e ~/.zshspecific ]]; then
-  source ~/.zshspecific
+if [[ -e ~/.zshrc_spec ]]; then
+  source ~/.zshrc_spec
 fi
