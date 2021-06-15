@@ -65,17 +65,8 @@ function _sort_timings () {
 # function `ondebug` `nodebug` to control this
 function _start_debug () {
   if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
-    zmodload zsh/datetime
-    setopt PROMPT_SUBST
-    PS4='+$EPOCHREALTIME %N:%i> '
-
-    logfile=$(mktemp zsh_profile.XXXXXXXX)
-    echo "Logging to $logfile"
-    exec 3>&2 2>$logfile
-
-    setopt XTRACE
     # Another zsh debug helper
-    # zmodload zsh/zprof
+    zmodload zsh/zprof
   fi
 }
 
@@ -83,10 +74,37 @@ function _start_debug () {
 function _stop_debug () {
   if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
     # Another zsh debug helper
-    # zprof
-    unsetopt XTRACE
-    exec 2>&3 3>&-
+    zprof
   fi
 }
 
+
+
+# For debug mode
+# function `ondebug` `nodebug` to control this
+# function _start_debug () {
+#   if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+#     zmodload zsh/datetime
+#     setopt PROMPT_SUBST
+#     PS4='+$EPOCHREALTIME %N:%i> '
+#
+#     logfile=$(mktemp zsh_profile.XXXXXXXX)
+#     echo "Logging to $logfile"
+#     exec 3>&2 2>$logfile
+#
+#     setopt XTRACE
+#     # Another zsh debug helper
+#     # zmodload zsh/zprof
+#   fi
+# }
+#
+#
+# function _stop_debug () {
+#   if [[ -e "${MYZSH}"/.lock/debug.lock ]]; then
+#     # Another zsh debug helper
+#     # zprof
+#     unsetopt XTRACE
+#     exec 2>&3 3>&-
+#   fi
+# }
 
