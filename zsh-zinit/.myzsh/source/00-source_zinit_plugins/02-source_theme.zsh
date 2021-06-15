@@ -46,5 +46,18 @@ case $THEME in
     zinit ice depth=1 from"hub.fastgit.org"
     zinit light therzka/zemoji
     ;;
+  starship)
+    # if [[ ! -e "${MYZSH}"/.lock/starship.lock ]]; then
+      # touch "${MYZSH}"/.lock/starship.lock
+    if [[ ! -e "${BIN_DIR:-/usr/local/bin/starship}" ]]; then
+      curl https://starship.rs/install.sh -o starship-install.sh
+      chmod a+x starship-install.sh
+      sudo ./starship-install.sh --yes --base-url=https://ghproxy.com/https://github.com/starship/starship/releases
+      rm starship-install.sh
+      # result=$(curl -fsSL https://starship.rs/install.sh)
+      # eval "sudo ./${result} --yes --base-url=https://ghproxy.com/https://github.com/starship/starship/releases"
+    fi
+    # starship配置的内容
+    eval "$(starship init zsh)"
 esac
 
