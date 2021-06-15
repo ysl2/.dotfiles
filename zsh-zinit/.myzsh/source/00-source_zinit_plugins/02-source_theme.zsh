@@ -12,8 +12,15 @@ case $THEME in
   p10k)
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
     # zinit ice depth=1 from"hub.fastgit.org"
+    # local grey='242'
+    # local red='#FF5C57'
+    # local yellow='#F3F99D'
+    # local blue='#57C7FF'
+    # local magenta='#FF6AC1'
+    # local cyan='#9AEDFE'
+    # local white='#F1F1F0'
     zinit ice depth=1 from"hub.fastgit.org" atinit"
-    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=#00B7EB
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=#F1F1F0
     "
     zinit light romkatv/powerlevel10k
     ;;
