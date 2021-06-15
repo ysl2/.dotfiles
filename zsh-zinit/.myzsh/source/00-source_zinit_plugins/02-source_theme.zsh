@@ -11,9 +11,10 @@ case $THEME in
     ;;
   p10k)
     [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-    zinit ice depth=1 from"hub.fastgit.org" atinit"
-    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$cyan
-    "
+    # zinit ice depth=1 from"hub.fastgit.org" atinit"
+    # typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$cyan
+    # "
+    zinit ice depth=1 from"hub.fastgit.org"
     zinit light romkatv/powerlevel10k
     ;;
   pure)
@@ -24,8 +25,7 @@ case $THEME in
     RPROMPT=""
     zstyle ':prompt:pure:prompt:success' color cyan
     # zinit ice lucid wait="!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
-    # zinit light Aloxaf/pure
-    zinit ice lucid pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
+    zinit ice lucid wait"!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
     zinit light sindresorhus/pure
     ;;
   zemoji)
