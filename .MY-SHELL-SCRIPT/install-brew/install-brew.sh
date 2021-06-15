@@ -1,1 +1,0 @@
-../../zsh-oh-my-zsh/.myzsh/install/assets/install-brew.sh
