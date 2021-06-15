@@ -26,9 +26,6 @@ case $THEME in
     ;;
   p9k)
     [[ ! -f ~/.p9k.zsh ]] || source ~/.p9k.zsh
-    # zinit ice depth=1 from"hub.fastgit.org" atinit"
-    # typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$cyan
-    # "
     zinit ice depth=1 from"gitee.com"
     zinit light m12uch1/powerlevel9k
     ;;
