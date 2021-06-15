@@ -8,7 +8,7 @@ zinit from"hub.fastgit.org" for \
   zinit-zsh/z-a-submods \
   zdharma/zui \
   zdharma/zplugin-crasis \
-  zinit-zsh/z-a-test \
+  zinit-zsh/z-a-test
 
 # zinit自己的增强插件结束
 

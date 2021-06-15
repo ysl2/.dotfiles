@@ -1,4 +1,5 @@
 export MYZSH="${HOME}"/.myzsh
+export PATH=$PATH:"${MYZSH}"/bin
 
 
 # ===
