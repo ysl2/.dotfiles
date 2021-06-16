@@ -1,2 +1,0 @@
-gpatch
-pkg-config

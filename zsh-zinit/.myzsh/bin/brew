@@ -1,11 +1,27 @@
 #!/bin/bash
-# 判断是Linux还是Mac os
 
 if [[ ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo 'YuSoLi: brew not installed. Start installing...'
   bash "${MYZSH}"/sh/install-brew.sh
 fi
 
-# eval $("${HOMEBREW_REPOSITORY}"/bin/brew shellenv) #ckbrew
+if [[ -d "${HOMEBREW_REPOSITORY}/Cellar" ]]
+then
+  export HOMEBREW_CELLAR="${HOMEBREW_REPOSITORY}/Cellar"
+else
+  export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+fi
+
+export PATH="${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+
+# echo $HOMEBREW_PREFIX
+# echo $HOMEBREW_CELLAR
+# echo $HOMEBREW_REPOSITORY
+# echo $PATH
+# echo $MANPATH
+# echo $INFOPATH
 
 "${HOMEBREW_REPOSITORY}"/bin/brew $@
+

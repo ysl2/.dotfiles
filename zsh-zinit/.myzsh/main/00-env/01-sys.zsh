@@ -38,6 +38,10 @@ export FPATH=$FPATH:/usr/share/zsh/site-functions:/usr/share/zsh/functions/Calen
 # This code below will not check if `${HOMEBREW_REPOSITORY}` exists.
 # So you should run the personal brew in "${MYZSH}"/bin to check the environment, instead of the offical brew.
 
+# HOMEBREW_REPOSITORY
+# HOMEBREW_PREFIX
+# HOMEBREW_BOTTLE_DOMAIN
+
 if [[ -z "${HOMEBREW_REPOSITORY}" ]]; then
   OS="$(uname)"
   if [[ "$OS" == "Linux" ]]; then
@@ -68,4 +72,6 @@ if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
 else
   export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/linuxbrew-bottles/bottles #ckbrew
 fi
+
+# NOTE: This declaration below is necessary.
 export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
