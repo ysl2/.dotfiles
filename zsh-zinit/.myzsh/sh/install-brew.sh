@@ -1,3 +1,4 @@
+#!/bin/bash
 # 判断是Linux还是Mac os
 OS="$(uname)"
 if [[ "$OS" == "Linux" ]]; then

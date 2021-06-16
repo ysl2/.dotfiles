@@ -1,2 +1,2 @@
-#/bin/bash
+#!/bin/bash
 echo "YuSoLi: "${MYZSH}" stores some personal executable files."
