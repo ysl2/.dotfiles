@@ -25,7 +25,6 @@ base
 bash
 bash-language-server
 bashtop
-bat
 biber
 bison
 bluedevil

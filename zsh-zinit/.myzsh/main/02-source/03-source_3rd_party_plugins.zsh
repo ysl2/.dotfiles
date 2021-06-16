@@ -4,11 +4,12 @@
 
 # If shell output error: `compdef: unknown command or service`,
 # please execute command: `rm -f ~/.zcompdump*`
-zinit light-mode from"hub.fastgit.org" for \
+zinit wait'!0' lucid light-mode from"hub.fastgit.org" for \
   zpm-zsh/material-colors \
   atinit"alias ls='ls'" \
   zpm-zsh/ls
 
+# zinit wait!0' lucid light-mode from'hub.fastgit.org' for \
 zinit wait lucid light-mode from'hub.fastgit.org' for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
   zdharma/fast-syntax-highlighting \
@@ -17,12 +18,12 @@ zinit wait lucid light-mode from'hub.fastgit.org' for \
   atload"!_zsh_autosuggest_start" \
   zsh-users/zsh-autosuggestions
 
-zinit wait lucid light-mode from"hub.fastgit.org" for \
+zinit wait'!0' lucid light-mode from"hub.fastgit.org" for \
   zpm-zsh/colors \
   zpm-zsh/autoenv
 
 
-zinit ice wait'1' lucid from"hub.fastgit.org"
+zinit ice wait'!0' lucid from"hub.fastgit.org"
 zinit light zdharma/history-search-multi-word
 
 
