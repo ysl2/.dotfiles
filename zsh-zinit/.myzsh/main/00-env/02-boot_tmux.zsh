@@ -10,10 +10,10 @@
 # === load first
 # ===
 # # 让tmux先加载
-zinit ice from"hub.fastgit.org" atinit"
-export TMUX_MOTD=false
-"
-zinit light zpm-zsh/tmux
+# zinit ice from"hub.fastgit.org" atinit"
+# export TMUX_MOTD=false
+# "
+# zinit light zpm-zsh/tmux
 
 # # tmux 配置字段参考这里：https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
 # zinit ice lucid atinit"
@@ -40,3 +40,15 @@ zinit light zpm-zsh/tmux
 #     unset TMUX TMUX_PANE
 #   fi
 # fi
+
+if [[ -z "$TMUX" ]]; then
+  function _tmux_autostart() {
+    TERM=xterm-256color tmux -2 new-session -A -s main
+    exit 0
+    add-zsh-hook -d precmd _tmux_autostart
+  }
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _tmux_autostart
+fi
+
