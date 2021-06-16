@@ -2,7 +2,7 @@
 # === zinit self plugins
 # ===
 
-zinit wait'!0' lucid light-mode from"hub.fastgit.org" for \
+zinit wait lucid light-mode from"hub.fastgit.org" for \
   zinit-zsh/z-a-bin-gem-node \
   zinit-zsh/z-a-patch-dl \
   zinit-zsh/z-a-submods

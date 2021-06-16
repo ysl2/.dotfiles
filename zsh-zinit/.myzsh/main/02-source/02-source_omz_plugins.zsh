@@ -15,7 +15,7 @@ zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/lib/theme-and-appeara
 # vi
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/vi-mode/vi-mode.plugin.zsh'
 # fzf
-zinit ice wait'!0' lucid atinit"
+zinit ice wait lucid atinit"
 export DISABLE_FZF_KEY_BINDINGS=true
 "
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/fzf/fzf.plugin.zsh'
@@ -23,13 +23,13 @@ zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/fzf/fzf.plugi
 zinit ice wait lucid atload$'unalias grv g 2>/dev/null'
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/git/git.plugin.zsh'
 # colored-man-pages
-zinit ice wait'!0' lucid
+zinit ice wait'1' lucid
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 # autojump
 zinit ice wait lucid
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/autojump/autojump.plugin.zsh'
 # command-not-found
-zinit ice wait'!0' lucid
+zinit ice wait'1' lucid
 zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/command-not-found/command-not-found.plugin.zsh'
 
 # extract
