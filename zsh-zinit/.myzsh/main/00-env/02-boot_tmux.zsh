@@ -42,7 +42,7 @@
 # fi
 
 if ! (( $+commands[tmux] )); then
-  print "YuSoLi: Tmux not found. Please install tmux before using this plugin." >&2
+  print ""${NOTICE}": Tmux not found. Please install tmux before using this plugin." >&2
   return 1
 fi
 

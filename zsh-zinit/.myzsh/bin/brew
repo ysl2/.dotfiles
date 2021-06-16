@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ ! -e "${HOMEBREW_REPOSITORY}" ]]; then
-  echo 'YuSoLi: brew not installed. Start installing...'
+  echo ""${NOTICE}": brew not installed. Start installing..."
   bash "${MYZSH}"/sh/install-brew.sh
 fi
 

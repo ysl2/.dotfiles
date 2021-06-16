@@ -25,7 +25,7 @@ else
 fi
 
 if [[ ! -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
-  echo 'YuSoLi: Start installing brew...'
+  echo ""${NOTICE}": Start installing brew..."
   THIS=$(pwd)
   cd
   mv ~/.zprofile ~/.zprofile_bak

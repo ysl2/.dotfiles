@@ -1,5 +1,6 @@
 export MYZSH="${HOME}"/.myzsh
-export PATH=$PATH:"${MYZSH}"/bin
+export PATH="${MYZSH}"/bin:$PATH
+export NOTICE="YuSoLi"
 
 
 # ===

@@ -8,7 +8,8 @@ if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
   PS4='+$EPOCHREALTIME %N:%i> '
 
   logfile=$(mktemp zsh_profile.XXXXXXXX)
-  echo "Logging to $logfile"
+  echo ""${NOTICE}": Logging to $logfile"
+  echo ""${NOTICE}": You can run `nodebug` to turn off debug mode."
   exec 3>&2 2>$logfile
 
   setopt XTRACE

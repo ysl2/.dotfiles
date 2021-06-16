@@ -30,7 +30,7 @@ function showdebug () {
       # This will list all of the commands that were executed in the course of running your zshrc, longest-running first.
       _sort_timings $1 | head
     else
-      echo "YuSoLi: Error, $1 is not a file, or not exists."
+      echo ""${NOTICE}": Error, $1 is not a file, or not exists."
     fi
   fi
 }
