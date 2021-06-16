@@ -4,7 +4,7 @@
 
 # If shell output error: `compdef: unknown command or service`,
 # please execute command: `rm -f ~/.zcompdump*`
-zinit wait'!0' lucid light-mode from"hub.fastgit.org" for \
+zinit wait lucid light-mode from"hub.fastgit.org" for \
   zpm-zsh/material-colors \
   atinit"alias ls='ls'" \
   zpm-zsh/ls
