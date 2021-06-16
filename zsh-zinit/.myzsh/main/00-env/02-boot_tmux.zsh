@@ -41,6 +41,11 @@
 #   fi
 # fi
 
+if ! (( $+commands[tmux] )); then
+  print "zsh tmux plugin: tmux not found. Please install tmux before using this plugin." >&2
+  return 1
+fi
+
 if [[ -z "$TMUX" ]]; then
   function _tmux_autostart() {
     TERM=xterm-256color tmux -2 new-session -A -s main
