@@ -1,7 +1,7 @@
 # 判断是Linux还是Mac os
 
 if [[ ! -e "${MYZSH}"/.lock/brew.lock ]]; then
-  bash "${MYZSH}"/install/assets/install-brew.sh
+  bash "${MYZSH}"/sh/install-brew.sh
   touch "${MYZSH}"/.lock/brew.lock
 fi
 

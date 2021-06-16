@@ -1,4 +1,4 @@
-source "${HOME}"/.zshdebug.zsh
+source "${HOME}"/.zshdebug
 
 # For debug mode
 # function `ondebug` `nodebug` to control this
