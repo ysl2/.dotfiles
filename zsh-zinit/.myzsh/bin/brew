@@ -1,10 +1,15 @@
 #!/bin/bash
 
-
-
 # ==================
 # === check brew ===
 # ==================
+
+# case "$1" in
+#   myinstall)
+#     zinit ice depth=1 from"hub.fastgit.org"
+#     zinit light spaceship-prompt/spaceship-prompt
+#     ;;
+# esac
 
 if [[ "$1" == 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. Start installing..."
@@ -20,6 +25,10 @@ elif [[ "$1" == 'myinstall' && -e "${HOMEBREW_REPOSITORY}" ]]; then
 #   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
 
+# [[ :$PATH: != *:"${HOMEBREW_REPOSITORY}"/bin:* ]] ||
+#   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
+
+
 # This variable is used for reporting error messages.
 flag=0
 
@@ -27,15 +36,6 @@ if [[ :$PATH: != *:"${HOMEBREW_REPOSITORY}"/bin:* ]]; then
   flag=1
   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
-
-# case "$1" in
-#   myinstall)
-#     zinit ice depth=1 from"hub.fastgit.org"
-#     zinit light spaceship-prompt/spaceship-prompt
-#     ;;
-# esac
-
-
 
 # ==================
 # === start brew ===
@@ -59,8 +59,6 @@ export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 # echo $INFOPATH
 
 "${HOMEBREW_REPOSITORY}"/bin/brew $@
-
-
 
 # =======================
 # === prompt if error ===
