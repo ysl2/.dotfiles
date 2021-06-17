@@ -9,14 +9,13 @@
 if [[ "$1" == 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. Start installing..."
   bash "${MYZSH}"/sh/install-brew.sh
-  export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
   exit 0
 elif [[ "$1" != 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. run 'brew myinstall' to install it."
-  exit 0
+  exit 127
 elif [[ "$1" == 'myinstall' && -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew has already been installed."
-  exit 0
+  exit 1
 # elif [[ "$1" != 'myinstall' && -e "${HOMEBREW_REPOSITORY}" ]]; then
 #   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
