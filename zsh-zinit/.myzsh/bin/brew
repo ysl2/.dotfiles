@@ -9,6 +9,7 @@
 if [[ ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. Start installing..."
   bash "${MYZSH}"/sh/install-brew.sh
+  export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
 
 

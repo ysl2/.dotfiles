@@ -81,5 +81,8 @@ else
   export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/linuxbrew-bottles/bottles #ckbrew
 fi
 
-# NOTE: This declaration below is necessary.
-export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
+# NOTE: This below command is necessary.
+# Don't delete the below command.
+if [[ -e "${HOMEBREW_REPOSITORY}"/bin ]]; then
+  export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
+fi
