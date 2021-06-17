@@ -187,7 +187,7 @@ endif
 " set ttimeoutlen=0
 " set notimeout
 set timeout ttimeout
-set timeoutlen=1000   " Time out on mappings
+set timeoutlen=2000   " Time out on mappings
 set ttimeoutlen=10   " Time out on key codes
 " 刷新交换文件所需的毫秒数
 set updatetime=100   " Idle time to write swap and trigger CursorHold
