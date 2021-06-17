@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 # ==================
 # === check brew ===
 # ==================
@@ -20,7 +18,11 @@ elif [[ "$1" == 'myinstall' && -e "${HOMEBREW_REPOSITORY}" ]]; then
 #   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
 
+# This variable is used for reporting error messages.
+flag=0
+
 if [[ :$PATH: != *:"${HOMEBREW_REPOSITORY}"/bin:* ]]; then
+  flag=1
   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
 
@@ -30,8 +32,6 @@ fi
 #     zinit light spaceship-prompt/spaceship-prompt
 #     ;;
 # esac
-
-
 
 # ==================
 # === start brew ===
@@ -55,3 +55,22 @@ export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 # echo $INFOPATH
 
 "${HOMEBREW_REPOSITORY}"/bin/brew $@
+
+
+
+# =======================
+# === prompt if error ===
+# =======================
+
+if [[ "${flag}" == 1 ]]; then
+  echo "
+  ==================================================================================================
+  "${NOTICE}": There are no brew directorys included in your \$PATH.
+      Maybe you should reopen your terminal, otherwise you can't run the packages installed by brew.
+      The brew directorys will be automatically included into \$PATH after the new terminal.
+
+      If this message continually prompts, please add the command below into your zshrc:
+
+      export PATH=\$PATH:"\${HOMEBREW_REPOSITORY}"/bin
+  "
+fi
