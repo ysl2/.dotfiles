@@ -1,9 +1,21 @@
 #!/bin/bash
 
+
+
+# ==================
+# === check brew ===
+# ==================
+
 if [[ ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. Start installing..."
   bash "${MYZSH}"/sh/install-brew.sh
 fi
+
+
+
+# ==================
+# === start brew ===
+# ==================
 
 if [[ -d "${HOMEBREW_REPOSITORY}/Cellar" ]]
 then
