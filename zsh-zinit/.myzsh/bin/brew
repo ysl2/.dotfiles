@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 # ==================
 # === check brew ===
 # ==================
@@ -8,6 +10,7 @@ if [[ "$1" == 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. Start installing..."
   bash "${MYZSH}"/sh/install-brew.sh
   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
+  exit 0
 elif [[ "$1" != 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. run 'brew myinstall' to install it."
   exit 0
@@ -28,6 +31,8 @@ fi
 #     zinit light spaceship-prompt/spaceship-prompt
 #     ;;
 # esac
+
+
 
 # ==================
 # === start brew ===
