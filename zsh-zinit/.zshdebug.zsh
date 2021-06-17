@@ -1,5 +1,5 @@
 function ondebug () {
-  rm -f ~/zsh_profile.*
+  rm -f ~/zsh_profile.* &>/dev/null
   touch "${MYZSH}"/.lock/debug.flag
 }
 
@@ -7,7 +7,7 @@ function nodebug () {
   if [[ -e "${MYZSH}"/.lock/debug.flag ]]; then
     rm "${MYZSH}"/.lock/debug.flag
   fi
-  rm -f ~/zsh_profile.*
+  rm -f ~/zsh_profile.* &>/dev/null
 }
 
 function showdebug () {
