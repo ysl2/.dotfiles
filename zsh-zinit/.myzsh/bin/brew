@@ -1,33 +1,47 @@
 #!/bin/bash
 
-
-
 # ==================
 # === check brew ===
 # ==================
 
-if [[ ! -e "${HOMEBREW_REPOSITORY}" ]]; then
+if [[ "$1" == 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
   echo ""${NOTICE}": brew not installed. Start installing..."
   bash "${MYZSH}"/sh/install-brew.sh
   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
+elif [[ "$1" != 'myinstall' && ! -e "${HOMEBREW_REPOSITORY}" ]]; then
+  echo ""${NOTICE}": brew not installed. run 'brew myinstall' to install it."
+  exit 0
+elif [[ "$1" == 'myinstall' && -e "${HOMEBREW_REPOSITORY}" ]]; then
+  echo ""${NOTICE}": brew has already been installed."
+  exit 0
+# elif [[ "$1" != 'myinstall' && -e "${HOMEBREW_REPOSITORY}" ]]; then
+#   export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
 fi
 
+if [[ :$PATH: != *:"${HOMEBREW_REPOSITORY}"/bin:* ]]; then
+  export PATH=$PATH:"${HOMEBREW_REPOSITORY}"/bin
+fi
 
+# case "$1" in
+#   myinstall)
+#     zinit ice depth=1 from"hub.fastgit.org"
+#     zinit light spaceship-prompt/spaceship-prompt
+#     ;;
+# esac
 
 # ==================
 # === start brew ===
 # ==================
 
-if [[ -d "${HOMEBREW_REPOSITORY}/Cellar" ]]
-then
+if [[ -d "${HOMEBREW_REPOSITORY}/Cellar" ]]; then
   export HOMEBREW_CELLAR="${HOMEBREW_REPOSITORY}/Cellar"
 else
   export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
 fi
 
-export PATH="${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}";
-export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
+export PATH="${HOMEBREW_PREFIX}/sbin${PATH+:$PATH}"
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 
 # echo $HOMEBREW_PREFIX
 # echo $HOMEBREW_CELLAR
@@ -37,4 +51,3 @@ export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}";
 # echo $INFOPATH
 
 "${HOMEBREW_REPOSITORY}"/bin/brew $@
-

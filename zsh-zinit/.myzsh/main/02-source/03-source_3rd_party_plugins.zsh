@@ -9,6 +9,7 @@ zinit wait lucid light-mode from"hub.fastgit.org" for \
   atinit"alias ls='ls'" \
   zpm-zsh/ls
 
+# zsh-users/zsh-syntax-highlighting \
 zinit wait lucid light-mode from'hub.fastgit.org' for \
   atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
   zdharma/fast-syntax-highlighting \
