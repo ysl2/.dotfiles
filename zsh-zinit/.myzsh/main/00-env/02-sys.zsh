@@ -6,6 +6,14 @@
 # export PATH=$PATH:/usr/local/go/bin
 # export PATH=$PATH:~/go/bin
 
+export PATH="${MYZSH}"/bin:$PATH
+
+
+
+# =============
+# === FPATH ===
+# =============
+
 # export FPATH=$FPATH:/usr/share/zsh/site-functions
 # export FPATH=$FPATH:/usr/share/zsh/functions/Calendar
 # export FPATH=$FPATH:/usr/share/zsh/functions/Chpwd

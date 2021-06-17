@@ -1,5 +1,4 @@
 export MYZSH="${HOME}"/.myzsh
-export PATH="${MYZSH}"/bin:$PATH
 export NOTICE="YuSoLi"
 
 
