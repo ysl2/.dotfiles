@@ -27,9 +27,12 @@ fi
 
 
 # ===
-# === start
+# === source all
 # ===
-source "${MYZSH}"/start.zsh
+
+for item in "${MYZSH}"/main/**/*.zsh; do
+  source $item
+done
 
 
 # ===
