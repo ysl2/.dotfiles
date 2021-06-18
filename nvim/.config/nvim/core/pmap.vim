@@ -129,7 +129,7 @@ noremap <leader>= :Autoformat<CR>
 " ===
 " === md-img-paste
 " ===
-autocmd FileType markdown nnoremap <silent> <C-p> :call mdip#MarkdownClipboardImage()<CR>
+autocmd FileType markdown nnoremap <silent> <C-p> :call mdip#MarkdownClipboardImage()<CR><ESC>
 
 
 
