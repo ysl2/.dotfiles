@@ -127,7 +127,7 @@ let g:autoformat_verbosemode=0
 " === java formatter
 " ===
 let g:formatdef_google_format_java = "'google-java-format '.expand('%:p')"
-let g:formatters_java = ['google_format_java']
+" let g:formatters_java = ['google_format_java']
 
 
 " ===

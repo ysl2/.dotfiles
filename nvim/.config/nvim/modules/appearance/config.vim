@@ -98,7 +98,8 @@ let g:lightline.active.left =  [
 \   [ 'gitstatus', 'readonly', 'filename', 'modified' ]
 \ ]
 
-let g:lightline.colorscheme = 'nord'
+" NOTE: Default is the theme name. check `autoload/theme.vim`, the variable `g:colors_name` is defined in this file.
+let g:lightline.colorscheme = colors_name
 
 " let g:lightline.mode_map = {
 " \   'n' : 'Normal',

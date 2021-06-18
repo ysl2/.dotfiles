@@ -1,10 +1,12 @@
+" ===
+" === theme
+" ===
+Plug 'https://hub.fastgit.org/arcticicestudio/nord-vim.git'
+Plug 'https://hub.fastgit.org/ajmwagar/vim-deus.git'
+
+" ===========================================================================
 
 Plug 'https://hub.fastgit.org/ryanoasis/vim-devicons.git'
-
-
-Plug 'https://hub.fastgit.org/arcticicestudio/nord-vim.git'
-
-
 " Plug 'https://hub.fastgit.org/glepnir/dashboard-nvim.git'
 
 " Plug 'https://hub.fastgit.org/bagrat/vim-buffet.git'
