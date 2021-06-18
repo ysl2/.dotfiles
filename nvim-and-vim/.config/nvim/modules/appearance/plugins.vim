@@ -17,3 +17,5 @@ Plug 'https://hub.fastgit.org/itchyny/lightline.vim.git'
 " Plug 'https://hub.fastgit.org/vim-airline/vim-airline.git'
 " Plug 'https://hub.fastgit.org/glepnir/galaxyline.nvim.git'
 
+Plug 'https://hub.fastgit.org/mhinz/vim-startify.git'
+

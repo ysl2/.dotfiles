@@ -67,6 +67,7 @@ endfor
 
 call initself#source_file($VIM_PATH,'core/pmap.vim')
 
+
 " ===
 " === load project vim configuration.
 " ===

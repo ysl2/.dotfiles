@@ -26,10 +26,9 @@ let g:vista_executive_for = {
             \ 'typescriptreact': 'coc',
             \ }
 
+
 " ===
 " === gutentags
-" ===
-" === 注意`gutentags_exclude_filetypes` 中的python。这个是被迫加上的。因为gutentags与codefmt插件发生了冲突。在此字段加入python可以避免此问题。
 " ===
 let g:gutentags_cache_dir = $DATA_PATH . '/tags'
 let g:gutentags_project_root = ['.root', '.git', '.svn', '.hg', '.project','go.mod','/usr/local', 'package.json',]
