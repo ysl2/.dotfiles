@@ -88,10 +88,10 @@ endif
 " Vim Directories {{{
 " ---------------
 
-" 自动切换当前目录为当前文件所在的目录
-set autochdir
-" Auto change directory to current dir
-autocmd BufEnter * silent! lcd %:p:h
+" " 自动切换当前目录为当前文件所在的目录
+" set autochdir
+" " Auto change directory to current dir
+" autocmd BufEnter * silent! lcd %:p:h
 " 打开文件时光标在上次退出的位置
 au BufReadPost * if line("'\"") > 1|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 

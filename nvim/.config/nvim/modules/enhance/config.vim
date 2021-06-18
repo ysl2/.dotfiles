@@ -140,3 +140,10 @@ let g:formatdef_google_format_java = "'google-java-format '.expand('%:p')"
 " ===
 let g:formatdef_sqlformat = '"sqlformat --indent_width ".shiftwidth()." --keywords upper --identifiers lower -"'
 let g:formatters_sql = ['sqlformat']
+
+
+
+" ===
+" === json formatter
+" ===
+let g:formatters_sql = ['fixjson']

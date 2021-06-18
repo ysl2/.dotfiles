@@ -154,6 +154,7 @@
           }
         ],
         //    === TheCW END ===
+        //"explorer.file.cdCommand": "cd",
         "explorer.keyMappingMode": "none",
         "explorer.keyMappings.global": {
           // function keys
@@ -189,7 +190,7 @@
           "o": ["wait", "expandable?", "expand", "previewOnHover:toggle:content"],
           "u": ["wait", "expandable?", "expand", "previewOnHover:toggle:labeling"],
           // jump
-          "i": ["wait", "expandable?", "expand", "cd", "open"],
+          "i": ["wait", "expandable?", "cd", "open"],
           "I": ["wait", "gotoParent"],
           // operations
           "yp": "copyFilepath",

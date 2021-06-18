@@ -70,6 +70,13 @@ noremap \p :echo expand('%:p')<CR>
 " ===
 nmap <silent> \e :CocCommand explorer<CR>
 
+
+" ===
+" === defx.nvim
+" ===
+" nmap \e :Defx<CR>
+
+
 " ===
 " === vim-mundo
 " ===

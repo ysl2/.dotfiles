@@ -1,6 +1,7 @@
 " jarvim new
 " Plug 'https://hub.fastgit.org/rhysd/accelerated-jk.git'
 
+
 " jarvim new
 Plug 'https://hub.fastgit.org/simnalamburt/vim-mundo.git'
 
@@ -21,6 +22,10 @@ Plug 'https://hub.fastgit.org/lukas-reineke/indent-blankline.nvim.git'
 " 高亮与光标下相同的单词
 Plug 'https://hub.fastgit.org/rrethy/vim-illuminate.git'
 
+
+" ===
+" === package integrate
+" ===
 " ranger
 Plug 'https://hub.fastgit.org/kevinhwang91/rnvimr.git'
 
