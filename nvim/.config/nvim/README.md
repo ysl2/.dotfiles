@@ -2,6 +2,8 @@
 
 ## Some Notes
 
+The theme config file locates in `~/.cache/vim/theme.txt`
+
 ### Plugin Config (legacy)
 
 ```text
