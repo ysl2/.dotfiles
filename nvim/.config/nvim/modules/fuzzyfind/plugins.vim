@@ -6,7 +6,7 @@
 " maple 通过此插件的内置命令安装：`:call clap#installer#build_maple()`
 " 或者直接一次性安装maple和python dynamic两个（python这个是可选的，不用必须安装）`:call clap#installer#build_all()`
 " ```
-Plug 'https://hub.fastgit.org/liuchengxu/vim-clap.git', { 'do': ':Clap install-binary!' }
+" Plug 'https://hub.fastgit.org/liuchengxu/vim-clap.git', { 'do': ':Clap install-binary!' }
 
 " jarvim new
-Plug 'https://hub.fastgit.org/vn-ki/coc-clap.git'
+" Plug 'https://hub.fastgit.org/vn-ki/coc-clap.git'
