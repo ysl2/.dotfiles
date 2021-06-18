@@ -68,9 +68,7 @@ noremap \p :echo expand('%:p')<CR>
 " ===
 " === coc-explorer
 " ===
-nmap <silent> \e :CocCommand explorer<CR>
-" nmap <silent> \e :CocCommand explorer --toggle --root-strategies reveal<CR>
-" nmap <silent> \e :CocCommand explorer --toggle --root-strategies workspace<CR>
+nmap <silent> \e :CocCommand explorer --toggle --root-strategies cwd<CR>
 
 
 " ===
