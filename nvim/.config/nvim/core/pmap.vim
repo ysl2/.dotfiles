@@ -68,8 +68,7 @@ noremap \p :echo expand('%:p')<CR>
 " ===
 " === coc-explorer
 " ===
-nmap <silent>\e :CocCommand explorer<CR>
-
+nmap <silent> \e :CocCommand explorer<CR>
 
 " ===
 " === vim-mundo
