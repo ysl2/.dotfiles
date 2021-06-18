@@ -2,7 +2,7 @@
 # === Theme
 # ===
 
-: ${THEME:=p10k}
+: ${THEME:=default}
 
 case $THEME in
   spaceship)
@@ -22,6 +22,26 @@ case $THEME in
     zinit ice depth=1 from"hub.fastgit.org" atinit"
     typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=#F1F1F0
     "
+    zinit light romkatv/powerlevel10k
+    ;;
+  p10k-classic)
+    # zinit ice lucid wait"!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
+    zinit ice depth=1 from"hub.fastgit.org" src="config/p10k-classic.zsh"
+    zinit light romkatv/powerlevel10k
+    ;;
+  p10k-lean-8colors)
+    # zinit ice lucid wait"!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
+    zinit ice depth=1 from"hub.fastgit.org" src="config/p10k-lean-8colors.zsh"
+    zinit light romkatv/powerlevel10k
+    ;;
+  p10k-lean)
+    # zinit ice lucid wait"!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
+    zinit ice depth=1 from"hub.fastgit.org" src="config/p10k-lean.zsh"
+    zinit light romkatv/powerlevel10k
+    ;;
+  p10k-rainbow)
+    # zinit ice lucid wait"!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
+    zinit ice depth=1 from"hub.fastgit.org" src="config/p10k-rainbow.zsh"
     zinit light romkatv/powerlevel10k
     ;;
   p10k-robbyrussell)
@@ -64,5 +84,10 @@ case $THEME in
     fi
     # starship配置的内容
     eval "$(starship init zsh)"
+    ;;
+  *)
+    zinit ice depth=1 from"hub.fastgit.org"
+    zinit light ysl2/mini-simple-zsh-theme
+    ;;
 esac
 
