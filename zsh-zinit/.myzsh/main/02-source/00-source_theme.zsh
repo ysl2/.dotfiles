@@ -24,6 +24,11 @@ case $THEME in
     "
     zinit light romkatv/powerlevel10k
     ;;
+  p10k-robbyrussell)
+    # zinit ice lucid wait"!0" pick="async.zsh" src="pure.zsh" atload="prompt_pure_precmd" from'hub.fastgit.org'
+    zinit ice depth=1 from"hub.fastgit.org" src="config/p10k-robbyrussell.zsh"
+    zinit light romkatv/powerlevel10k
+    ;;
   p9k)
     [[ ! -f ~/.p9k.zsh ]] || source ~/.p9k.zsh
     zinit ice depth=1 from"gitee.com" atinit"
@@ -48,7 +53,7 @@ case $THEME in
     ;;
   starship)
     # if [[ ! -e "${MYZSH}"/.lock/starship.lock ]]; then
-      # touch "${MYZSH}"/.lock/starship.lock
+    # touch "${MYZSH}"/.lock/starship.lock
     if [[ ! -e "${BIN_DIR:-/usr/local/bin/starship}" ]]; then
       curl https://starship.rs/install.sh -o starship-install.sh
       chmod a+x starship-install.sh
