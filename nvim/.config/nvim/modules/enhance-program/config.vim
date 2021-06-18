@@ -121,3 +121,57 @@ let g:vimspector_install_gadgets = [
             \'vscode-java-debug',
             \]
 
+
+" ======================
+" === vim-autoformat ===
+" ======================
+
+" 用于格式化
+let g:autoformat_verbosemode=0
+
+" 自定义格式化工具举例
+" expand('%:p')用于输出当前文件的绝对路径
+
+
+" ===
+" === java formatter
+" ===
+let g:formatdef_google_format_java = "'google-java-format '.expand('%:p')"
+" let g:formatters_java = ['google_format_java']
+
+
+" ===
+" === sql formatter
+" ===
+let g:formatdef_sqlformat = '"sqlformat --indent_width ".shiftwidth()." --keywords upper --identifiers lower -"'
+let g:formatters_sql = ['sqlformat']
+
+
+
+" ===
+" === json formatter
+" ===
+let g:formatters_sql = ['fixjson']
+
+
+
+" ==================================
+" === codefmt: 与ctags冲突，弃用 ===
+" ==================================
+" augroup autoformat_settings
+"   autocmd FileType bzl AutoFormatBuffer buildifier
+"   autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
+"   autocmd FileType dart AutoFormatBuffer dartfmt
+"   autocmd FileType go AutoFormatBuffer gofmt
+"   autocmd FileType gn AutoFormatBuffer gn
+"   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+"   autocmd FileType java AutoFormatBuffer google-java-format
+"   autocmd FileType python AutoFormatBuffer autopep8
+"   autocmd FileType shell AutoFormatBuffer shfmt
+"   autocmd FileType rust AutoFormatBuffer rustfmt
+"   autocmd FileType vue AutoFormatBuffer prettier
+" augroup END
+" autocmd FileType python let b:codefmt_formatter = 'autopep8'
+
+
+

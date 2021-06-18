@@ -1,3 +1,19 @@
+" ============
+" === html ===
+" ============
+
+" jarvim new
+Plug 'https://hub.fastgit.org/othree/html5.vim.git', {'for': 'html'}
+
+
+" =============
+" === shell ===
+" =============
+
+Plug 'https://hub.fastgit.org/itspriddle/vim-shellcheck.git'
+
+
+
 " jarvim new
 " Plug 'https://hub.fastgit.org/HerringtonDarkholme/yats.vim.git' , {'for' : [ 'typescript', 'typescriptreact' ]}
 
@@ -23,20 +39,3 @@
 " Plug 'https://hub.fastgit.org/pangloss/vim-javascript.git', {'for': [ 'javascript', 'javascriptreact' ]}
 " jarvim new
 " Plug 'https://hub.fastgit.org/moll/vim-node.git', {'for': [ 'javascript', 'javascriptreact' ]}
-
-
-
-" ============
-" === html ===
-" ============
-
-" jarvim new
-Plug 'https://hub.fastgit.org/othree/html5.vim.git', {'for': 'html'}
-
-
-" =============
-" === shell ===
-" =============
-
-Plug 'https://hub.fastgit.org/itspriddle/vim-shellcheck.git'
-

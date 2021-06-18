@@ -72,12 +72,6 @@ nmap <silent> \e :CocCommand explorer --toggle --root-strategies cwd<CR>
 
 
 " ===
-" === defx.nvim
-" ===
-" nmap \e :Defx<CR>
-
-
-" ===
 " === vim-mundo
 " ===
 nnoremap <silent> \u :MundoToggle<CR>
