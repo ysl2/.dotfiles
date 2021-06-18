@@ -1,6 +1,6 @@
-" ===
-" === indentLine
-" ===
+" ==================
+" === indentLine ===
+" ==================
 " let g:indentLine_enabled = 1
 " let g:indentLine_char='┆'
 " let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard' ]
@@ -9,9 +9,10 @@
 " let g:indentLine_conceallevel = 1
 
 
-" ===
-" === indent-blankline.nvim
-" ===
+
+" =============================
+" === indent-blankline.nvim ===
+" =============================
 let g:indent_blankline_char = "│"
 " let g:indent_blankline_show_first_indent_level = v:true
 let g:indent_blankline_filetype_exclude = [
@@ -55,9 +56,10 @@ let g:indent_blankline_buftype_exclude = ["terminal", "nofile"]
 autocmd CursorMoved * :IndentBlanklineRefresh
 
 
-" ===
-" === rainbow
-" ===
+
+" ===============
+" === rainbow ===
+" ===============
 " ((((((()))))))
 let g:rainbow_active = 1
 let g:rainbow_conf = {
@@ -68,9 +70,10 @@ let g:rainbow_conf = {
             \}
 
 
-" ===
-" === rnvimr
-" ===
+
+" ==============
+" === rnvimr ===
+" ==============
 let g:rnvimr_ex_enable = 1
 let g:rnvimr_pick_enable = 1
 let g:rnvimr_draw_border = 1
@@ -93,9 +96,10 @@ let g:rnvimr_action = {
             \ }
 
 
-" ===
-" === codefmt: 与ctags冲突，弃用
-" ===
+
+" ==================================
+" === codefmt: 与ctags冲突，弃用 ===
+" ==================================
 " augroup autoformat_settings
 "   autocmd FileType bzl AutoFormatBuffer buildifier
 "   autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
@@ -110,6 +114,7 @@ let g:rnvimr_action = {
 "   autocmd FileType vue AutoFormatBuffer prettier
 " augroup END
 " autocmd FileType python let b:codefmt_formatter = 'autopep8'
+
 
 
 " ======================

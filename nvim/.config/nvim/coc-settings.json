@@ -143,6 +143,7 @@
         "explorer.width": 30,
         //    === TheCW START ===
         //"explorer.width": 38,
+        "explorer.file.cdCommand":"tcd",
         "explorer.sources": [
           {
             "name": "buffer",
