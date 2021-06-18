@@ -40,6 +40,7 @@ clash
 clashup
 cmake
 coreutils
+cowsay
 cpupower
 crda
 cronie
@@ -363,7 +364,6 @@ texlive-science
 thunderbird
 thunderbird-i18n-en-us
 thunderbird-i18n-zh-cn
-tig
 tlp
 tmux
 transcode
