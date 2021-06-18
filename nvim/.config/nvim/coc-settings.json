@@ -154,7 +154,7 @@
           }
         ],
         //    === TheCW END ===
-        //"explorer.file.cdCommand": "cd",
+        "explorer.file.cdCommand": "cd",
         "explorer.keyMappingMode": "none",
         "explorer.keyMappings.global": {
           // function keys
