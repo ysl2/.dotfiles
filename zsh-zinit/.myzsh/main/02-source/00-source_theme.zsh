@@ -87,7 +87,7 @@ case $THEME in
     ;;
   *)
     zinit ice depth=1 from"hub.fastgit.org"
-    zinit light ysl2/mini-simple-zsh-theme
+    zinit light ysl2/mini-simple-zsh-prompt
     ;;
 esac
 
