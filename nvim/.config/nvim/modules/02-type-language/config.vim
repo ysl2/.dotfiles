@@ -11,6 +11,7 @@ let g:html5_aria_attributes_complete = 0
 " call coc#add_extension('coc-python')
 
 
+
 " =============
 " === shell ===
 " =============
@@ -22,3 +23,16 @@ let g:shellcheck_disable_mappings = 1
 " autocmd! FileType sh :call HighLightOperator()
 autocmd FileType sh silent! :ShellCheck<CR>
 
+
+
+" ================
+" === anaconda ===
+" ================
+
+" NOTE: Anaconda
+if $CONDA_PREFIX == ""
+    let s:current_python_path=$CONDA_PYTHON_EXE
+else
+    let s:current_python_path=$CONDA_PREFIX.'/bin/python'
+endif
+call coc#config('python', {'pythonPath': s:current_python_path})
