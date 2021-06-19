@@ -4,10 +4,9 @@
 " Reference: https://github.com/junegunn/fzf.vim/pull/628#issuecomment-766440334
 inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
+" Reference: About search and replace in project
+" https://github.com/junegunn/fzf.vim/issues/528#issuecomment-368260699
 
-" ====================
-" === 03-fuzzyfind ===
-" ====================
 
 " " ===
 " " === vim-clap
