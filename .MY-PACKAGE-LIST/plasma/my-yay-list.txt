@@ -24,11 +24,10 @@ baidunetdisk-bin
 base
 bash
 bash-language-server
-bashtop
+bat
 biber
 bison
 bluedevil
-bottom
 btrfs-progs
 bzip2
 cajviewer-appimage
@@ -106,7 +105,6 @@ gnome-icon-theme
 gnome-keyring
 gnome-themes-extra
 google-chrome
-google-java-format
 grep
 grub
 grub-theme-manjaro
@@ -284,8 +282,6 @@ plasma-workspace-wallpapers
 poppler-data
 powerdevil
 powerpill
-powertop
-prettyping
 print-manager
 procps-ng
 proton
@@ -458,7 +454,6 @@ xorg-xwayland
 xorg-xwd
 xorg-xwud
 xsettingsd
-xstow
 xunlei-bin
 xz
 yakuake
