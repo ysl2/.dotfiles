@@ -1,6 +1,7 @@
 " ===
 " === fzf
 " ===
+" Reference: https://github.com/junegunn/fzf.vim/pull/628#issuecomment-766440334
 inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
 
