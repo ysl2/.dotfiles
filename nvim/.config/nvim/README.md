@@ -1,10 +1,14 @@
 # YuSoLi's Nvim Dotfiles
 
-## Some Notes
+## Note
 
-The theme config file locates in `~/.cache/vim/theme.txt`
+1. There are no load sequence in `modules`.
 
-### Plugin Config (legacy)
+    Just for easier manage plugins.
+
+2. The theme config file locates in `~/.cache/vim/theme.txt`
+
+## Plugin Config (legacy)
 
 ```text
 // dein -> vim-plug
