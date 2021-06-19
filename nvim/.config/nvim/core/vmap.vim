@@ -1,8 +1,7 @@
 " quick open my vimrc configuration
-noremap <leader><leader>1 :tabe ~/.dotfiles-main/nvim/.config/nvim/core/pmap.vim
-noremap <leader><leader>2 :tabe ~/.dotfiles-main/nvim/.config/nvim/core/vmap.vim
-noremap <leader><leader>3 :tabe ~/.dotfiles-main/nvim/.config/nvim/modules/
-noremap <leader><leader>4 :tabe ~/.dotfiles-main/nvim/.config/nvim/coc-settings.json
+noremap <leader><leader>1 :tabe ~/.dotfiles-main/nvim/.config/nvim/core/vmap.vim
+noremap <leader><leader>2 :tabe ~/.dotfiles-main/nvim/.config/nvim/modules/
+noremap <leader><leader>3 :tabe ~/.dotfiles-main/nvim/.config/nvim/coc-settings.json
 
 " See plugin/bufkill.vim
 " use emacs keybind

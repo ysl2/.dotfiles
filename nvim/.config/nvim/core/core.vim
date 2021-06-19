@@ -65,7 +65,9 @@ for config in s:config_paths
   exec 'source'. config .'/config.vim'
 endfor
 
-call initself#source_file($VIM_PATH,'core/pmap.vim')
+for config in s:config_paths
+  exec 'source'. config .'/keymap.vim'
+endfor
 
 
 " ===
