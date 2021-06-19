@@ -1,2 +1,5 @@
 #!/bin/bash
-echo ""${NOTICE}": "${MYZSH}" stores some personal executable files."
+# echo ""${NOTICE}": "${MYZSH}" stores some personal executable files."
+echo "
+htop-vim: https://github.com/KoffeinFlummi/htop-vim/
+"
