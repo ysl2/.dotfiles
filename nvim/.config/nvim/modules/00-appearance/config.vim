@@ -38,7 +38,7 @@ let g:lightline.colorscheme = colors_name
 let g:lightline.mode_map = {
             \   'n' : ' Mute',
             \   'i' : ' Talk',
-            \   'R' : '﯒',
+            \   'R' : '﯒ Swap',
             \   'v' : ' Pick',
             \   'V' : ' Pick',
             \   "\<C-v>": ' Pick',
