@@ -30,6 +30,7 @@ let g:coc_global_extensions =[
             \ 'coc-tabnine',
             \ 'coc-java',
             \ 'coc-sh',
+            \ 'coc-markdownlint',
             \]
 
 " NOTE: Anaconda
