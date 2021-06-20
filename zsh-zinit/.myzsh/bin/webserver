@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# echo "Web server at $(ifconfig | awk '/inet / && !/127.0.0.1/ {print $2}')"
+echo "Web server at $(ip addr | awk '/inet / && !/127.0.0.1/ {print $2}')"
+python -m http.server
