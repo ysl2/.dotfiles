@@ -1,10 +1,20 @@
 " ===
 " === vim-easymotion
 " ===
-nmap <leader><leader>/ <Plug>(easymotion-sn)
+nmap <silent> <leader><leader>/ <Plug>(easymotion-sn)
+nmap <silent> <Leader><leader>. <Plug>(easymotion-repeat)
 " nmap gsj <Plug>(easymotion-w)
 " nmap gsk <Plug>(easymotion-b)
 " nmap gsf <Plug>(easymotion-overwin-f)
+
+
+"" ===
+"" === easy-align
+"" ===
+"" Start interactive EasyAlign in visual mode (e.g. vipga)
+"xmap ga <Plug>(EasyAlign)
+"" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+"nmap ga <Plug>(EasyAlign)
 
 
 " ===
