@@ -1,0 +1,2 @@
+#!/bin/bash
+more ~/.ssh/id_rsa.pub | pbgopy | echo '=> Public key copied to pasteboard.'
