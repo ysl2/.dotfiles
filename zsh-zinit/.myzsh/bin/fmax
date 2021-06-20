@@ -13,7 +13,7 @@
 
 if [[ -z "$1" ]]; then
   find ./ -type f -print0 | xargs -0 du -h | sort -rh | head -n 10
-elif [[ -e "$1" ]]; then
+elif [[ -d "$1" ]]; then
   find "$1" -type f -print0 | xargs -0 du -h | sort -rh | head -n 10
 else
   echo ""$NOTICE": The path your specified does't exist:
