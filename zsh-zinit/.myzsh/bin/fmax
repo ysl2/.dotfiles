@@ -1,0 +1,14 @@
+#!/bin/bash
+# Reference: https://github.com/ourongxing/config/blob/master/zshrc
+
+# if [[ -z "$1" ]]; then
+#   echo ""$NOTICE": Please specify a path."
+#   exit 1
+# if [[ ! -e "$1" ]]; then
+#   echo ""$NOTICE": The path your specified does't exist:
+#   "$1"
+#   "
+#   exit 1
+# fi
+
+find ./ -type f -print0 | xargs -0 du -h | sort -rh | head -n 10
