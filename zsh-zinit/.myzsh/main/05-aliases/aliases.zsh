@@ -21,8 +21,6 @@ alias oo='cd ~/Documents/00-Github/; code ./00-my-notes; cd -'
 # === functional alias
 # ===
 alias ':q'='exit'
-# omzplugin
-# alias ex="extract"
 
 
 # ===
@@ -32,34 +30,10 @@ alias cht="cht.sh"
 alias t='tmux'
 alias ta='tmux attach'
 alias ra="ranger"
-alias gi='tig'
 alias lg='lazygit'
 alias ld='lazydocker'
-alias pp='python'
-alias ipp='ipython'
-# alias cat='bat'
-# alias du='ncdu'
-# alias dut='dutree'
-# alias ls='exa'
-# alias l='exa -lh'
-# alias ll='exa -lah'
-# alias lsa='exa -lah'
-# alias la='exa -la'
-# alias grep='rg'
-# alias igrep='peco'
-# alias top='htop'
-# alias btop='bashtop'
-# alias diff='delta'
-alias hack='btm'
-# alias traceroute='mtr'
-# alias df='pydf'
-# alias ftp='lftp'
-# zoxide
-# alias cd='z'
-# alias cdi='zi'
-# alias ctop='ctop'
-# alias wireshark='tcpdump'
-# alias ping='prettyping --nolegend'
+alias py='python'
+alias ipy='ipython'
 # pip install httpie
 alias https='http --default-scheme=https'
 alias wttr='curl zh.wttr.in\/WeiHai\?2Fq'
@@ -68,33 +42,21 @@ alias wttr='curl zh.wttr.in\/WeiHai\?2Fq'
 # ===
 # === arch package manager
 # ===
-# alias rls='exa --color=always'
 alias rls='ls --color=always'
 alias rless='less -r'
-# alias rgrep='rg --color=always'
 alias rgrep='grep --color=always'
 alias pacman='sudo powerpill'
 alias rpacman='sudo powerpill --color=always'
 alias ryay='yay --color=always'
 # 拉取更新用的
-alias sss='sudo pacman -Syu --noconfirm'
-alias yyy='yay -Syu --noconfirm'
+alias sss='sudo pacman -Syyu --noconfirm'
+alias yyy='yay -Syyu --noconfirm'
+
+
+# ===
+# === desktop mamager
+# ===
 alias goodbye='systemctl suspend'
-
-
-# ===
-# === tmux
-# ===
-# 刷新tmux的快捷键
-alias TS='tmux source-file ~/.tmux.conf'
-
-
-# ===
-# === debug zsh & desktop mamager
-# ===
-# 重置zsh用的快捷键
-alias S='source ~/.zshrc'
-# alias L='rm "${MYZSH}"/.lock/omz.lock; rm "${MYZSH}"/.lock/omz-echo.lock'
 alias K='kquitapp5 plasmashell && kstart5 plasmashell'
 
 
