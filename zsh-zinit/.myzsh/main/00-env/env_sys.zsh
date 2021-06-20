@@ -7,3 +7,13 @@
 # export PATH=$PATH:~/go/bin
 
 export PATH="${MYZSH}"/bin:$PATH
+
+
+# # =============
+# # === Color ===
+# # =============
+# if [ $TERM = 'alacritty' ]
+# then
+#   export TERM=xterm-256color
+# fi
+
