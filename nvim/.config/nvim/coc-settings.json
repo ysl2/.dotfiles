@@ -158,7 +158,8 @@
         "explorer.keyMappingMode": "none",
         "explorer.keyMappings.global": {
           // function keys
-          "<tab>": "toggleSelection",
+          // "<tab>": "toggleSelection",
+          "<tab>": ["wait", "toggleSelection", "normal:j"],
           "A": "actionMenu",
           "<2-LeftMouse>": [
             "expandable?",
