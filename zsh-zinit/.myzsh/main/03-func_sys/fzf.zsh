@@ -11,7 +11,10 @@ FD_OPTIONS="--hidden --follow"
 # FD_OPTIONS="--hidden --follow --exclude .git --exclude node_modules --exclude .npm"
 
 # export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-y:execute-silent(echo {+} | pbcopy),ctrl-x:execute(rm -i {+})+abort'"
-export FZF_DEFAULT_OPTS="--prompt '⯈ ' --marker=+ --keep-right --color=dark --layout=reverse --color=fg:250,fg+:15,hl:203,hl+:203 --color=info:100,pointer:15,marker:220,spinner:11,header:-1,gutter:-1,prompt:15"
+
+# export FZF_DEFAULT_OPTS="--prompt '⯈ ' --marker=+ --keep-right --color=dark --layout=reverse --color=fg:250,fg+:15,hl:203,hl+:203 --color=info:100,pointer:15,marker:220,spinner:11,header:-1,gutter:-1,prompt:15"
+
+export FZF_DEFAULT_OPTS="--prompt '⯈ ' --marker=+ --keep-right --color=dark --color=fg:250,fg+:15,hl:203,hl+:203 --color=info:100,pointer:15,marker:220,spinner:11,header:-1,gutter:-1,prompt:15"
 
 # Use git-ls-files inside git repo, otherwise fd
 export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS || git ls-files --cached --others --exclude-standard"
