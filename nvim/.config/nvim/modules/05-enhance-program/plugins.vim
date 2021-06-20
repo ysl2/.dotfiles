@@ -46,6 +46,8 @@ Plug 'https://hub.fastgit.org/editorconfig/editorconfig-vim.git'
 " ===
 " jarvim new
 Plug 'https://hub.fastgit.org/honza/vim-snippets.git'
+" Plug 'https://hub.fastgit.org/SirVer/ultisnips.git'
+
 
 " Plug 'https://hub.fastgit.org/tyru/caw.vim.git'
 " Plug 'https://hub.fastgit.org/google/vim-maktaba.git'

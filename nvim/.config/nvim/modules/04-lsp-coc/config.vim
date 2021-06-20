@@ -1,37 +1,37 @@
 " ======================
 " === coc extensions ===
 " ======================
-
+" Reference: https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
 let g:coc_global_extensions =[
-            \'coc-marketplace',
-            \ 'coc-snippets',
-            \ 'coc-pairs',
-            \ 'coc-json',
-            \ 'coc-highlight',
-            \ 'coc-emoji',
-            \ 'coc-lists',
-            \ 'coc-stylelint',
-            \ 'coc-yaml',
-            \ 'coc-gitignore',
-            \ 'coc-yank',
-            \ 'coc-actions',
-            \ 'coc-db',
-            \ 'coc-spell-checker',
-            \ 'coc-vimlsp',
-            \ 'coc-explorer',
-            \ 'coc-tsserver',
-            \ 'coc-eslint',
-            \ 'coc-prettier',
-            \ 'coc-tslint-plugin',
-            \ 'coc-docthis',
-            \ 'coc-html',
-            \ 'coc-css',
-            \ 'coc-pyright',
-            \ 'coc-tabnine',
-            \ 'coc-java',
-            \ 'coc-sh',
-            \ 'coc-markdownlint',
-            \]
+      \ 'coc-marketplace',
+      \ 'coc-snippets',
+      \ 'coc-pairs',
+      \ 'coc-json',
+      \ 'coc-highlight',
+      \ 'coc-emoji',
+      \ 'coc-lists',
+      \ 'coc-stylelint',
+      \ 'coc-yaml',
+      \ 'coc-gitignore',
+      \ 'coc-yank',
+      \ 'coc-actions',
+      \ 'coc-db',
+      \ 'coc-spell-checker',
+      \ 'coc-vimlsp',
+      \ 'coc-explorer',
+      \ 'coc-tsserver',
+      \ 'coc-eslint',
+      \ 'coc-prettier',
+      \ 'coc-tslint-plugin',
+      \ 'coc-docthis',
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-pyright',
+      \ 'coc-tabnine',
+      \ 'coc-java',
+      \ 'coc-sh',
+      \ 'coc-markdownlint',
+      \]
 
 
 
@@ -63,7 +63,7 @@ endif
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -174,3 +174,26 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+
+"" ====================
+"" === coc-snippets ===
+"" ====================
+"inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
+"                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"
+""
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? coc#_select_confirm() :
+"      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+"
+"let g:coc_snippet_next = '<tab>'
+"

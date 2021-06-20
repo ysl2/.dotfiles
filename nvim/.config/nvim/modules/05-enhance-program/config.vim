@@ -18,13 +18,13 @@ let g:vista_default_executive = 'ctags'
 let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_vimwiki_executive = 'markdown'
 let g:vista_executive_for = {
-            \ 'vimwiki': 'markdown',
-            \ 'pandoc': 'markdown',
-            \ 'markdown': 'toc',
-            \ 'yaml': 'coc',
-            \ 'typescript': 'coc',
-            \ 'typescriptreact': 'coc',
-            \ }
+      \ 'vimwiki': 'markdown',
+      \ 'pandoc': 'markdown',
+      \ 'markdown': 'toc',
+      \ 'yaml': 'coc',
+      \ 'typescript': 'coc',
+      \ 'typescriptreact': 'coc',
+      \ }
 
 
 " ===
@@ -43,28 +43,28 @@ let g:gutentags_add_default_project_roots = 0
 let g:gutentags_exclude_filetypes = [ 'defx', 'denite', 'vista', 'magit', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail', 'git' ]
 " let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
 let g:gutentags_ctags_exclude = [
-            \  '*.git', '*.svn', '*.hg',
-            \  'cache', 'build', 'dist', 'bin', 'node_modules', 'bower_components',
-            \  '*-lock.json',  '*.lock',
-            \  '*.min.*',
-            \  '*.bak',
-            \  '*.zip',
-            \  '*.pyc',
-            \  '*.class',
-            \  '*.sln',
-            \  '*.csproj', '*.csproj.user',
-            \  '*.tmp',
-            \  '*.cache',
-            \  '*.vscode',
-            \  '*.pdb',
-            \  '*.exe', '*.dll', '*.bin',
-            \  '*.mp3', '*.ogg', '*.flac',
-            \  '*.swp', '*.swo',
-            \  '.DS_Store', '*.plist',
-            \  '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png', '*.svg',
-            \  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
-            \  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
-            \]
+      \  '*.git', '*.svn', '*.hg',
+      \  'cache', 'build', 'dist', 'bin', 'node_modules', 'bower_components',
+      \  '*-lock.json',  '*.lock',
+      \  '*.min.*',
+      \  '*.bak',
+      \  '*.zip',
+      \  '*.pyc',
+      \  '*.class',
+      \  '*.sln',
+      \  '*.csproj', '*.csproj.user',
+      \  '*.tmp',
+      \  '*.cache',
+      \  '*.vscode',
+      \  '*.pdb',
+      \  '*.exe', '*.dll', '*.bin',
+      \  '*.mp3', '*.ogg', '*.flac',
+      \  '*.swp', '*.swo',
+      \  '.DS_Store', '*.plist',
+      \  '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png', '*.svg',
+      \  '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \  '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx', '*.xls',
+      \]
 
 
 " ===
@@ -97,14 +97,14 @@ let g:gutentags_ctags_exclude = [
 " ===
 " You can add .quickrun file into your project folder and write your shell there. The plugin will find that file and run commands there.
 let g:quickrun_known_file_types = {
-            \"cpp": ["!g++ %", "./a.out"],
-            \"c": ["!gcc %", "./a.out"],
-            \"php": ["!php %"],
-            \"vim": ["source %"],
-            \"py": ["!python %"],
-            \"go": ["!go test"],
-            \"sh": ["!time bash %"]
-            \}
+      \"cpp": ["!g++ %", "./a.out"],
+      \"c": ["!gcc %", "./a.out"],
+      \"php": ["!php %"],
+      \"vim": ["source %"],
+      \"py": ["!python %"],
+      \"go": ["!go test"],
+      \"sh": ["!time bash %"]
+      \}
 
 
 " ===
@@ -114,12 +114,12 @@ let g:quickrun_known_file_types = {
 " 此插件需要在项目路径下写一个`.vimspector.json`
 " `.vimspector.json`文件内置变量参考：https://puremourning.github.io/vimspector/configuration.html#predefined-variables
 let g:vimspector_install_gadgets = [
-            \'vscode-cpptools',
-            \'debugpy',
-            \'vscode-bash-debug',
-            \'debugger-for-chrome',
-            \'vscode-java-debug',
-            \]
+      \'vscode-cpptools',
+      \'debugpy',
+      \'vscode-bash-debug',
+      \'debugger-for-chrome',
+      \'vscode-java-debug',
+      \]
 
 
 " ======================
@@ -152,6 +152,22 @@ let g:formatters_sql = ['sqlformat']
 " === json formatter
 " ===
 let g:formatters_sql = ['fixjson']
+
+
+
+" =================
+" === Ultisnips ===
+" =================
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+" let g:UltiSnipsExpandTrigger="<cr>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger = '<nop>'
 
 
 

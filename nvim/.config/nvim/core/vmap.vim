@@ -4,13 +4,17 @@ noremap <leader><leader>2 :tabe ~/.dotfiles-main/nvim/.config/nvim/modules/
 noremap <leader><leader>3 :tabe ~/.dotfiles-main/nvim/.config/nvim/
 noremap <leader><leader>4 :tabe ~/.dotfiles-main/nvim/.config/nvim/coc-settings.json
 
+noremap <C-a> <Nop>
+noremap S <Nop>
+noremap s <Nop>
+
+inoremap <C-c> <ESC>
+noremap <C-z> <C-a>
+
+" ==============================================================
+
 " See plugin/bufkill.vim
 " use emacs keybind
-inoremap <C-c> <ESC>
-noremap <C-a> <Nop>
-noremap <C-z> <C-a>
-" noremap :w<CR> :silent !w<CR>
-
 " nmap <C-x>k :BD<CR>
 "Write buffer (save)
 " nnoremap <C-s> :<C-u>write<CR>
