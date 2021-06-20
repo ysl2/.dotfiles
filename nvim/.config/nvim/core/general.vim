@@ -279,7 +279,7 @@ set noshowmode          " Don't show mode on bottom
 set noruler             " Disable default status ruler
 " 缩短消息长度的标志位列表
 " set shortmess+=c
-set shortmess=aFc
+set shortmess+=aFc
 " 光标上下的最少行数
 set scrolloff=4         " Keep at least 2 lines above/below
 set fillchars+=vert:\|  " add a bar for vertical splits
