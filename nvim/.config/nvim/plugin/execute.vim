@@ -45,3 +45,49 @@ func! CompileRunGcc()
 		:term go run %
 	endif
 endfunc
+
+" func! CompileRunGcc()
+"     exec "w"
+"     if &filetype == 'c'
+"         set splitbelow
+"         silent exec "!gcc % -o ./.tmp"
+"         :sp
+"         :term ./.tmp && rm ./.tmp
+"     elseif &filetype == 'cpp'
+"         set splitbelow
+"         silent exec "!g++ -std=c++11 % -Wall -o ./.tmp"
+"         :sp
+"         :term ./.tmp && rm ./.tmp
+"     elseif &filetype == 'sh'
+"         :!time bash %
+"     elseif &filetype == 'python'
+"         set splitbelow
+"         :sp
+"         :res -10
+"         :term python %
+"     elseif &filetype == 'javascript'
+"         set splitbelow
+"         :sp
+"         :res -10
+"         :term node %
+"     elseif &filetype == 'typescript'
+"         set splitbelow
+"         :sp
+"         :res -10
+"         :term node %<.js
+"     elseif &filetype == 'go'
+"         set splitbelow
+"         :sp
+"         :res -10
+"         :term go run %
+"     elseif &filetype == 'rust'
+"         set splitbelow
+"         :sp
+"         :res -5
+"         :term cargo run
+"     elseif &filetype == 'html'
+"         silent exec "!reload -b vimb -p 4444&"
+"     elseif &filetype == 'markdown'
+"         exec "MarkdownPreview"
+"     endif
+" endfunc
