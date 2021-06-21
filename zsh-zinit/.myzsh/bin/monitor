@@ -1,0 +1,12 @@
+#!/bin/bash
+case "$1" in
+xy)
+  Xaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f1)
+  Yaxis=$(xrandr --current | grep '*' | uniq | awk '{print $1}' | cut -d 'x' -f2)
+  echo "Xaxis = $Xaxis"
+  echo "Yaxis = $Yaxis"
+  ;;
+*)
+  xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/'
+  ;;
+esac

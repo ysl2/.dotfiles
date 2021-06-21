@@ -16,7 +16,6 @@ env:
 hide_cursor_when_typing: true
 
 window:
-  # NOTE: YuSoLi: `startup_mode` to control if use fullscreen to start alacritty.
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -65,8 +64,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  # startup_mode: Windowed
-  startup_mode: Maximized
+  #startup_mode: Windowed
 
   # Window title
   #title: Alacritty
