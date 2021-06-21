@@ -56,7 +56,7 @@ alias yyy='yay -Syyu --noconfirm'
 # ===
 # === desktop mamager
 # ===
-alias goodbye='systemctl suspend'
+alias shutup='systemctl suspend'
 alias K='kquitapp5 plasmashell && kstart5 plasmashell'
 
 
