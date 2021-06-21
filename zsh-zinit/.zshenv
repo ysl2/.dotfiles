@@ -1,4 +1,5 @@
 export MYZSH="${HOME}"/.myzsh
+export MYLOCATION=WeiHai
 export NOTICE="YuSoLi"
 
 
