@@ -9,29 +9,28 @@
 # HOMEBREW_PREFIX
 # HOMEBREW_BOTTLE_DOMAIN
 
-if [[ -z "${HOMEBREW_REPOSITORY}" ]]; then
-  OS="$(uname)"
-  if [[ "$OS" == "Linux" ]]; then
-    HOMEBREW_ON_LINUX=1
-  elif [[ "$OS" != "Darwin" ]]; then
-    echo "Homebrew 只运行在 Mac OS 或 Linux."
-  fi
-  #设置一些平台地址
-  if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
-    #Mac
-    if [[ "$UNAME_MACHINE" == "arm64" ]]; then
-      #M1
-      export HOMEBREW_PREFIX="/opt/homebrew"
-      export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
-    else
-      #Inter
-      export HOMEBREW_PREFIX="/usr/local"
-      export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
-    fi
+OS="$(uname)"
+if [[ "$OS" == "Linux" ]]; then
+  export HOMEBREW_ON_LINUX=1
+elif [[ "$OS" != "Darwin" ]]; then
+  echo "Homebrew 只运行在 Mac OS 或 Linux."
+fi
+
+#设置一些平台地址
+if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
+  #Mac
+  if [[ "$UNAME_MACHINE" == "arm64" ]]; then
+    #M1
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
   else
-    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    #Inter
+    export HOMEBREW_PREFIX="/usr/local"
     export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
   fi
+else
+  export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+  export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
 fi
 
 if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
