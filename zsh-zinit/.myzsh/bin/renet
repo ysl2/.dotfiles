@@ -1,0 +1,11 @@
+#!/bin/bash
+case "$1" in
+wifi)
+  nmcli radio wifi off
+  nmcli radio wifi on
+  ;;
+*)
+  nmcli networking off
+  nmcli networking on
+  ;;
+esac
