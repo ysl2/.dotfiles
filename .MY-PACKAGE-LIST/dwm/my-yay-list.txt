@@ -81,6 +81,7 @@ fcitx5-material-color
 fcitx5-qt
 fcitx5-rime
 fd
+feh
 ffmpeg
 ffmpegthumbs
 figlet
@@ -272,6 +273,7 @@ peek
 perl
 perl-file-mimeinfo
 phonon-qt5-gstreamer
+picom-git
 pkgconf
 plasma-browser-integration
 plasma-desktop
