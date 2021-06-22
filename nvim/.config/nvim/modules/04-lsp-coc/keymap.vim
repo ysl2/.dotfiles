@@ -2,7 +2,7 @@
 " === coc: The core coc Keymap locates in completion/config.vim
 " ===
 noremap <C-p> :CocList vimcommands<CR>
-noremap <C-m> :CocList maps<CR>
+noremap <C-o> :CocList maps<CR>
 " noremap <C-p> :CocCommand<CR>
 
 

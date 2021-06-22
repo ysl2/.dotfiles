@@ -9,6 +9,8 @@ Plug 'https://hub.fastgit.org/justinmk/vim-sneak.git'
 " vim-commentary
 Plug 'https://hub.fastgit.org/tpope/vim-commentary.git'
 
+" easy align
+Plug 'https://hub.fastgit.org/junegunn/vim-easy-align.git'
 
 " jarvim new
 " Plug 'https://hub.fastgit.org/rhysd/accelerated-jk.git'
