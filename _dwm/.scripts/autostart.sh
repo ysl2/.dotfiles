@@ -18,6 +18,7 @@ xfce4-power-manager &
 # YuSoLi: self flavor
 blueman-applet &
 switchhosts &
+# xcompmgr &
 
 /bin/bash ~/.scripts/autostart_wait.sh &
 
