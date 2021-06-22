@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yay -Qeq >my-yay-list.txt
+yayayayayayayaya -Qeq >my-yay-list.txt
