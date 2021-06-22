@@ -14,5 +14,10 @@ nm-applet &
 xfce4-power-manager &
 #xfce4-volumed-pulse &
 # /bin/bash ~/scripts/run-mailsync.sh &
+
+# YuSoLi: self flavor
+blueman-applet &
+switchhosts &
+
 ~/scripts/autostart_wait.sh &
 

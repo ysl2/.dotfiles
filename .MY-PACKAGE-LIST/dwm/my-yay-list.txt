@@ -30,6 +30,7 @@ bat
 biber
 bison
 bluedevil
+blueman
 btrfs-progs
 bzip2
 cajviewer-appimage
