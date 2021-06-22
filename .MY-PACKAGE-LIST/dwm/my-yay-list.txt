@@ -313,6 +313,7 @@ ruby
 rust
 s-nail
 samba
+screenkey
 sddm
 sddm-breath2-theme
 sddm-kcm

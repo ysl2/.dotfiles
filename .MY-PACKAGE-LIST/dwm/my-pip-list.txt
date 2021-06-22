@@ -154,6 +154,7 @@ retrying
 rfc3986
 rgw
 rope
+screenkey
 SecretStorage
 Send2Trash
 setuptools
