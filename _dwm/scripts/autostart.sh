@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # multi screen
-bash /home/yusoli/.screenlayout/big_and_small.sh
+bash ~/.screenlayout/big_and_small.sh
 
 /bin/bash ~/scripts/dwm-status.sh &
 /bin/bash ~/scripts/wp-autochange.sh &
