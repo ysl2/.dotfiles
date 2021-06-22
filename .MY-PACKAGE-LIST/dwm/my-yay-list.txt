@@ -236,6 +236,7 @@ neofetch
 neovim-nightly-bin
 neovim-qt
 nerd-fonts-fira-code
+network-manager-applet
 networkmanager
 networkmanager-openconnect
 networkmanager-openvpn
