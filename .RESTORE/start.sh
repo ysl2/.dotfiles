@@ -11,6 +11,7 @@
 #
 # NOTE: All the unhidden folders in `~/.dotfiles/` will be considered as a "${STOW}" tag
 # folder, and will be restored by "${STOW}".
+# NOTE: specify "$1" to 'soft', to only delete the link file, instead of creating new folders.
 
 # Set which version of stow to use:
 STOW=stow
@@ -64,12 +65,14 @@ cd ..
 CUR_DIR=$(pwd)
 TEMP_DIR=''
 # remove previous links by "${STOW}"
-for item in $(ls "${CUR_DIR}"); do
-  if [[ -d "${item}" ]]; then
-    echo "["${STOW}" clear] "${item}""
-    "${STOW}" -D "${item}"
-  fi
-done
+if [[ "$1" != "soft" ]]; then
+  for item in $(ls "${CUR_DIR}"); do
+    if [[ -d "${item}" ]]; then
+      echo "["${STOW}" clear] "${item}""
+      "${STOW}" -D "${item}"
+    fi
+  done
+fi
 for item in $(ls "${CUR_DIR}"); do
   if [[ -d "${item}" ]]; then
     TEMP_DIR="${item}"
