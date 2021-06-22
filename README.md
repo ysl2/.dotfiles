@@ -4,6 +4,12 @@
 >
 > This dotfile is used for Manjaro KDE Edition
 
+## Tricks
+
+```text
+nmtui
+```
+
 ## Downgrade Stow
 
 The latest version (before 2021-05-18) may cause a lot of problems.
