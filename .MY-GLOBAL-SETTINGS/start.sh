@@ -9,6 +9,16 @@
 # NOTE: The script position must be `~/.dotfiles/${some_hidden_folder}/start.sh`
 # All the folders and it's files under the ${some_hidden_folder} will be relinked to root
 
+# if a folder matches a given pattern, then return false (1).
+# if it doesn't match, return true (0).
+# This is to prevent a pattern-matched folder to be linked.
+check_ok() {
+  if [[ "$1" == "xsessions" ]]; then
+    return 1
+  fi
+  return 0
+}
+
 my_traverse() {
   if [[ -f "$1" ]]; then
     dot_file=$(pwd)/"$1"
@@ -16,11 +26,13 @@ my_traverse() {
     target_dir=${target_file%/*}
     my_link ${dot_file} /${target_file} /${target_dir}
   elif [[ -d "$1" ]]; then
-    cd "$1"
-    for item in $(ls -A); do
-      my_traverse "${item}"
-    done
-    cd ..
+    if $(check_ok "$1"); then
+      cd "$1"
+      for item in $(ls -A); do
+        my_traverse "${item}"
+      done
+      cd ..
+    fi
   fi
 }
 

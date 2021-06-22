@@ -54,7 +54,7 @@ fi
 # 	sleep 1
 # done &
 
-DISPLAY=:0 exec dwm
+exec dwm
 
 # YuSoLi
 # twm &
