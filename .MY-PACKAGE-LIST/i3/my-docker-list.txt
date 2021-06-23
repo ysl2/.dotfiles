@@ -1,0 +1,4 @@
+REPOSITORY
+adminer
+ghcr.io/linuxserver/mariadb
+danysk/manjaro-with-yay

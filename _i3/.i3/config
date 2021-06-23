@@ -93,6 +93,7 @@ bindsym $mod+Down exec bash ~/.scripts/basic/light/down.sh
 bindsym $mod+Right exec bash ~/.scripts/basic/voice-i3/up.sh
 bindsym $mod+Left exec bash ~/.scripts/basic/voice-i3/down.sh
 bindsym $mod+backslash exec bash ~/.scripts/basic/voice/toggle.sh
+bindsym $mod+Shift+backslash exec --no-startup-id alacritty -e 'alsamixer'
 
 
 # ===========================

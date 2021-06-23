@@ -23,10 +23,11 @@ picom -b
 
 # basic components: network & power & voice & bluetooth
 nm-applet &
-xfce4-power-manager &
+# xfce4-power-manager &
 blueman-applet &  # YuSoLi: self flavor
 switchhosts &  # YuSoLi: self flavor
-#xfce4-volumed-pulse &
+volumeicon &
+# xfce4-volumed-pulse &
 
 # mail sync
 # /bin/bash ~/.scripts/run-mailsync.sh &
