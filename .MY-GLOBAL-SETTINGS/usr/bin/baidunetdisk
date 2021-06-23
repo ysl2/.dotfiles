@@ -1,2 +1,3 @@
 #!/bin/bash
-exec /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U
+# exec /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U
+/usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U
