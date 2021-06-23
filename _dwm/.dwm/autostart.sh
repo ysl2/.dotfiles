@@ -1,1 +1,1 @@
-../.scripts/autostart.sh
+../../_default/.scripts/autostart.sh
