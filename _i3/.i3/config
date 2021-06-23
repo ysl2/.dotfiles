@@ -292,16 +292,17 @@ bar {
 
 		bindsym button4 nop
 		bindsym button5 nop
-		font xft:URWGothic-Book 16
+		# font xft:URWGothic-Book 16
+		font xft:URWGothic-Book 13
 		strip_workspace_numbers yes
 
-		#colors {
+		colors {
 ##background #222D31
 ##statusline #F9FAF9
 ##separator  #454947
-		#	background #222222
-		#	statusline #eeeeee
-		#	separator #666666
+			background #222222
+			statusline #eeeeee
+			separator #666666
 
 ##                      border  backgr. text
 		#		focused_workspace  #F9FAF9 #16a085 #292F34
@@ -309,7 +310,7 @@ bar {
 		#		inactive_workspace #595B5B #222D31 #EEE8D5
 		#		binding_mode       #16a085 #2C2C2C #F9FAF9
 		#		urgent_workspace   #16a085 #FDF6E3 #E5201D
-		#}
+		}
 }
 
 # hide/unhide i3status bar
