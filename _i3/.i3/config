@@ -51,19 +51,19 @@ floating_modifier $mod
 # =================
 # === autostart ===
 # =================
-exec --no-startup-id picom -b
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-exec --no-startup-id blueman-applet
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-exec --no-startup-id feh --randomize --bg-fill ~/.WALLPAPERS
-#exec --no-startup-id  ~/.config/polybar/launch.sh
-exec --no-startup-id fcitx
+# exec --no-startup-id picom -b
+# exec --no-startup-id nm-applet
+# exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id pamac-tray
+# exec --no-startup-id clipit
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id ff-theme-util
+# exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id feh --randomize --bg-fill ~/.WALLPAPERS
+# #exec --no-startup-id  ~/.config/polybar/launch.sh
+# exec --no-startup-id fcitx
 # exec --no-startup-id flameshot
-
+exec --no-startup-id bash ~/.scripts/autostart-i3.sh
 
 
 # ============================
@@ -125,8 +125,8 @@ bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 # workspace_auto_back_and_forth no
-# bindsym $mod+b workspace back_and_forth
-# bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+# bindsym $mod+g workspace back_and_forth
+# bindsym $mod+Shift+g move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
 bindsym $mod+b split h;exec notify-send 'tile horizontally'
@@ -167,6 +167,12 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+
+
+
+# =================
+# === Workspace ===
+# =================
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+h workspace next
@@ -222,6 +228,62 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 #bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 #bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
+
+
+# ===
+# === multi screen
+# ===
+
+# big
+set $monitor1 HDMI1
+# small
+set $monitor2 DP1
+
+workspace 1 output $monitor1
+workspace 2 output $monitor1
+workspace 3 output $monitor1
+workspace 4 output $monitor1
+workspace 5 output $monitor2
+workspace 6 output $monitor2
+workspace 7 output $monitor2
+workspace 8 output $monitor2
+
+
+# Open applications on specific workspaces
+# assign [class="Thunderbird"] $ws1
+# assign [class="Pale moon"] $ws2
+# assign [class="Pcmanfm"] $ws3
+# assign [class="Skype"] $ws5
+
+# Open specific applications in floating mode
+# for_window [title="alsamixer"] floating enable border pixel 1
+# for_window [class="calamares"] floating enable border normal
+# for_window [class="Clipgrab"] floating enable
+# for_window [title="File Transfer*"] floating enable
+# for_window [class="fpakman"] floating enable
+# for_window [class="Galculator"] floating enable border pixel 1
+# for_window [class="GParted"] floating enable border normal
+# for_window [title="i3_help"] floating enable sticky enable border normal
+# for_window [class="Lightdm-settings"] floating enable
+# for_window [class="Lxappearance"] floating enable sticky enable border normal
+# for_window [class="Manjaro-hello"] floating enable
+# for_window [class="Manjaro Settings Manager"] floating enable border normal
+# for_window [title="MuseScore: Play Panel"] floating enable
+# for_window [class="Nitrogen"] floating enable sticky enable border normal
+# for_window [class="Oblogout"] fullscreen enable
+# for_window [class="octopi"] floating enable
+# for_window [title="About Pale Moon"] floating enable
+# for_window [class="Pamac-manager"] floating enable
+# for_window [class="Pavucontrol"] floating enable
+# for_window [class="qt5ct"] floating enable sticky enable border normal
+# for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+# for_window [class="Simple-scan"] floating enable border normal
+# for_window [class="(?i)System-config-printer.py"] floating enable border normal
+# for_window [class="Skype"] floating enable border normal
+# for_window [class="Timeset-gui"] floating enable border normal
+# for_window [class="(?i)virtualbox"] floating enable border normal
+# for_window [class="Xfburn"] floating enable
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
