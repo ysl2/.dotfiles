@@ -4,6 +4,11 @@
 
 # This function parses /proc/net/dev file searching for a line containing $interface data.
 # Within that line, the first and ninth numbers after ':' are respectively the received and transmited bytes.
+
+DIR="/home/yusoli/.scripts/dwmbar-functions"
+touch ~/testdir-thecw-statusbar-render
+echo $DIR > ~/testdir-thecw-statusbar-render
+
 function get_bytes {
 	# Find active network interface
 	interface=$(ip route get 8.8.8.8 2>/dev/null| awk '{print $5}')
@@ -131,8 +136,8 @@ show_record(){
 }
 
 
-LOC=$(readlink -f "$0")
-DIR=$(dirname "$LOC")
+# LOC=$(readlink -f "$0")
+# DIR=$(dirname "$LOC")
 export IDENTIFIER="unicode"
 
 #. "$DIR/dwmbar-functions/dwm_transmission.sh"
@@ -141,7 +146,7 @@ export IDENTIFIER="unicode"
 #. "$DIR/dwmbar-functions/dwm_battery.sh"
 #. "$DIR/dwmbar-functions/dwm_mail.sh"
 #. "$DIR/dwmbar-functions/dwm_backlight.sh"
-. "$DIR/dwmbar-functions/dwm_alsa.sh"
+. "$DIR/dwm_alsa.sh"
 #. "$DIR/dwmbar-functions/dwm_pulse.sh"
 #. "$DIR/dwmbar-functions/dwm_weather.sh"
 #. "$DIR/dwmbar-functions/dwm_vpn.sh"
