@@ -118,7 +118,7 @@ single() {
 
 start() {
   while :; do
-    ! pgrep slock 1>/dev/null && xsetroot -name "$(statusbar)"
+    single
     sleep 1
   done
 }
@@ -130,14 +130,14 @@ restart() {
 }
 
 case "$1" in
+once)
+  single
+  ;;
 loop)
   start
   ;;
 dryrun)
   statusbar
-  ;;
-once)
-  single
   ;;
 *)
   restart
