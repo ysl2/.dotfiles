@@ -40,7 +40,9 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+# bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id dmenu_run
+
 #设置快捷程序启动为rofi
 #bindsym $mod+d exec --no-startup-id rofi -show drun
 
@@ -150,8 +152,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 #navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+bindsym $mod+Ctrl+h workspace next
+bindsym $mod+Ctrl+l workspace prev
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
