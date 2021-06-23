@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /usr/lib/baidunetdisk/baidunetdisk --no-sandbox %U
