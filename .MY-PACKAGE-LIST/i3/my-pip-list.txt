@@ -78,6 +78,7 @@ MarkupSafe
 matplotlib-inline
 mccabe
 MemoizeDB
+meson
 more-itertools
 msgpack
 multidict

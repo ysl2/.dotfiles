@@ -3,12 +3,15 @@
 // by : ipang-dwi - www.firstplato.com
 // based on the Purple official rofi theme
 // ================================================ */
+            /* background #222222 */
+            /*     statusline #eeeeee */
+            /*     separator #666666 */
 
 * {
-    font: "Ubuntu Mono Reguler 11";
+    font: "FiraCode Nerd Font 16";
     foreground: #f8f8f2;
-    background-color: #282a36;
-    active-background: #b00000;
+    background-color: #50536b;
+    active-background: #50536b;
     urgent-background: #ff5555;
     selected-background: @active-background;
     selected-urgent-background: @urgent-background;
