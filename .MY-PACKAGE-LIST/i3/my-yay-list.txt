@@ -93,8 +93,6 @@ filelight
 filesystem
 findutils
 firefox
-firefox-i18n-en-us
-firefox-i18n-zh-cn
 flameshot
 flex
 fwupd
@@ -174,8 +172,6 @@ kscreenlocker
 ksshaskpass
 ksysguard
 ksystemlog
-kwallet-pam
-kwalletmanager
 kwayland-integration
 kwin
 kwrited
