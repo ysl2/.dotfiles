@@ -20,6 +20,7 @@ astyle
 autoconf
 autojump
 automake
+autotiling
 avahi
 b43-fwcutter
 baidunetdisk-bin
@@ -164,6 +165,7 @@ khotkeys
 kimageformats
 kinfocenter
 kio-extras
+kitty
 kmenuedit
 konsole
 konversation
@@ -196,6 +198,7 @@ libreoffice-fresh
 libva-intel-driver
 libva-mesa-driver
 libva-vdpau-driver
+libxft-bgra
 licenses
 linux512
 linux512-headers

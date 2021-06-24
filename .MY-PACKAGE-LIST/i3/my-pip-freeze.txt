@@ -8,6 +8,7 @@ arandr==0.1.10
 astroid==2.4.2
 attrs==21.2.0
 autopep8==1.5.7
+autotiling==1.2
 backcall==0.2.0
 bcrypt==3.2.0
 beautifulsoup4==4.9.3
@@ -48,6 +49,7 @@ Flask-Cors==3.0.10
 greenlet==1.0.0
 html5lib==1.1
 httpie==2.4.0
+i3ipc==2.2.1
 idna==3.2
 importlib-metadata==4.0.1
 iniconfig==1.1.1

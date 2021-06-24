@@ -71,7 +71,8 @@ exec --no-startup-id bash ~/.scripts/autostart-i3.sh
 # ============================
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+# bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id kitty
 #bindsym $mod+ctrl+s exec bash ~/.config/i3/sk.sh
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -83,6 +84,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+o exec --no-startup-id google-chrome-stable --proxy-server=localhost:7890
+bindsym $mod+Shift+o exec --no-startup-id google-chrome-stable
 bindsym $mod+F3 exec ranger
 bindsym $mod+Ctrl+a --release exec --no-startup-id flameshot gui
 
@@ -93,7 +95,7 @@ bindsym $mod+Down exec bash ~/.scripts/basic/light/down.sh
 bindsym $mod+Right exec bash ~/.scripts/basic/voice-i3/up.sh
 bindsym $mod+Left exec bash ~/.scripts/basic/voice-i3/down.sh
 bindsym $mod+backslash exec bash ~/.scripts/basic/voice/toggle.sh
-bindsym $mod+Shift+backslash exec --no-startup-id alacritty -e 'alsamixer'
+bindsym $mod+Shift+backslash exec --no-startup-id kitty -e 'alsamixer'
 
 
 # ===========================
@@ -350,7 +352,7 @@ bar {
         status_command i3status
         position bottom
 
-        status_command exec ~/.scripts/i3-spec/net-speed.sh
+        status_command exec ~/.scripts/spec-i3/net-speed.sh
 # Single interface:
 # ifaces="eth0"
 #

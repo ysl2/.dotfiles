@@ -10,6 +10,7 @@ arandr
 astroid
 attrs
 autopep8
+autotiling
 backcall
 bcrypt
 beautifulsoup4
@@ -50,6 +51,7 @@ Flask-Cors
 greenlet
 html5lib
 httpie
+i3ipc
 idna
 importlib-metadata
 iniconfig

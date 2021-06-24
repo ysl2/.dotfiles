@@ -6,6 +6,9 @@
 # statusbar loader
 # /bin/bash ~/.scripts/basic/statusbar/autoloop.sh &
 
+# autotiling
+/usr/bin/autotiling &
+
 # wallpaper engine
 /bin/bash ~/.scripts/basic/wallpaper/autoloop.sh &
 
