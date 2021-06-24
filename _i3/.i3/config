@@ -262,8 +262,9 @@ workspace 8 output $monitor2
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-# for_window [title="alsamixer"] floating enable border pixel 1
-# for_window [class="calamares"] floating enable border normal
+for_window [class="flameshot"] floating enable border pixel 1
+for_window [title="alsamixer"] floating enable border pixel 1
+# for_window [title="TIM"] floating enable border normal
 # for_window [class="Clipgrab"] floating enable
 # for_window [title="File Transfer*"] floating enable
 # for_window [class="fpakman"] floating enable

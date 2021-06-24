@@ -65,6 +65,7 @@ docker-compose
 dolphin
 dolphin-plugins
 dosfstools
+dunst
 dutree
 dvd+rw-tools
 e2fsprogs
