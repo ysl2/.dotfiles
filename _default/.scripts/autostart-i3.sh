@@ -30,7 +30,7 @@ nm-applet &
 blueman-applet &  # YuSoLi: self flavor
 switchhosts &  # YuSoLi: self flavor
 volumeicon &
-qv2ray &
+# qv2ray &
 # xfce4-volumed-pulse &
 
 # mail sync

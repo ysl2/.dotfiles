@@ -256,7 +256,7 @@ workspace 8 output $monitor2
 # === assign workspace
 # ===
 # Open applications on specific workspaces
-assign [class="qv2ray"] $ws4
+# assign [class="qv2ray"] $ws4
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
