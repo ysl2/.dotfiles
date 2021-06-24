@@ -12,12 +12,16 @@
 # if a folder matches a given pattern, then return false (1).
 # if it doesn't match, return true (0).
 # This is to prevent a pattern-matched folder to be linked.
-check_ok() {
-  if [[ "$1" == "xsessions" ]]; then
-    return 1
-  fi
-  return 0
-}
+source ./check_ok.sh
+
+# Create conflict dir
+CONFLICT_DIR=$(pwd)/assets
+if [[ ! -e ${CONFLICT_DIR} ]]; then
+  mkdir -p "${CONFLICT_DIR}"
+fi
+if [[ -e "${CONFLICT_DIR}"/conflict.sh ]]; then
+  rm "${CONFLICT_DIR}"/conflict.sh
+fi
 
 my_traverse() {
   if [[ -f "$1" ]]; then
@@ -32,6 +36,11 @@ my_traverse() {
         my_traverse "${item}"
       done
       cd ..
+    else
+      dot_file=$(pwd)/"$1"
+      target_file=${dot_file##${CUR_DIR}/}
+      target_dir=${target_file%/*}
+      echo "sudo cp -r ${dot_file}/* /${target_file}/" >>"${CONFLICT_DIR}"/conflict.sh
     fi
   fi
 }
@@ -61,3 +70,15 @@ for item in $(ls -A ${CUR_DIR}); do
     my_traverse ${item}
   fi
 done
+
+if [[ -e "${CONFLICT_DIR}"/conflict.sh ]]; then
+  echo ''
+  echo 'Conflict detected.'
+  echo 'Please check 'conflict.sh' carefully, it will be a dangerous action.'
+  echo '# ---------------------------------------------' >>"${CONFLICT_DIR}"/conflict.sh
+  echo "rm -f "${CONFLICT_DIR}"/conflict.sh" >>"${CONFLICT_DIR}"/conflict.sh
+  echo "rm -rf "${CONFLICT_DIR}"" >>"${CONFLICT_DIR}"/conflict.sh
+  chmod 777 "${CONFLICT_DIR}"/conflict.sh
+else
+  rm -rf "${CONFLICT_DIR}"
+fi

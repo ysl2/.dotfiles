@@ -128,6 +128,7 @@ PyQt5==5.15.4
 PyQt5-sip==12.9.0
 PyQtWebEngine==5.15.4
 pyrsistent==0.17.3
+PySide2==5.15.2
 pysmbc==1.0.23
 PySocks==1.7.1
 pyte==0.8.0
@@ -156,6 +157,7 @@ rope==0.18.0
 screenkey==1.4
 SecretStorage==3.3.1
 Send2Trash==1.5.0
+shiboken2==5.15.2
 six==1.16.0
 smdv==0.1.1
 soupsieve==2.2.1

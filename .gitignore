@@ -4,3 +4,4 @@ ranger/.config/ranger/folders.conf
 nvim/.config/nvim/tmp/
 *.class
 .RESTORE-BY-JAVA/assets/*
+.MY-GLOBAL-SETTINGS/assets/*

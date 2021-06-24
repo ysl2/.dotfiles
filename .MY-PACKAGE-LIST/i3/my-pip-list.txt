@@ -131,6 +131,7 @@ PyQt5
 PyQt5-sip
 PyQtWebEngine
 pyrsistent
+PySide2
 pysmbc
 PySocks
 pyte
@@ -160,6 +161,7 @@ screenkey
 SecretStorage
 Send2Trash
 setuptools
+shiboken2
 six
 smdv
 soupsieve
