@@ -71,7 +71,7 @@ exec --no-startup-id bash ~/.scripts/autostart-i3.sh
 # ============================
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id st
 #bindsym $mod+ctrl+s exec bash ~/.config/i3/sk.sh
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -96,7 +96,7 @@ bindsym $mod+Down exec bash ~/.scripts/basic/light/down.sh
 bindsym $mod+Right exec bash ~/.scripts/basic/voice-i3/up.sh
 bindsym $mod+Left exec bash ~/.scripts/basic/voice-i3/down.sh
 bindsym $mod+backslash exec bash ~/.scripts/basic/voice/toggle.sh
-bindsym $mod+Shift+backslash exec --no-startup-id alacritty -e 'alsamixer'
+bindsym $mod+Shift+backslash exec --no-startup-id st -e 'alsamixer'
 
 
 # ===========================
