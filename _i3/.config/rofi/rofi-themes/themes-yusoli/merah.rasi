@@ -10,8 +10,8 @@
 * {
     font: "FiraCode Nerd Font 16";
     foreground: #f8f8f2;
-    background-color: #50536b;
-    active-background: #50536b;
+    background-color: #373e4d;
+    active-background: #2e3440;
     urgent-background: #ff5555;
     selected-background: @active-background;
     selected-urgent-background: @urgent-background;
