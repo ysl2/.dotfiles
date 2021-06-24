@@ -36,8 +36,8 @@ zinit light zdharma/history-search-multi-word
 # zinit ice lucid wait atload='_zsh_autosuggest_start' from"hub.fastgit.org"
 # zinit light zsh-users/zsh-autosuggestions
 
-# zinit ice lucid wait'1' from"hub.fastgit.org"
-# zinit light kutsan/zsh-system-clipboard
+zinit ice lucid wait'1' from"hub.fastgit.org"
+zinit light kutsan/zsh-system-clipboard
 
 # zinit ice lucid wait='1' from"hub.fastgit.org"
 # zinit light romkatv/zsh-defer
