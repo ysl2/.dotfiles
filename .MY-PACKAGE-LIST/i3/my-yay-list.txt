@@ -315,6 +315,7 @@ qtkeychain-qt5
 ranger
 reiserfsprogs
 ripgrep
+rofi
 rsync
 ruby
 rust
