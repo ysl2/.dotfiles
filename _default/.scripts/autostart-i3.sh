@@ -22,7 +22,7 @@ picom -b
 /bin/bash ~/.scripts/basic/laptop/inverse-scroll.sh &
 
 # keyboard mapping
-# /bin/bash ~/.scripts/setxmodmap-colemak.sh &
+/bin/bash ~/.scripts/basic/keymap/qwerty.sh
 
 # basic components: network & power & voice & bluetooth
 nm-applet &
