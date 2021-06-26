@@ -177,6 +177,7 @@ kwin
 kwrited
 lazydocker
 lazygit
+lazynpm
 less
 lftp
 lib32-libcanberra

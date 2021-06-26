@@ -32,6 +32,7 @@ alias ta='tmux attach'
 alias ra="ranger"
 alias lg='lazygit'
 alias ld='lazydocker'
+alias lp='lazynpm'
 alias py='python'
 alias ipy='ipython'
 # pip install httpie

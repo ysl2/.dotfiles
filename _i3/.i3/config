@@ -58,11 +58,11 @@ floating_modifier $mod
 # exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id ff-theme-util
-# exec_always --no-startup-id fix_xcursor
 # exec --no-startup-id feh --randomize --bg-fill ~/.WALLPAPERS
 # #exec --no-startup-id  ~/.config/polybar/launch.sh
 # exec --no-startup-id fcitx
 # exec --no-startup-id flameshot
+exec_always --no-startup-id fix_xcursor
 exec --no-startup-id bash ~/.scripts/autostart-i3.sh
 
 
@@ -87,7 +87,12 @@ bindsym $mod+d exec "rofi -modi drun,run -show drun"
 bindsym $mod+o exec --no-startup-id google-chrome-stable --proxy-server=localhost:7890
 bindsym $mod+Shift+o exec --no-startup-id google-chrome-stable
 bindsym $mod+F3 exec --no-startup-id ranger
+
+# toggle by scripts
 bindsym $mod+Ctrl+a --release exec --no-startup-id flameshot gui
+bindsym $mod+Ctrl+s exec bash ~/.scripts/basic/command/toggle-screen-key.sh
+bindsym $mod+Ctrl+d exec bash ~/.scripts/basic/command/toggle-qvray.sh
+# bindsym $mod+Ctrl+s exec --no-startup-id screenkey
 
 # brightness
 bindsym $mod+Up exec --no-startup-id bash ~/.scripts/basic/light/up.sh
