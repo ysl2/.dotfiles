@@ -1,12 +1,8 @@
 " ==============
 " === matlab ===
 " ==============
-" function! DoRemote(arg)
-"   UpdateRemotePlugins
-" endfunction
-
-" Plug 'daeyun/vim-matlab', { 'do': function('DoRemote') }
-" Plug 'https://hub.fastgit.org/daeyun/vim-matlab.git', { 'do': function('DoRemote') }
+" https://stackoverflow.com/questions/23380456/how-to-use-vim-as-editor-in-matlab-gui
+Plug 'https://hub.fastgit.org/MortenStabenau/matlab-vim.git', {'for': 'm'}
 
 
 " ============
