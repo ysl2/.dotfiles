@@ -64,6 +64,11 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
+# https://www.reddit.com/r/i3wm/comments/399nr3/how_to_stop_screen_turn_off_after_several_minutes/
+xset s off
+xset -dpms
+xset s noblank
+
 exec $(get_session "$1")
 
 # exec "$1"
