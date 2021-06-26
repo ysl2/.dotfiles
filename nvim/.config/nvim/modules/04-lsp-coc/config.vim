@@ -38,7 +38,8 @@ let g:coc_global_extensions =[
       \ 'coc-java',
       \ 'coc-sh',
       \ 'coc-markdownlint',
-      \ 'coc-clangd'
+      \ 'coc-clangd',
+      \ 'coc-vimtex'
       \]
 
 

@@ -3,6 +3,12 @@ Plug 'https://hub.fastgit.org/Shougo/context_filetype.vim.git'
 
 
 " ===
+" === latex
+" ===
+Plug 'https://hub.fastgit.org/lervag/vimtex.git', {'for': 'markdown'}
+
+
+" ===
 " === markdown
 " ===
 " jarvim new
