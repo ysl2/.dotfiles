@@ -1,3 +1,14 @@
+" ==============
+" === matlab ===
+" ==============
+" function! DoRemote(arg)
+"   UpdateRemotePlugins
+" endfunction
+
+" Plug 'daeyun/vim-matlab', { 'do': function('DoRemote') }
+" Plug 'https://hub.fastgit.org/daeyun/vim-matlab.git', { 'do': function('DoRemote') }
+
+
 " ============
 " === html ===
 " ============

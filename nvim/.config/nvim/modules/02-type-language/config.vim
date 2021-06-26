@@ -1,3 +1,10 @@
+" ==============
+" === matlab ===
+" ==============
+" let g:matlab_server_launcher = 'vim'
+" let g:matlab_server_split = 'horizontal'
+
+
 " ============
 " === html ===
 " ============
