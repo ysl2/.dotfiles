@@ -277,6 +277,7 @@ pamac-snap-plugin
 pamac-tray-icon-plasma
 pandoc
 partitionmanager
+pavucontrol
 pciutils
 peco
 peek

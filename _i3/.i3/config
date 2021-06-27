@@ -92,16 +92,19 @@ bindsym $mod+F3 exec --no-startup-id ranger
 bindsym $mod+Ctrl+a --release exec --no-startup-id flameshot gui
 bindsym $mod+Ctrl+s exec bash ~/.scripts/basic/command/toggle-screen-key.sh
 bindsym $mod+Ctrl+d exec bash ~/.scripts/basic/command/toggle-qvray.sh
-# bindsym $mod+Ctrl+s exec --no-startup-id screenkey
 
 # brightness
 bindsym $mod+Up exec --no-startup-id bash ~/.scripts/basic/light/up.sh
 bindsym $mod+Down exec --no-startup-id bash ~/.scripts/basic/light/down.sh
+
 # voice
+# bindsym $mod+Right exec "pactl set-sink-volume 0 +5%"
+# bindsym $mod+Left exec "pactl set-sink-volume 0 -5%"
 bindsym $mod+Right exec --no-startup-id bash ~/.scripts/basic/voice-i3/up.sh
 bindsym $mod+Left exec --no-startup-id bash ~/.scripts/basic/voice-i3/down.sh
-bindsym $mod+backslash exec --no-startup-id bash ~/.scripts/basic/voice/toggle.sh
+bindsym $mod+backslash exec --no-startup-id bash ~/.scripts/basic/voice-i3/toggle.sh
 bindsym $mod+Shift+backslash exec --no-startup-id st -e 'alsamixer'
+
 # checkout screen
 bindsym $mod+Ctrl+9 exec --no-startup-id bash ~/.scripts/basic/screen/only-big.sh
 bindsym $mod+Ctrl+0 exec --no-startup-id bash ~/.scripts/basic/screen/only-small.sh
