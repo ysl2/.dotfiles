@@ -292,7 +292,6 @@ plasma-simplemenu
 plasma-workspace
 plasma-workspace-wallpapers
 poppler-data
-powerdevil
 powerpill
 print-manager
 procps-ng
@@ -454,6 +453,7 @@ xf86-video-ati
 xf86-video-intel
 xf86-video-nouveau
 xf86-video-vesa
+xfce4-power-manager
 xfsprogs
 xorg-bdftopcf
 xorg-docs

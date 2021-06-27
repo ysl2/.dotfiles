@@ -26,7 +26,7 @@ picom -b
 
 # basic components: network & power & voice & bluetooth
 nm-applet &
-# xfce4-power-manager &
+xfce4-power-manager &
 blueman-applet &  # YuSoLi: self flavor
 switchhosts &  # YuSoLi: self flavor
 volumeicon &
