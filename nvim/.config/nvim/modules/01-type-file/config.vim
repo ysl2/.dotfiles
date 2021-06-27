@@ -61,6 +61,7 @@ let g:instant_markdown_autoscroll = 1
 let g:instant_markdown_port = 8090
 " let g:instant_markdown_python = 1
 
+let g:instant_markdown_browser = "firefox"
 " let g:instant_markdown_browser = "google-chrome-stable --new-window"
 
 
