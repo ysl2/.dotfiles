@@ -6,9 +6,11 @@ apparmor
 appdirs
 application-utility
 aqt
+arandr
 astroid
 attrs
 autopep8
+autotiling
 backcall
 bcrypt
 beautifulsoup4
@@ -49,6 +51,7 @@ Flask-Cors
 greenlet
 html5lib
 httpie
+i3ipc
 idna
 importlib-metadata
 iniconfig
@@ -128,6 +131,7 @@ PyQt5
 PyQt5-sip
 PyQtWebEngine
 pyrsistent
+PySide2
 pysmbc
 PySocks
 pyte
@@ -153,9 +157,11 @@ retrying
 rfc3986
 rgw
 rope
+screenkey
 SecretStorage
 Send2Trash
 setuptools
+shiboken2
 six
 smdv
 soupsieve

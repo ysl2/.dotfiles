@@ -2,6 +2,7 @@
 ├── acorn@8.3.0
 ├── bash-language-server@1.17.0
 ├── env-paths@2.2.1
+├── fixjson@1.1.2
 ├── instant-markdown-d@0.2.0-rc.2
 ├── node-gyp@8.1.0
 ├── npm@7.16.0
