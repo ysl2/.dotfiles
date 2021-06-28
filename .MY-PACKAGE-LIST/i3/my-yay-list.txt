@@ -430,6 +430,7 @@ vlc
 volumeicon
 vulkan-intel
 vulkan-radeon
+w3m
 wallpapers-2018
 wallpapers-juhraya
 wget
@@ -445,6 +446,7 @@ xdg-desktop-portal
 xdg-desktop-portal-kde
 xdg-user-dirs
 xdg-utils
+xdotool
 xf86-input-elographics
 xf86-input-evdev
 xf86-input-libinput
@@ -491,6 +493,7 @@ xorg-xrefresh
 xorg-xvinfo
 xorg-xwayland
 xorg-xwd
+xorg-xwininfo
 xorg-xwud
 xsettingsd
 xunlei-bin
