@@ -5,7 +5,6 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-serif-cn-fonts
 alacritty-ligatures-git
 alsa-firmware
-alsa-tools
 alsa-utils
 anaconda
 android-tools
@@ -131,7 +130,7 @@ haveged
 hunspell-en_us
 hyperfine
 hyphen-en
-i3-gaps
+i3-gaps-next-git
 i3blocks
 i3exit
 i3lock
