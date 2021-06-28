@@ -84,8 +84,9 @@ bindsym $mod+d exec "rofi -modi drun,run -show drun"
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+o exec --no-startup-id google-chrome-stable --proxy-server=localhost:7890
-bindsym $mod+Shift+o exec --no-startup-id google-chrome-stable
+# bindsym $mod+o exec --no-startup-id google-chrome-stable --proxy-server=localhost:7890
+# bindsym $mod+Shift+o exec --no-startup-id google-chrome-stable
+bindsym $mod+o exec --no-startup-id firefox
 bindsym $mod+F3 exec --no-startup-id ranger
 
 # toggle by scripts
