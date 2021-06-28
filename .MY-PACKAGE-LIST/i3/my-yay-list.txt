@@ -51,8 +51,6 @@ cryptsetup
 ctags
 ctop
 debtap
-deepin.com.qq.office
-deepin.com.wechat
 device-mapper
 dhclient
 dhcpcd
@@ -296,7 +294,6 @@ poppler-data
 powerpill
 print-manager
 procps-ng
-proton
 psmisc
 pulseaudio-bluetooth
 pulseaudio-ctl
