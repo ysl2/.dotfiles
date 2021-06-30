@@ -137,6 +137,7 @@ illyria-wallpaper
 inetutils
 intel-ucode
 intellij-idea-ultimate-edition
+intellij-idea-ultimate-edition-jre
 inxi
 iproute2
 iputils
