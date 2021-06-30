@@ -136,9 +136,11 @@ i3status
 illyria-wallpaper
 inetutils
 intel-ucode
+intellij-idea-ultimate-edition
 inxi
 iproute2
 iputils
+jdk11-openjdk
 jdtls
 jfsutils
 k3b
@@ -260,7 +262,6 @@ numlockx
 obinskit
 obsidian
 okular
-openjdk-src
 openresolv
 openssh
 os-prober

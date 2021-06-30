@@ -128,6 +128,19 @@
         //     "python"
         // ],
         // coc-explorer
+    "explorer.file.hiddenRules": {
+      "extensions": [
+        "o",
+        "a",
+        "obj",
+        "pyc",
+        "class"
+      ],
+      "filenames": [],
+      "patternMatches": [
+        "^\\."
+      ]
+    },
         "explorer.file.column.git.showIgnored": true,
         "explorer.file.column.indent.indentLine": true,
         "explorer.file.showHiddenFiles": false,
