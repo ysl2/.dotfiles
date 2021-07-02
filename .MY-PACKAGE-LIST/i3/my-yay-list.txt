@@ -71,6 +71,7 @@ easyconnect
 ecryptfs-utils
 efibootmgr
 emovix
+etcher
 ethtool
 exa
 exfat-utils
