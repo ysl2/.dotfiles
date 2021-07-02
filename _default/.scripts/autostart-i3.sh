@@ -30,6 +30,7 @@ xfce4-power-manager &
 blueman-applet &  # YuSoLi: self flavor
 switchhosts &  # YuSoLi: self flavor
 volumeicon &
+dunst -config ~/.config/dunst/dunstrc &
 # qv2ray &
 # xfce4-volumed-pulse &
 
