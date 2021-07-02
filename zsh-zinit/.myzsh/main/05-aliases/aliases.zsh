@@ -50,8 +50,8 @@ alias pacman='sudo powerpill'
 alias rpacman='sudo powerpill --color=always'
 alias ryay='yay --color=always'
 # 拉取更新用的
-alias sss='sudo pacman -Syyu --noconfirm'
-alias yyy='yay -Syyu --noconfirm'
+alias sss='sudo pacman -Syyu --needed --noconfirm'
+alias yyy='yay -Syyu --needed --noconfirm'
 
 
 # ===
