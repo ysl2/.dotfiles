@@ -67,6 +67,7 @@ dunst
 dutree
 dvd+rw-tools
 e2fsprogs
+easyconnect
 ecryptfs-utils
 efibootmgr
 emovix
