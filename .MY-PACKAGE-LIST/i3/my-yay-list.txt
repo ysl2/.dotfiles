@@ -458,6 +458,7 @@ xf86-video-nouveau
 xf86-video-vesa
 xfce4-power-manager
 xfsprogs
+xmind-2020
 xorg-bdftopcf
 xorg-docs
 xorg-font-util
@@ -506,4 +507,5 @@ zathura-pdf-mupdf
 zensu
 zerotier-one
 zip
+zotero
 zsh
