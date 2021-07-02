@@ -224,6 +224,7 @@ manjaro-settings-manager-kcm
 manjaro-settings-manager-knotifier
 manjaro-system
 manjaro-wallpapers-18.0
+mathpix-snipping-tool
 maven
 mdadm
 memtest86+
