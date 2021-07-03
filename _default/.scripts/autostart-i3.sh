@@ -32,6 +32,7 @@ blueman-applet &  # YuSoLi: self flavor
 volumeicon &
 dunst -config ~/.config/dunst/dunstrc &
 fcitx5 &
+# lxappearance &
 # qv2ray &
 # xfce4-volumed-pulse &
 
