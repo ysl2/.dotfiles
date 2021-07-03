@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# auto mount disk
+/bin/bash ~/.scripts/basic/command/auto-mount-disk.sh &
+
 # multi screen
 /bin/bash ~/.scripts/basic/screen/big-and-small.sh
 
@@ -28,10 +31,11 @@ picom -b
 nm-applet &
 xfce4-power-manager &
 blueman-applet &  # YuSoLi: self flavor
-# switchhosts &  # YuSoLi: self flavor
 volumeicon &
 dunst -config ~/.config/dunst/dunstrc &
 fcitx5 &
+
+# switchhosts &  # YuSoLi: self flavor
 # lxappearance &
 # qv2ray &
 # xfce4-volumed-pulse &
