@@ -28,9 +28,10 @@ picom -b
 nm-applet &
 xfce4-power-manager &
 blueman-applet &  # YuSoLi: self flavor
-switchhosts &  # YuSoLi: self flavor
+# switchhosts &  # YuSoLi: self flavor
 volumeicon &
 dunst -config ~/.config/dunst/dunstrc &
+fcitx5 &
 # qv2ray &
 # xfce4-volumed-pulse &
 
