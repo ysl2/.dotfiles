@@ -34,6 +34,7 @@ blueman-applet &  # YuSoLi: self flavor
 volumeicon &
 dunst -config ~/.config/dunst/dunstrc &
 fcitx5 &
+udiskie --no-automount --no-notify --tray &
 
 # switchhosts &  # YuSoLi: self flavor
 # lxappearance &

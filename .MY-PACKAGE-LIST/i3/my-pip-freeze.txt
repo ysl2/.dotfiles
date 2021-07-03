@@ -45,6 +45,7 @@ ipython==7.25.0
 ipython-genutils==0.2.0
 jedi==0.18.0
 jsonschema==3.2.0
+keyutils==0.6
 lensfun==0.3.95
 LibAppArmor==3.0.1
 lockfile==0.12.2
@@ -118,6 +119,7 @@ texttable==1.6.3
 toml==0.10.2
 traitlets==5.0.5
 Twisted==21.2.0
+udiskie==2.3.3
 ueberzug==18.1.9
 ufw==0.36
 urllib3==1.26.5

@@ -47,6 +47,7 @@ ipython
 ipython-genutils
 jedi
 jsonschema
+keyutils
 lensfun
 LibAppArmor
 lockfile
@@ -122,6 +123,7 @@ texttable
 toml
 traitlets
 Twisted
+udiskie
 ueberzug
 ufw
 urllib3
