@@ -154,6 +154,18 @@ let g:formatters_sql = ['sqlformat']
 let g:formatters_sql = ['fixjson']
 
 
+" ===
+" === markdown formatter
+" ===
+let g:formatters_markdown = ['prettier', 'stylelint']
+
+
+" ===
+" === pandoc formatter
+" ===
+let g:formatters_pandoc = ['prettier', 'stylelint']
+
+
 
 " =================
 " === Ultisnips ===
