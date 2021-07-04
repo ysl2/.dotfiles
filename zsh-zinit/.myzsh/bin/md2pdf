@@ -11,7 +11,7 @@ filename="${filename%.*}"
 # Alternatively, you can focus on the last '/' of the path instead of the '.' which should work even if you have unpredictable file extensions:
 # filename="${fullfile##*/}"
 
-pandoc --pdf-engine=xelatex -V CJKmainfont='Noto Sans CJK SC' "$1" -o "$filename".pdf
+pandoc --pdf-engine=xelatex -V CJKmainfont='Sarasa Mono SC Nerd' "$1" -o "$filename".pdf
 
 # You can specify 'CJKmainfont'(only Chinese part font) or 'mainfont'(All fonts)
 # pandoc --pdf-engine=xelatex -V mainfont='Noto Sans CJK SC' "$1" -o "$filename".pdf
