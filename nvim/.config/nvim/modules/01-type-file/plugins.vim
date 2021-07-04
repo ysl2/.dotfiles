@@ -20,8 +20,12 @@ Plug 'https://hub.fastgit.org/instant-markdown/vim-instant-markdown.git', {'for'
 Plug 'https://hub.fastgit.org/dkarter/bullets.vim.git'
 Plug 'https://hub.fastgit.org/ysl2/md-img-paste.vim.git', {'for': 'markdown'}
 
-Plug 'https://hub.fastgit.org/vim-pandoc/vim-pandoc.git'
-Plug 'https://hub.fastgit.org/vim-pandoc/vim-pandoc-syntax.git'
+
+" ===
+" === pandoc
+" ===
+" Plug 'https://hub.fastgit.org/vim-pandoc/vim-pandoc.git'
+" Plug 'https://hub.fastgit.org/vim-pandoc/vim-pandoc-syntax.git'
 
 " Plug 'https://hub.fastgit.org/samgriesemer/vim-roam.git'
 " Plug 'https://hub.fastgit.org/lervag/wiki.vim.git'
@@ -33,7 +37,7 @@ Plug 'https://hub.fastgit.org/vim-pandoc/vim-pandoc-syntax.git'
 
 
 " ===
-" ===toml
+" === toml
 " ===
 " jarvim new
 Plug 'https://hub.fastgit.org/cespare/vim-toml.git', {'for': 'toml'}

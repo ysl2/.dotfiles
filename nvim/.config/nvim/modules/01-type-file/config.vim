@@ -46,6 +46,17 @@ let g:vim_markdown_fenced_languages = [
 "   runtime! autoload/netrw.vim
 " endif
 
+
+" ===
+" === vim-pandoc
+" ===
+
+let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+let g:pandoc#filetypes#pandoc_markdown = 0
+set nospell
+let g:pandoc#syntax#conceal#use = 0
+
+
 " ===
 " === vim-instant-markdown
 " ===

@@ -31,7 +31,8 @@ Plug 'https://hub.fastgit.org/mhinz/vim-startify.git'
 " ===
 " indentLine
 " If you're using neovim-nightly, you must checkout this repository to `lua` branch
-Plug 'https://hub.fastgit.org/lukas-reineke/indent-blankline.nvim.git'
+" Plug 'https://hub.fastgit.org/lukas-reineke/indent-blankline.nvim.git'
+Plug 'https://hub.fastgit.org/ysl2/indent-blankline.nvim.git'
 Plug 'https://hub.fastgit.org/luochen1990/rainbow.git',{'for': ['html','css','javascript','javascriptreact','go','python','lua','rust','vim','less','sass','scss','json','ruby','toml']}
 " 高亮与光标下相同的单词
 Plug 'https://hub.fastgit.org/rrethy/vim-illuminate.git'
