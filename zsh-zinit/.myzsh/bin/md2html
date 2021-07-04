@@ -1,0 +1,37 @@
+#!/bin/bash
+if [[ -z "$1" ]]; then
+  echo ""$NOTICE": Please specify a markdown file to convert."
+  exit 1
+fi
+
+filename=$(basename -- "$1")
+# extension="${filename##*.}"
+filename="${filename%.*}"
+
+# Alternatively, you can focus on the last '/' of the path instead of the '.' which should work even if you have unpredictable file extensions:
+# filename="${fullfile##*/}"
+
+pandoc "$1" -o "$filename".html
+
+# You can specify 'CJKmainfont'(only Chinese part font) or 'mainfont'(All fonts)
+# pandoc --pdf-engine=xelatex -V mainfont='Noto Sans CJK SC' "$1" -o "$filename".pdf
+
+
+
+# =================================
+# === A method to cut file name ===
+# =================================
+
+# ~% FILE="example.tar.gz"
+
+# ~% echo "${FILE%%.*}"
+# example
+
+# ~% echo "${FILE%.*}"
+# example.tar
+
+# ~% echo "${FILE#*.}"
+# tar.gz
+
+# ~% echo "${FILE##*.}"
+# gz
