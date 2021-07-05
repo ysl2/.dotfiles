@@ -214,7 +214,10 @@ pciutils
 pcmanfm
 peek
 perl
+perl-file-homedir
 perl-file-mimeinfo
+perl-unicode-linebreak
+perl-yaml-tiny
 picom-git
 pkgconf
 polkit-gnome

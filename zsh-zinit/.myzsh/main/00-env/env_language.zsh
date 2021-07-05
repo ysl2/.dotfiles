@@ -17,3 +17,9 @@ export GOPROXY=https://mirrors.aliyun.com/goproxy/
 # ===
 # rust加入环境变量，参考: https://www.cnblogs.com/ilovewindy/p/13625948.html
 export CARGO_HTTP_MULTIPLEXING=false
+
+
+# ===
+# === perl
+# ===
+export PERL5LIB='/usr/lib/perl5'

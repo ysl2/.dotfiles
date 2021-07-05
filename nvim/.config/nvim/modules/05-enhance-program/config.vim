@@ -166,6 +166,11 @@ let g:formatters_markdown = ['prettier', 'stylelint']
 let g:formatters_pandoc = ['prettier', 'stylelint']
 
 
+" ===
+" === latex formatter
+" ===
+let g:formatdef_latexindent = '"latexindent -"'
+
 
 " =================
 " === Ultisnips ===
