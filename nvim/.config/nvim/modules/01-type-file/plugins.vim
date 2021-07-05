@@ -35,6 +35,10 @@ Plug 'https://hub.fastgit.org/ysl2/md-img-paste.vim.git', {'for': 'markdown'}
 " Plug 'https://hub.fastgit.org/vim-scripts/netrw.vim.git'
 " Plug 'https://hub.fastgit.org/christoomey/vim-quicklink.git'
 
+" ===
+" === gitignore
+" ===
+Plug 'https://hub.fastgit.org/benknoble/gitignore-vim.git'
 
 " ===
 " === toml

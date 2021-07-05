@@ -19,7 +19,6 @@ let g:coc_global_extensions =[
       \ 'coc-lists',
       \ 'coc-stylelint',
       \ 'coc-yaml',
-      \ 'coc-gitignore',
       \ 'coc-yank',
       \ 'coc-actions',
       \ 'coc-db',
