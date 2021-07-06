@@ -14,8 +14,8 @@ set report=0                 " Don't report on line changes
 set noerrorbells               " Trigger bell on error
 set visualbell               " Use visual bell instead of beeping
 set hidden                   " hide buffers when abandoned instead of unload
-" set fileformats=unix,dos,mac " Use Unix as the standard file type
-set fileformats=unix
+set fileformats=unix,dos,mac " Use Unix as the standard file type
+" set fileformats=unix
 set magic                    " For regular expressions turn magic on
 set path+=**                 " Directories to search when using gf and friends
 set isfname-==               " Remove =, detects filename in var=/foo/bar
