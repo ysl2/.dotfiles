@@ -37,7 +37,7 @@ cd ~ && git clone https://hub.fastgit.org/ysl2/.dotfiles.git
 qq邮箱
 ```
 
-## 虾推啥 -> Glados推送
+## 虾推啥 -> Glados 推送
 
 ```
 AgentID: 1000003
@@ -53,7 +53,19 @@ https://wx.xtuis.cn/[你的token].send
 `autostart-scripts`: 开机自启的脚本
 `systemd`: 开机自启的服务
 
-## Manjaro计算机视觉开发环境配置
+## Manjaro 计算机视觉开发环境配置
 
 http://johnhany.net/2020/03/manjaro-cv-environment/
 
+## 山大学生邮箱
+
+| key                    | value                              |
+| :--------------------- | :--------------------------------- |
+| 姓名                   | 于松黎                             |
+| 密码                   | Sdu002199706290512                 |
+| 部门名称               | 山东大学（威海）机电与信息工程学院 |
+| 申请开立的山大云邮邮箱 | 202137601@mail.sdu.edu.cn          |
+| 工号                   | 202137601                          |
+| 性别                   | 男                                 |
+| 部门编号               | B12080000000                       |
+| 已有山大云邮邮箱       |                                    |
