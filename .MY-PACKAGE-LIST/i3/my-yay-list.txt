@@ -206,7 +206,6 @@ openssh
 os-prober
 p7zip
 pacman
-palemoon-bin
 pamac-gtk
 pandoc
 patch
@@ -238,7 +237,6 @@ rofi
 rsync
 s-nail
 sbxkb
-screenfetch
 screenkey
 sed
 shadow

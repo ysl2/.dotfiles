@@ -883,7 +883,6 @@ p7zip
 pacman
 pacman-mirrors
 pacui
-palemoon-bin
 pam
 pamac-cli
 pamac-common
@@ -1189,7 +1188,6 @@ s-nail
 sane
 sbc
 sbxkb
-screenfetch
 screenkey
 sdl
 sdl2
@@ -1401,7 +1399,6 @@ xorg-xauth
 xorg-xbacklight
 xorg-xcmsdb
 xorg-xcursorgen
-xorg-xdpyinfo
 xorg-xdriinfo
 xorg-xev
 xorg-xgamma
