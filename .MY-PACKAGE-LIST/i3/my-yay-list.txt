@@ -18,6 +18,7 @@ baidunetdisk-bin
 bash
 bat
 bauh
+biber
 binutils
 bison
 blueman
