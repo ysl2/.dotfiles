@@ -11,6 +11,9 @@ noremap s <Nop>
 inoremap <C-c> <ESC>
 noremap <C-z> <C-a>
 
+noremap <C-h> :bp<CR>
+noremap <C-l> :bn<CR>
+
 " ==============================================================
 
 " See plugin/bufkill.vim
