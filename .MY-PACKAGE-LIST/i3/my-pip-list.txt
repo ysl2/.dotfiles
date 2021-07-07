@@ -22,6 +22,7 @@ colorama
 constantly
 contextlib2
 cryptography
+cssselect
 decorator
 defusedxml
 deluge
@@ -53,6 +54,7 @@ lensfun
 LibAppArmor
 lockfile
 louis
+lxml
 Mako
 Markdown
 MarkupSafe
@@ -99,6 +101,7 @@ pyOpenSSL
 pyparsing
 PyQt5
 PyQt5-sip
+pyquery
 pyrsistent
 pysmbc
 python-daemon
@@ -137,5 +140,6 @@ webencodings
 websocket-client
 XCGF
 XCPF
+ydcv
 zipp
 zope.interface

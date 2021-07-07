@@ -20,6 +20,7 @@ colorama==0.4.4
 constantly==15.1.0
 contextlib2==0.6.0.post1
 cryptography==3.4.7
+cssselect==1.1.0
 decorator==5.0.9
 defusedxml==0.7.1
 deluge==2.0.4.dev56
@@ -51,6 +52,7 @@ lensfun==0.3.95
 LibAppArmor==3.0.1
 lockfile==0.12.2
 louis==3.18.0
+lxml==4.6.3
 Mako==1.1.4
 Markdown==3.3.4
 MarkupSafe==2.0.1
@@ -96,6 +98,7 @@ pyOpenSSL==20.0.1
 pyparsing==2.4.7
 PyQt5==5.15.4
 PyQt5-sip==12.9.0
+pyquery==1.4.3
 pyrsistent==0.17.3
 pysmbc==1.0.23
 python-daemon==2.3.0
@@ -133,5 +136,6 @@ webencodings==0.5.1
 websocket-client==0.59.0
 XCGF==2017.3.10.23.45.54
 XCPF==2019.11.18.23.47.4
+ydcv==0.7
 zipp==3.4.1
 zope.interface==5.4.0

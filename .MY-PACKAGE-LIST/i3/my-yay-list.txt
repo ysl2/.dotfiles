@@ -379,6 +379,7 @@ xterm
 xunlei-bin
 xz
 yay
+ydcv
 zathura
 zathura-pdf-mupdf
 zensu

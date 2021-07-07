@@ -1069,6 +1069,7 @@ python-colorama
 python-constantly
 python-contextlib2
 python-cryptography
+python-cssselect
 python-daemon
 python-dateutil
 python-defusedxml
@@ -1092,6 +1093,7 @@ python-incremental
 python-jsonschema
 python-keyutils
 python-lockfile
+python-lxml
 python-mako
 python-markdown
 python-markupsafe
@@ -1107,17 +1109,20 @@ python-pillow
 python-pip
 python-ply
 python-progress
+python-prompt_toolkit
 python-psutil
 python-pyaml
 python-pyasn1
 python-pyasn1-modules
 python-pycparser
 python-pyenchant
+python-pygments
 python-pynacl
 python-pyopenssl
 python-pyparsing
 python-pyqt5
 python-pyqt5-sip
+python-pyquery
 python-pyrsistent
 python-pysmbc
 python-pyxdg
@@ -1135,6 +1140,7 @@ python-texttable
 python-toml
 python-twisted
 python-urllib3
+python-wcwidth
 python-webencodings
 python-websocket-client
 python-xapp
@@ -1445,6 +1451,7 @@ xxhash
 xz
 yajl
 yay
+ydcv
 zathura
 zathura-pdf-mupdf
 zbar
