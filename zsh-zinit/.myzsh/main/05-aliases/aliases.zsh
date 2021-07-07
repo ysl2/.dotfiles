@@ -38,6 +38,7 @@ alias ipy='ipython'
 # pip install httpie
 alias https='http --default-scheme=https'
 alias wttr="curl zh.wttr.in\/"$MYLOCATION"\?2Fq"
+alias yd="ydcv"
 
 
 # ===
