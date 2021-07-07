@@ -103,7 +103,8 @@ let g:quickrun_known_file_types = {
       \"vim": ["source %"],
       \"py": ["!python %"],
       \"go": ["!go test"],
-      \"sh": ["!time bash %"]
+      \"sh": ["!time bash %"],
+      \"m": ["MatlabRun"]
       \}
 
 
