@@ -201,6 +201,7 @@ nss-mdns
 ntfs-3g
 ntp
 obinskit
+ocrfeeder
 openresolv
 openssh
 os-prober
@@ -255,6 +256,9 @@ systemd-fsck-silent
 systemd-sysvcompat
 tar
 terminus-font
+tesseract
+tesseract-data-chi_sim
+tesseract-data-eng
 texinfo
 texlive-bibtexextra
 texlive-fontsextra

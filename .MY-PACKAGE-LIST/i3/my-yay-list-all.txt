@@ -200,6 +200,7 @@ gnome-keyring
 gnupg
 gnutls
 gobject-introspection-runtime
+goocanvas
 google-chrome
 gparted
 gpgme
@@ -232,6 +233,7 @@ gtk3
 gtkmm3
 gtksourceview-pkgbuild
 gtksourceview4
+gtkspell3
 gts
 gufw
 guile
@@ -446,6 +448,7 @@ lcms2
 ldb
 ldns
 lensfun
+leptonica
 less
 lib32-bzip2
 lib32-curl
@@ -862,6 +865,7 @@ nss-mdns
 ntfs-3g
 ntp
 obinskit
+ocrfeeder
 oniguruma
 openal
 opencc
@@ -1067,6 +1071,7 @@ python-contextlib2
 python-cryptography
 python-daemon
 python-dateutil
+python-defusedxml
 python-distlib
 python-distro
 python-dnspython
@@ -1093,6 +1098,7 @@ python-markupsafe
 python-more-itertools
 python-msgpack
 python-npyscreen
+python-odfpy
 python-ordered-set
 python-packaging
 python-paramiko
@@ -1106,6 +1112,7 @@ python-pyaml
 python-pyasn1
 python-pyasn1-modules
 python-pycparser
+python-pyenchant
 python-pynacl
 python-pyopenssl
 python-pyparsing
@@ -1119,6 +1126,7 @@ python-reportlab
 python-requests
 python-resolvelib
 python-retrying
+python-sane
 python-service-identity
 python-setproctitle
 python-setuptools
@@ -1240,6 +1248,9 @@ tar
 tbb
 tdb
 terminus-font
+tesseract
+tesseract-data-chi_sim
+tesseract-data-eng
 tevent
 texinfo
 texlive-bibtexextra
@@ -1283,6 +1294,7 @@ ueberzug
 ufw
 unibilium
 unicode-cldr-annotations
+unpaper
 unrar
 unzip-iconv
 upower

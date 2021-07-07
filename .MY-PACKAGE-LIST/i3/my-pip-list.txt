@@ -23,6 +23,7 @@ constantly
 contextlib2
 cryptography
 decorator
+defusedxml
 deluge
 distlib
 distro
@@ -63,6 +64,7 @@ msgpack
 neovim
 netsnmp-python
 npyscreen
+odfpy
 OpenCC
 ordered-set
 packaging
@@ -88,6 +90,7 @@ pyasn1-modules
 pycairo
 pycodestyle
 pycparser
+pyenchant
 Pygments
 PyGObject
 PyNaCl
@@ -102,6 +105,7 @@ python-daemon
 python-dateutil
 python-dotenv
 python-libtorrent
+python-sane
 python-xapp
 python-xlib
 pyxdg

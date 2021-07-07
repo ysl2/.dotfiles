@@ -21,6 +21,7 @@ constantly==15.1.0
 contextlib2==0.6.0.post1
 cryptography==3.4.7
 decorator==5.0.9
+defusedxml==0.7.1
 deluge==2.0.4.dev56
 distlib==0.3.2
 distro==1.5.0
@@ -61,6 +62,7 @@ msgpack==1.0.2
 neovim==0.3.1
 netsnmp-python==1.0a1
 npyscreen==4.10.5
+odfpy==1.4.1
 OpenCC==1.1.2
 ordered-set==4.0.2
 packaging==20.9
@@ -85,6 +87,7 @@ pyasn1-modules==0.2.8
 pycairo==1.20.0
 pycodestyle==2.7.0
 pycparser==2.20
+pyenchant==3.2.0
 Pygments==2.9.0
 PyGObject==3.40.1
 PyNaCl==1.4.0
@@ -99,6 +102,7 @@ python-daemon==2.3.0
 python-dateutil==2.8.1
 python-dotenv==0.17.1
 python-libtorrent==1.2.11
+python-sane==2.8.3
 python-xapp==2.0.2
 python-xlib==0.30
 pyxdg==0.27
