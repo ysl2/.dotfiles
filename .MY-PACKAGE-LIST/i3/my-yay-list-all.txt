@@ -752,6 +752,8 @@ linux-api-headers
 linux-firmware
 linux510
 linux510-headers
+linux512
+linux512-headers
 llvm-libs
 lm_sensors
 lmdb

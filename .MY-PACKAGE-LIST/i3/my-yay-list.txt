@@ -142,6 +142,8 @@ lightdm-settings
 lightdm-slick-greeter
 linux510
 linux510-headers
+linux512
+linux512-headers
 logrotate
 lolcat
 lvm2
