@@ -2,4 +2,4 @@
 
 # xmodmap ~/.Xmodmap-cn
 # xset r rate 250 30
-setxkbmap -option caps:escape
+setxkbmap -option caps:swapescape
