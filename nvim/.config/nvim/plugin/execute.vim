@@ -4,69 +4,69 @@
 
 func! CompileRunGcc()
   exec "w"
-  # c
+  " c
   if &filetype == 'c'
     exec "!g++ % -o %<"
     exec "!time ./%<"
-  # cpp/c++
+  " cpp/c++
   elseif &filetype == 'cpp'
     set splitbelow
     exec "!g++ -std=c++11 % -Wall -o %<"
     :sp
     :res -10
     :term ./%<
-  # java
+  " java
   elseif &filetype == 'java'
     set splitbelow
     :sp
     :res -10
     term javac % && time java %<
-  # shell
+  " shell
   elseif &filetype == 'sh'
     :!time bash %
-  # python
+  " python
   elseif &filetype == 'python'
     set splitbelow
     :sp
     :res -10
     :term python3 %
-  # html
+  " html
   elseif &filetype == 'html'
     silent! exec "!".g:mkdp_browser." % &"
-  # markdown
+  " markdown
   elseif &filetype == 'markdown'
     exec "InstantMarkdownPreview"
-  # latex
+  " latex
   elseif &filetype == 'tex'
     silent! exec "VimtexStop"
     silent! exec "VimtexCompile"
-  # dart
+  " dart
   elseif &filetype == 'dart'
     exec "CocCommand flutter.run -d ".g:flutter_default_device." ".g:flutter_run_args
     silent! exec "CocCommand flutter.dev.openDevLog"
-  # javascript
+  " javascript
   elseif &filetype == 'javascript'
     set splitbelow
     :sp
     :term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
-  # typescript
+  " typescript
   elseif &filetype == 'typescript'
     set splitbelow
     :sp
     :res -10
     :term node %<.js
-  # go
+  " go
   elseif &filetype == 'go'
     set splitbelow
     :sp
     :term go run .
-  # rust
+  " rust
   elseif &filetype == 'rust'
     set splitbelow
     :sp
     :res -10
     :term cargo run
-  # matlab
+  " matlab
   elseif &filetype == 'matlab'
     exec "MatlabRun"
   endif
