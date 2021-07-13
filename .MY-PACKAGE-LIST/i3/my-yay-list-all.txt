@@ -814,6 +814,7 @@ mhwd-ati
 mhwd-db
 mhwd-nvidia
 mhwd-nvidia-390xx
+miniconda3
 minizip
 mjpegtools
 mkinitcpio
