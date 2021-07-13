@@ -17,6 +17,7 @@ ipython
 ipython-genutils
 jedi
 matplotlib-inline
+msgpack
 neovim
 parso
 pexpect

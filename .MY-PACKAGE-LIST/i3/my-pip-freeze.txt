@@ -15,6 +15,7 @@ ipython==7.25.0
 ipython-genutils==0.2.0
 jedi==0.18.0
 matplotlib-inline==0.1.2
+msgpack==1.0.2
 neovim==0.3.1
 parso==0.8.2
 pexpect==4.8.0
