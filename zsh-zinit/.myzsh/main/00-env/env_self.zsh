@@ -16,3 +16,5 @@ export DOTFILES="${HOME}"/.dotfiles
 # # === fzf
 # # ===
 # export FZF_DEFAULT_COMMAND='fd --hidden'
+
+

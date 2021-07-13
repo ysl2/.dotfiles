@@ -23,3 +23,11 @@ export CARGO_HTTP_MULTIPLEXING=false
 # === perl
 # ===
 export PERL5LIB='/usr/lib/perl5'
+
+
+# ===
+# === Which Conda?
+# ===
+export MYCONDA=miniconda3
+# export MYCONDA=anaconda
+
