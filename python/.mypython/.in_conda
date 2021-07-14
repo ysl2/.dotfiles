@@ -1,0 +1,6 @@
+#!/bin/bash
+if ! type conda &>/dev/null; then
+  myconda
+fi
+conda activate d2l-zh
+

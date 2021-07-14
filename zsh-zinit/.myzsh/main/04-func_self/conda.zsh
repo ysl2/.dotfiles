@@ -8,7 +8,7 @@ function onconda () {
     touch "${MYZSH}"/.lock/conda.flag
   fi
   source ~/.zshrc
-  echo "Anaconda on"
+  # echo "Anaconda on"
 }
 
 function noconda () {
@@ -16,7 +16,7 @@ function noconda () {
     rm "${MYZSH}"/.lock/conda.flag
   fi
   source ~/.zshrc
-  echo "Anaconda off"
+  # echo "Anaconda off"
 }
 
 # 用于配合onconda或者noconda，也可以用于暂时获取conda
