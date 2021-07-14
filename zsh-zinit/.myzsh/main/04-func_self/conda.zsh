@@ -19,10 +19,8 @@ function noconda () {
   echo "Anaconda off"
 }
 
-# 这个必须放在下面。否则会无法输出base
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if [[ -e "${MYZSH}"/.lock/conda.flag ]]; then
+# 用于配合onconda或者noconda，也可以用于暂时获取conda
+function myconda () {
   __conda_setup="$("/opt/"${MYCONDA}"/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -34,6 +32,13 @@ if [[ -e "${MYZSH}"/.lock/conda.flag ]]; then
     fi
   fi
   unset __conda_setup
+}
+
+# 这个必须放在下面。否则会无法输出base
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if [[ -e "${MYZSH}"/.lock/conda.flag ]]; then
+  myconda
 fi
 # <<< conda initialize <<<
 
