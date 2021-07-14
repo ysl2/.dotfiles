@@ -1,6 +1,7 @@
 /usr/lib
 ├── bash-language-server@1.17.0
 ├── fixjson@1.1.2
+├── git-file-history@1.0.1
 ├── instant-markdown-d@0.2.0
 ├── node-gyp@8.1.0
 ├── npm@7.19.1
