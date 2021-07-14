@@ -127,20 +127,27 @@
       // "coc.preferences.formatOnSaveFiletypes": [
         //     "python"
         // ],
+        "python.autoComplete.addBrackets": true,
+        "python.jediEnabled": false,
+        "python.formatting.provider": "yapf",
+        "python.formatting.yapfArgs": [
+          "--style",
+          "{SPACES_AROUND_POWER_OPERATOR: True, SPACES_BEFORE_COMMENT: 1}"
+        ],
         // coc-explorer
-    "explorer.file.hiddenRules": {
-      "extensions": [
-        "o",
-        "a",
-        "obj",
-        "pyc",
-        "class"
-      ],
-      "filenames": [],
-      "patternMatches": [
-        "^\\."
-      ]
-    },
+        "explorer.file.hiddenRules": {
+          "extensions": [
+            "o",
+            "a",
+            "obj",
+            "pyc",
+            "class"
+          ],
+          "filenames": [],
+          "patternMatches": [
+            "^\\."
+          ]
+        },
         "explorer.file.column.git.showIgnored": true,
         "explorer.file.column.indent.indentLine": true,
         "explorer.file.showHiddenFiles": false,
@@ -339,25 +346,25 @@
                 "ignoredRootPaths": [""]
               },
               // "ccls": {
-              //   "command": "ccls",
-              //   "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-              //   "rootPatterns": [
-              //     ".ccls",
-              //     ".ccls-root",
-              //     "compile_commands.json",
-              //     ".git/",
-              //     ".hg/"
-              //   ],
-              //   "initializationOptions": {
-              //     "cache": {
-              //       "directory": "/tmp/ccls"
-              //     }
-              //   }
-              // }
-              "clangd": {
-                "command": "clangd",
-                "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-                "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-              }
+                //   "command": "ccls",
+                //   "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+                //   "rootPatterns": [
+                  //     ".ccls",
+                  //     ".ccls-root",
+                  //     "compile_commands.json",
+                  //     ".git/",
+                  //     ".hg/"
+                  //   ],
+                  //   "initializationOptions": {
+                    //     "cache": {
+                      //       "directory": "/tmp/ccls"
+                      //     }
+                      //   }
+                      // }
+                      "clangd": {
+                        "command": "clangd",
+                        "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+                        "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+                      }
         }
 }

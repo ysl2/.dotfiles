@@ -32,7 +32,7 @@ let g:coc_global_extensions =[
       \ 'coc-docthis',
       \ 'coc-html',
       \ 'coc-css',
-      \ 'coc-pyright',
+      \ 'coc-python',
       \ 'coc-tabnine',
       \ 'coc-java',
       \ 'coc-sh',
