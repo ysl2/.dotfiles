@@ -139,11 +139,10 @@
         // ===
         // 下面这两个选项用于解决torch.arange报错的问题。 ===
         // 参考：https://github.com/microsoft/pyright/blob/main/docs/settings.md
-        // 确定pyright是否在没有类型存根文件的情况下读取、解析和分析库代码以提取类型信息。 类型信息通常是不完整的。 我们建议尽可能使用类型存根。 此选项的默认值为 false
         // 不要打开下面这个，会导致languageserver的lint丢失
         // "python.analysis.useLibraryCodeForTypes": false,
-        // 确定pyright使用的默认类型检查级别
-        "python.analysis.typeCheckingMode": "off",
+        //TODO 只打开下面这个就ok了
+        // "python.analysis.typeCheckingMode": "off",
 
         // coc-explorer
         "explorer.file.hiddenRules": {
