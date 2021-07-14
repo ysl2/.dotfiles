@@ -127,6 +127,9 @@
       // "coc.preferences.formatOnSaveFiletypes": [
         //     "python"
         // ],
+        "python.analysis.useLibraryCodeForTypes": false,
+        "python.analysis.typeCheckingMode": "off",
+
         // coc-explorer
     "explorer.file.hiddenRules": {
       "extensions": [
