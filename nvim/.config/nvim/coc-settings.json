@@ -142,7 +142,7 @@
         // 不要打开下面这个，会导致languageserver的lint丢失
         // "python.analysis.useLibraryCodeForTypes": false,
         //TODO 只打开下面这个就ok了
-        // "python.analysis.typeCheckingMode": "off",
+        "python.analysis.typeCheckingMode": "off",
 
         // coc-explorer
         "explorer.file.hiddenRules": {
