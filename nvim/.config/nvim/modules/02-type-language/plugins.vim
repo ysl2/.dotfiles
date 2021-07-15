@@ -28,7 +28,7 @@ Plug 'https://hub.fastgit.org/itspriddle/vim-shellcheck.git'
 
 "" Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 "Plug 'https://hub.fastgit.org/Vimjas/vim-python-pep8-indent.git', { 'for' :['python', 'vim-plug'] }
-"Plug 'https://hub.fastgit.org/numirias/semshi.git', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+Plug 'https://hub.fastgit.org/numirias/semshi.git', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 ""Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 ""Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 "Plug 'https://hub.fastgit.org/tweekmonster/braceless.vim.git', { 'for' :['python', 'vim-plug'] }
