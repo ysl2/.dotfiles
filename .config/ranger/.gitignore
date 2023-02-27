@@ -1,5 +1,6 @@
 *
 !.gitignore
+
 !commands_full.py
 !commands.py
 !rc.conf
