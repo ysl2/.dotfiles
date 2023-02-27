@@ -904,5 +904,6 @@ window:
   # Highlight window damage information.
   #highlight_damage: false
 import:
+  - ~/.config/alacritty/nord.yml
   - ~/.config/alacritty/shell.yml
   - ~/.config/alacritty/font.yml
