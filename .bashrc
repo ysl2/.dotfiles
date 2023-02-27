@@ -8,33 +8,12 @@ function addToPATH {
   esac
 }
 
-MYBIN = ~/.local/bin
+MYBIN=~/.local/bin
 addToPATH $MYBIN
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   TERM=xterm-256color exec tmux new-session -A -s main
 fi
-
-DOTLIB=~/.dotlib_new
-DOTFILES=~/.dotfiles
-
-alias :q='exit'
-
-ranger () {
-    local IFS=$'\t\n'
-    local tempfile="$(mktemp -t tmp.XXXXXX)"
-    local ranger_cmd=(
-    command
-    ranger
-    --cmd="map q chain shell echo %d > "$tempfile"; quitall!"
-)
-
-${ranger_cmd[@]} "$@"
-if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-    cd -- "$(cat "$tempfile")" || return
-fi
-command rm -f -- "$tempfile" 2>/dev/null
-}
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -61,3 +40,7 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 export PATH="$N_PREFIX/bin:$PATH"
 export PATH="$MYBIN/cuda-10.1/bin:$PATH"
+
+alias :q='exit'
+# https://github.com/ranger/ranger/wiki/Integration-with-other-programs#changing-directories
+alias ranger='source ranger ranger'
