@@ -8,7 +8,7 @@ function addToPATH {
   esac
 }
 
-MYBIN=~/.local/bin
+MYBIN=~/.bin
 addToPATH $MYBIN
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -24,7 +24,7 @@ else
     if [ -f "$MYBIN/anaconda3/etc/profile.d/conda.sh" ]; then
         . "$MYBIN/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="$MYBIN/anaconda3/bin:$PATH"
+        addToPATH $MYBIN/anaconda3/bin
     fi
 fi
 unset __conda_setup
@@ -38,9 +38,12 @@ export LD_LIBRARY_PATH="$MYBIN/cuda-10.1/lib64"
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
-export PATH="$N_PREFIX/bin:$PATH"
-export PATH="$MYBIN/cuda-10.1/bin:$PATH"
+addToPATH $N_PREFIX/bin
+addToPATH $MYBIN/cuda/bin
 
 alias :q='exit'
 # https://github.com/ranger/ranger/wiki/Integration-with-other-programs#changing-directories
-alias ranger='source ranger ranger'
+ranger='source ranger ranger'
+alias ranger=$ranger
+alias ra=$ranger
+alias lg='lazygit'
