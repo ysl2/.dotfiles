@@ -1,6 +1,7 @@
 *
 !.gitignore
 
+!plugins/
 !commands.py
 !rc.conf
 !rifle.conf
