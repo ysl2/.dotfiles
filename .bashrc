@@ -54,5 +54,10 @@ ranger='source ranger ranger'
 alias ranger=$ranger
 alias ra=$ranger
 alias lg='lazygit'
+alias ls='ls --color=auto'
+alias ll='ls -lF'
+alias l='ls'
+alias la='ls -alF'
+alias py='python'
 
 eval "$(starship init bash)"
