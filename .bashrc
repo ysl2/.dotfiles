@@ -8,13 +8,13 @@ function addToPATH {
   esac
 }
 
-MYBIN=~/.bin
+export MYBIN=~/.bin
+mkdir $MYBIN 2>/dev/null
 addToPATH $MYBIN
 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   TERM=xterm-256color exec tmux new-session -A -s main
 fi
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$($MYBIN'/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -29,6 +29,12 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+if [ ! -e $MYBIN/starship ]; then
+  curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh |
+  sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' |
+  sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
+fi
 
 export EDITOR=nvim
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
@@ -47,3 +53,5 @@ ranger='source ranger ranger'
 alias ranger=$ranger
 alias ra=$ranger
 alias lg='lazygit'
+
+eval "$(starship init bash)"
