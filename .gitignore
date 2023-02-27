@@ -6,3 +6,5 @@
 !.gitconfig
 !.tmux.conf
 !.vimrc
+!.npmrc
+!.yarnrc
