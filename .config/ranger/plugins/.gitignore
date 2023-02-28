@@ -3,6 +3,6 @@
 !.gitignore
 
 # Except these folders:
+!ranger_devicons/
 
 # Except these files (or links):
-!ranger_devicons/
