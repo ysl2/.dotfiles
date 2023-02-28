@@ -1,0 +1,6 @@
+set number
+set relativenumber
+set icons
+set incsearch
+set incfilter
+set smartcase
