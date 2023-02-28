@@ -1,8 +1,12 @@
+# Ignore all by default.
 *
 !.gitignore
 
+# Except these folders:
 !ranger/
 !lazygit/
 !pip/
 !alacritty/
 !lf/
+
+# Except these files (or links):

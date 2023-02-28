@@ -1,5 +1,10 @@
+# Ignore all by default.
 *
 !.gitignore
 
+# Except these folders:
+
+# Except these files (or links):
 !devicons.py
 !__init__.py
+

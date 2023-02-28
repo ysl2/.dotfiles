@@ -1,7 +1,11 @@
+# Ignore all by default.
 *
 !.gitignore
 
+# Except these folders:
 !.config/
+
+# Except these files (or links):
 !.bashrc
 !.gitconfig
 !.tmux.conf

@@ -1,4 +1,8 @@
+# Ignore all by default.
 *
 !.gitignore
 
+# Except these folders:
+
+# Except these files (or links):
 !ranger_devicons/
