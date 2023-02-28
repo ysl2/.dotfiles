@@ -12,8 +12,8 @@ export MYBIN=~/.bin
 mkdir $MYBIN 2>/dev/null
 addToPATH $MYBIN
 
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  TERM=xterm-256color exec tmux new-session -A -s main
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s main
 fi
 
 # >>> conda initialize >>>
