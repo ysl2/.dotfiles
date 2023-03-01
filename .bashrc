@@ -13,7 +13,7 @@ mkdir $MYBIN &> /dev/null
 addToPATH $MYBIN
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s main
+    exec tmux new-session -A -s main
 fi
 
 # >>> conda initialize >>>
