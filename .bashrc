@@ -9,7 +9,7 @@ function addToPATH {
 }
 
 export MYBIN=~/.bin
-mkdir $MYBIN 2>/dev/null
+mkdir $MYBIN &> /dev/null
 addToPATH $MYBIN
 
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
@@ -37,7 +37,11 @@ if [ ! -e $MYBIN/starship ]; then
   sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
 fi
 
-export EDITOR=nvim
+if command -v nvim &> /dev/null; then
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 export N_PREFIX=$MYBIN/nodejs
 export LD_LIBRARY_PATH="$MYBIN/cuda/lib64"
@@ -55,9 +59,12 @@ alias ranger=$ranger
 alias ra=$ranger
 alias lg='lazygit'
 alias ls='ls --color=auto'
-alias ll='ls -lF'
-alias l='ls'
-alias la='ls -alF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias py='python'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 eval "$(starship init bash)"
