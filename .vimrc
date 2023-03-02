@@ -6,6 +6,7 @@ set smartcase
 let &tabstop=4
 set expandtab
 set nowrap
+set noswapfile
 
 inoremap <C-c> <ESC>
 
