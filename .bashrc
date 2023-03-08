@@ -43,13 +43,11 @@ else
     export EDITOR=vim
 fi
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
-export N_PREFIX=$MYBIN/nodejs
 export LD_LIBRARY_PATH="$MYBIN/cuda/lib64"
 # 1-May-2020: Fix for Keyring error with pip. Hopefully new pip will fix it
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
-addToPATH $N_PREFIX/bin
 addToPATH $MYBIN/cuda/bin
 
 alias :q='exit'
@@ -66,6 +64,7 @@ alias py='python'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias pip='python3 -m pip'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"

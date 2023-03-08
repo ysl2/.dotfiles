@@ -10,6 +10,6 @@ set noswapfile
 
 inoremap <C-c> <ESC>
 
-autocmd FileType json,markdown let &tabstop=2
+autocmd FileType json,markdown,html let &tabstop=2
 autocmd FileType * let &shiftwidth=&tabstop
 autocmd VimEnter * silent! NoMatchParen
