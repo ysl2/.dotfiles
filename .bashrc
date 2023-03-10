@@ -47,6 +47,7 @@ export LD_LIBRARY_PATH="$MYBIN/cuda/lib64"
 # 1-May-2020: Fix for Keyring error with pip. Hopefully new pip will fix it
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+export DISPLAY=:0
 
 addToPATH $MYBIN/cuda/bin
 
@@ -65,6 +66,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
+alias ld='lazydocker'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
