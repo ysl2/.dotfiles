@@ -1,0 +1,10 @@
+#!/bin/bash
+case $1 in
+    tree)
+        shift
+        /usr/bin/git ls-tree --full-tree --name-only -r HEAD $@ | tree --fromfile .
+        ;;
+    *)
+        /usr/bin/git $@
+        ;;
+esac
