@@ -68,7 +68,6 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
 alias ld='lazydocker'
-alias nim='nvim -u ~/.vimrc $@'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
