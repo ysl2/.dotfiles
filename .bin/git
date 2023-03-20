@@ -9,11 +9,11 @@ case $1 in
                 ;;
             *)
                 shift
-                /usr/bin/git ls-tree --full-tree --name-only -r HEAD $@ | tree -C --fromfile .
+                /usr/bin/git ls-tree --full-tree --name-only -r HEAD "$@" | tree -C --fromfile .
                 ;;
         esac
         ;;
     *)
-        /usr/bin/git $@
+        /usr/bin/git "$@"
         ;;
 esac
