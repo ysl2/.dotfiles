@@ -62,12 +62,13 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias py='python'
+alias py='python3'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
 alias ld='lazydocker'
+alias python='python3'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
