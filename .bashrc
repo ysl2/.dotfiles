@@ -80,3 +80,7 @@ alias python='python3'
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
 fi
+
+if [[ -e ~/.bashrc.localhost ]]; then
+    source ~/.bashrc.localhost
+fi
