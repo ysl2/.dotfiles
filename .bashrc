@@ -75,7 +75,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
 alias ld='lazydocker'
-alias python='python3'
+alias ipy='ipython'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
