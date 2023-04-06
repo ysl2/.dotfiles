@@ -59,6 +59,22 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export DISPLAY=:0
 export STARSHIP_LOG=error
 
+# Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+lfcd () {
+    tmp="$(mktemp)"
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    command lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+
 alias :q='exit'
 # https://github.com/ranger/ranger/wiki/Integration-with-other-programs#changing-directories
 ranger='source ranger ranger'
@@ -76,22 +92,7 @@ alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
 alias ld='lazydocker'
 alias ipy='ipython'
-
-# Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
-lfcd () {
-    tmp="$(mktemp)"
-    # `command` is needed in case `lfcd` is aliased to `lf`
-    command lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
-}
+alias lf='lfcd'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
