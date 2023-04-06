@@ -4,3 +4,4 @@ set icons
 set incsearch
 set incfilter
 set smartcase
+source ~/.config/lf/lfrc.localhost
