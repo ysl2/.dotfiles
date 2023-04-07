@@ -21,7 +21,7 @@ if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
 fi
 
-function addToPATH {
+function addToPATH () {
   case ":$PATH:" in
     *":$1:"*) :;; # already there
     *) PATH="$1:$PATH";; # or PATH="$PATH:$1"
@@ -60,7 +60,7 @@ export DISPLAY=:0
 export STARSHIP_LOG=error
 
 # Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
-lfcd () {
+function lfcd () {
     tmp="$(mktemp)"
     # `command` is needed in case `lfcd` is aliased to `lf`
     command lf -last-dir-path="$tmp" "$@"
