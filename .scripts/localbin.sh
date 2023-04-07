@@ -97,11 +97,11 @@ fi
 while [[ ! -z $1 ]]; do
     case $1 in
         tmux)
-            echo install_tmux
+            install_tmux
             shift
             ;;
         ncdu)
-            echo install_ncdu
+            install_ncdu
             shift
             ;;
         *)
