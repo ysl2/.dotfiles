@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export MYBIN=~/.bin
+export MYBIN=~/.Local/bin
 mkdir $MYBIN &> /dev/null
 
 if [[ -z "$TMUX" ]]; then
