@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-PREFIX=$HOME/.Locall
+PREFIX=$HOME/.Local
 TEMP_FOLDER=$HOME/temp
 
 # create our directories
@@ -77,11 +77,11 @@ function install_tmux () {
 }
 
 function install_ncdu () {
-    NCDU_VERSION=1.8
+    NCDU_VERSION=1.18.1
 
-    [[ ! -e ncdu.tar.gz ]] && wget -O ncdu.tar.gz https://ghproxy.com/https://github.com/rofl0r/ncdu/archive/refs/tags/v${NCDU_VERSION}.tar.gz
+    [[ ! -e ncdu-${NCDU_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/ysl2/ncdu/releases/download/v${NCDU_VERSION}/ncdu-${NCDU_VERSION}.tar.gz
 
-    tar xvzf ncdu.tar.gz
+    tar xvzf ncdu-${NCDU_VERSION}.tar.gz
     cd ncdu-${NCDU_VERSION}
     ./configure --prefix=${PREFIX}
     make
