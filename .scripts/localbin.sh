@@ -77,6 +77,9 @@ function install_tmux () {
 }
 
 function install_ncdu () {
+    echo 'Bug here.'
+    return
+
     NCDU_VERSION=1.18.1
 
     [[ ! -e ncdu-${NCDU_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/ysl2/ncdu/releases/download/v${NCDU_VERSION}/ncdu-${NCDU_VERSION}.tar.gz
