@@ -14,60 +14,59 @@ TEMP_FOLDER=$HOME/temp
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
 cd ${TEMP_FOLDER}
 
-function install_tmux () {
+function _install_openssl () {
+    [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] && return
+
     OPENSSL_VERSION=3.1.0
-    LIBEVENT_VERSION=2.1.12-stable
-    NCURSES_VERSION=6.4
-    TMUX_VERSION=3.3a
-
-    # download source files for tmux, libevent, and ncurses
     [[ ! -e openssl-${OPENSSL_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/openssl/openssl/releases/download/openssl-3.1.0/openssl-${OPENSSL_VERSION}.tar.gz
-    [[ ! -e libevent-${LIBEVENT_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}/libevent-${LIBEVENT_VERSION}.tar.gz
-    [[ ! -e ncurses.tar.gz ]] && wget -O ncurses.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
-    [[ ! -e tmux-${TMUX_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
-
-    # extract files, configure, and compile
-
-
-    # ================
-    # === libevent ===
-    # ================
-
-    # ===
-    # === openssl
-    # ===
     tar xvzf openssl-${OPENSSL_VERSION}.tar.gz
     cd openssl-${OPENSSL_VERSION}
     ./Configure --prefix=${PREFIX}
     make
     make install
     cd ..
+}
 
-    # ===
-    # === libevent
-    # ===
+
+function _install_libevent () {
+    [[ -e ${PREFIX}/lib/pkgconfig/libevent.pc ]] && return
+
+    _install_openssl
+
+    LIBEVENT_VERSION=2.1.12-stable
+    [[ ! -e libevent-${LIBEVENT_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}/libevent-${LIBEVENT_VERSION}.tar.gz
     tar xvzf libevent-${LIBEVENT_VERSION}.tar.gz
     cd libevent-${LIBEVENT_VERSION}
+    # Need to install pkg-config: sudo apt install pkg-config
     ./configure PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig --prefix=${PREFIX} --disable-shared
     make
     make install
     cd ..
+}
 
 
-    # ===============
-    # === ncurses ===
-    # ===============
+function _install_ncurses () {
+    [[ -e ${PREFIX}/include/ncurses ]] && return
+
+    NCURSES_VERSION=6.4
+    [[ ! -e ncurses.tar.gz ]] && wget -O ncurses.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
     tar xvzf ncurses.tar.gz
     cd ncurses-${NCURSES_VERSION}
     ./configure --prefix=${PREFIX} CPPFLAGS="-P"
     make
     make install
     cd ..
+}
 
 
-    # ============
-    # === tmux ===
-    # ============
+function install_tmux () {
+    [[ -e ${PREFIX}/bin/tmux ]] && return
+
+    _install_libevent
+    _install_ncurses
+
+    TMUX_VERSION=3.3a
+    [[ ! -e tmux-${TMUX_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
     tar xvzf tmux-${TMUX_VERSION}.tar.gz
     cd tmux-${TMUX_VERSION}
     ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include"
@@ -76,14 +75,13 @@ function install_tmux () {
     cd ..
 }
 
+
 function install_ncdu () {
-    echo 'Bug here.'
+    echo "Bug here: can't find ncurses."
     return
 
     NCDU_VERSION=1.18.1
-
     [[ ! -e ncdu-${NCDU_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/ysl2/ncdu/releases/download/v${NCDU_VERSION}/ncdu-${NCDU_VERSION}.tar.gz
-
     tar xvzf ncdu-${NCDU_VERSION}.tar.gz
     cd ncdu-${NCDU_VERSION}
     ./configure --prefix=${PREFIX}
@@ -99,11 +97,11 @@ fi
 while [[ ! -z $1 ]]; do
     case $1 in
         tmux)
-            install_tmux
+            echo install_tmux
             shift
             ;;
         ncdu)
-            install_ncdu
+            echo install_ncdu
             shift
             ;;
         *)
