@@ -28,6 +28,14 @@ function addToPATH () {
   esac
 }
 
+# Ref: https://blog.csdn.net/whatday/article/details/105466009
+# function addTo () {
+#   case ":${!1}:" in
+#     *":$2:"*) :;; # already there
+#     *) $1="$2:${!1}";; # or PATH="$PATH:$1"
+#   esac
+# }
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$($MYBIN'/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
