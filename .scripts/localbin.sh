@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-PREFIX=$HOME/.Locall
+PREFIX=$HOME/.Local
 TEMP_FOLDER=$HOME/temp
 
 # create our directories
