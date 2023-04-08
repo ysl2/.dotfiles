@@ -16,8 +16,8 @@ if [[ -z "$TMUX" ]]; then
 fi
 
 if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
-    curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh |
-    sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' |
+    curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+    sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' | \
     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
 fi
 
