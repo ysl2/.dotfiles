@@ -99,7 +99,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
-alias ld='lazydocker'
 alias ipy='ipython'
 alias lf='lfcd'
 
