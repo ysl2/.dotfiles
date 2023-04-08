@@ -21,20 +21,16 @@ if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
 fi
 
-function addToPATH () {
-  case ":$PATH:" in
-    *":$1:"*) :;; # already there
-    *) PATH="$1:$PATH";; # or PATH="$PATH:$1"
-  esac
+# Ref:
+# - https://blog.csdn.net/whatday/article/details/105466009
+# - https://unix.stackexchange.com/a/282433
+function addTo () {
+    [[ -z "${!1}" ]] && eval "$1='$2'"
+    case ":${!1}:" in
+      *":$2:"*) :;;
+      *) eval "$1='$2:${!1}'";;
+    esac
 }
-
-# Ref: https://blog.csdn.net/whatday/article/details/105466009
-# function addTo () {
-#   case ":${!1}:" in
-#     *":$2:"*) :;; # already there
-#     *) $1="$2:${!1}";; # or PATH="$PATH:$1"
-#   esac
-# }
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -45,14 +41,14 @@ else
     if [ -f "$MYBIN/anaconda3/etc/profile.d/conda.sh" ]; then
         . "$MYBIN/anaconda3/etc/profile.d/conda.sh"
     else
-        addToPATH $MYBIN/anaconda3/bin
+        addTo PATH $MYBIN/anaconda3/bin
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-addToPATH $MYBIN
-addToPATH $MYBIN/cuda/bin
+addTo PATH $MYBIN
+addTo PATH $MYBIN/cuda/bin
 
 if command -v nvim &> /dev/null; then
     export EDITOR=nvim
@@ -60,7 +56,10 @@ else
     export EDITOR=vim
 fi
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
-export LD_LIBRARY_PATH="$MYBIN/cuda/lib64"
+export LD_LIBRARY_PATH=
+addTo LD_LIBRARY_PATH $MYBIN/lib
+addTo LD_LIBRARY_PATH $MYBIN/lib64
+addTo LD_LIBRARY_PATH $MYBIN/cuda/lib64
 # 1-May-2020: Fix for Keyring error with pip. Hopefully new pip will fix it
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
@@ -88,7 +87,6 @@ alias :q='exit'
 ranger='source ranger ranger'
 alias ranger=$ranger
 alias ra=$ranger
-alias lg='lazygit'
 alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
