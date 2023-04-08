@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-PREFIX=$HOME/.Local
+PREFIX=$HOME/.Locall
 TEMP_FOLDER=$HOME/temp
 
 # create our directories
@@ -77,15 +77,14 @@ function install_tmux () {
 
 
 function install_ncdu () {
-    echo "Bug here: can't find ncurses."
-    return
+    _install_ncurses
 
     NCDU_VERSION=1.18.1
     [[ ! -e ncdu-${NCDU_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/ysl2/ncdu/releases/download/v${NCDU_VERSION}/ncdu-${NCDU_VERSION}.tar.gz
     tar xvzf ncdu-${NCDU_VERSION}.tar.gz
     cd ncdu-${NCDU_VERSION}
-    ./configure --prefix=${PREFIX}
-    make
+    ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --prefix=${PREFIX}
+    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
     make install
     cd ..
 }
