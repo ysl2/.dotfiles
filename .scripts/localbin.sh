@@ -77,6 +77,8 @@ function install_tmux () {
 
 
 function install_ncdu () {
+    [[ -e ${PREFIX}/bin/ncdu ]] && return
+
     _install_ncurses
 
     NCDU_VERSION=1.18.1
