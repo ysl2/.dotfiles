@@ -14,6 +14,7 @@ TEMP_FOLDER=$HOME/temp
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
 cd ${TEMP_FOLDER}
 
+
 function _install_openssl () {
     [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] && return
 
@@ -91,6 +92,17 @@ function install_ncdu () {
     cd ..
 }
 
+
+function install_lf () {
+    [[ -e ${PREFIX}/bin/lf ]] && return
+
+    LF_VERSION=r28
+    [[ ! -e lf-linux-amd64.tar.gz ]] && wget https://ghproxy.com/https://github.com/gokcehan/lf/releases/download/${LF_VERSION}/lf-linux-amd64.tar.gz
+    tar xvzf lf-linux-amd64.tar.gz
+    mv lf ${PREFIX}/bin
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
@@ -103,6 +115,10 @@ while [[ ! -z $1 ]]; do
             ;;
         ncdu)
             install_ncdu
+            shift
+            ;;
+        lf)
+            install_lf
             shift
             ;;
         *)
