@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-PREFIX=$HOME/.Locall
+PREFIX=$HOME/.Local
 TEMP_FOLDER=$HOME/temp
 
 # create our directories
@@ -15,7 +15,7 @@ mkdir -p ${PREFIX} ${TEMP_FOLDER}
 cd ${TEMP_FOLDER}
 
 
-function _install_openssl () {
+function openssl () {
     [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] && return
 
     OPENSSL_VERSION=3.1.0
@@ -29,10 +29,10 @@ function _install_openssl () {
 }
 
 
-function _install_libevent () {
+function libevent () {
     [[ -e ${PREFIX}/lib/pkgconfig/libevent.pc ]] && return
 
-    _install_openssl
+    openssl
 
     LIBEVENT_VERSION=2.1.12-stable
     [[ ! -e libevent-${LIBEVENT_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}/libevent-${LIBEVENT_VERSION}.tar.gz
@@ -46,7 +46,7 @@ function _install_libevent () {
 }
 
 
-function _install_ncurses () {
+function ncurses () {
     [[ -e ${PREFIX}/include/ncurses ]] && return
 
     NCURSES_VERSION=6.4
@@ -60,11 +60,11 @@ function _install_ncurses () {
 }
 
 
-function install_tmux () {
+function tmux () {
     [[ -e ${PREFIX}/bin/tmux ]] && return
 
-    _install_libevent
-    _install_ncurses
+    libevent
+    ncurses
 
     TMUX_VERSION=3.3a
     [[ ! -e tmux-${TMUX_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
@@ -77,10 +77,10 @@ function install_tmux () {
 }
 
 
-function install_ncdu () {
+function ncdu () {
     [[ -e ${PREFIX}/bin/ncdu ]] && return
 
-    _install_ncurses
+    ncurses
 
     NCDU_VERSION=1.18.1
     [[ ! -e ncdu-${NCDU_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/ysl2/ncdu/releases/download/v${NCDU_VERSION}/ncdu-${NCDU_VERSION}.tar.gz
@@ -93,7 +93,7 @@ function install_ncdu () {
 }
 
 
-function install_lf () {
+function lf () {
     [[ -e ${PREFIX}/bin/lf ]] && return
 
     LF_VERSION=r28
@@ -104,13 +104,13 @@ function install_lf () {
 }
 
 
-function install_htop () {
+function htop () {
     echo 'Bug here: htop'
-    # return
+    return
     [[ -e ${PREFIX}/bin/htop ]] && return
 
     # No need below:
-    # _install_ncurses
+    # ncurses
 
     HTOP_VERSION=3.2.2
     [[ ! -e htop-${HTOP_VERSION}.tar.xz ]] && wget https://ghproxy.com/https://github.com/htop-dev/htop/releases/download/${HTOP_VERSION}/htop-${HTOP_VERSION}.tar.xz
@@ -126,7 +126,7 @@ function install_htop () {
 }
 
 
-function install_gcc8 () {
+function gcc8 () {
     echo 'Bug here: gcc'
     return
 
@@ -154,32 +154,7 @@ if [[ -z $1 ]]; then
 fi
 
 while [[ ! -z $1 ]]; do
-    case $1 in
-        tmux)
-            install_tmux
-            shift
-            ;;
-        ncdu)
-            install_ncdu
-            shift
-            ;;
-        lf)
-            install_lf
-            shift
-            ;;
-        htop)
-            install_htop
-            shift
-            ;;
-        gcc8)
-            install_gcc8
-            shift
-            ;;
-        *)
-            echo "Not in install list: $1"
-            shift
-            ;;
-    esac
+    eval "$1"
 done
 
 # cleanup
