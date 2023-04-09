@@ -103,6 +103,22 @@ function install_lf () {
 }
 
 
+function install_htop () {
+    [[ -e ${PREFIX}/bin/htop ]] && return
+
+    _install_ncurses
+
+    HTOP_VERSION=3.2.2
+    [[ ! -e htop-${HTOP_VERSION}.tar.xz ]] && wget https://ghproxy.com/https://github.com/htop-dev/htop/releases/download/${HTOP_VERSION}/htop-${HTOP_VERSION}.tar.xz
+    tar xvf htop-${HTOP_VERSION}.tar.xz
+    cd htop-${HTOP_VERSION}
+    ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include"
+    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
+    cp htop ${PREFIX}/bin
+    cd ..
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
@@ -119,6 +135,10 @@ while [[ ! -z $1 ]]; do
             ;;
         lf)
             install_lf
+            shift
+            ;;
+        htop)
+            install_htop
             shift
             ;;
         *)
