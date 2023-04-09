@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-PREFIX=$HOME/.Local
+PREFIX=$HOME/.Locall
 TEMP_FOLDER=$HOME/temp
 
 # create our directories
@@ -106,17 +106,21 @@ function install_lf () {
 
 function install_htop () {
     echo 'Bug here: htop'
-    return
+    # return
     [[ -e ${PREFIX}/bin/htop ]] && return
 
-    _install_ncurses
+    # No need below:
+    # _install_ncurses
 
     HTOP_VERSION=3.2.2
     [[ ! -e htop-${HTOP_VERSION}.tar.xz ]] && wget https://ghproxy.com/https://github.com/htop-dev/htop/releases/download/${HTOP_VERSION}/htop-${HTOP_VERSION}.tar.xz
     tar xvf htop-${HTOP_VERSION}.tar.xz
     cd htop-${HTOP_VERSION}
-    ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --prefix=${PREFIX}
-    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
+    ./configure --prefix=${PREFIX}
+    make
+    # No need below:
+    # ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --prefix=${PREFIX}
+    # CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
     make install
     cd ..
 }
