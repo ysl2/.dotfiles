@@ -19,7 +19,7 @@ function openssl () {
     [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] && return
 
     OPENSSL_VERSION=3.1.0
-    [[ ! -e openssl-${OPENSSL_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/openssl/openssl/releases/download/openssl-3.1.0/openssl-${OPENSSL_VERSION}.tar.gz
+    [[ ! -e openssl-${OPENSSL_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/openssl/openssl/releases/download/openssl-${OPENSSL_VERSION}/openssl-${OPENSSL_VERSION}.tar.gz
     tar xvzf openssl-${OPENSSL_VERSION}.tar.gz
     cd openssl-${OPENSSL_VERSION}
     ./Configure --prefix=${PREFIX}
@@ -47,23 +47,30 @@ function libevent () {
 
 
 function ncurses () {
-    [[ -e ${PREFIX}/include/ncurses ]] && return
+    if [[ -e ${PREFIX}/include/ncurses ]] && [[ -e ${PREFIX}/include/ncursesw ]]; then
+        return
+    fi
 
     NCURSES_VERSION=6.4
     [[ ! -e ncurses.tar.gz ]] && wget -O ncurses.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
     tar xvzf ncurses.tar.gz
     cd ncurses-${NCURSES_VERSION}
-    CONFIGURE_COMMAND='./configure CPPFLAGS="-P" --with-shared --with-termlib --disable-tic-depends --with-ticlib --prefix=${PREFIX}'
-    CONFIGURE_COMMAND="$CONFIGURE_COMMAND --disable-widec"
-    eval "$CONFIGURE_COMMAND"
-    make
-    make install
-    return
-    make clean
-    CONFIGURE_COMMAND="$CONFIGURE_COMMAND --enable-widec"
-    eval "$CONFIGURE_COMMAND"
-    make
-    make install
+    _CONFIGURE_COMMAND='./configure CPPFLAGS="-P" --with-shared --with-termlib --prefix=${PREFIX}'
+    # _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-tic-depends --with-ticlib"
+    _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-versioned-syms"
+    if [[ ! -e ${PREFIX}/include/ncurses ]]; then
+        CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-widec"
+        eval "$CONFIGURE_COMMAND"
+        make
+        make install
+        make clean
+    fi
+    if [[ ! -e ${PREFIX}/include/ncursesw ]]; then
+        CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --enable-widec"
+        eval "$CONFIGURE_COMMAND"
+        make
+        make install
+    fi
     cd ..
 }
 
@@ -86,6 +93,8 @@ function tmux () {
 
 
 function ncdu () {
+    echo 'Bug here: ncdu'
+    return
     [[ -e ${PREFIX}/bin/ncdu ]] && return
 
     ncurses
@@ -164,4 +173,4 @@ while [[ ! -z $1 ]]; do
 done
 
 # cleanup
-rm -rf ${TEMP_FOLDER}
+# rm -rf ${TEMP_FOLDER}

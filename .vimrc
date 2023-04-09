@@ -8,6 +8,9 @@ set expandtab
 set nowrap
 set noswapfile
 set incsearch
+set autoindent
+set splitright
+set splitbelow
 
 inoremap <C-c> <C-[>
 
