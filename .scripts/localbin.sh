@@ -53,7 +53,15 @@ function ncurses () {
     [[ ! -e ncurses.tar.gz ]] && wget -O ncurses.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
     tar xvzf ncurses.tar.gz
     cd ncurses-${NCURSES_VERSION}
-    ./configure --prefix=${PREFIX} CPPFLAGS="-P"
+    CONFIGURE_COMMAND='./configure CPPFLAGS="-P" --with-shared --with-termlib --disable-tic-depends --with-ticlib --prefix=${PREFIX}'
+    CONFIGURE_COMMAND="$CONFIGURE_COMMAND --disable-widec"
+    eval "$CONFIGURE_COMMAND"
+    make
+    make install
+    return
+    make clean
+    CONFIGURE_COMMAND="$CONFIGURE_COMMAND --enable-widec"
+    eval "$CONFIGURE_COMMAND"
     make
     make install
     cd ..
@@ -105,12 +113,9 @@ function lf () {
 
 
 function htop () {
-    echo 'Bug here: htop'
-    return
     [[ -e ${PREFIX}/bin/htop ]] && return
 
-    # No need below:
-    # ncurses
+    ncurses
 
     HTOP_VERSION=3.2.2
     [[ ! -e htop-${HTOP_VERSION}.tar.xz ]] && wget https://ghproxy.com/https://github.com/htop-dev/htop/releases/download/${HTOP_VERSION}/htop-${HTOP_VERSION}.tar.xz
@@ -155,6 +160,7 @@ fi
 
 while [[ ! -z $1 ]]; do
     eval "$1"
+    shift
 done
 
 # cleanup
