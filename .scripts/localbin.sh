@@ -194,6 +194,24 @@ function lazygit () {
 }
 
 
+function nvim () {
+    [[ -e ${PREFIX}/bin/nvim ]] && return
+
+    [[ ! -e ${PREFIX}/bin/nvim ]] && wget -O ${PREFIX}/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    chmod 777 ${PREFIX}/bin/nvim
+}
+
+
+function termscp () {
+    [[ -e ${PREFIX}/bin/termscp ]] && return
+
+    TERMSCP_VERSION=v0.11.1
+    [[ ! -e termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz ]] && wget https://github.com/veeso/termscp/releases/download/${TERMSCP_VERSION}/termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+    tar xzvf termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+    mv termscp ${PREFIX}/bin
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
