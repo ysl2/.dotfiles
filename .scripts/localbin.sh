@@ -25,6 +25,7 @@ function openssl () {
     ./Configure --prefix=${PREFIX}
     make
     make install
+    make clean
     cd ..
 }
 
@@ -42,36 +43,50 @@ function libevent () {
     ./configure PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig --prefix=${PREFIX} --disable-shared
     make
     make install
+    make clean
     cd ..
 }
 
 
 function ncurses () {
-    if [[ -e ${PREFIX}/include/ncurses ]] && [[ -e ${PREFIX}/include/ncursesw ]]; then
-        return
-    fi
 
-    NCURSES_VERSION=6.4
-    [[ ! -e ncurses.tar.gz ]] && wget -O ncurses.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
-    tar xvzf ncurses.tar.gz
-    cd ncurses-${NCURSES_VERSION}
-    _CONFIGURE_COMMAND='./configure CPPFLAGS="-P" --with-shared --with-termlib --prefix=${PREFIX}'
-    # _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-tic-depends --with-ticlib"
-    _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-versioned-syms"
-    if [[ ! -e ${PREFIX}/include/ncurses ]]; then
-        CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-widec"
-        eval "$CONFIGURE_COMMAND"
-        make
-        make install
-        make clean
-    fi
-    if [[ ! -e ${PREFIX}/include/ncursesw ]]; then
-        CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --enable-widec"
-        eval "$CONFIGURE_COMMAND"
-        make
-        make install
-    fi
-    cd ..
+    function _ncurses () {
+        NCURSES_VERSION=$1
+
+        [[ -e ${PREFIX}/lib/libncurses.so.${NCURSES_VERSION} ]] && [[ -e ${PREFIX}/lib/libncursesw.so.${NCURSES_VERSION} ]] && return
+
+        [[ ! -e ncurses-${NCURSES_VERSION}.tar.gz ]] && wget -O ncurses-${NCURSES_VERSION}.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
+        tar xvzf ncurses-${NCURSES_VERSION}.tar.gz
+        cd ncurses-${NCURSES_VERSION}
+        _CONFIGURE_COMMAND='./configure'
+        _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND CPPFLAGS='-P'"
+        _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-shared --with-termlib --prefix=${PREFIX}"
+        _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-tic-depends --with-ticlib"
+        _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-versioned-syms"
+        if [[ ${1:0:1} == '5' ]]; then
+            _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --without-cxx-binding"
+        fi
+        if [[ ! -e ${PREFIX}/lib/libncurses.so.${NCURSES_VERSION} ]]; then
+            CONFIGURE_COMMAND=$_CONFIGURE_COMMAND
+            CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-widec"
+            eval "$CONFIGURE_COMMAND"
+            make
+            make install
+            make clean
+        fi
+        if [[ ! -e ${PREFIX}/lib/libncursesw.so.${NCURSES_VERSION} ]]; then
+            CONFIGURE_COMMAND=$_CONFIGURE_COMMAND
+            CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --enable-widec"
+            eval "$CONFIGURE_COMMAND"
+            make
+            make install
+            make clean
+        fi
+        cd ..
+    }
+
+    # _ncurses 6.4
+    _ncurses 5.9
 }
 
 
@@ -106,6 +121,7 @@ function ncdu () {
     ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --prefix=${PREFIX}
     CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
     make install
+    make clean
     cd ..
 }
 
@@ -130,12 +146,10 @@ function htop () {
     [[ ! -e htop-${HTOP_VERSION}.tar.xz ]] && wget https://ghproxy.com/https://github.com/htop-dev/htop/releases/download/${HTOP_VERSION}/htop-${HTOP_VERSION}.tar.xz
     tar xvf htop-${HTOP_VERSION}.tar.xz
     cd htop-${HTOP_VERSION}
-    ./configure --prefix=${PREFIX}
-    make
-    # No need below:
-    # ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --prefix=${PREFIX}
-    # CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
+    ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --disable-unicode --prefix=${PREFIX}
+    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
     make install
+    make clean
     cd ..
 }
 
