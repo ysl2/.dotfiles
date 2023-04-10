@@ -64,7 +64,7 @@ function ncurses () {
         _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-tic-depends --with-ticlib"
         _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-versioned-syms"
         if [[ ${1:0:1} == '5' ]]; then
-            _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --without-cxx-binding"
+            _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --without-cxx-binding"  # Ref: https://git.pengutronix.de/cgit/ptxdist/commit/?id=b6036e7ce2ce791087694ca19a771168ac7fc9f6
         fi
         if [[ ! -e ${PREFIX}/lib/libncurses.so.${NCURSES_VERSION} ]]; then
             CONFIGURE_COMMAND=$_CONFIGURE_COMMAND
@@ -108,8 +108,6 @@ function tmux () {
 
 
 function ncdu () {
-    echo 'Bug here: ncdu'
-    return
     [[ -e ${PREFIX}/bin/ncdu ]] && return
 
     ncurses
@@ -118,8 +116,13 @@ function ncdu () {
     [[ ! -e ncdu-${NCDU_VERSION}.tar.gz ]] && wget https://ghproxy.com/https://github.com/ysl2/ncdu/releases/download/v${NCDU_VERSION}/ncdu-${NCDU_VERSION}.tar.gz
     tar xvzf ncdu-${NCDU_VERSION}.tar.gz
     cd ncdu-${NCDU_VERSION}
-    ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include" --prefix=${PREFIX}
-    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
+    ./configure \
+        CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
+        CXXFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
+        CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
+        LDFLAGS="-L${PREFIX}/lib -Wl,--no-as-needed -ltinfow" \
+        --prefix=${PREFIX}
+    make
     make install
     make clean
     cd ..
