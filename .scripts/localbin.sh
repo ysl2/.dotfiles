@@ -180,6 +180,20 @@ function gcc8 () {
 }
 
 
+function lazygit () {
+    [[ -e ${PREFIX}/bin/lazygit ]] && return
+
+    LAZYGIT_VERSION=0.37.0
+    mkdir lazygit-${LAZYGIT_VERSION}
+    cd lazygit-${LAZYGIT_VERSION}
+    [[ ! -e lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz ]] && wget https://ghproxy.com/https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
+    tar xvzf lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
+    mkdir -p ${PREFIX}/bin
+    mv lazygit ${PREFIX}/bin
+    cd ..
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
