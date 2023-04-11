@@ -208,6 +208,7 @@ function termscp () {
     TERMSCP_VERSION=v0.11.1
     [[ ! -e termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz ]] && wget https://github.com/veeso/termscp/releases/download/${TERMSCP_VERSION}/termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz
     tar xzvf termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz
+    mkdir -p ${PREFIX}/bin
     mv termscp ${PREFIX}/bin
 }
 
