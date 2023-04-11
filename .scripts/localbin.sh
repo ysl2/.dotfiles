@@ -158,6 +158,9 @@ function htop () {
 
 
 function gcc8 () {
+    echo 'Bug here: gcc'
+    return
+
     # wget -c http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-8/gcc-8_8.4.0-3ubuntu2_amd64.deb
     # wget -c http://mirrors.edge.kernel.org/ubuntu/pool/universe/g/gcc-8/gcc-8-base_8.4.0-3ubuntu2_amd64.deb
     # wget -c http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-8/libgcc-8-dev_8.4.0-3ubuntu2_amd64.deb
@@ -171,15 +174,22 @@ function gcc8 () {
     # wget -c https://mirror.bjtu.edu.cn/ubuntu/pool/universe/g/gcc-8/cpp-8_8.4.0-3ubuntu2_amd64.deb
     # wget -c https://mirror.bjtu.edu.cn/ubuntu/pool/universe/g/gcc-8/libmpx2_8.4.0-3ubuntu2_amd64.deb
     # wget -c https://mirror.bjtu.edu.cn/ubuntu/pool/universe/g/gcc-8/libisl22_0.22.1-1_amd64.deb
-
     # sudo apt update
     # sudo apt install ./libisl22_0.22.1-1_amd64.deb ./libmpx2_8.4.0-3ubuntu2_amd64.deb ./cpp-8_8.4.0-3ubuntu2_amd64.deb ./libgcc-8-dev_8.4.0-3ubuntu2_amd64.deb ./gcc-8-base_8.4.0-3ubuntu2_amd64.deb ./gcc-8_8.4.0-3ubuntu2_amd64.deb
 
-    wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-9.3.0/gcc-9.3.0.tar.gz
-    wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/mpc-1.1.0.tar.gz
-    wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/mpfr-4.0.2.tar.gz
-    wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/gmp-6.1.2.tar.gz
+    # wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-9.3.0/gcc-9.3.0.tar.gz
+    # wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/mpc-1.1.0.tar.gz
+    # wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/mpfr-4.0.2.tar.gz
+    # wget -c https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/gmp-6.1.2.tar.gz
 
+    # binutils: https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+    # gcc: https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+    # gmp: https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
+    # mpfr: https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
+    # mpc: https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/
+    # isl: https://mirrors.tuna.tsinghua.edu.cn/ubuntu/pool/main/i/isl-0.18/
+
+    # https://www.ivistang.com/articles/336/
 }
 
 

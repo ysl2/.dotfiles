@@ -100,6 +100,8 @@ alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
 alias ipy='ipython'
 alias lf='lfcd'
+alias ld='lazydocker'
+alias lg='lazygit'
 
 if [[ -e $MYBIN/starship ]]; then
     eval "$(starship init bash)"
