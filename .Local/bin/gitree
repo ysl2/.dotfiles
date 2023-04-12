@@ -1,19 +1,30 @@
 #!/bin/bash
+# case $1 in
+#     tree)
+#         shift
+#         case $1 in
+#             --ls)
+#                 shift
+#                 ls --color=auto -ld $(git ls-tree -rt $(git branch | grep \* | cut -d " " -f2) --name-only)
+#                 ;;
+#             *)
+#                 shift
+#                 /usr/bin/git ls-tree --full-tree --name-only -r HEAD "$@" | tree -C --fromfile .
+#                 ;;
+#         esac
+#         ;;
+#     *)
+#         /usr/bin/git "$@"
+#         ;;
+# esac
+
 case $1 in
-    tree)
+    --ls)
         shift
-        case $1 in
-            --ls)
-                shift
-                ls --color=auto -ld $(git ls-tree -rt $(git branch | grep \* | cut -d " " -f2) --name-only)
-                ;;
-            *)
-                shift
-                /usr/bin/git ls-tree --full-tree --name-only -r HEAD "$@" | tree -C --fromfile .
-                ;;
-        esac
+        ls --color=auto -ld $(git ls-tree -rt $(git branch | grep \* | cut -d " " -f2) --name-only)
         ;;
     *)
-        /usr/bin/git "$@"
+        shift
+        /usr/bin/git ls-tree --full-tree --name-only -r HEAD "$@" | tree -C --fromfile .
         ;;
 esac
