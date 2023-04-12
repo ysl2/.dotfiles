@@ -52,7 +52,7 @@ function libevent () {
     # ./configure PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig --prefix=${PREFIX} --disable-shared
     ./configure \
         CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/openssl" \
-        LDFLAGS="-L${PREFIX}/lib" \
+        LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/lib64" \
         --prefix=${PREFIX}
     make
     make install
