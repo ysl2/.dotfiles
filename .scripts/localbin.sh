@@ -29,7 +29,7 @@ function openssl () {
 
     [[ ! -e openssl ]] && git clone -b ${OPENSSL_VERSION} --depth=1 https://gitee.com/mirrors/openssl.git
     cd openssl
-    ./Configure --prefix=${PREFIX} --openssldir=${PREFIX}/ssl
+    ./Configure linux-x86_64 --prefix=${PREFIX} --openssldir=${PREFIX}/ssl
     make
     make install
     make clean
