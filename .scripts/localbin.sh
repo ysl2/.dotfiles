@@ -18,15 +18,24 @@ cd ${TEMP_FOLDER}
 function openssl () {
     [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] && return
 
-    OPENSSL_VERSION=3.1.0
-    [[ ! -e openssl-${OPENSSL_VERSION}.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/openssl/openssl/releases/download/openssl-${OPENSSL_VERSION}/openssl-${OPENSSL_VERSION}.tar.gz
-    tar xvzf openssl-${OPENSSL_VERSION}.tar.gz
-    cd openssl-${OPENSSL_VERSION}
-    ./Configure --prefix=${PREFIX}
+    # OPENSSL_VERSION=3.1.0
+    # OPENSSL_VERSION=1.1.1t
+    OPENSSL_VERSION=$(ssh -V 2>&1 | awk '{ print $4 }')
+    if [[ ${OPENSSL_VERSION:0:1} == '3' ]]; then
+        OPENSSL_VERSION=openssl-${OPENSSL_VERSION}
+    elif [[ ${OPENSSL_VERSION:0:1} == '1' ]]; then
+        OPENSSL_VERSION=OpenSSL_${OPENSSL_VERSION//./_}
+    fi
+
+    [[ ! -e openssl ]] && git clone -b ${OPENSSL_VERSION} --depth=1 https://gitee.com/mirrors/openssl.git
+    cd openssl
+    ./Configure --prefix=${PREFIX} --openssldir=${PREFIX}/ssl
     make
     make install
     make clean
     cd ..
+    [[ -e ${PREFIX}/ssl/certs ]] && rm -rf ${PREFIX}/ssl/certs
+    ln -s /etc/ssl/certs ${PREFIX}/ssl/certs
 }
 
 
@@ -40,7 +49,11 @@ function libevent () {
     tar xvzf libevent-${LIBEVENT_VERSION}.tar.gz
     cd libevent-${LIBEVENT_VERSION}
     # Need to install pkg-config: sudo apt install pkg-config
-    ./configure PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig --prefix=${PREFIX} --disable-shared
+    # ./configure PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig --prefix=${PREFIX} --disable-shared
+    ./configure \
+        CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/openssl" \
+        LDFLAGS="-L${PREFIX}/lib64" \
+        --prefix=${PREFIX}
     make
     make install
     make clean
@@ -61,7 +74,7 @@ function ncurses () {
         _CONFIGURE_COMMAND='./configure'
         _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND CPPFLAGS='-P'"
         _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-shared --with-termlib --prefix=${PREFIX}"
-        _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-tic-depends --with-ticlib"
+        # _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --disable-tic-depends --with-ticlib"
         _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --with-versioned-syms"
         if [[ ${1:0:1} == '5' ]]; then
             _CONFIGURE_COMMAND="$_CONFIGURE_COMMAND --without-cxx-binding"  # Ref: https://git.pengutronix.de/cgit/ptxdist/commit/?id=b6036e7ce2ce791087694ca19a771168ac7fc9f6
@@ -85,8 +98,8 @@ function ncurses () {
         cd ..
     }
 
-    # _ncurses 6.4
-    _ncurses 5.9
+    # _ncurses 5.9
+    _ncurses 6.4
 }
 
 
@@ -100,9 +113,15 @@ function tmux () {
     [[ ! -e tmux-${TMUX_VERSION}.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
     tar xvzf tmux-${TMUX_VERSION}.tar.gz
     cd tmux-${TMUX_VERSION}
-    ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include"
-    CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
+    # ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include"
+    # CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
+    ./configure \
+        CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
+        LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib " \
+        --prefix=${PREFIX}
+    make
     cp tmux ${PREFIX}/bin
+    make clean
     cd ..
 }
 
@@ -118,8 +137,8 @@ function ncdu () {
     cd ncdu-${NCDU_VERSION}
     ./configure \
         CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
-        CXXFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
         CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
+        CXXFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
         LDFLAGS="-L${PREFIX}/lib -Wl,--no-as-needed -ltinfow" \
         --prefix=${PREFIX}
     make
