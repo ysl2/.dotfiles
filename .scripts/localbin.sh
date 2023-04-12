@@ -29,7 +29,7 @@ function openssl () {
 
     [[ ! -e openssl ]] && git clone -b ${OPENSSL_VERSION} --depth=1 https://gitee.com/mirrors/openssl.git
     cd openssl
-    ./Configure linux-x86_64 --prefix=${PREFIX} --openssldir=${PREFIX}/ssl
+    ./Configure linux-x86_64 shared --prefix=${PREFIX} --openssldir=${PREFIX}/ssl
     make
     make install
     make clean
@@ -52,7 +52,7 @@ function libevent () {
     # ./configure PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig --prefix=${PREFIX} --disable-shared
     ./configure \
         CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/openssl" \
-        LDFLAGS="-L${PREFIX}/lib64" \
+        LDFLAGS="-L${PREFIX}/lib" \
         --prefix=${PREFIX}
     make
     make install
