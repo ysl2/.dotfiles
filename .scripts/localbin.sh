@@ -275,6 +275,71 @@ function termscp () {
 }
 
 
+function brew () {
+    # Judge if Linux or Mac
+    OS="$(uname)"
+    if [[ "$OS" == "Linux" ]]; then
+      HOMEBREW_ON_LINUX=1
+    elif [[ "$OS" != "Darwin" ]]; then
+      echo "Homebrew 只运行在 Mac OS 或 Linux."
+    fi
+
+    # Set architecture information
+    if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
+      #Mac
+      if [[ "$UNAME_MACHINE" == "arm64" ]]; then
+        #M1
+        HOMEBREW_PREFIX="/opt/homebrew"
+        HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}"
+      else
+        #Inter
+        HOMEBREW_PREFIX="/usr/local"
+        HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+      fi
+    else
+      HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+      HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+    fi
+
+    if [[ ! -e ${HOMEBREW_REPOSITORY}/bin/brew ]]; then
+      echo ""${NOTICE}": Start installing brew..."
+      THIS=$(pwd)
+      cd
+      [[ -e ~/.zprofile ]] && mv ~/.zprofile ~/.zprofile_bak
+      rm Homebrew.sh
+      wget https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh
+      sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/linuxbrew-bottles\\\/bottles-portable-ruby/' Homebrew.sh
+      sed -i 's/mirrors\.tuna\.tsinghua\.edu\.cn\\\/homebrew-bottles\\\/bottles-portable-ruby/mirrors.ustc.edu.cn\\\/homebrew-bottles\\\/bottles-portable-ruby/' Homebrew.sh
+      bash Homebrew.sh
+      rm Homebrew.sh
+      if [[ -e ~/.zprofile && -e ~/.zprofile_bak ]]; then
+        rm ~/.zprofile
+        mv ~/.zprofile_bak ~/.zprofile
+      fi
+      cd "${THIS}"
+    fi
+}
+
+
+function firacode () {
+    fonts_dir="/usr/share/fonts/firacode"
+    [[ -e $fonts_dir ]]; return
+
+    echo "sudo mkdir -p $fonts_dir"
+    sudo mkdir -p "${fonts_dir}"
+
+    version=6.2
+    zip=Fira_Code_v${version}.zip
+    sudo curl --fail --location --show-error https://ghproxy.com/https://github.com/tonsky/FiraCode/releases/download/${version}/${zip} --output ${zip}
+    sudo unzip -o -q -d ${fonts_dir} ${zip}
+    sudo rm ${zip}
+    sudo mv /usr/share/fonts/firacode/**/*.ttf /usr/share/fonts/firacode
+
+    echo "sudo fc-cache -f -v"
+    sudo fc-cache -f -v
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
