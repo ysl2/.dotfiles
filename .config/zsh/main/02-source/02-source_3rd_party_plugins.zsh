@@ -61,10 +61,13 @@ zinit ice wait lucid from"hub.fastgit.org"
 zinit light zdharma-continuum/history-search-multi-word
 
 
-# zinit ice lucid wait atinit='zpcompinit' from"hub.fastgit.org"
-# zinit light zdharma-continuum/fast-syntax-highlighting
-# # zinit light zsh-users/zsh-syntax-highlighting
-#
+# ===
+# === syntax highlight
+# ===
+zinit ice lucid wait atinit='zpcompinit' from"hub.fastgit.org"
+zinit light zsh-users/zsh-syntax-highlighting
+
+
 # zinit ice lucid wait blockf atpull'zinit creinstall -q .' from"hub.fastgit.org"
 # zinit light zsh-users/zsh-completions
 #
