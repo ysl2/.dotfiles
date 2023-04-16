@@ -11,6 +11,7 @@ set incsearch
 set autoindent
 set splitright
 set splitbelow
+set termguicolors
 
 inoremap <C-c> <C-[>
 
