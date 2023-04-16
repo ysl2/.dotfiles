@@ -31,6 +31,7 @@ addTo LD_LIBRARY_PATH $MYBIN/cuda/lib64
 # ===
 export EDITOR=nvim
 export BROWSER=google-chrome-stable
+export DISPLAY=:0
 # export THEME=spaceship
 
 
