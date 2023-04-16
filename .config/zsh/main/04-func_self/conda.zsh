@@ -9,17 +9,15 @@
 #
 # So if you want to use them, you need to export the location.
 #
-# vim ~/.zshenv.localhost, then:
+# vim ~/.zshrc.localhost.pre, then:
 #
 # ```
-# export MYCONDA=/opt/miniconda
-#
+# export MYCONDA=~/.Local/bin/anaconda3
+# ```
 
 
 # 如果终端输入onconda，则启用anaconda。否则则不启用。
 # 如果启用CONDA，zsh启动将会非常慢。如果不是必须要用，建议别开CONDA
-
-# export PATH="/opt/anaconda/bin:$PATH"
 
 function onconda () {
   if [[ ! -e "${MYLOCK}"/conda.flag ]]; then
