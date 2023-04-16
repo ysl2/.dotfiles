@@ -28,10 +28,10 @@ bindkey '^c' vi-cmd-mode
 # ===
 # === fzf
 # ===
-zinit ice wait lucid atinit"
-export DISABLE_FZF_KEY_BINDINGS=true
-"
-zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/fzf/fzf.plugin.zsh'
+# zinit ice wait lucid atinit"
+# export DISABLE_FZF_KEY_BINDINGS=true
+# "
+# zinit snippet 'https://cdn.jsdelivr.net/gh/ohmyzsh/ohmyzsh/plugins/fzf/fzf.plugin.zsh'
 
 # zinit ice wait lucid from"hub.fastgit.org"
 # zinit light Aloxaf/fzf-tab
