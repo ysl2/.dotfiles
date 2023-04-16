@@ -11,8 +11,9 @@ zinit wait"1" lucid light-mode from"hub.fastgit.org" for \
   zdharma-continuum/zui \
   zdharma-continuum/zinit-crasis \
   zdharma-continuum/zinit-annex-test \
-  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-  zdharma-continuum/fast-syntax-highlighting
+
+  # atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+  # zdharma-continuum/fast-syntax-highlighting
 
 # zinit自己的增强插件结束
 
