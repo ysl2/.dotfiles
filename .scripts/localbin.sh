@@ -257,7 +257,7 @@ function lazygit () {
 function nvim () {
     [[ -e ${PREFIX}/bin/nvim ]] && return
 
-    fuse
+    # fuse
 
     [[ ! -e ${PREFIX}/bin/nvim ]] && wget -O ${PREFIX}/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
     chmod 777 ${PREFIX}/bin/nvim
