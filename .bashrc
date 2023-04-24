@@ -1,19 +1,19 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export MYLOCAL=$HOME/.Local
-mkdir -p $MYLOCAL &> /dev/null
-export MYBIN=$MYLOCAL/bin
+_MYLOCAL=$HOME/.Local
+mkdir -p $_MYLOCAL &> /dev/null
+export MYBIN=$_MYLOCAL/bin
 mkdir -p $MYBIN &> /dev/null
 
 if [[ -z "$TMUX" ]]; then
     if [[ -e $MYBIN/tmux ]]; then
-        MYTMUX=$MYBIN/tmux
+        _MYTMUX=$MYBIN/tmux
     elif command -v tmux &> /dev/null; then
-        MYTMUX=tmux
+        _MYTMUX=tmux
     fi
-    if [[ ! -z $MYTMUX ]]; then
-        exec $MYTMUX new-session -A -s main
+    if [[ ! -z $_MYTMUX ]]; then
+        exec $_MYTMUX new-session -A -s main
     fi
 fi
 
@@ -34,17 +34,17 @@ function addTo () {
     esac
 }
 
-MYCONDA=$([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
+_MYCONDA=$([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$($MYCONDA'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$($_MYCONDA'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "$MYCONDA/etc/profile.d/conda.sh" ]; then
-        . "$MYCONDA/etc/profile.d/conda.sh"
+    if [ -f "$_MYCONDA/etc/profile.d/conda.sh" ]; then
+        . "$_MYCONDA/etc/profile.d/conda.sh"
     else
-        addTo PATH $MYCONDA/bin
+        addTo PATH $_MYCONDA/bin
     fi
 fi
 unset __conda_setup
@@ -56,8 +56,8 @@ addTo PATH $MYBIN/cuda/bin
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 export LD_LIBRARY_PATH=
-addTo LD_LIBRARY_PATH $MYLOCAL/lib
-addTo LD_LIBRARY_PATH $MYLOCAL/lib64
+addTo LD_LIBRARY_PATH $_MYLOCAL/lib
+addTo LD_LIBRARY_PATH $_MYLOCAL/lib64
 addTo LD_LIBRARY_PATH $MYBIN/cuda/lib64
 # 1-May-2020: Fix for Keyring error with pip. Hopefully new pip will fix it
 # soon https://github.com/pypa/pip/issues/7883
