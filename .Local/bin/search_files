@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import os
+import argparse
+
+def search_files(rootdir, search_string):
+    for subdir, dirs, files in os.walk(rootdir):
+        for file in files:
+            filepath = os.path.join(subdir, file)
+            try:
+                with open(filepath, 'r') as f:
+                    if search_string in f.read():
+                        print(filepath)
+            except Exception:
+                pass
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Search files contains specific string. You need to provide search path and search string.')
+    parser.add_argument('path', type=str, help='The path to be searched.')
+    parser.add_argument('string', type=str, help='The string to be searched.')
+    args = parser.parse_args()
+    search_files(args.path, args.string)
