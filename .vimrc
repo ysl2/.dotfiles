@@ -11,7 +11,9 @@ set incsearch
 set autoindent
 set splitright
 set splitbelow
-set termguicolors
+if has('nvim') || v:version >= 800
+    set termguicolors
+endif
 
 inoremap <C-c> <C-[>
 
