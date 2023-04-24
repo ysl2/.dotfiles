@@ -34,16 +34,17 @@ function addTo () {
     esac
 }
 
+MYCONDA=$([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$($MYBIN'/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$($MYCONDA'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "$MYBIN/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$MYBIN/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$MYCONDA/etc/profile.d/conda.sh" ]; then
+        . "$MYCONDA/etc/profile.d/conda.sh"
     else
-        addTo PATH $MYBIN/anaconda3/bin
+        addTo PATH $MYCONDA/bin
     fi
 fi
 unset __conda_setup
@@ -52,11 +53,7 @@ unset __conda_setup
 addTo PATH $MYBIN
 addTo PATH $MYBIN/cuda/bin
 
-if command -v nvim &> /dev/null; then
-    export EDITOR=nvim
-else
-    export EDITOR=vim
-fi
+export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 export LD_LIBRARY_PATH=
 addTo LD_LIBRARY_PATH $MYLOCAL/lib
