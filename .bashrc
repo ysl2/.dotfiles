@@ -52,6 +52,7 @@ unset __conda_setup
 
 addTo PATH $MYBIN
 addTo PATH $MYBIN/cuda/bin
+addTo PATH $MYBIN/my
 
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
