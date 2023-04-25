@@ -8,7 +8,7 @@
 set -e
 
 PREFIX=$HOME/.Local
-TEMP_FOLDER=$HOME/temp
+TEMP_FOLDER=$HOME/Downloads/localbin
 
 # create our directories
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
