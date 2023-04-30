@@ -101,10 +101,6 @@ alias lf='lfcd'
 alias ld='lazydocker'
 alias lg='lazygit'
 
-if [[ -e $MYBIN/starship ]]; then
-    eval "$(starship init bash)"
-fi
-
-if [[ -e ~/.bashrc.localhost ]]; then
-    source ~/.bashrc.localhost
-fi
+[[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+[[ -f ~/.bashrc.localhost ]] && source ~/.bashrc.localhost

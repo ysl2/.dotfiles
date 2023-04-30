@@ -341,16 +341,22 @@ function firacode () {
 
 
 function fzf () {
-    [[ -e ${PREFIX}/bin/fzf ]] && return
+    # [[ -e ${PREFIX}/bin/fzf ]] && return
 
-    FZF_VERSION=0.39.0
-    mkdir fzf-${FZF_VERSION}
-    cd fzf-${FZF_VERSION}
-    [[ ! -e fzf-${FZF_VERSION}-linux_amd64.tar.gz ]] && wget https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz
-    tar xvzf fzf-${FZF_VERSION}-linux_amd64.tar.gz
-    mkdir -p ${PREFIX}/bin
-    mv fzf ${PREFIX}/bin
-    cd ..
+    # FZF_VERSION=0.39.0
+    # mkdir fzf-${FZF_VERSION}
+    # cd fzf-${FZF_VERSION}
+    # [[ ! -e fzf-${FZF_VERSION}-linux_amd64.tar.gz ]] && wget https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz
+    # tar xvzf fzf-${FZF_VERSION}-linux_amd64.tar.gz
+    # mkdir -p ${PREFIX}/bin
+    # mv fzf ${PREFIX}/bin
+    # cd ..
+
+    cd
+    git clone --depth=1 git@git.zhlh6.cn:junegunn/fzf.git ~/.fzf
+    cd ~/.fzf
+    sed -i 's/url=/url=https:\/\/ghproxy.com\//g' install
+    ./install
 }
 
 
