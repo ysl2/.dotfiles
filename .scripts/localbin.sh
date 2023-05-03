@@ -389,7 +389,7 @@ function ants () {
     [[ ! -e antsInstallExample ]] && git clone git@git.zhlh6.cn:cookpa/antsInstallExample.git
     cd antsInstallExample
     git reset --hard HEAD
-    sed -i "17s/^.*$//; s/https:\/\/github.com\//git@git.zhlh6.cn:/g; 65s/^.*$/sed -i \"s#https:\/\/github.com\/#git@git.zhlh6.cn:#g\" ..\/build\/ITKv5-prefix\/tmp\/ITKv5-gitclone.cmake\\nsed -i \"s#\\\\\${git_protocol}:\/\/github.com\/#git@git.zhlh6.cn:#g\" ..\/build\/ITKv5\/Modules\/Remote\/MGHIO.remote.cmake/g" installANTs.sh
+    sed -i "17s/^.*$//; s/https:\/\/github.com\//git@git.zhlh6.cn:/g; 65s/^.*$/git clone --depth=1 git@git.zhlh6.cn:InsightSoftwareConsortium\/ITK.git ..\/build\/ITKv5\nsed -i \"s#https:\/\/github.com\/#git@git.zhlh6.cn:#g\; 7,13s#^.*$##\" ..\/build\/ITKv5-prefix\/tmp\/ITKv5-gitclone.cmake\\nsed -i \"s#\\\\\${git_protocol}:\/\/github.com\/#git@git.zhlh6.cn:#g\" ..\/build\/ITKv5\/Modules\/Remote\/MGHIO.remote.cmake/g" installANTs.sh
     chmod 777 installANTs.sh
     cd ..
     ./antsInstallExample/installANTs.sh
