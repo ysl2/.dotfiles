@@ -12,11 +12,17 @@ TEMP_FOLDER=$HOME/Downloads/localbin
 
 # create our directories
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
-cd ${TEMP_FOLDER}
+
+
+function _ERR () {
+    echo "Bug here: $1"
+}
 
 
 function openssl () {
     [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] || [[ -e ${PREFIX}/lib/pkgconfig/openssl.pc ]] && return
+
+    cd ${TEMP_FOLDER}
 
     # OPENSSL_VERSION=3.1.0
     # OPENSSL_VERSION=1.1.1t
@@ -42,6 +48,8 @@ function openssl () {
 function libevent () {
     [[ -e ${PREFIX}/lib/pkgconfig/libevent.pc ]] && return
 
+    cd ${TEMP_FOLDER}
+
     openssl
 
     LIBEVENT_VERSION=2.1.12-stable
@@ -57,16 +65,16 @@ function libevent () {
     make
     make install
     make clean
-    cd ..
 }
 
 
 function ncurses () {
-
     function _ncurses () {
         NCURSES_VERSION=$1
 
         [[ -e ${PREFIX}/lib/libncurses.so.${NCURSES_VERSION} ]] && [[ -e ${PREFIX}/lib/libncursesw.so.${NCURSES_VERSION} ]] && return
+
+        cd ${TEMP_FOLDER}
 
         [[ ! -e ncurses-${NCURSES_VERSION}.tar.gz ]] && wget -O ncurses-${NCURSES_VERSION}.tar.gz https://ghproxy.com/https://github.com/mirror/ncurses/archive/refs/tags/v${NCURSES_VERSION}.tar.gz
         tar xvzf ncurses-${NCURSES_VERSION}.tar.gz
@@ -95,7 +103,6 @@ function ncurses () {
             make install
             make clean
         fi
-        cd ..
     }
 
     # _ncurses 5.9
@@ -105,6 +112,8 @@ function ncurses () {
 
 function fuse () {
     [[ -e ${PREFIX}/lib/pkgconfig/fuse3.pc ]] && return
+
+    cd ${TEMP_FOLDER}
 
     pip install meson ninja
 
@@ -127,12 +136,13 @@ function fuse () {
         -Dinitscriptdir=
     ninja
     ninja install
-    cd ..
 }
 
 
 function tmux () {
     [[ -e ${PREFIX}/bin/tmux ]] && return
+
+    cd ${TEMP_FOLDER}
 
     libevent
     ncurses
@@ -150,12 +160,13 @@ function tmux () {
     make
     cp tmux ${PREFIX}/bin
     make clean
-    cd ..
 }
 
 
 function ncdu () {
     [[ -e ${PREFIX}/bin/ncdu ]] && return
+
+    cd ${TEMP_FOLDER}
 
     ncurses
 
@@ -172,12 +183,13 @@ function ncdu () {
     make
     make install
     make clean
-    cd ..
 }
 
 
 function lf () {
     [[ -e ${PREFIX}/bin/lf ]] && return
+
+    cd ${TEMP_FOLDER}
 
     LF_VERSION=r28
     [[ ! -e lf-linux-amd64.tar.gz ]] && wget https://ghproxy.com/https://github.com/gokcehan/lf/releases/download/${LF_VERSION}/lf-linux-amd64.tar.gz
@@ -190,6 +202,8 @@ function lf () {
 function htop () {
     [[ -e ${PREFIX}/bin/htop ]] && return
 
+    cd ${TEMP_FOLDER}
+
     ncurses
 
     HTOP_VERSION=3.2.2
@@ -200,12 +214,11 @@ function htop () {
     CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
     make install
     make clean
-    cd ..
 }
 
 
 function gcc8 () {
-    echo 'Bug here: gcc'
+    _ERR gcc8
     return
 
     # wget http://mirrors.kernel.org/ubuntu/pool/universe/g/gcc-8/gcc-8_8.4.0-3ubuntu2_amd64.deb
@@ -243,6 +256,8 @@ function gcc8 () {
 function lazygit () {
     [[ -e ${PREFIX}/bin/lazygit ]] && return
 
+    cd ${TEMP_FOLDER}
+
     LAZYGIT_VERSION=0.37.0
     mkdir lazygit-${LAZYGIT_VERSION}
     cd lazygit-${LAZYGIT_VERSION}
@@ -250,12 +265,13 @@ function lazygit () {
     tar xvzf lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
     mkdir -p ${PREFIX}/bin
     mv lazygit ${PREFIX}/bin
-    cd ..
 }
 
 
 function nvim () {
     [[ -e ${PREFIX}/bin/nvim ]] && return
+
+    cd ${TEMP_FOLDER}
 
     # fuse
 
@@ -267,6 +283,8 @@ function nvim () {
 function termscp () {
     [[ -e ${PREFIX}/bin/termscp ]] && return
 
+    cd ${TEMP_FOLDER}
+
     TERMSCP_VERSION=v0.11.1
     [[ ! -e termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz ]] && wget https://ghproxy.com/https://github.com/veeso/termscp/releases/download/${TERMSCP_VERSION}/termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz
     tar xzvf termscp-${TERMSCP_VERSION}-x86_64-unknown-linux-gnu.tar.gz
@@ -276,6 +294,8 @@ function termscp () {
 
 
 function brew () {
+    _ERR brew
+    return
     # Judge if Linux or Mac
     OS="$(uname)"
     if [[ "$OS" == "Linux" ]]; then
@@ -322,6 +342,8 @@ function brew () {
 
 
 function firacode () {
+    _ERR firacode
+    return
     fonts_dir="/usr/share/fonts/firacode"
     [[ -e $fonts_dir ]]; return
 
@@ -359,6 +381,18 @@ function fzf () {
     ./install
 }
 
+
+function ants () {
+    cd ${PREFIX}/bin
+    mkdir -p ANTs
+    cd ANTs
+    [[ ! -e antsInstallExample ]] && git clone git@git.zhlh6.cn:cookpa/antsInstallExample.git
+    cd antsInstallExample
+    sed -i "17s/^.*$//; s/https:\/\/github.com\//git@git.zhlh6.cn:/g; 65s/^.*$/sed -i s#https:\/\/github.com\/#git@git.zhlh6.cn:#g ..\/build\/ITKv5-prefix\/tmp\/ITKv5-gitclone.cmake/g" installANTs.sh
+    chmod 777 installANTs.sh
+    cd ..
+    ./antsInstallExample/installANTs.sh
+}
 
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
