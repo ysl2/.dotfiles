@@ -12,6 +12,6 @@
    }
 
    function conda_env {
-       [[ $PWD == $HOME/Documents/BaiduSeg ]] && conda activate BaiduSeg
+       [[ $PWD == $HOME/Documents/BaiduSeg* ]] && conda activate BaiduSeg
    }
    ```
