@@ -1,5 +1,0 @@
-#!/bin/bash
-
-
-~/.Local/bin/proxychains4 \
-    -f ~/.scripts/proxychains/proxychains.conf
