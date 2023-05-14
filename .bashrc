@@ -68,7 +68,7 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export DISPLAY=:0
 export STARSHIP_LOG=error
 export http_proxy=127.0.0.1:7890
-export https_proxy=127.0.0.1:7891
+export https_proxy=127.0.0.1:7890
 
 # Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
 function lfcd () {
