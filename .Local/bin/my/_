@@ -394,6 +394,24 @@ function ants () {
     ./antsInstallExample/installANTs.sh
 }
 
+function clash () {
+    [[ -e ${PREFIX}/bin/_lib-clash ]] && return
+
+    cd ${TEMP_FOLDER}
+
+    curl https://glados.rocks/tools/clash-linux.zip -o clash.zip #下载Clash
+    unzip clash.zip
+    mv clash ${PREFIX}/bin/_lib-clash
+
+    cd ${PREFIX}/bin/_lib-clash
+    # curl https://update.glados-config.com/clash/151876/763d7e4/82122/glados-terminal.yaml > glados.yaml
+    mv clash*64* clash
+    chmod +x clash
+
+    cd ..
+    ln -s _lib-clash/clash .
+}
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
