@@ -413,7 +413,7 @@ function clash () {
 }
 
 function proxychains () {
-    [[ -e ${PREFIX}/bin/proxychains ]] && return
+    [[ -e ${PREFIX}/bin/proxychains4 ]] && return
 
     cd ${TEMP_FOLDER}
 
@@ -427,7 +427,6 @@ function proxychains () {
     make clean
 
     cd ${PREFIX}/bin
-    ln -s proxychains4 proxychains
 }
 
 if [[ -z $1 ]]; then
