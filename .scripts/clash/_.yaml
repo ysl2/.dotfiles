@@ -1,1446 +1,561 @@
-# GLaDOS
-# GLobal Local and Destination Operating System
-# Clash Config File for ClashforWindows/0.20.10-151876-21-201
-# Generated at Sun May 14 2023 12:30:48 GMT+0000 (UTC) by Aperture Science
-# ░██████╗░██╗░░░░░░█████╗░██████╗░░█████╗░░██████╗
-# ██╔════╝░██║░░░░░██╔══██╗██╔══██╗██╔══██╗██╔════╝
-# ██║░░██╗░██║░░░░░███████║██║░░██║██║░░██║╚█████╗░
-# ██║░░╚██╗██║░░░░░██╔══██║██║░░██║██║░░██║░╚═══██╗
-# ╚██████╔╝███████╗██║░░██║██████╔╝╚█████╔╝██████╔╝
-# ░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░░╚════╝░╚═════╝░
-# port of HTTP
-port: 7890
-
-# port of SOCKS5
-socks-port: 7891
-
-allow-lan: false
-
-# Rule / Global/ DIRECT (default is Rule)
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
 mode: rule
-
-
-# set log level to stdout (default is info)
-# info / warning / error / debug
 log-level: info
-
-# A RESTful API for clash
-external-controller: 127.0.0.1:9090
-
-# Secret for RESTful API (Optional)
-secret: ""
-
+external-controller: '127.0.0.1:9090'
 dns:
-  enable: false # set true to enable dns (default is false)
-  listen: 127.0.0.1:53
-  nameserver:
-     - 119.29.29.29
-     - 114.114.114.114
-  fallback: # concurrent request with nameserver, fallback used when GEOIP country isn't CN
-     - https://1.1.1.1/dns-query
-     - tls://1.0.0.1:853
-     - tls://dns.google:853
-
-
+    enable: true
+    ipv6: false
+    default-nameserver: [223.5.5.5, 119.29.29.29]
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
 proxies:
-  - name: GLaDOS-H2-00
-    type: trojan
-    server: b491fd9.ha.gladns.com
-    port: 3306
-    sni: n2.gladns.com
-    password: "78bb726c0d23c8ac"
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/gateway/connect"
-      headers: { "Host":"78bb726c0d23c8ac.apple.com", "Edge": "b491fd9.fm.huawei.com:82122" }
-  - name: GLaDOS-H2-01
-    type: trojan
-    server: b491fd9.hb.gladns.com
-    port: 3306
-    sni: n2.gladns.com
-    password: "78bb726c0d23c8ac"
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/gateway/connect"
-      headers: { "Host":"78bb726c0d23c8ac.apple.com", "Edge": "b491fd9.fm.huawei.com:82122" }
-  - name: GLaDOS-H2-02
-    type: trojan
-    server: b491fd9.hc.gladns.com
-    port: 3306
-    sni: n2.gladns.com
-    password: "78bb726c0d23c8ac"
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/gateway/connect"
-      headers: { "Host":"78bb726c0d23c8ac.apple.com", "Edge": "b491fd9.fm.huawei.com:82122" }
-  - name: GLaDOS-H2-03
-    type: trojan
-    server: b491fd9.hd.gladns.com
-    port: 3306
-    sni: n2.gladns.com
-    password: "78bb726c0d23c8ac"
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/gateway/connect"
-      headers: { "Host":"78bb726c0d23c8ac.apple.com", "Edge": "b491fd9.fm.huawei.com:82122" }
-  - name: GLaDOS-H2-04
-    type: trojan
-    server: b491fd9.he.gladns.com
-    port: 3306
-    sni: n2.gladns.com
-    password: "78bb726c0d23c8ac"
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/gateway/connect"
-      headers: { "Host":"78bb726c0d23c8ac.apple.com", "Edge": "b491fd9.fm.huawei.com:82122" }
-  - name: GLaDOS-H2-05
-    type: trojan
-    server: b491fd9.hf.gladns.com
-    port: 3306
-    sni: n2.gladns.com
-    password: "78bb726c0d23c8ac"
-    udp: true
-    network: ws
-    ws-opts:
-      path: "/gateway/connect"
-      headers: { "Host":"78bb726c0d23c8ac.apple.com", "Edge": "b491fd9.fm.huawei.com:82122" }
-  - name: GLaDOS-US-01
-    type: ss
-    server: b491fd9.u1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-US-02
-    type: ss
-    server: b491fd9.u2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-US-03
-    type: ss
-    server: b491fd9.u3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-JP-01
-    type: ss
-    server: b491fd9.j1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-JP-02
-    type: ss
-    server: b491fd9.j2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-JP-03
-    type: ss
-    server: b491fd9.j3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-TW-01
-    type: ss
-    server: b491fd9.t1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-TW-02
-    type: ss
-    server: b491fd9.t2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-TW-03
-    type: ss
-    server: b491fd9.t3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-HK-01
-    type: ss
-    server: b491fd9.h1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-HK-02
-    type: ss
-    server: b491fd9.h2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-HK-03
-    type: ss
-    server: b491fd9.h3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-SG-01
-    type: ss
-    server: b491fd9.s1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-SG-02
-    type: ss
-    server: b491fd9.s2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-SG-03
-    type: ss
-    server: b491fd9.s3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-UK-01
-    type: ss
-    server: b491fd9.e1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-UK-02
-    type: ss
-    server: b491fd9.e2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-UK-03
-    type: ss
-    server: b491fd9.e3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-01
-    type: ss
-    server: b491fd9.b1.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-02
-    type: ss
-    server: b491fd9.b2.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-03
-    type: ss
-    server: b491fd9.b3.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-04
-    type: ss
-    server: b491fd9.b4.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-05
-    type: ss
-    server: b491fd9.b5.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-06
-    type: ss
-    server: b491fd9.b6.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-07
-    type: ss
-    server: b491fd9.b7.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-08
-    type: ss
-    server: b491fd9.b8.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-B1-09
-    type: ss
-    server: b491fd9.b9.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-D1-01
-    type: ss
-    server: b491fd9.da.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-D1-02
-    type: ss
-    server: b491fd9.db.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-D1-03
-    type: ss
-    server: b491fd9.dc.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-
-
-  - name: GLaDOS-US-1-Netflix
-    type: vmess
-    server: b491fd9.f4.gladns.com
-    port: 3331
-    uuid: "57e0cb4d-eae5-48ec-8091-149dc2b309e0"
-    alterId: 0
-    cipher: chacha20-poly1305
-    udp: true
-    network: ws
-    ws-path: "/t"
-    ws-headers: { "Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    ws-opts:
-      path: "/t"
-      headers: { "Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    headers: {"Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    servername: n2.gladns.com
-    tls: true
-  - name: GLaDOS-US-2-Netflix
-    type: vmess
-    server: b491fd9.f5.gladns.com
-    port: 3331
-    uuid: "57e0cb4d-eae5-48ec-8091-149dc2b309e0"
-    alterId: 0
-    cipher: chacha20-poly1305
-    udp: true
-    network: ws
-    ws-path: "/t"
-    ws-headers: { "Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    ws-opts:
-      path: "/t"
-      headers: { "Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    headers: {"Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    servername: n2.gladns.com
-    tls: true
-  - name: GLaDOS-US-3-Netflix
-    type: vmess
-    server: b491fd9.f6.gladns.com
-    port: 3331
-    uuid: "57e0cb4d-eae5-48ec-8091-149dc2b309e0"
-    alterId: 0
-    cipher: chacha20-poly1305
-    udp: true
-    network: ws
-    ws-path: "/t"
-    ws-headers: { "Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    ws-opts:
-      path: "/t"
-      headers: { "Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    headers: {"Host":"tls.apple.com", "Edge": "b491fd9.fm.apple.com:82122" }
-    servername: n2.gladns.com
-    tls: true
-  - name: GLaDOS-US-4-Netflix
-    type: ss
-    server: b491fd9.d4.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-US-5-Netflix
-    type: ss
-    server: b491fd9.d5.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-  - name: GLaDOS-US-6-Netflix
-    type: ss
-    server: b491fd9.d6.gladns.com
-    port: 2377
-    cipher: chacha20-ietf-poly1305
-    password: "t0srmdxrm3xyjnvqz9ewlxb2myq7rjuv"
-    plugin: obfs
-    plugin-opts:
-      mode: tls
-      host: b491fd9.dl.nintendo.net:82122
-
-
+    - { name: '剩余流量：47.06 GB', type: trojan, server: aws-hk01.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk01.aikun.online, skip-cert-verify: true }
+    - { name: '距离下次重置剩余：17 天', type: trojan, server: aws-hk01.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk01.aikun.online, skip-cert-verify: true }
+    - { name: 套餐到期：2024-03-19, type: trojan, server: aws-hk01.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk01.aikun.online, skip-cert-verify: true }
+    - { name: 用不了就更新订阅, type: trojan, server: aws-hk01.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk01.aikun.online, skip-cert-verify: true }
+    - { name: '香港 01（一区）', type: trojan, server: aws-hk01.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk01.aikun.online, skip-cert-verify: true }
+    - { name: '香港 02（一区）', type: trojan, server: aws-hk02.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk02.aikun.online, skip-cert-verify: true }
+    - { name: '香港 03（一区）', type: trojan, server: aws-hk03.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-hk03.aikun.online, skip-cert-verify: true }
+    - { name: '日本 01（一区）', type: trojan, server: aws-jp.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-jp.aikun.online, skip-cert-verify: true }
+    - { name: '日本 02（一区）', type: trojan, server: aws-jp.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-jp.aikun.online, skip-cert-verify: true }
+    - { name: '日本 03（一区）', type: trojan, server: aws-jp.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-jp.aikun.online, skip-cert-verify: true }
+    - { name: '新加坡 01（一区）', type: trojan, server: aws-sg.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-sg.aikun.online, skip-cert-verify: true }
+    - { name: '新加坡 02（一区）', type: trojan, server: aws-sg.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-sg.aikun.online, skip-cert-verify: true }
+    - { name: '新加坡 03（一区）', type: trojan, server: aws-sg.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: aws-sg.aikun.online, skip-cert-verify: true }
+    - { name: '台湾 01 高速', type: trojan, server: cdn.twnct.6641634715834932.me, port: 7045, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: cdn.twnct.6641634715834932.me, skip-cert-verify: true }
+    - { name: '美国圣何塞 01', type: trojan, server: tempest-us.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: s-jp01.aikun.online, skip-cert-verify: true }
+    - { name: '美国圣何塞 02', type: trojan, server: tempest-us.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: s-jp01.aikun.online, skip-cert-verify: true }
+    - { name: '美国圣何塞 03', type: trojan, server: tempest-us.aikun.online, port: 443, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: s-jp01.aikun.online, skip-cert-verify: true }
+    - { name: 法国, type: trojan, server: faguo.aikun.online, port: 50407, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: faguo.aikun.online, skip-cert-verify: true }
+    - { name: 土耳其, type: trojan, server: 94.131.108.128, port: 50407, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: tr.aikun.online, skip-cert-verify: true }
+    - { name: 英国, type: trojan, server: uk.aikun.online, port: 50407, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: uk.aikun.online, skip-cert-verify: true }
+    - { name: 俄罗斯, type: trojan, server: els.aikun.online, port: 50407, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true, sni: els.aikun.online, skip-cert-verify: true }
+    - { name: '日本专线 01（5倍流量消耗）', type: ss, server: sh.aikun.online, port: 33580, cipher: aes-128-gcm, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true }
+    - { name: '日本专线 02（5倍流量消耗）', type: ss, server: sh.aikun.online, port: 33580, cipher: aes-128-gcm, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true }
+    - { name: '日本专线 03（5倍流量消耗）', type: ss, server: sh.aikun.online, port: 33580, cipher: aes-128-gcm, password: 83fa643d-e775-4b55-a97b-738b7532ba3a, udp: true }
 proxy-groups:
-  - name: Auto-Fast
-    type: "url-test"
-    url: "http://www.gstatic.cn/generate_204"
-    interval: 300
-    tolerance: 100
-    proxies:
-        - GLaDOS-B1-01
-        - GLaDOS-B1-02
-        - GLaDOS-B1-03
-        - GLaDOS-B1-06
-        - GLaDOS-B1-07
-        - GLaDOS-B1-08
-        - GLaDOS-B1-09
-        - GLaDOS-H2-00
-        - GLaDOS-H2-01
-        - GLaDOS-H2-02
-  - name: Auto-Edge
-    type: "url-test"
-    url: "http://www.gstatic.cn/generate_204"
-    interval: 600
-    tolerance: 100
-    proxies:
-        - GLaDOS-H2-04
-        - GLaDOS-H2-05
-        - GLaDOS-B1-05
-        - GLaDOS-B1-06
-        - GLaDOS-B1-07
-        - GLaDOS-B1-08
-        - GLaDOS-B1-09
-  - name: Auto-Failover
-    type: "url-test"
-    url: "http://www.gstatic.cn/generate_204"
-    interval: 1800
-    tolerance: 100
-    proxies:
-        - GLaDOS-US-01
-        - GLaDOS-US-02
-        - GLaDOS-US-03
-        - GLaDOS-JP-01
-        - GLaDOS-JP-02
-        - GLaDOS-JP-03
-        - GLaDOS-TW-01
-        - GLaDOS-TW-02
-        - GLaDOS-TW-03
-        - GLaDOS-HK-01
-        - GLaDOS-HK-02
-        - GLaDOS-HK-03
-        - GLaDOS-SG-01
-        - GLaDOS-SG-02
-        - GLaDOS-SG-03
-        - GLaDOS-UK-01
-        - GLaDOS-UK-02
-        - GLaDOS-UK-03
-  - name: Express
-    type: "fallback"
-    url: "http://www.gstatic.cn/generate_204"
-    interval: 600
-    tolerance: 50
-    proxies:
-        - Auto-Edge
-        - Auto-Fast
-        - Auto-Failover
-  - name: Auto
-    type: "fallback"
-    url: "http://www.gstatic.cn/generate_204"
-    interval: 600
-    proxies:
-        - Auto-Fast
-        - Auto-Edge
-        - Auto-Failover
-  - name: Proxy
-    type: "select"
-    proxies:
-        - "Auto"
-        - GLaDOS-US-01
-        - GLaDOS-US-02
-        - GLaDOS-US-03
-        - GLaDOS-JP-01
-        - GLaDOS-JP-02
-        - GLaDOS-JP-03
-        - GLaDOS-TW-01
-        - GLaDOS-TW-02
-        - GLaDOS-TW-03
-        - GLaDOS-HK-01
-        - GLaDOS-HK-02
-        - GLaDOS-HK-03
-        - GLaDOS-SG-01
-        - GLaDOS-SG-02
-        - GLaDOS-SG-03
-        - GLaDOS-UK-01
-        - GLaDOS-UK-02
-        - GLaDOS-UK-03
-        - GLaDOS-D1-01
-        - GLaDOS-D1-02
-        - GLaDOS-D1-03
-  - name: Video
-    type: "select"
-    interval: 600
-    url: "http://www.gstatic.cn/generate_204"
-    proxies:
-        - Express
-        - GLaDOS-D1-01
-        - GLaDOS-D1-02
-        - GLaDOS-D1-03
-        - GLaDOS-US-01
-        - GLaDOS-US-02
-        - GLaDOS-US-03
-        - GLaDOS-JP-01
-        - GLaDOS-JP-02
-        - GLaDOS-JP-03
-        - GLaDOS-TW-01
-        - GLaDOS-TW-02
-        - GLaDOS-TW-03
-        - GLaDOS-HK-01
-        - GLaDOS-HK-02
-        - GLaDOS-HK-03
-        - GLaDOS-SG-01
-        - GLaDOS-SG-02
-        - GLaDOS-SG-03
-        - GLaDOS-UK-01
-        - GLaDOS-UK-02
-        - GLaDOS-UK-03
-  - name: NETFLIX
-    type: "select"
-    url: "http://www.gstatic.cn/generate_204"
-    interval: 1200
-    proxies:
-        - GLaDOS-US-1-Netflix
-        - GLaDOS-US-2-Netflix
-        - GLaDOS-US-3-Netflix
-        - GLaDOS-US-4-Netflix
-        - GLaDOS-US-5-Netflix
-        - GLaDOS-US-6-Netflix
-        - Auto-Edge
-        - DIRECT
+    - { name: 三毛机场, type: select, proxies: [自动选择, 故障转移, '剩余流量：47.06 GB', '距离下次重置剩余：17 天', 套餐到期：2024-03-19, 用不了就更新订阅, '香港 01（一区）', '香港 02（一区）', '香港 03（一区）', '日本 01（一区）', '日本 02（一区）', '日本 03（一区）', '新加坡 01（一区）', '新加坡 02（一区）', '新加坡 03（一区）', '台湾 01 高速', '美国圣何塞 01', '美国圣何塞 02', '美国圣何塞 03', 法国, 土耳其, 英国, 俄罗斯, '日本专线 01（5倍流量消耗）', '日本专线 02（5倍流量消耗）', '日本专线 03（5倍流量消耗）'] }
+    - { name: 自动选择, type: url-test, proxies: ['剩余流量：47.06 GB', '距离下次重置剩余：17 天', 套餐到期：2024-03-19, 用不了就更新订阅, '香港 01（一区）', '香港 02（一区）', '香港 03（一区）', '日本 01（一区）', '日本 02（一区）', '日本 03（一区）', '新加坡 01（一区）', '新加坡 02（一区）', '新加坡 03（一区）', '台湾 01 高速', '美国圣何塞 01', '美国圣何塞 02', '美国圣何塞 03', 法国, 土耳其, 英国, 俄罗斯, '日本专线 01（5倍流量消耗）', '日本专线 02（5倍流量消耗）', '日本专线 03（5倍流量消耗）'], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
+    - { name: 故障转移, type: fallback, proxies: ['剩余流量：47.06 GB', '距离下次重置剩余：17 天', 套餐到期：2024-03-19, 用不了就更新订阅, '香港 01（一区）', '香港 02（一区）', '香港 03（一区）', '日本 01（一区）', '日本 02（一区）', '日本 03（一区）', '新加坡 01（一区）', '新加坡 02（一区）', '新加坡 03（一区）', '台湾 01 高速', '美国圣何塞 01', '美国圣何塞 02', '美国圣何塞 03', 法国, 土耳其, 英国, 俄罗斯, '日本专线 01（5倍流量消耗）', '日本专线 02（5倍流量消耗）', '日本专线 03（5倍流量消耗）'], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
 rules:
-#user rules
-
-# check first
-- DOMAIN-SUFFIX,qq.com,DIRECT
-- DOMAIN-SUFFIX,taobao.com,DIRECT
-- DOMAIN-SUFFIX,baidu.com,DIRECT
-- DOMAIN-SUFFIX,weibo.com,DIRECT
-- DOMAIN-SUFFIX,jd.com,DIRECT
-- DOMAIN-SUFFIX,tmall.com,DIRECT
-- DOMAIN-SUFFIX,360.cn,DIRECT
-- DOMAIN-SUFFIX,zhihu.com,DIRECT
-- DOMAIN-SUFFIX,com.cn,DIRECT
-- DOMAIN-SUFFIX,ol.epicgames.com,DIRECT
-
-# allowed safe trackers
-- DOMAIN,graph.instagram.com,DIRECT
-- DOMAIN,www.googleadservices.com,DIRECT
-- DOMAIN,control.kochava.com,DIRECT
-- DOMAIN,www.google-analytics.com,DIRECT
-- DOMAIN,ssl.google-analytics.com,DIRECT
-- DOMAIN,nexus.officeapps.live.com,DIRECT
-- DOMAIN,googleads.g.doubleclick.net,DIRECT
-- DOMAIN,e.crashlytics.com,DIRECT
-- DOMAIN,ib.adnxs.com,DIRECT
-- DOMAIN,safebrowsing.googleapis.com,DIRECT
-- DOMAIN-SUFFIX,googlesyndication.com,DIRECT
-- DOMAIN-SUFFIX,googletagmanager.com,DIRECT
-- DOMAIN-SUFFIX,googletagservices.com,DIRECT
-
-#specific geo services
-- DOMAIN-SUFFIX,ai.com,GLaDOS-TW-01
-- DOMAIN-SUFFIX,openai.com,GLaDOS-TW-01
-- DOMAIN,openaiapi-site.azureedge.net,GLaDOS-TW-01
-- DOMAIN-SUFFIX,bing.com,GLaDOS-TW-01
-- DOMAIN-SUFFIX,paypal.com,GLaDOS-HK-01
-- DOMAIN-SUFFIX,stripe.com,GLaDOS-US-01
-
-##tiktok
-- DOMAIN-SUFFIX,byteoversea.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,muscdn.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,musical.ly,GLaDOS-US-01
-- DOMAIN-SUFFIX,tik-tokapi.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,tiktokcdn.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,tiktok.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,tiktokv.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,full:p16-tiktokcdn-com.akamaized.net,GLaDOS-US-01
-
-#scholar
-- DOMAIN-KEYWORD,scholar,GLaDOS-TW-01
-
-- DOMAIN-SUFFIX,rxiv.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,acrjournals.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,cademic.eb.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,caric.co.jp,GLaDOS-US-01
-- DOMAIN-SUFFIX,clweb.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,cm.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,cs.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,gu.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,iaa.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,imsciences.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,ms.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,natomy.tv,GLaDOS-US-01
-- DOMAIN-SUFFIX,nalytictech.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,nnualreviews.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,ps.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,rabidopsis.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,rtstor.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,scelibrary.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,sha.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,sm.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,sme.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,sminternational.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,sn-online.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,spbjournals.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,spenpublishing.com,GLaDOS-US-01
-- DOMAIN-SUFFIX,stm.org,GLaDOS-US-01
-- DOMAIN-SUFFIX,siam.org,GLaDOS-US-01
-
-#dev
-- DOMAIN-SUFFIX,figma.com,Proxy
-- DOMAIN-SUFFIX,v2ex.com,Proxy
-- DOMAIN-KEYWORD,gitlab,Proxy
-- DOMAIN-KEYWORD,github,Proxy
-- DOMAIN-KEYWORD,npm,Proxy
-- DOMAIN-KEYWORD,stackoverflow.com,Proxy
-- DOMAIN-SUFFIX,techcrunch.com,Proxy
-- DOMAIN-SUFFIX,go-lang.com,Proxy
-- DOMAIN-SUFFIX,go-lang.net,Proxy
-- DOMAIN-SUFFIX,go-lang.org,Proxy
-- DOMAIN-SUFFIX,go.dev,Proxy
-- DOMAIN-SUFFIX,godoc.org,Proxy
-- DOMAIN-SUFFIX,golang.com,Proxy
-- DOMAIN-SUFFIX,golang.net,Proxy
-- DOMAIN-SUFFIX,golang.org,Proxy
-- DOMAIN-SUFFIX,trello.com,Proxy
-- DOMAIN-SUFFIX,techsmith.com,Proxy
-- DOMAIN-SUFFIX,thepiratebay.org,Proxy
-- DOMAIN-SUFFIX,pinterest.com,Proxy
-
-# > IQIYI
-- DOMAIN-KEYWORD,qiyi,DIRECT
-- DOMAIN-SUFFIX,qy.net,DIRECT
-- DOMAIN-SUFFIX,letv.com,DIRECT
-- DOMAIN-SUFFIX,71.am,DIRECT
-- DOMAIN-SUFFIX,71edge.com,DIRECT
-- DOMAIN-SUFFIX,iqiyi.com,DIRECT
-- DOMAIN-SUFFIX,iqiyipic.com,DIRECT
-- DOMAIN-SUFFIX,ppsimg.com,DIRECT
-- DOMAIN-SUFFIX,qiyi.com,DIRECT
-- DOMAIN-SUFFIX,qiyipic.com,DIRECT
-- DOMAIN-SUFFIX,qy.net,DIRECT
-
-# > NeteaseMusic
-- DOMAIN-SUFFIX,163yun.com,DIRECT
-- DOMAIN-SUFFIX,music.126.net,DIRECT
-- DOMAIN-SUFFIX,music.163.com,DIRECT
-
-# China CDN
-- DOMAIN-SUFFIX,tnkjmec.com,DIRECT
-- DOMAIN-SUFFIX,clngaa.com,DIRECT
-- DOMAIN-SUFFIX,ksyna.com,DIRECT
-- DOMAIN-SUFFIX,bscstorage.net,DIRECT
-- DOMAIN-SUFFIX,eccdnx.com,DIRECT
-- DOMAIN-SUFFIX,pinyuncloud.com,DIRECT
-- DOMAIN-SUFFIX,8686c.com,DIRECT
-- DOMAIN-SUFFIX,pphimalayanrt.com,DIRECT
-- DOMAIN-SUFFIX,qbox.me,DIRECT
-- DOMAIN-SUFFIX,qiniu.com,DIRECT
-- DOMAIN-SUFFIX,qiniudn.com,DIRECT
-- DOMAIN-SUFFIX,qiniup.com,DIRECT
-- DOMAIN-SUFFIX,qnsdk.com,DIRECT
-- DOMAIN-SUFFIX,qnssl.com,DIRECT
-- DOMAIN-SUFFIX,qiniucdn.com,DIRECT
-- DOMAIN-SUFFIX,qiniudns.com,DIRECT
-- DOMAIN-SUFFIX,sandai.net,DIRECT
-
-# > ByteDance
-- DOMAIN-KEYWORD,toutiao,DIRECT
-- DOMAIN-SUFFIX,bdxiguastatic.com,DIRECT
-- DOMAIN-SUFFIX,bdurl.net,DIRECT
-- DOMAIN-SUFFIX,douyinstatic.com,DIRECT
-- DOMAIN-SUFFIX,douyin.com,DIRECT
-- DOMAIN-SUFFIX,douyinpic.com,DIRECT
-- DOMAIN-SUFFIX,douyinvod.com,DIRECT
-- DOMAIN-SUFFIX,huoshan.com,DIRECT
-- DOMAIN-SUFFIX,huoshanstatic.com,DIRECT
-- DOMAIN-SUFFIX,huoshanzhibo.com,DIRECT
-- DOMAIN-SUFFIX,ixigua.com,DIRECT
-- DOMAIN-SUFFIX,ixiguavideo.com,DIRECT
-- DOMAIN-SUFFIX,ixgvideo.com,DIRECT
-- DOMAIN-SUFFIX,bdxiguaimg.com,DIRECT
-- DOMAIN-SUFFIX,pstatp.com,DIRECT
-- DOMAIN-SUFFIX,snssdk.com,DIRECT
-- DOMAIN-SUFFIX,zijiecdn.com,DIRECT
-- DOMAIN-SUFFIX,zijiecdn.net,DIRECT
-- DOMAIN-SUFFIX,zjbyte.cn,DIRECT
-- DOMAIN-SUFFIX,zjcdn.com,DIRECT
-- DOMAIN-SUFFIX,bytedance.com,DIRECT
-- DOMAIN-SUFFIX,bytedance.net,DIRECT
-- DOMAIN-SUFFIX,bytedns.net,DIRECT
-- DOMAIN-SUFFIX,byteimg.com,DIRECT
-- DOMAIN-SUFFIX,feiliao.com,DIRECT
-- DOMAIN-SUFFIX,gifshow.com,DIRECT
-- DOMAIN-SUFFIX,huoshan.com,DIRECT
-- DOMAIN-SUFFIX,iesdouyin.com,DIRECT
-- DOMAIN-SUFFIX,ixigua.com,DIRECT
-- DOMAIN-SUFFIX,kspkg.com,DIRECT
-- DOMAIN-SUFFIX,pstatp.com,DIRECT
-- DOMAIN-SUFFIX,snssdk.com,DIRECT
-- DOMAIN-SUFFIX,wukong.com,DIRECT
-- DOMAIN-SUFFIX,zijieimg.com,DIRECT
-- DOMAIN-SUFFIX,zjbyte.com,DIRECT
-- DOMAIN-SUFFIX,zjcdn.com,DIRECT
-
-# > Bilibili
-- DOMAIN-KEYWORD,bili,DIRECT
-- DOMAIN-SUFFIX,acg.tv,DIRECT
-- DOMAIN-SUFFIX,acgvideo.com,DIRECT
-- DOMAIN-SUFFIX,b23.tv,DIRECT
-- DOMAIN-SUFFIX,hdslb.com,DIRECT
-- DOMAIN-SUFFIX,im9.com,DIRECT
-
-# > Blizzard
-- DOMAIN-SUFFIX,blizzard.com,DIRECT
-- DOMAIN-SUFFIX,battle.net,DIRECT
-- DOMAIN,blzddist1-a.akamaihd.net,DIRECT
-
-# DIRECT
-- DOMAIN-SUFFIX,digicert.com,DIRECT
-- DOMAIN-SUFFIX,code.visualstudio.com,DIRECT
-
-# CCTV
-- DOMAIN-SUFFIX,cctv.com,DIRECT
-- DOMAIN-SUFFIX,cctvpic.com,DIRECT
-- DOMAIN-SUFFIX,livechina.com,DIRECT
-
-# DiDi
-- DOMAIN-SUFFIX,didialift.com,DIRECT
-- DOMAIN-SUFFIX,didiglobal.com,DIRECT
-- DOMAIN-SUFFIX,udache.com,DIRECT
-
-# Douyu 斗鱼
-- DOMAIN-SUFFIX,douyu.com,DIRECT
-- DOMAIN-SUFFIX,douyu.tv,DIRECT
-- DOMAIN-SUFFIX,douyuscdn.com,DIRECT
-- DOMAIN-SUFFIX,douyutv.com,DIRECT
-
-# Epic
-- DOMAIN-SUFFIX,epicgames.com,DIRECT
-- DOMAIN-SUFFIX,helpshift.com,DIRECT
-- DOMAIN-SUFFIX,paragon.com,DIRECT
-- DOMAIN-SUFFIX,unrealengine.com,DIRECT
-
-# HuaWei
-- DOMAIN-SUFFIX,dbankcdn.com,DIRECT
-- DOMAIN-SUFFIX,hc-cdn.com,DIRECT
-- DOMAIN-SUFFIX,hicloud.com,DIRECT
-- DOMAIN-SUFFIX,huawei.com,DIRECT
-- DOMAIN-SUFFIX,huaweicloud.com,DIRECT
-- DOMAIN-SUFFIX,huaweishop.net,DIRECT
-- DOMAIN-SUFFIX,hwccpc.com,DIRECT
-- DOMAIN-SUFFIX,vmall.com,DIRECT
-- DOMAIN-SUFFIX,vmallres.com,DIRECT
-
-# Iflytek
-- DOMAIN-SUFFIX,iflyink.com,DIRECT
-- DOMAIN-SUFFIX,iflyrec.com,DIRECT
-- DOMAIN-SUFFIX,iflytek.com,DIRECT
-
-- IP-CIDR,119.29.29.29/32,DIRECT
-- IP-CIDR,114.114.114.114/32,DIRECT
-- DOMAIN,dig.bdurl.net,DIRECT
-- DOMAIN,pagead2.googlesyndication.com,DIRECT
-
-
-# DIRECTEND
-
-# STEAM CN
-- DOMAIN,csgo.wmsj.cn,DIRECT
-- DOMAIN,dl.steam.clngaa.com,DIRECT
-- DOMAIN,dl.steam.ksyna.com,DIRECT
-- DOMAIN,dota2.wmsj.cn,DIRECT
-- DOMAIN,st.dl.bscstorage.net,DIRECT
-- DOMAIN,st.dl.eccdnx.com,DIRECT
-- DOMAIN,st.dl.pinyuncloud.com,DIRECT
-- DOMAIN,steampipe.steamcontent.tnkjmec.com,DIRECT
-- DOMAIN,steampowered.com.8686c.com,DIRECT
-- DOMAIN,steamstatic.com.8686c.com,DIRECT
-- DOMAIN,wmsjsteam.com,DIRECT
-- DOMAIN-SUFFIX,cm.steampowered.com,DIRECT
-- DOMAIN-SUFFIX,steamchina.com,DIRECT
-- DOMAIN-SUFFIX,steamcontent.com,DIRECT
-- DOMAIN-SUFFIX,steamusercontent.com,DIRECT
-
-# STEAM CDN
-- DOMAIN,steambroadcast.akamaized.net,Video
-- DOMAIN,steamcdn-a.akamaihd.net,Video
-- DOMAIN,steamcommunity-a.akamaihd.net,Video
-- DOMAIN,steampipe.akamaized.net,Video
-- DOMAIN,steamstore-a.akamaihd.net,Video
-- DOMAIN,steamusercontent-a.akamaihd.net,Video
-- DOMAIN,steamuserimages-a.akamaihd.net,Video
-- DOMAIN-SUFFIX,fanatical.com,Video
-- DOMAIN-SUFFIX,humblebundle.com,Video
-- DOMAIN-SUFFIX,playartifact.com,Video
-- DOMAIN-SUFFIX,steam-chat.com,Video
-- DOMAIN-SUFFIX,steamcommunity.com,Video
-- DOMAIN-SUFFIX,steamgames.com,Video
-- DOMAIN-SUFFIX,steampowered.com,Video
-- DOMAIN-SUFFIX,steamserver.net,Video
-- DOMAIN-SUFFIX,steamstat.us,Video
-- DOMAIN-SUFFIX,steamstatic.com,Video
-- DOMAIN-SUFFIX,underlords.com,Video
-- DOMAIN-SUFFIX,valvesoftware.com,Video
-
-# dns
-- IP-CIDR,1.1.1.1/32,Proxy
-- IP-CIDR,1.0.0.1/32,Proxy
-- IP-CIDR,8.8.8.8/32,Proxy
-- DOMAIN,dns.google,Proxy
-
-# debug
-- DOMAIN,ip.sb,Proxy
-- DOMAIN,myip.ipip.net,Video
-- DOMAIN,ifconfig.me,NETFLIX
-
-# hot fix
-- DOMAIN-KEYWORD,discord,Proxy
-- DOMAIN,services.googleapis.cn,Proxy
-- DOMAIN,googleapis.cn,Proxy
-- DOMAIN-SUFFIX,ping.pe,Proxy
-- DOMAIN-SUFFIX,f2pool.com,Proxy
-- DOMAIN-SUFFIX,static.wikia.nocookie.net,Proxy
-
-- DOMAIN-SUFFIX,discord.co,Proxy
-- DOMAIN-SUFFIX,discord.com,Proxy
-- DOMAIN-SUFFIX,discord.gg,Proxy
-- DOMAIN-SUFFIX,discord.media,Proxy
-- DOMAIN-SUFFIX,discordapp.com,Proxy
-- DOMAIN-SUFFIX,discordapp.net,Proxy
-
-# common site
-- DOMAIN,services.googleapis.cn,Proxy
-- DOMAIN,google.com,Proxy
-- DOMAIN-SUFFIX,google.cn,Proxy
-- DOMAIN-SUFFIX,googleapis.cn,Proxy
-- DOMAIN-KEYWORD,facebook,Proxy
-- DOMAIN-SUFFIX,fb.me,Proxy
-- DOMAIN-KEYWORD,gmail,Proxy
-- DOMAIN-KEYWORD,twitter,Proxy
-- DOMAIN-KEYWORD,instagram,Proxy
-- DOMAIN-SUFFIX,twimg.com,Proxy
-- DOMAIN-KEYWORD,blogspot,Proxy
-- DOMAIN-KEYWORD,whatsapp,Proxy
-- DOMAIN-KEYWORD,glados,Proxy
-- DOMAIN-KEYWORD,wikipedia,Proxy
-- DOMAIN-SUFFIX,google.com,Proxy
-- DOMAIN-SUFFIX,facebook.com,Proxy
-- DOMAIN-SUFFIX,yahoo.com,Proxy
-- DOMAIN-SUFFIX,amazon.com,Proxy
-- DOMAIN-SUFFIX,vk.com,Proxy
-- DOMAIN-SUFFIX,reddit.com,Proxy
-- DOMAIN-SUFFIX,live.com,Proxy
-- DOMAIN-SUFFIX,zoom.us,Proxy
-- DOMAIN-SUFFIX,wikipedia.org,Proxy
-- DOMAIN-SUFFIX,myshopify.com,Proxy
-- DOMAIN-SUFFIX,instagram.com,Proxy
-- DOMAIN-SUFFIX,okezone.com,Proxy
-- DOMAIN-SUFFIX,office.com,Proxy
-- DOMAIN-SUFFIX,ebay.com,Proxy
-- DOMAIN-SUFFIX,bongacams.com,Proxy
-- DOMAIN-SUFFIX,blogspot.com,Proxy
-- DOMAIN-SUFFIX,yahoo.co.jp,Proxy
-- DOMAIN-SUFFIX,babytree.com,Proxy
-- DOMAIN-SUFFIX,amazon.co.jp,Proxy
-- DOMAIN-SUFFIX,adobe.com,Proxy
-- DOMAIN-SUFFIX,livejasmin.com,Proxy
-- DOMAIN-SUFFIX,stackoverflow.com,Proxy
-- DOMAIN-SUFFIX,dropbox.com,Proxy
-- DOMAIN-SUFFIX,msn.com,Proxy
-- DOMAIN-SUFFIX,yandex.ru,Proxy
-- DOMAIN-SUFFIX,linkedin.com,Proxy
-- DOMAIN-SUFFIX,twitter.com,Proxy
-- DOMAIN-SUFFIX,imgur.com,Proxy
-- DOMAIN-SUFFIX,amazonaws.com,Proxy
-- DOMAIN-SUFFIX,imdb.com,Proxy
-- DOMAIN-SUFFIX,whatsapp.com,Proxy
-- DOMAIN-SUFFIX,google.co.jp,Proxy
-- DOMAIN-SUFFIX,wordpress.com,Proxy
-- DOMAIN-SUFFIX,nytimes.com,Proxy
-- DOMAIN-SUFFIX,spotify.com,Proxy
-
-# Proxy CDN
-- DOMAIN-SUFFIX,s3.amazonaws.com,Video
-- DOMAIN-KEYWORD,akam,Video
-
-# Video
-- DOMAIN-KEYWORD,youtube,Video
-- DOMAIN,lybmc.com,DIRECT
-- DOMAIN,dayi.com,Video
-- DOMAIN-SUFFIX,phncdn.com,Video
-- DOMAIN-SUFFIX,phprcdn.com,Video
-- DOMAIN-SUFFIX,youtu.be,Video
-- DOMAIN-SUFFIX,googlevideo.com,Video
-- DOMAIN-SUFFIX,ytimg.com,Video
-- DOMAIN-SUFFIX,googleusercontent.com,Video
-- DOMAIN-KEYWORD,twitch,Video
-
-#NETFLIX
-- DOMAIN-KEYWORD,netflix,NETFLIX
-- DOMAIN-SUFFIX,netflix.com,NETFLIX
-- DOMAIN-SUFFIX,netflix.net,NETFLIX
-- DOMAIN-SUFFIX,nflxext.com,NETFLIX
-- DOMAIN-SUFFIX,nflximg.com,NETFLIX
-- DOMAIN-SUFFIX,nflximg.net,NETFLIX
-- DOMAIN-SUFFIX,nflxso.net,NETFLIX
-- DOMAIN-KEYWORD,dualstack.apiproxy-,NETFLIX
-- DOMAIN-KEYWORD,dualstack.ichnaea-web-,NETFLIX
-- DOMAIN-SUFFIX,netflix.com.edgesuite.net,NETFLIX
-- DOMAIN-SUFFIX,us-west-2.amazonaws.com,NETFLIX
-- DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,NETFLIX
-- DOMAIN-KEYWORD,ichnaea-web-,NETFLIX
-- DOMAIN,netflix.com.edgesuite.net,NETFLIX
-- DOMAIN-SUFFIX,netflix.com,NETFLIX
-- DOMAIN-SUFFIX,netflix.net,NETFLIX
-- DOMAIN-SUFFIX,nflxext.com,NETFLIX
-- DOMAIN-SUFFIX,nflximg.com,NETFLIX
-- DOMAIN-SUFFIX,nflximg.net,NETFLIX
-- DOMAIN-SUFFIX,nflxso.net,NETFLIX
-- DOMAIN-SUFFIX,nflxvideo.net,NETFLIX
-
-# > Fox+
-- DOMAIN-KEYWORD,foxplus,NETFLIX
-- DOMAIN-SUFFIX,config.fox.com,NETFLIX
-- DOMAIN-SUFFIX,emome.net,NETFLIX
-- DOMAIN-SUFFIX,fox.com,NETFLIX
-- DOMAIN-SUFFIX,foxdcg.com,NETFLIX
-- DOMAIN-SUFFIX,foxnow.com,NETFLIX
-- DOMAIN-SUFFIX,foxplus.com,NETFLIX
-- DOMAIN-SUFFIX,foxplay.com,NETFLIX
-- DOMAIN-SUFFIX,ipinfo.io,NETFLIX
-- DOMAIN-SUFFIX,mstage.io,NETFLIX
-- DOMAIN-SUFFIX,now.com,NETFLIX
-- DOMAIN-SUFFIX,theplatform.com,NETFLIX
-- DOMAIN-SUFFIX,urlload.net,NETFLIX
-
-# > HBO && HBO Go
-- DOMAIN-SUFFIX,hbo.com,NETFLIX
-- DOMAIN-SUFFIX,hboasia.com,NETFLIX
-- DOMAIN-SUFFIX,hbogo.com,NETFLIX
-- DOMAIN-SUFFIX,hbogoasia.hk,NETFLIX
-
-# > Hulu
-- DOMAIN-SUFFIX,hulu.com,NETFLIX
-- DOMAIN-SUFFIX,huluim.com,NETFLIX
-- DOMAIN-SUFFIX,hulustream.com,NETFLIX
-
-#Fast.com
-- DOMAIN-SUFFIX,fast.com,NETFLIX
-- DOMAIN-SUFFIX,oca.nflxvideo.net,NETFLIX
-- DOMAIN-SUFFIX,nflxvideo.net,NETFLIX
-
-- DOMAIN,cdn.registerdisney.go.com,NETFLIX
-- DOMAIN-SUFFIX,adobedtm.com,NETFLIX
-- DOMAIN-SUFFIX,bam.nr-data.net,NETFLIX
-- DOMAIN-SUFFIX,bamgrid.com,NETFLIX
-- DOMAIN-SUFFIX,braze.com,NETFLIX
-- DOMAIN-SUFFIX,cdn.optimizely.com,NETFLIX
-- DOMAIN-SUFFIX,cdn.registerdisney.go.com,NETFLIX
-- DOMAIN-SUFFIX,cws.conviva.com,NETFLIX
-- DOMAIN-SUFFIX,d9.flashtalking.com,NETFLIX
-- DOMAIN-SUFFIX,disney-plus.net,NETFLIX
-- DOMAIN-SUFFIX,disney-portal.my.onetrust.com,NETFLIX
-- DOMAIN-SUFFIX,disney.demdex.net,NETFLIX
-- DOMAIN-SUFFIX,disney.my.sentry.io,NETFLIX
-- DOMAIN-SUFFIX,disneyplus.bn5x.net,NETFLIX
-- DOMAIN-SUFFIX,disneyplus.com,NETFLIX
-- DOMAIN-SUFFIX,disneyplus.com.ssl.sc.omtrdc.net,NETFLIX
-- DOMAIN-SUFFIX,disneystreaming.com,NETFLIX
-- DOMAIN-SUFFIX,dssott.com,NETFLIX
-- DOMAIN-SUFFIX,execute-api.us-east-1.amazonaws.com,NETFLIX
-- DOMAIN-SUFFIX,js-agent.newrelic.com,NETFLIX
-
-# > ABC
-- DOMAIN-SUFFIX,edgedatg.com,Video
-- DOMAIN-SUFFIX,go.com,Video
-
-# > AbemaTV
-- DOMAIN,linear-abematv.akamaized.net,Video
-- DOMAIN-SUFFIX,abema.io,Video
-- DOMAIN-SUFFIX,abema.tv,Video
-- DOMAIN-SUFFIX,akamaized.net,Video
-- DOMAIN-SUFFIX,ameba.jp,Video
-- DOMAIN-SUFFIX,hayabusa.io,Video
-
-# > Amazon Prime Video
-- DOMAIN-SUFFIX,aiv-cdn.net,Video
-- DOMAIN-SUFFIX,amazonaws.com,Video
-- DOMAIN-SUFFIX,amazonvideo.com,Video
-- DOMAIN-SUFFIX,llnwd.net,Video
-
-# > Bahamut
-- DOMAIN-SUFFIX,bahamut.com.tw,NETFLIX
-- DOMAIN-SUFFIX,gamer.com.tw,NETFLIX
-- DOMAIN-SUFFIX,hinet.net,NETFLIX
-
-# > BBC
-- DOMAIN-KEYWORD,bbcfmt,Video
-- DOMAIN-KEYWORD,co.uk,Video
-- DOMAIN-KEYWORD,uk-live,Video
-- DOMAIN-SUFFIX,bbc.co,Video
-- DOMAIN-SUFFIX,bbc.co.uk,Video
-- DOMAIN-SUFFIX,bbc.com,Video
-- DOMAIN-SUFFIX,bbci.co,Video
-- DOMAIN-SUFFIX,bbci.co.uk,Video
-
-# > CHOCO TV
-- DOMAIN-SUFFIX,chocotv.com.tw,Video
-
-# > Epicgames
-- DOMAIN-KEYWORD,epicgames,Video
-- DOMAIN-SUFFIX,helpshift.com,Video
-
-# > Imkan
-- DOMAIN-SUFFIX,imkan.tv,Video
-
-# > JOOX
-- DOMAIN-SUFFIX,joox.com,Video
-
-# > MytvSUPER
-- DOMAIN-KEYWORD,nowtv100,Video
-- DOMAIN-KEYWORD,rthklive,Video
-- DOMAIN-SUFFIX,mytvsuper.com,Video
-- DOMAIN-SUFFIX,tvb.com,Video
-
-# > Pandora
-- DOMAIN-SUFFIX,pandora.com,Video
-
-# > Sky GO
-- DOMAIN-SUFFIX,sky.com,Video
-- DOMAIN-SUFFIX,skygo.co.nz,Video
-
-# > Spotify
-- DOMAIN-KEYWORD,spotify,Video
-- DOMAIN-SUFFIX,scdn.co,Video
-- DOMAIN-SUFFIX,spoti.fi,Video
-
-# > viuTV
-- DOMAIN-SUFFIX,viu.tv,Video
-
-# > Youtube
-- DOMAIN-KEYWORD,youtube,Video
-- DOMAIN-SUFFIX,googlevideo.com,Video
-- DOMAIN-SUFFIX,gvt2.com,Video
-- DOMAIN-SUFFIX,youtu.be,Video
-- DOMAIN-SUFFIX,youtu.be,Video
-- DOMAIN-SUFFIX,yt.be,Video
-- DOMAIN-SUFFIX,ytimg.com,Video
-- DOMAIN-KEYWORD,pornhub,Video
-- DOMAIN-KEYWORD,porn,Video
-- DOMAIN-KEYWORD,phncdn,Video
-- DOMAIN-SUFFIX,vimeo.com,Video
-- DOMAIN-SUFFIX,vimeocdn.com,Video
-
-# > Google
-- DOMAIN-KEYWORD,google,Proxy
-- DOMAIN-SUFFIX,abc.xyz,Proxy
-- DOMAIN-SUFFIX,android.com,Proxy
-- DOMAIN-SUFFIX,androidify.com,Proxy
-- DOMAIN-SUFFIX,dialogflow.com,Proxy
-- DOMAIN-SUFFIX,autodraw.com,Proxy
-- DOMAIN-SUFFIX,capitalg.com,Proxy
-- DOMAIN-SUFFIX,certificate-transparency.org,Proxy
-- DOMAIN-SUFFIX,chrome.com,Proxy
-- DOMAIN-SUFFIX,chromeexperiments.com,Proxy
-- DOMAIN-SUFFIX,chromestatus.com,Proxy
-- DOMAIN-SUFFIX,chromium.org,Proxy
-- DOMAIN-SUFFIX,creativelab5.com,Proxy
-- DOMAIN-SUFFIX,debug.com,Proxy
-- DOMAIN-SUFFIX,deepmind.com,Proxy
-- DOMAIN-SUFFIX,firebaseio.com,Proxy
-- DOMAIN-SUFFIX,getmdl.io,Proxy
-- DOMAIN-SUFFIX,ggpht.com,Proxy
-- DOMAIN-SUFFIX,gmail.com,Proxy
-- DOMAIN-SUFFIX,gmodules.com,Proxy
-- DOMAIN-SUFFIX,godoc.org,Proxy
-- DOMAIN-SUFFIX,golang.org,Proxy
-- DOMAIN-SUFFIX,gv.com,Proxy
-- DOMAIN-SUFFIX,gwtproject.org,Proxy
-- DOMAIN-SUFFIX,itasoftware.com,Proxy
-- DOMAIN-SUFFIX,madewithcode.com,Proxy
-- DOMAIN-SUFFIX,material.io,Proxy
-- DOMAIN-SUFFIX,polymer-project.org,Proxy
-- DOMAIN-SUFFIX,admin.recaptcha.net,Proxy
-- DOMAIN-SUFFIX,recaptcha.net,Proxy
-- DOMAIN-SUFFIX,shattered.io,Proxy
-- DOMAIN-SUFFIX,synergyse.com,Proxy
-- DOMAIN-SUFFIX,tensorflow.org,Proxy
-- DOMAIN-SUFFIX,tiltbrush.com,Proxy
-- DOMAIN-SUFFIX,waveprotocol.org,Proxy
-- DOMAIN-SUFFIX,waymo.com,Proxy
-- DOMAIN-SUFFIX,webmproject.org,Proxy
-- DOMAIN-SUFFIX,webrtc.org,Proxy
-- DOMAIN-SUFFIX,whatbrowser.org,Proxy
-- DOMAIN-SUFFIX,widevine.com,Proxy
-- DOMAIN-SUFFIX,x.company,Proxy
-- DOMAIN-SUFFIX,contest.com,Proxy
-- DOMAIN-SUFFIX,graph.org,Proxy
-- DOMAIN-SUFFIX,quiz.directory,Proxy
-- DOMAIN-SUFFIX,t.me,Proxy
-- DOMAIN-SUFFIX,tdesktop.com,Proxy
-- DOMAIN-SUFFIX,telega.one,Proxy
-- DOMAIN-SUFFIX,telegra.ph,Proxy
-- DOMAIN-SUFFIX,telegram.dog,Proxy
-- DOMAIN-SUFFIX,telegram.me,Proxy
-- DOMAIN-SUFFIX,telegram.org,Proxy
-- DOMAIN-SUFFIX,telegram.space,Proxy
-- DOMAIN-SUFFIX,telesco.pe,Proxy
-- DOMAIN-SUFFIX,tg.dev,Proxy
-- DOMAIN-SUFFIX,tx.me,Proxy
-- DOMAIN-SUFFIX,usercontent.dev,Proxy
-
-# apple
-- DOMAIN,hls.itunes.apple.com,DIRECT
-- DOMAIN,itunes.apple.com,DIRECT
-- DOMAIN-SUFFIX,apple.com,DIRECT
-- DOMAIN-SUFFIX,icloud.com,DIRECT
-- DOMAIN-SUFFIX,icloud-content.com,DIRECT
-- DOMAIN-SUFFIX,mzstatic.com,DIRECT
-- DOMAIN-SUFFIX,aaplimg.com,DIRECT
-- DOMAIN-SUFFIX,cdn-apple.com,DIRECT
-
-# microsoft
-- DOMAIN-SUFFIX,live.com,DIRECT
-- DOMAIN-SUFFIX,live.net,DIRECT
-- DOMAIN-SUFFIX,office.com,DIRECT
-- DOMAIN-SUFFIX,office.net,DIRECT
-- DOMAIN-SUFFIX,sharepoint.com,DIRECT
-- DOMAIN-SUFFIX,office365.com,DIRECT
-- DOMAIN-SUFFIX,officeppe.net,DIRECT
-- DOMAIN-SUFFIX,skype.com,DIRECT
-- DOMAIN-SUFFIX,onedrive.com,DIRECT
-- DOMAIN-SUFFIX,msocsp.com,DIRECT
-- DOMAIN-SUFFIX,msauthimages.net,DIRECT
-- DOMAIN-SUFFIX,msauth.net,DIRECT
-- DOMAIN-SUFFIX,msn.com,DIRECT
-- DOMAIN-SUFFIX,onenote.com,DIRECT
-- DOMAIN-SUFFIX,onenote.net,DIRECT
-- DOMAIN-SUFFIX,1drv.com,DIRECT
-- DOMAIN-SUFFIX,microsoft.com,DIRECT
-- DOMAIN-SUFFIX,microsoftonline.com,DIRECT
-
-- DOMAIN-SUFFIX,miui.com,DIRECT
-- DOMAIN-SUFFIX,miwifi.com,DIRECT
-- DOMAIN-SUFFIX,mob.com,DIRECT
-- DOMAIN-SUFFIX,netease.com,DIRECT
-- DOMAIN-SUFFIX,office.com,DIRECT
-- DOMAIN-SUFFIX,office365.com,DIRECT
-- DOMAIN-KEYWORD,officecdn,DIRECT
-- DOMAIN-SUFFIX,oschina.net,DIRECT
-- DOMAIN-SUFFIX,ppsimg.com,DIRECT
-- DOMAIN-SUFFIX,pstatp.com,DIRECT
-- DOMAIN-SUFFIX,qcloud.com,DIRECT
-- DOMAIN-SUFFIX,qdaily.com,DIRECT
-- DOMAIN-SUFFIX,qdmm.com,DIRECT
-- DOMAIN-SUFFIX,qhimg.com,DIRECT
-- DOMAIN-SUFFIX,qhres.com,DIRECT
-- DOMAIN-SUFFIX,qidian.com,DIRECT
-- DOMAIN-SUFFIX,qihucdn.com,DIRECT
-- DOMAIN-SUFFIX,qiniu.com,DIRECT
-- DOMAIN-SUFFIX,qiniucdn.com,DIRECT
-- DOMAIN-SUFFIX,qiyipic.com,DIRECT
-- DOMAIN-SUFFIX,qq.com,DIRECT
-- DOMAIN-SUFFIX,qqurl.com,DIRECT
-- DOMAIN-SUFFIX,rarbg.to,DIRECT
-- DOMAIN-SUFFIX,ruguoapp.com,DIRECT
-- DOMAIN-SUFFIX,segmentfault.com,DIRECT
-- DOMAIN-SUFFIX,sinaapp.com,DIRECT
-- DOMAIN-SUFFIX,smzdm.com,DIRECT
-- DOMAIN-SUFFIX,sogou.com,DIRECT
-- DOMAIN-SUFFIX,sogoucdn.com,DIRECT
-- DOMAIN-SUFFIX,sohu.com,DIRECT
-- DOMAIN-SUFFIX,soku.com,DIRECT
-- DOMAIN-SUFFIX,speedtest.net,DIRECT
-- DOMAIN-SUFFIX,sspai.com,DIRECT
-- DOMAIN-SUFFIX,suning.com,DIRECT
-- DOMAIN-SUFFIX,taobao.com,DIRECT
-- DOMAIN-SUFFIX,tenpay.com,DIRECT
-- DOMAIN-SUFFIX,tmall.com,DIRECT
-- DOMAIN-SUFFIX,tudou.com,DIRECT
-- DOMAIN-SUFFIX,umetrip.com,DIRECT
-- DOMAIN-SUFFIX,upaiyun.com,DIRECT
-- DOMAIN-SUFFIX,upyun.com,DIRECT
-- DOMAIN-SUFFIX,veryzhun.com,DIRECT
-- DOMAIN-SUFFIX,weather.com,DIRECT
-- DOMAIN-SUFFIX,weibo.com,DIRECT
-- DOMAIN-SUFFIX,xiami.com,DIRECT
-- DOMAIN-SUFFIX,xiami.net,DIRECT
-- DOMAIN-SUFFIX,xiaomicp.com,DIRECT
-- DOMAIN-SUFFIX,ximalaya.com,DIRECT
-- DOMAIN-SUFFIX,xmcdn.com,DIRECT
-- DOMAIN-SUFFIX,xunlei.com,DIRECT
-- DOMAIN-SUFFIX,xycdn.com,DIRECT
-- DOMAIN-SUFFIX,yhd.com,DIRECT
-- DOMAIN-SUFFIX,yihaodianimg.com,DIRECT
-- DOMAIN-SUFFIX,yinxiang.com,DIRECT
-- DOMAIN-SUFFIX,ykimg.com,DIRECT
-- DOMAIN-SUFFIX,youdao.com,DIRECT
-- DOMAIN-SUFFIX,youku.com,DIRECT
-- DOMAIN-SUFFIX,zealer.com,DIRECT
-- DOMAIN-SUFFIX,zhihu.com,DIRECT
-- DOMAIN-SUFFIX,zhimg.com,DIRECT
-- DOMAIN-SUFFIX,zimuzu.tv,DIRECT
-
-# China
-- DOMAIN-SUFFIX,apcdns.net,DIRECT
-- DOMAIN-SUFFIX,cdntip.com,DIRECT
-- DOMAIN-SUFFIX,cdntips.com,DIRECT
-- DOMAIN-SUFFIX,foxmail.com,DIRECT
-- DOMAIN-SUFFIX,gtimg.com,DIRECT
-- DOMAIN-SUFFIX,idqqimg.com,DIRECT
-- DOMAIN-SUFFIX,imqq.com,DIRECT
-- DOMAIN-SUFFIX,myapp.com,DIRECT
-- DOMAIN-SUFFIX,myqcloud.com,DIRECT
-- DOMAIN-SUFFIX,qcloud.com,DIRECT
-- DOMAIN-SUFFIX,qcloudimg.com,DIRECT
-- DOMAIN-SUFFIX,qq.com,DIRECT
-- DOMAIN-SUFFIX,qqmail.com,DIRECT
-- DOMAIN-SUFFIX,qzone.com,DIRECT
-- DOMAIN-SUFFIX,servicewechat.com,DIRECT
-- DOMAIN-SUFFIX,smtcdns.com,DIRECT
-- DOMAIN-SUFFIX,smtcdns.net,DIRECT
-- DOMAIN-SUFFIX,tencent.com,DIRECT
-- DOMAIN-SUFFIX,tencent.com.hk,DIRECT
-- DOMAIN-SUFFIX,tencent-cloud.com,DIRECT
-- DOMAIN-SUFFIX,tencent-cloud.net,DIRECT
-- DOMAIN-SUFFIX,tencentcs.com,DIRECT
-- DOMAIN-SUFFIX,tencentmusic.com,DIRECT
-- DOMAIN-SUFFIX,tencentyun.com,DIRECT
-- DOMAIN-SUFFIX,tenpay.com,DIRECT
-- DOMAIN-SUFFIX,wechat.com,DIRECT
-- DOMAIN-SUFFIX,wegame.com,DIRECT
-- DOMAIN-SUFFIX,weiyun.com,DIRECT
-- DOMAIN-SUFFIX,25pp.com,DIRECT
-- DOMAIN-SUFFIX,56che.com,DIRECT
-- DOMAIN-SUFFIX,95095.com,DIRECT
-- DOMAIN-SUFFIX,aliapp.org,DIRECT
-- DOMAIN-SUFFIX,alibaba-inc.com,DIRECT
-- DOMAIN-SUFFIX,alibaba.com,DIRECT
-- DOMAIN-SUFFIX,alibabacapital.com,DIRECT
-- DOMAIN-SUFFIX,alibabacorp.com,DIRECT
-- DOMAIN-SUFFIX,alibabadoctor.com,DIRECT
-- DOMAIN-SUFFIX,alibabafuturehotel.com,DIRECT
-- DOMAIN-SUFFIX,alibabagroup.com,DIRECT
-- DOMAIN-SUFFIX,alibabaplanet.com,DIRECT
-- DOMAIN-SUFFIX,alibabaued.com,DIRECT
-- DOMAIN-SUFFIX,alibabausercontent.com,DIRECT
-- DOMAIN-SUFFIX,alifanyi.com,DIRECT
-- DOMAIN-SUFFIX,alihealth.hk,DIRECT
-- DOMAIN-SUFFIX,aliimg.com,DIRECT
-- DOMAIN-SUFFIX,alikmd.com,DIRECT
-- DOMAIN-SUFFIX,alimama.com,DIRECT
-- DOMAIN-SUFFIX,alimebot.com,DIRECT
-- DOMAIN-SUFFIX,alimei.com,DIRECT
-- DOMAIN-SUFFIX,alipay.com,DIRECT
-- DOMAIN-SUFFIX,alipaydns.com,DIRECT
-- DOMAIN-SUFFIX,alipayobjects.com,DIRECT
-- DOMAIN-SUFFIX,aliplus.com,DIRECT
-- DOMAIN-SUFFIX,aliresearch.com,DIRECT
-- DOMAIN-SUFFIX,alisoft.com,DIRECT
-- DOMAIN-SUFFIX,alisports.com,DIRECT
-- DOMAIN-SUFFIX,alitianji.com,DIRECT
-- DOMAIN-SUFFIX,aliunicorn.com,DIRECT
-- DOMAIN-SUFFIX,aliway.com,DIRECT
-- DOMAIN-SUFFIX,aliwork.com,DIRECT
-- DOMAIN-SUFFIX,alixiaomi.com,DIRECT
-- DOMAIN-SUFFIX,alizhaopin.com,DIRECT
-- DOMAIN-SUFFIX,asczwa.com,DIRECT
-- DOMAIN-SUFFIX,asczxcefsv.com,DIRECT
-- DOMAIN-SUFFIX,atatech.org,DIRECT
-- DOMAIN-SUFFIX,b2byao.com,DIRECT
-- DOMAIN-SUFFIX,bazai.com,DIRECT
-- DOMAIN-SUFFIX,bcvbw.com,DIRECT
-- DOMAIN-SUFFIX,cheng.xin,DIRECT
-- DOMAIN-SUFFIX,dayu.com,DIRECT
-- DOMAIN-SUFFIX,dongting.com,DIRECT
-- DOMAIN-SUFFIX,dratio.com,DIRECT
-- DOMAIN-SUFFIX,emas-poc.com,DIRECT
-- DOMAIN-SUFFIX,ialicdn.com,DIRECT
-- DOMAIN-SUFFIX,kanbox.com,DIRECT
-- DOMAIN-SUFFIX,lazada.com,DIRECT
-- DOMAIN-SUFFIX,liangxinyao.com,DIRECT
-- DOMAIN-SUFFIX,maitix.com,DIRECT
-- DOMAIN-SUFFIX,1688.com,DIRECT
-- DOMAIN-SUFFIX,etao.com,DIRECT
-- DOMAIN-SUFFIX,juhuasuan.com,DIRECT
-- DOMAIN-SUFFIX,lingshoujia.com,DIRECT
-- DOMAIN-SUFFIX,pailitao.com,DIRECT
-- DOMAIN-SUFFIX,taobao.com,DIRECT
-- DOMAIN-SUFFIX,taobao.org,DIRECT
-- DOMAIN-SUFFIX,taobaocdn.com,DIRECT
-- DOMAIN-SUFFIX,taobizhong.com,DIRECT
-- DOMAIN-SUFFIX,taopiaopiao.com,DIRECT
-- DOMAIN-SUFFIX,tbcache.com,DIRECT
-- DOMAIN-SUFFIX,tburl.in,DIRECT
-- DOMAIN-SUFFIX,tmall.com,DIRECT
-- DOMAIN-SUFFIX,tmall.ru,DIRECT
-- DOMAIN-SUFFIX,tmalltv.com,DIRECT
-- DOMAIN-SUFFIX,tmjl.ai,DIRECT
-- DOMAIN-SUFFIX,alitrip.com,DIRECT
-- DOMAIN-SUFFIX,feizhu.com,DIRECT
-- DOMAIN-SUFFIX,fliggy.com,DIRECT
-
-#ssh spam
-- DST-PORT,22,DIRECT
-- DST-PORT,222,DIRECT
-- DST-PORT,2222,DIRECT
-#EMAIL spam
-- DST-PORT,25,DIRECT
-- DST-PORT,26,DIRECT
-- DST-PORT,465,DIRECT
-- DST-PORT,587,DIRECT
-- DST-PORT,2525,DIRECT
-
-# BT
-- DST-PORT,6881,DIRECT
-- DST-PORT,6882,DIRECT
-- DST-PORT,6883,DIRECT
-- DST-PORT,6884,DIRECT
-- DST-PORT,6885,DIRECT
-- DST-PORT,6886,DIRECT
-- DST-PORT,6887,DIRECT
-- DST-PORT,6888,DIRECT
-- DST-PORT,6889,DIRECT
-
-# RULE VERSION
-- DOMAIN,2020020202.version.clash.im,REJECT
-
-- DOMAIN-SUFFIX,cn,DIRECT
-- GEOIP,CN,DIRECT
-
-
-# LAN
-- IP-CIDR,127.0.0.0/8,DIRECT
-- IP-CIDR,10.0.0.0/8,DIRECT
-- IP-CIDR,17.0.0.0/8,DIRECT
-- IP-CIDR,100.64.0.0/10,DIRECT
-- IP-CIDR,172.16.0.0/12,DIRECT
-- IP-CIDR,192.168.0.0/16,DIRECT
-
-# Final
-- MATCH,Proxy
+    - 'DOMAIN,dy.jimao.icu,DIRECT'
+    - 'DOMAIN-SUFFIX,services.googleapis.cn,三毛机场'
+    - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,三毛机场'
+    - 'DOMAIN,safebrowsing.urlsec.qq.com,DIRECT'
+    - 'DOMAIN,safebrowsing.googleapis.com,DIRECT'
+    - 'DOMAIN,developer.apple.com,三毛机场'
+    - 'DOMAIN-SUFFIX,digicert.com,三毛机场'
+    - 'DOMAIN,ocsp.apple.com,三毛机场'
+    - 'DOMAIN,ocsp.comodoca.com,三毛机场'
+    - 'DOMAIN,ocsp.usertrust.com,三毛机场'
+    - 'DOMAIN,ocsp.sectigo.com,三毛机场'
+    - 'DOMAIN,ocsp.verisign.net,三毛机场'
+    - 'DOMAIN-SUFFIX,apple-dns.net,三毛机场'
+    - 'DOMAIN,testflight.apple.com,三毛机场'
+    - 'DOMAIN,sandbox.itunes.apple.com,三毛机场'
+    - 'DOMAIN,itunes.apple.com,三毛机场'
+    - 'DOMAIN-SUFFIX,apps.apple.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blobstore.apple.com,三毛机场'
+    - 'DOMAIN,cvws.icloud-content.com,三毛机场'
+    - 'DOMAIN-SUFFIX,mzstatic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,itunes.apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud-content.com,DIRECT'
+    - 'DOMAIN-SUFFIX,me.com,DIRECT'
+    - 'DOMAIN-SUFFIX,aaplimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cdn20.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cdn-apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,akadns.net,DIRECT'
+    - 'DOMAIN-SUFFIX,akamaiedge.net,DIRECT'
+    - 'DOMAIN-SUFFIX,edgekey.net,DIRECT'
+    - 'DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,mwcname.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple-mapkit.com,DIRECT'
+    - 'DOMAIN-SUFFIX,126.com,DIRECT'
+    - 'DOMAIN-SUFFIX,126.net,DIRECT'
+    - 'DOMAIN-SUFFIX,127.net,DIRECT'
+    - 'DOMAIN-SUFFIX,163.com,DIRECT'
+    - 'DOMAIN-SUFFIX,360buyimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,36kr.com,DIRECT'
+    - 'DOMAIN-SUFFIX,acfun.tv,DIRECT'
+    - 'DOMAIN-SUFFIX,air-matters.com,DIRECT'
+    - 'DOMAIN-SUFFIX,aixifan.com,DIRECT'
+    - 'DOMAIN-KEYWORD,alicdn,DIRECT'
+    - 'DOMAIN-KEYWORD,alipay,DIRECT'
+    - 'DOMAIN-KEYWORD,taobao,DIRECT'
+    - 'DOMAIN-SUFFIX,amap.com,DIRECT'
+    - 'DOMAIN-SUFFIX,autonavi.com,DIRECT'
+    - 'DOMAIN-KEYWORD,baidu,DIRECT'
+    - 'DOMAIN-SUFFIX,bdimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bdstatic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bilibili.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bilivideo.com,DIRECT'
+    - 'DOMAIN-SUFFIX,caiyunapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,clouddn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cnbeta.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cnbetacdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cootekservice.com,DIRECT'
+    - 'DOMAIN-SUFFIX,csdn.net,DIRECT'
+    - 'DOMAIN-SUFFIX,ctrip.com,DIRECT'
+    - 'DOMAIN-SUFFIX,dgtle.com,DIRECT'
+    - 'DOMAIN-SUFFIX,dianping.com,DIRECT'
+    - 'DOMAIN-SUFFIX,douban.com,DIRECT'
+    - 'DOMAIN-SUFFIX,doubanio.com,DIRECT'
+    - 'DOMAIN-SUFFIX,duokan.com,DIRECT'
+    - 'DOMAIN-SUFFIX,easou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ele.me,DIRECT'
+    - 'DOMAIN-SUFFIX,feng.com,DIRECT'
+    - 'DOMAIN-SUFFIX,fir.im,DIRECT'
+    - 'DOMAIN-SUFFIX,frdic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,g-cores.com,DIRECT'
+    - 'DOMAIN-SUFFIX,godic.net,DIRECT'
+    - 'DOMAIN-SUFFIX,gtimg.com,DIRECT'
+    - 'DOMAIN,cdn.hockeyapp.net,DIRECT'
+    - 'DOMAIN-SUFFIX,hongxiu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,hxcdn.net,DIRECT'
+    - 'DOMAIN-SUFFIX,iciba.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ifeng.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ifengimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ipip.net,DIRECT'
+    - 'DOMAIN-SUFFIX,iqiyi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,jd.com,DIRECT'
+    - 'DOMAIN-SUFFIX,jianshu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,knewone.com,DIRECT'
+    - 'DOMAIN-SUFFIX,le.com,DIRECT'
+    - 'DOMAIN-SUFFIX,lecloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,lemicp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,licdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,luoo.net,DIRECT'
+    - 'DOMAIN-SUFFIX,meituan.com,DIRECT'
+    - 'DOMAIN-SUFFIX,meituan.net,DIRECT'
+    - 'DOMAIN-SUFFIX,mi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miaopai.com,DIRECT'
+    - 'DOMAIN-SUFFIX,microsoft.com,DIRECT'
+    - 'DOMAIN-SUFFIX,microsoftonline.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miui.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miwifi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,mob.com,DIRECT'
+    - 'DOMAIN-SUFFIX,netease.com,DIRECT'
+    - 'DOMAIN-SUFFIX,office.com,DIRECT'
+    - 'DOMAIN-SUFFIX,office365.com,DIRECT'
+    - 'DOMAIN-KEYWORD,officecdn,DIRECT'
+    - 'DOMAIN-SUFFIX,oschina.net,DIRECT'
+    - 'DOMAIN-SUFFIX,ppsimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,pstatp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qcloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qdaily.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qdmm.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qhimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qhres.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qidian.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qihucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiniu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiniucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiyipic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qq.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qqurl.com,DIRECT'
+    - 'DOMAIN-SUFFIX,rarbg.to,DIRECT'
+    - 'DOMAIN-SUFFIX,ruguoapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,segmentfault.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sinaapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,smzdm.com,DIRECT'
+    - 'DOMAIN-SUFFIX,snapdrop.net,DIRECT'
+    - 'DOMAIN-SUFFIX,sogou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sogoucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sohu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,soku.com,DIRECT'
+    - 'DOMAIN-SUFFIX,speedtest.net,DIRECT'
+    - 'DOMAIN-SUFFIX,sspai.com,DIRECT'
+    - 'DOMAIN-SUFFIX,suning.com,DIRECT'
+    - 'DOMAIN-SUFFIX,taobao.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tencent.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tenpay.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tianyancha.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tmall.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tudou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,umetrip.com,DIRECT'
+    - 'DOMAIN-SUFFIX,upaiyun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,upyun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,veryzhun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,weather.com,DIRECT'
+    - 'DOMAIN-SUFFIX,weibo.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xiami.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xiami.net,DIRECT'
+    - 'DOMAIN-SUFFIX,xiaomicp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ximalaya.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xmcdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xunlei.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yhd.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yihaodianimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yinxiang.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ykimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,youdao.com,DIRECT'
+    - 'DOMAIN-SUFFIX,youku.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zealer.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zhihu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zhimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zimuzu.tv,DIRECT'
+    - 'DOMAIN-SUFFIX,zoho.com,DIRECT'
+    - 'DOMAIN-KEYWORD,amazon,三毛机场'
+    - 'DOMAIN-KEYWORD,google,三毛机场'
+    - 'DOMAIN-KEYWORD,gmail,三毛机场'
+    - 'DOMAIN-KEYWORD,youtube,三毛机场'
+    - 'DOMAIN-KEYWORD,facebook,三毛机场'
+    - 'DOMAIN-SUFFIX,fb.me,三毛机场'
+    - 'DOMAIN-SUFFIX,fbcdn.net,三毛机场'
+    - 'DOMAIN-KEYWORD,twitter,三毛机场'
+    - 'DOMAIN-KEYWORD,instagram,三毛机场'
+    - 'DOMAIN-KEYWORD,dropbox,三毛机场'
+    - 'DOMAIN-SUFFIX,twimg.com,三毛机场'
+    - 'DOMAIN-KEYWORD,blogspot,三毛机场'
+    - 'DOMAIN-SUFFIX,youtu.be,三毛机场'
+    - 'DOMAIN-KEYWORD,whatsapp,三毛机场'
+    - 'DOMAIN-KEYWORD,admarvel,REJECT'
+    - 'DOMAIN-KEYWORD,admaster,REJECT'
+    - 'DOMAIN-KEYWORD,adsage,REJECT'
+    - 'DOMAIN-KEYWORD,adsmogo,REJECT'
+    - 'DOMAIN-KEYWORD,adsrvmedia,REJECT'
+    - 'DOMAIN-KEYWORD,adwords,REJECT'
+    - 'DOMAIN-KEYWORD,adservice,REJECT'
+    - 'DOMAIN-SUFFIX,appsflyer.com,REJECT'
+    - 'DOMAIN-KEYWORD,domob,REJECT'
+    - 'DOMAIN-SUFFIX,doubleclick.net,REJECT'
+    - 'DOMAIN-KEYWORD,duomeng,REJECT'
+    - 'DOMAIN-KEYWORD,dwtrack,REJECT'
+    - 'DOMAIN-KEYWORD,guanggao,REJECT'
+    - 'DOMAIN-KEYWORD,lianmeng,REJECT'
+    - 'DOMAIN-SUFFIX,mmstat.com,REJECT'
+    - 'DOMAIN-KEYWORD,mopub,REJECT'
+    - 'DOMAIN-KEYWORD,omgmta,REJECT'
+    - 'DOMAIN-KEYWORD,openx,REJECT'
+    - 'DOMAIN-KEYWORD,partnerad,REJECT'
+    - 'DOMAIN-KEYWORD,pingfore,REJECT'
+    - 'DOMAIN-KEYWORD,supersonicads,REJECT'
+    - 'DOMAIN-KEYWORD,uedas,REJECT'
+    - 'DOMAIN-KEYWORD,umeng,REJECT'
+    - 'DOMAIN-KEYWORD,usage,REJECT'
+    - 'DOMAIN-SUFFIX,vungle.com,REJECT'
+    - 'DOMAIN-KEYWORD,wlmonitor,REJECT'
+    - 'DOMAIN-KEYWORD,zjtoolbar,REJECT'
+    - 'DOMAIN-SUFFIX,9to5mac.com,三毛机场'
+    - 'DOMAIN-SUFFIX,abpchina.org,三毛机场'
+    - 'DOMAIN-SUFFIX,adblockplus.org,三毛机场'
+    - 'DOMAIN-SUFFIX,adobe.com,三毛机场'
+    - 'DOMAIN-SUFFIX,akamaized.net,三毛机场'
+    - 'DOMAIN-SUFFIX,alfredapp.com,三毛机场'
+    - 'DOMAIN-SUFFIX,amplitude.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ampproject.org,三毛机场'
+    - 'DOMAIN-SUFFIX,android.com,三毛机场'
+    - 'DOMAIN-SUFFIX,angularjs.org,三毛机场'
+    - 'DOMAIN-SUFFIX,aolcdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,apkpure.com,三毛机场'
+    - 'DOMAIN-SUFFIX,appledaily.com,三毛机场'
+    - 'DOMAIN-SUFFIX,appshopper.com,三毛机场'
+    - 'DOMAIN-SUFFIX,appspot.com,三毛机场'
+    - 'DOMAIN-SUFFIX,arcgis.com,三毛机场'
+    - 'DOMAIN-SUFFIX,archive.org,三毛机场'
+    - 'DOMAIN-SUFFIX,armorgames.com,三毛机场'
+    - 'DOMAIN-SUFFIX,aspnetcdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,att.com,三毛机场'
+    - 'DOMAIN-SUFFIX,awsstatic.com,三毛机场'
+    - 'DOMAIN-SUFFIX,azureedge.net,三毛机场'
+    - 'DOMAIN-SUFFIX,azurewebsites.net,三毛机场'
+    - 'DOMAIN-SUFFIX,bing.com,三毛机场'
+    - 'DOMAIN-SUFFIX,bintray.com,三毛机场'
+    - 'DOMAIN-SUFFIX,bit.com,三毛机场'
+    - 'DOMAIN-SUFFIX,bit.ly,三毛机场'
+    - 'DOMAIN-SUFFIX,bitbucket.org,三毛机场'
+    - 'DOMAIN-SUFFIX,bjango.com,三毛机场'
+    - 'DOMAIN-SUFFIX,bkrtx.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blog.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blogcdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blogger.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blogsmithmedia.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blogspot.com,三毛机场'
+    - 'DOMAIN-SUFFIX,blogspot.hk,三毛机场'
+    - 'DOMAIN-SUFFIX,bloomberg.com,三毛机场'
+    - 'DOMAIN-SUFFIX,box.com,三毛机场'
+    - 'DOMAIN-SUFFIX,box.net,三毛机场'
+    - 'DOMAIN-SUFFIX,cachefly.net,三毛机场'
+    - 'DOMAIN-SUFFIX,chromium.org,三毛机场'
+    - 'DOMAIN-SUFFIX,cl.ly,三毛机场'
+    - 'DOMAIN-SUFFIX,cloudflare.com,三毛机场'
+    - 'DOMAIN-SUFFIX,cloudfront.net,三毛机场'
+    - 'DOMAIN-SUFFIX,cloudmagic.com,三毛机场'
+    - 'DOMAIN-SUFFIX,cmail19.com,三毛机场'
+    - 'DOMAIN-SUFFIX,cnet.com,三毛机场'
+    - 'DOMAIN-SUFFIX,cocoapods.org,三毛机场'
+    - 'DOMAIN-SUFFIX,comodoca.com,三毛机场'
+    - 'DOMAIN-SUFFIX,crashlytics.com,三毛机场'
+    - 'DOMAIN-SUFFIX,culturedcode.com,三毛机场'
+    - 'DOMAIN-SUFFIX,d.pr,三毛机场'
+    - 'DOMAIN-SUFFIX,danilo.to,三毛机场'
+    - 'DOMAIN-SUFFIX,dayone.me,三毛机场'
+    - 'DOMAIN-SUFFIX,db.tt,三毛机场'
+    - 'DOMAIN-SUFFIX,deskconnect.com,三毛机场'
+    - 'DOMAIN-SUFFIX,disq.us,三毛机场'
+    - 'DOMAIN-SUFFIX,disqus.com,三毛机场'
+    - 'DOMAIN-SUFFIX,disquscdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,dnsimple.com,三毛机场'
+    - 'DOMAIN-SUFFIX,docker.com,三毛机场'
+    - 'DOMAIN-SUFFIX,dribbble.com,三毛机场'
+    - 'DOMAIN-SUFFIX,droplr.com,三毛机场'
+    - 'DOMAIN-SUFFIX,duckduckgo.com,三毛机场'
+    - 'DOMAIN-SUFFIX,dueapp.com,三毛机场'
+    - 'DOMAIN-SUFFIX,dytt8.net,三毛机场'
+    - 'DOMAIN-SUFFIX,edgecastcdn.net,三毛机场'
+    - 'DOMAIN-SUFFIX,edgekey.net,三毛机场'
+    - 'DOMAIN-SUFFIX,edgesuite.net,三毛机场'
+    - 'DOMAIN-SUFFIX,engadget.com,三毛机场'
+    - 'DOMAIN-SUFFIX,entrust.net,三毛机场'
+    - 'DOMAIN-SUFFIX,eurekavpt.com,三毛机场'
+    - 'DOMAIN-SUFFIX,evernote.com,三毛机场'
+    - 'DOMAIN-SUFFIX,fabric.io,三毛机场'
+    - 'DOMAIN-SUFFIX,fast.com,三毛机场'
+    - 'DOMAIN-SUFFIX,fastly.net,三毛机场'
+    - 'DOMAIN-SUFFIX,fc2.com,三毛机场'
+    - 'DOMAIN-SUFFIX,feedburner.com,三毛机场'
+    - 'DOMAIN-SUFFIX,feedly.com,三毛机场'
+    - 'DOMAIN-SUFFIX,feedsportal.com,三毛机场'
+    - 'DOMAIN-SUFFIX,fiftythree.com,三毛机场'
+    - 'DOMAIN-SUFFIX,firebaseio.com,三毛机场'
+    - 'DOMAIN-SUFFIX,flexibits.com,三毛机场'
+    - 'DOMAIN-SUFFIX,flickr.com,三毛机场'
+    - 'DOMAIN-SUFFIX,flipboard.com,三毛机场'
+    - 'DOMAIN-SUFFIX,g.co,三毛机场'
+    - 'DOMAIN-SUFFIX,gabia.net,三毛机场'
+    - 'DOMAIN-SUFFIX,geni.us,三毛机场'
+    - 'DOMAIN-SUFFIX,gfx.ms,三毛机场'
+    - 'DOMAIN-SUFFIX,ggpht.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ghostnoteapp.com,三毛机场'
+    - 'DOMAIN-SUFFIX,git.io,三毛机场'
+    - 'DOMAIN-KEYWORD,github,三毛机场'
+    - 'DOMAIN-SUFFIX,globalsign.com,三毛机场'
+    - 'DOMAIN-SUFFIX,gmodules.com,三毛机场'
+    - 'DOMAIN-SUFFIX,godaddy.com,三毛机场'
+    - 'DOMAIN-SUFFIX,golang.org,三毛机场'
+    - 'DOMAIN-SUFFIX,gongm.in,三毛机场'
+    - 'DOMAIN-SUFFIX,goo.gl,三毛机场'
+    - 'DOMAIN-SUFFIX,goodreaders.com,三毛机场'
+    - 'DOMAIN-SUFFIX,goodreads.com,三毛机场'
+    - 'DOMAIN-SUFFIX,gravatar.com,三毛机场'
+    - 'DOMAIN-SUFFIX,gstatic.com,三毛机场'
+    - 'DOMAIN-SUFFIX,gvt0.com,三毛机场'
+    - 'DOMAIN-SUFFIX,hockeyapp.net,三毛机场'
+    - 'DOMAIN-SUFFIX,hotmail.com,三毛机场'
+    - 'DOMAIN-SUFFIX,icons8.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ifixit.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ift.tt,三毛机场'
+    - 'DOMAIN-SUFFIX,ifttt.com,三毛机场'
+    - 'DOMAIN-SUFFIX,iherb.com,三毛机场'
+    - 'DOMAIN-SUFFIX,imageshack.us,三毛机场'
+    - 'DOMAIN-SUFFIX,img.ly,三毛机场'
+    - 'DOMAIN-SUFFIX,imgur.com,三毛机场'
+    - 'DOMAIN-SUFFIX,imore.com,三毛机场'
+    - 'DOMAIN-SUFFIX,instapaper.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ipn.li,三毛机场'
+    - 'DOMAIN-SUFFIX,is.gd,三毛机场'
+    - 'DOMAIN-SUFFIX,issuu.com,三毛机场'
+    - 'DOMAIN-SUFFIX,itgonglun.com,三毛机场'
+    - 'DOMAIN-SUFFIX,itun.es,三毛机场'
+    - 'DOMAIN-SUFFIX,ixquick.com,三毛机场'
+    - 'DOMAIN-SUFFIX,j.mp,三毛机场'
+    - 'DOMAIN-SUFFIX,js.revsci.net,三毛机场'
+    - 'DOMAIN-SUFFIX,jshint.com,三毛机场'
+    - 'DOMAIN-SUFFIX,jtvnw.net,三毛机场'
+    - 'DOMAIN-SUFFIX,justgetflux.com,三毛机场'
+    - 'DOMAIN-SUFFIX,kat.cr,三毛机场'
+    - 'DOMAIN-SUFFIX,klip.me,三毛机场'
+    - 'DOMAIN-SUFFIX,libsyn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,linkedin.com,三毛机场'
+    - 'DOMAIN-SUFFIX,line-apps.com,三毛机场'
+    - 'DOMAIN-SUFFIX,linode.com,三毛机场'
+    - 'DOMAIN-SUFFIX,lithium.com,三毛机场'
+    - 'DOMAIN-SUFFIX,littlehj.com,三毛机场'
+    - 'DOMAIN-SUFFIX,live.com,三毛机场'
+    - 'DOMAIN-SUFFIX,live.net,三毛机场'
+    - 'DOMAIN-SUFFIX,livefilestore.com,三毛机场'
+    - 'DOMAIN-SUFFIX,llnwd.net,三毛机场'
+    - 'DOMAIN-SUFFIX,macid.co,三毛机场'
+    - 'DOMAIN-SUFFIX,macromedia.com,三毛机场'
+    - 'DOMAIN-SUFFIX,macrumors.com,三毛机场'
+    - 'DOMAIN-SUFFIX,mashable.com,三毛机场'
+    - 'DOMAIN-SUFFIX,mathjax.org,三毛机场'
+    - 'DOMAIN-SUFFIX,medium.com,三毛机场'
+    - 'DOMAIN-SUFFIX,mega.co.nz,三毛机场'
+    - 'DOMAIN-SUFFIX,mega.nz,三毛机场'
+    - 'DOMAIN-SUFFIX,megaupload.com,三毛机场'
+    - 'DOMAIN-SUFFIX,microsofttranslator.com,三毛机场'
+    - 'DOMAIN-SUFFIX,mindnode.com,三毛机场'
+    - 'DOMAIN-SUFFIX,mobile01.com,三毛机场'
+    - 'DOMAIN-SUFFIX,modmyi.com,三毛机场'
+    - 'DOMAIN-SUFFIX,msedge.net,三毛机场'
+    - 'DOMAIN-SUFFIX,myfontastic.com,三毛机场'
+    - 'DOMAIN-SUFFIX,name.com,三毛机场'
+    - 'DOMAIN-SUFFIX,nextmedia.com,三毛机场'
+    - 'DOMAIN-SUFFIX,nsstatic.net,三毛机场'
+    - 'DOMAIN-SUFFIX,nssurge.com,三毛机场'
+    - 'DOMAIN-SUFFIX,nyt.com,三毛机场'
+    - 'DOMAIN-SUFFIX,nytimes.com,三毛机场'
+    - 'DOMAIN-SUFFIX,omnigroup.com,三毛机场'
+    - 'DOMAIN-SUFFIX,onedrive.com,三毛机场'
+    - 'DOMAIN-SUFFIX,onenote.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ooyala.com,三毛机场'
+    - 'DOMAIN-SUFFIX,openvpn.net,三毛机场'
+    - 'DOMAIN-SUFFIX,openwrt.org,三毛机场'
+    - 'DOMAIN-SUFFIX,orkut.com,三毛机场'
+    - 'DOMAIN-SUFFIX,osxdaily.com,三毛机场'
+    - 'DOMAIN-SUFFIX,outlook.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ow.ly,三毛机场'
+    - 'DOMAIN-SUFFIX,paddleapi.com,三毛机场'
+    - 'DOMAIN-SUFFIX,parallels.com,三毛机场'
+    - 'DOMAIN-SUFFIX,parse.com,三毛机场'
+    - 'DOMAIN-SUFFIX,pdfexpert.com,三毛机场'
+    - 'DOMAIN-SUFFIX,periscope.tv,三毛机场'
+    - 'DOMAIN-SUFFIX,pinboard.in,三毛机场'
+    - 'DOMAIN-SUFFIX,pinterest.com,三毛机场'
+    - 'DOMAIN-SUFFIX,pixelmator.com,三毛机场'
+    - 'DOMAIN-SUFFIX,pixiv.net,三毛机场'
+    - 'DOMAIN-SUFFIX,playpcesor.com,三毛机场'
+    - 'DOMAIN-SUFFIX,playstation.com,三毛机场'
+    - 'DOMAIN-SUFFIX,playstation.com.hk,三毛机场'
+    - 'DOMAIN-SUFFIX,playstation.net,三毛机场'
+    - 'DOMAIN-SUFFIX,playstationnetwork.com,三毛机场'
+    - 'DOMAIN-SUFFIX,pushwoosh.com,三毛机场'
+    - 'DOMAIN-SUFFIX,rime.im,三毛机场'
+    - 'DOMAIN-SUFFIX,servebom.com,三毛机场'
+    - 'DOMAIN-SUFFIX,sfx.ms,三毛机场'
+    - 'DOMAIN-SUFFIX,shadowsocks.org,三毛机场'
+    - 'DOMAIN-SUFFIX,sharethis.com,三毛机场'
+    - 'DOMAIN-SUFFIX,shazam.com,三毛机场'
+    - 'DOMAIN-SUFFIX,skype.com,三毛机场'
+    - 'DOMAIN-SUFFIX,smartdns三毛机场.com,三毛机场'
+    - 'DOMAIN-SUFFIX,smartmailcloud.com,三毛机场'
+    - 'DOMAIN-SUFFIX,sndcdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,sony.com,三毛机场'
+    - 'DOMAIN-SUFFIX,soundcloud.com,三毛机场'
+    - 'DOMAIN-SUFFIX,sourceforge.net,三毛机场'
+    - 'DOMAIN-SUFFIX,spotify.com,三毛机场'
+    - 'DOMAIN-SUFFIX,squarespace.com,三毛机场'
+    - 'DOMAIN-SUFFIX,sstatic.net,三毛机场'
+    - 'DOMAIN-SUFFIX,st.luluku.pw,三毛机场'
+    - 'DOMAIN-SUFFIX,stackoverflow.com,三毛机场'
+    - 'DOMAIN-SUFFIX,startpage.com,三毛机场'
+    - 'DOMAIN-SUFFIX,staticflickr.com,三毛机场'
+    - 'DOMAIN-SUFFIX,steamcommunity.com,三毛机场'
+    - 'DOMAIN-SUFFIX,symauth.com,三毛机场'
+    - 'DOMAIN-SUFFIX,symcb.com,三毛机场'
+    - 'DOMAIN-SUFFIX,symcd.com,三毛机场'
+    - 'DOMAIN-SUFFIX,tapbots.com,三毛机场'
+    - 'DOMAIN-SUFFIX,tapbots.net,三毛机场'
+    - 'DOMAIN-SUFFIX,tdesktop.com,三毛机场'
+    - 'DOMAIN-SUFFIX,techcrunch.com,三毛机场'
+    - 'DOMAIN-SUFFIX,techsmith.com,三毛机场'
+    - 'DOMAIN-SUFFIX,thepiratebay.org,三毛机场'
+    - 'DOMAIN-SUFFIX,theverge.com,三毛机场'
+    - 'DOMAIN-SUFFIX,time.com,三毛机场'
+    - 'DOMAIN-SUFFIX,timeinc.net,三毛机场'
+    - 'DOMAIN-SUFFIX,tiny.cc,三毛机场'
+    - 'DOMAIN-SUFFIX,tinypic.com,三毛机场'
+    - 'DOMAIN-SUFFIX,tmblr.co,三毛机场'
+    - 'DOMAIN-SUFFIX,todoist.com,三毛机场'
+    - 'DOMAIN-SUFFIX,trello.com,三毛机场'
+    - 'DOMAIN-SUFFIX,trustasiassl.com,三毛机场'
+    - 'DOMAIN-SUFFIX,tumblr.co,三毛机场'
+    - 'DOMAIN-SUFFIX,tumblr.com,三毛机场'
+    - 'DOMAIN-SUFFIX,tweetdeck.com,三毛机场'
+    - 'DOMAIN-SUFFIX,tweetmarker.net,三毛机场'
+    - 'DOMAIN-SUFFIX,twitch.tv,三毛机场'
+    - 'DOMAIN-SUFFIX,txmblr.com,三毛机场'
+    - 'DOMAIN-SUFFIX,typekit.net,三毛机场'
+    - 'DOMAIN-SUFFIX,ubertags.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ublock.org,三毛机场'
+    - 'DOMAIN-SUFFIX,ubnt.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ulyssesapp.com,三毛机场'
+    - 'DOMAIN-SUFFIX,urchin.com,三毛机场'
+    - 'DOMAIN-SUFFIX,usertrust.com,三毛机场'
+    - 'DOMAIN-SUFFIX,v.gd,三毛机场'
+    - 'DOMAIN-SUFFIX,v2ex.com,三毛机场'
+    - 'DOMAIN-SUFFIX,vimeo.com,三毛机场'
+    - 'DOMAIN-SUFFIX,vimeocdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,vine.co,三毛机场'
+    - 'DOMAIN-SUFFIX,vivaldi.com,三毛机场'
+    - 'DOMAIN-SUFFIX,vox-cdn.com,三毛机场'
+    - 'DOMAIN-SUFFIX,vsco.co,三毛机场'
+    - 'DOMAIN-SUFFIX,vultr.com,三毛机场'
+    - 'DOMAIN-SUFFIX,w.org,三毛机场'
+    - 'DOMAIN-SUFFIX,w3schools.com,三毛机场'
+    - 'DOMAIN-SUFFIX,webtype.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wikiwand.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wikileaks.org,三毛机场'
+    - 'DOMAIN-SUFFIX,wikimedia.org,三毛机场'
+    - 'DOMAIN-SUFFIX,wikipedia.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wikipedia.org,三毛机场'
+    - 'DOMAIN-SUFFIX,windows.com,三毛机场'
+    - 'DOMAIN-SUFFIX,windows.net,三毛机场'
+    - 'DOMAIN-SUFFIX,wire.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wordpress.com,三毛机场'
+    - 'DOMAIN-SUFFIX,workflowy.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wp.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wsj.com,三毛机场'
+    - 'DOMAIN-SUFFIX,wsj.net,三毛机场'
+    - 'DOMAIN-SUFFIX,xda-developers.com,三毛机场'
+    - 'DOMAIN-SUFFIX,xeeno.com,三毛机场'
+    - 'DOMAIN-SUFFIX,xiti.com,三毛机场'
+    - 'DOMAIN-SUFFIX,yahoo.com,三毛机场'
+    - 'DOMAIN-SUFFIX,yimg.com,三毛机场'
+    - 'DOMAIN-SUFFIX,ying.com,三毛机场'
+    - 'DOMAIN-SUFFIX,yoyo.org,三毛机场'
+    - 'DOMAIN-SUFFIX,ytimg.com,三毛机场'
+    - 'DOMAIN-SUFFIX,telegra.ph,三毛机场'
+    - 'DOMAIN-SUFFIX,telegram.org,三毛机场'
+    - 'IP-CIDR,91.108.4.0/22,三毛机场,no-resolve'
+    - 'IP-CIDR,91.108.8.0/21,三毛机场,no-resolve'
+    - 'IP-CIDR,91.108.16.0/22,三毛机场,no-resolve'
+    - 'IP-CIDR,91.108.56.0/22,三毛机场,no-resolve'
+    - 'IP-CIDR,149.154.160.0/20,三毛机场,no-resolve'
+    - 'IP-CIDR6,2001:67c:4e8::/48,三毛机场,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23d::/48,三毛机场,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23f::/48,三毛机场,no-resolve'
+    - 'IP-CIDR,120.232.181.162/32,三毛机场,no-resolve'
+    - 'IP-CIDR,120.241.147.226/32,三毛机场,no-resolve'
+    - 'IP-CIDR,120.253.253.226/32,三毛机场,no-resolve'
+    - 'IP-CIDR,120.253.255.162/32,三毛机场,no-resolve'
+    - 'IP-CIDR,120.253.255.34/32,三毛机场,no-resolve'
+    - 'IP-CIDR,120.253.255.98/32,三毛机场,no-resolve'
+    - 'IP-CIDR,180.163.150.162/32,三毛机场,no-resolve'
+    - 'IP-CIDR,180.163.150.34/32,三毛机场,no-resolve'
+    - 'IP-CIDR,180.163.151.162/32,三毛机场,no-resolve'
+    - 'IP-CIDR,180.163.151.34/32,三毛机场,no-resolve'
+    - 'IP-CIDR,203.208.39.0/24,三毛机场,no-resolve'
+    - 'IP-CIDR,203.208.40.0/24,三毛机场,no-resolve'
+    - 'IP-CIDR,203.208.41.0/24,三毛机场,no-resolve'
+    - 'IP-CIDR,203.208.43.0/24,三毛机场,no-resolve'
+    - 'IP-CIDR,203.208.50.0/24,三毛机场,no-resolve'
+    - 'IP-CIDR,220.181.174.162/32,三毛机场,no-resolve'
+    - 'IP-CIDR,220.181.174.226/32,三毛机场,no-resolve'
+    - 'IP-CIDR,220.181.174.34/32,三毛机场,no-resolve'
+    - 'DOMAIN,injections.adguard.org,DIRECT'
+    - 'DOMAIN,local.adguard.org,DIRECT'
+    - 'DOMAIN-SUFFIX,local,DIRECT'
+    - 'IP-CIDR,127.0.0.0/8,DIRECT'
+    - 'IP-CIDR,172.16.0.0/12,DIRECT'
+    - 'IP-CIDR,192.168.0.0/16,DIRECT'
+    - 'IP-CIDR,10.0.0.0/8,DIRECT'
+    - 'IP-CIDR,17.0.0.0/8,DIRECT'
+    - 'IP-CIDR,100.64.0.0/10,DIRECT'
+    - 'IP-CIDR,224.0.0.0/4,DIRECT'
+    - 'IP-CIDR6,fe80::/10,DIRECT'
+    - 'DOMAIN-SUFFIX,cn,DIRECT'
+    - 'DOMAIN-KEYWORD,-cn,DIRECT'
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,三毛机场'
 
