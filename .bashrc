@@ -55,6 +55,7 @@ addTo PATH $MYBIN/cuda/bin
 addTo PATH $MYBIN/my
 addTo PATH $MYBIN/ANTs/install/bin
 addTo PATH $MYBIN/nodejs/bin
+addTo PATH ~/.cargo/bin
 
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
