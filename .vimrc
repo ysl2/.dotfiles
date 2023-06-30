@@ -26,4 +26,3 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 autocmd BufWritePre * silent! :call TrimWhitespace()
-colorscheme desert
