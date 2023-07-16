@@ -3,6 +3,8 @@
 
 _MYLOCAL=$HOME/.Local
 mkdir -p $_MYLOCAL &> /dev/null
+_MYLOCK=$_MYLOCAL/.lock
+mkdir -p $_MYLOCK &> /dev/null
 export MYBIN=$_MYLOCAL/bin
 mkdir -p $MYBIN &> /dev/null
 
@@ -13,7 +15,7 @@ if [[ -z "$TMUX" ]]; then
         _MYTMUX=tmux
     fi
     if [[ ! -z $_MYTMUX ]]; then
-        exec $_MYTMUX new-session -A -s main
+        [[ -f $_MYLOCK/tmux ]] && exec $_MYTMUX new-session -A -s main
     fi
 fi
 
@@ -83,6 +85,14 @@ function lfcd () {
             fi
         fi
     fi
+}
+function ontmux () {
+  [[ ! -e $_MYLOCK/tmux ]] && touch $_MYLOCK/tmux
+  source ~/.bashrc
+}
+function notmux () {
+  [[ -e $_MYLOCK/tmux ]] && rm $_MYLOCK/tmux
+  source ~/.bashrc
 }
 
 alias :q='exit'
