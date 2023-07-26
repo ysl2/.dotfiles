@@ -14,6 +14,8 @@ set splitbelow
 if has('nvim') || v:version >= 800
     set termguicolors
 endif
+set guicursor=
+colorscheme default
 
 inoremap <C-c> <C-[>
 
