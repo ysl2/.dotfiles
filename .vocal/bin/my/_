@@ -7,7 +7,7 @@
 # exit on error
 set -e
 
-PREFIX=$HOME/.Local
+PREFIX=$HOME/.vocal
 TEMP_FOLDER=$HOME/Downloads/_
 
 # create our directories
@@ -275,7 +275,7 @@ function nvim () {
 
     # fuse
 
-    [[ ! -e ${PREFIX}/bin/nvim ]] && wget -c -O ${PREFIX}/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+    [[ ! -e ${PREFIX}/bin/nvim ]] && wget -c -O ${PREFIX}/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
     chmod 777 ${PREFIX}/bin/nvim
 }
 

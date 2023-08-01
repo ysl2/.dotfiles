@@ -17,6 +17,9 @@ endif
 set guicursor=
 colorscheme default
 set cursorline
+if has('nvim')
+    set exrc
+endif
 
 inoremap <C-c> <C-[>
 
