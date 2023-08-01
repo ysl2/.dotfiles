@@ -36,7 +36,7 @@ function addTo () {
     esac
 }
 function onconda (){
-    if [[ -f $_MYLOCK/conda ]]; then
+    if [[ -f $_MYLOCK/conda ]] && [[ -e $1 ]]; then
         # >>> conda initialize >>>
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$($1'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
