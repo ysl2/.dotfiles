@@ -16,6 +16,7 @@ if has('nvim') || v:version >= 800
 endif
 set guicursor=
 colorscheme default
+set cursorline
 
 inoremap <C-c> <C-[>
 
