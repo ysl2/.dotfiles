@@ -35,22 +35,25 @@ function addTo () {
       *) eval "$1='$2:${!1}'";;
     esac
 }
-
-_MYCONDA=$([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$($_MYCONDA'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$_MYCONDA/etc/profile.d/conda.sh" ]; then
-        . "$_MYCONDA/etc/profile.d/conda.sh"
-    else
-        addTo PATH $_MYCONDA/bin
+function onconda (){
+    if [[ -f $_MYLOCK/conda ]]; then
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$($1'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
+        else
+            if [ -f "$1/etc/profile.d/conda.sh" ]; then
+                . "$1/etc/profile.d/conda.sh"
+            else
+                addTo PATH $1/bin
+            fi
+        fi
+        unset __conda_setup
+        # <<< conda initialize <<<
     fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+}
+onconda $([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
 
 addTo PATH $MYBIN
 addTo PATH $MYBIN/cuda/bin
@@ -86,13 +89,14 @@ function lfcd () {
         fi
     fi
 }
-function ontmux () {
-  [[ ! -e $_MYLOCK/tmux ]] && touch $_MYLOCK/tmux
-  source ~/.bashrc
+function _to () {
+    [[ ! -e $1 ]] && touch $1 || rm $1; source ~/.bashrc
 }
-function notmux () {
-  [[ -e $_MYLOCK/tmux ]] && rm $_MYLOCK/tmux
-  source ~/.bashrc
+function totmux () {
+    _to $_MYLOCK/tmux
+}
+function toconda () {
+    _to $_MYLOCK/conda
 }
 
 alias :q='exit'
