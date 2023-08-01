@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-_MYLOCAL=$HOME/.Local
+_MYLOCAL=$HOME/.vocal
 mkdir -p $_MYLOCAL &> /dev/null
 _MYLOCK=$_MYLOCAL/.lock
 mkdir -p $_MYLOCK &> /dev/null
