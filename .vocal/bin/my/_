@@ -430,7 +430,7 @@ function proxychains () {
 }
 
 function libxmu () {
-    echo 'Bug here: no package xext found.'
+    _ERR 'libxmu: no package xext found.'
     return
 
     LIBXMU_VERSION=1.1.3
@@ -452,7 +452,7 @@ function libxmu () {
 }
 
 function xclip () {
-    echo 'Bug here: need libxmu first.'
+    _ERR 'xclip need libxmu first.'
     return
 
     [[ -e ${PREFIX}/bin/xclip ]] && return
