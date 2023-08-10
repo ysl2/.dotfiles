@@ -346,9 +346,8 @@ function firacode () {
     [[ -e $fonts_dir ]] && return
 
     version=v3.0.2
-    wget -c https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/FiraCode.zip
+    [[ ! -e FiraCode.zip ]] && wget -c https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/FiraCode.zip
     unzip -d FiraCode FiraCode.zip
-    rm FiraCode.zip
     sudo mv FiraCode /usr/share/fonts/
     sudo fc-cache -f -v
 }
