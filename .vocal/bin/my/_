@@ -342,22 +342,14 @@ function brew () {
 
 
 function firacode () {
-    _ERR firacode
-    return
-    fonts_dir="/usr/share/fonts/firacode"
-    [[ -e $fonts_dir ]]; return
+    fonts_dir='/usr/share/fonts/FiraCode'
+    [[ -e $fonts_dir ]] && return
 
-    echo "sudo mkdir -p $fonts_dir"
-    sudo mkdir -p "${fonts_dir}"
-
-    version=6.2
-    zip=Fira_Code_v${version}.zip
-    sudo curl --fail --location --show-error https://ghproxy.com/https://github.com/tonsky/FiraCode/releases/download/${version}/${zip} --output ${zip}
-    sudo unzip -o -q -d ${fonts_dir} ${zip}
-    sudo rm ${zip}
-    sudo mv /usr/share/fonts/firacode/**/*.ttf /usr/share/fonts/firacode
-
-    echo "sudo fc-cache -f -v"
+    version=v3.0.2
+    wget -c https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/FiraCode.zip
+    unzip -d FiraCode FiraCode.zip
+    rm FiraCode.zip
+    sudo mv FiraCode /usr/share/fonts/
     sudo fc-cache -f -v
 }
 
@@ -394,6 +386,7 @@ function ants () {
     ./antsInstallExample/installANTs.sh
 }
 
+
 function clash () {
     [[ -e ${PREFIX}/bin/clash ]] && return
 
@@ -412,6 +405,7 @@ function clash () {
     ln -s _lib-clash/clash .
 }
 
+
 function proxychains () {
     [[ -e ${PREFIX}/bin/proxychains4 ]] && return
 
@@ -428,6 +422,7 @@ function proxychains () {
 
     cd ${PREFIX}/bin
 }
+
 
 function libxmu () {
     _ERR 'libxmu: no package xext found.'
@@ -450,6 +445,7 @@ function libxmu () {
     make install
     make clean
 }
+
 
 function xclip () {
     _ERR 'xclip need libxmu first.'
@@ -476,6 +472,7 @@ function xclip () {
     make install
     make install.man
 }
+
 
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
