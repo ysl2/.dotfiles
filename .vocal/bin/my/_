@@ -387,12 +387,16 @@ function ants () {
 
 
 function clash () {
-    [[ -e ${PREFIX}/bin/clash ]] && return
+    _ERR 'Clash not finished yet.'
+    return
 
+    [[ -e ${PREFIX}/bin/clash ]] && return
     cd ${TEMP_FOLDER}
 
-    curl https://glados.rocks/tools/clash-linux.zip -o clash.zip #下载Clash
-    unzip clash.zip
+    CLASH_VERSION=0.20.31
+    [[ ! -e Clash.for.Windows-"${CLASH_VERSION}"-x64-linux.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.20.31/Clash.for.Windows-"${CLASH_VERSION}"-x64-linux.tar.gz
+    tar xzvf Clash.for.Windows-"${CLASH_VERSION}"-x64-linux.tar.gz
+    return
     mv clash ${PREFIX}/bin/_lib-clash
 
     cd ${PREFIX}/bin/_lib-clash
@@ -401,7 +405,7 @@ function clash () {
     chmod +x clash
 
     cd ..
-    ln -s _lib-clash/clash .
+    ln -s _lib-clash/clash_ .
 }
 
 
