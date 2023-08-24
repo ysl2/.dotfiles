@@ -20,6 +20,7 @@ set cursorline
 if has('nvim')
     set exrc
 endif
+language en
 
 inoremap <C-c> <C-[>
 
@@ -32,3 +33,4 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 autocmd BufWritePre * silent! :call TrimWhitespace()
+autocmd BufWritePre * set ff=unix
