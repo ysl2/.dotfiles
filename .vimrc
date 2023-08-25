@@ -20,7 +20,7 @@ set cursorline
 if has('nvim')
     set exrc
 endif
-language en
+language en_US.utf8
 
 inoremap <C-c> <C-[>
 
