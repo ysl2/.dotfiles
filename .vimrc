@@ -10,6 +10,7 @@ autocmd FileType * let &shiftwidth=&tabstop
 set nowrap
 set noswapfile
 set incsearch
+set autoindent
 set smartindent
 set splitright
 set splitbelow
