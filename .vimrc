@@ -5,6 +5,8 @@ set ignorecase
 set smartcase
 let &tabstop=4
 set expandtab
+autocmd FileType json,markdown,html,css let &tabstop=2
+autocmd FileType * let &shiftwidth=&tabstop
 set nowrap
 set noswapfile
 set incsearch
@@ -20,18 +22,25 @@ set cursorline
 if has('nvim')
     set exrc
 endif
+autocmd BufWritePre * set ff=unix
 language en_US.utf8
 
 inoremap <C-c> <C-[>
 tnoremap <A-[> <C-\><C-n>
 
-autocmd FileType json,markdown,html,css let &tabstop=2
-autocmd FileType * let &shiftwidth=&tabstop
 autocmd VimEnter * silent! NoMatchParen
-fun! TrimWhitespace()
+function! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
 autocmd BufWritePre * silent! :call TrimWhitespace()
-autocmd BufWritePre * set ff=unix
+function! InsertOnTerminal()
+    if &buftype ==# "terminal"
+        normal i
+    endif
+endfunction
+autocmd! BufEnter * call InsertOnTerminal()
+if has('nvim')
+    autocmd! TermOpen * call InsertOnTerminal()
+endif
