@@ -23,6 +23,7 @@ endif
 language en_US.utf8
 
 inoremap <C-c> <C-[>
+tnoremap <A-[> <C-\><C-n>
 
 autocmd FileType json,markdown,html,css let &tabstop=2
 autocmd FileType * let &shiftwidth=&tabstop
