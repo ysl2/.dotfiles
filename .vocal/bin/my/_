@@ -477,6 +477,19 @@ function xclip () {
 }
 
 
+function lua () {
+    [[ -e ${PREFIX}/bin/lua ]] && return
+
+    cd ${TEMP_FOLDER}
+
+    LUA_VERSION=v2.1
+    [[ ! -e LuaJIT ]] && git clone git@git.zhlh6.cn:LuaJIT/LuaJIT.git -b "${LUA_VERSION}"
+    cd LuaJIT
+    make
+    mv src/luajit "${PREFIX}"/bin/
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
