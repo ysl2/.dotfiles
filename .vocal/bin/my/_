@@ -50,7 +50,7 @@ function libevent () {
 
     cd ${TEMP_FOLDER}
 
-    openssl
+    # openssl
 
     LIBEVENT_VERSION=2.1.12-stable
     [[ ! -e libevent-${LIBEVENT_VERSION}.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/libevent/libevent/releases/download/release-${LIBEVENT_VERSION}/libevent-${LIBEVENT_VERSION}.tar.gz
