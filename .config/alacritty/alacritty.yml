@@ -676,8 +676,8 @@ key_bindings:
   - { key: B,      mods: Alt,           mode: ~Alt,       action: ScrollPageDown     }
   - { key: U,      mods: Alt,           mode: ~Alt,       action: ScrollHalfPageUp   }
   - { key: D,      mods: Alt,           mode: ~Alt,       action: ScrollHalfPageDown }
-  - { key: Y,      mods: Alt,           mode: ~Alt,       action: ScrollLineUp       }
-  - { key: E,      mods: Alt,           mode: ~Alt,       action: ScrollLineDown     }
+  - { key: K,      mods: Alt,           mode: ~Alt,       action: ScrollLineUp       }
+  - { key: J,      mods: Alt,           mode: ~Alt,       action: ScrollLineDown     }
   - { key: G,      mods: Alt,           mode: ~Alt,       action: ScrollToTop        }
   - { key: G,      mods: Shift|Alt,     mode: ~Alt,       action: ScrollToBottom     }
 
