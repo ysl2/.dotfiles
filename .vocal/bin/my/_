@@ -514,6 +514,7 @@ function chrome () {
 
     cat << EOF > ~/Desktop/chrome.desktop
     [Desktop Entry]
+    Name=Google Chrome
     Type=Application
     Exec=/usr/bin/google-chrome
     Icon=/usr/share/icons/hicolor/48x48/apps/google-chrome.png
