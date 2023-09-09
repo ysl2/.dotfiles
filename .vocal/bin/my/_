@@ -509,8 +509,15 @@ function chrome () {
     cd "${TEMP_FOLDER}"
 
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
-    sudo dpkg -i google-chrome-stable_current_amd64.deb &&
-    rm -f google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    [[ -e google-chrome-stable_current_amd64.deb ]] && rm -f google-chrome-stable_current_amd64.deb
+
+    cat << EOF > ~/Desktop/chrome.desktop
+    [Desktop Entry]
+    Type=Application
+    Exec=/usr/bin/google-chrome
+    Icon=/usr/share/icons/hicolor/48x48/apps/google-chrome.png
+    EOF
 }
 
 
