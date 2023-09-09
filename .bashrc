@@ -117,6 +117,9 @@ alias ipy='ipython'
 alias lf='lfcd'
 alias ld='lazydocker'
 alias lg='lazygit'
+function cht () {
+    curl cht.sh/"${1}"
+}
 
 [[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
