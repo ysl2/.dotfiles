@@ -501,6 +501,19 @@ function nvtop () {
 }
 
 
+function chrome () {
+    if command -v google-chrome &> /dev/null; then
+        return
+    fi
+
+    cd "${TEMP_FOLDER}"
+
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+    sudo dpkg -i google-chrome-stable_current_amd64.deb &&
+    rm -f google-chrome-stable_current_amd64.deb
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
