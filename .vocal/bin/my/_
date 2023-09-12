@@ -491,13 +491,11 @@ function lua () {
 
 
 function nvtop () {
-    [[ -e ${PREFIX}/bin/nvtop ]] && return
-
-    cd ${TEMP_FOLDER}
+    [[ -e "${PREFIX}"/bin/nvtop ]] && return
 
     NVTOP_VERSION=3.0.2
-    [[ ! -e ${PREFIX}/bin/nvtop ]] && wget -c -O ${PREFIX}/bin/nvtop https://ghproxy.com/https://github.com/Syllo/nvtop/releases/download/"${NVTOP_VERSION}"/nvtop-x86_64.AppImage
-    chmod 777 ${PREFIX}/bin/nvtop
+    [[ ! -e "${PREFIX}"/bin/nvtop ]] && wget -c -O "${PREFIX}"/bin/nvtop https://ghproxy.com/https://github.com/Syllo/nvtop/releases/download/"${NVTOP_VERSION}"/nvtop-x86_64.AppImage
+    chmod 777 "${PREFIX}"/bin/nvtop
 }
 
 
@@ -508,17 +506,35 @@ function chrome () {
 
     cd "${TEMP_FOLDER}"
 
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+    wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
     sudo dpkg -i google-chrome-stable_current_amd64.deb
     [[ -e google-chrome-stable_current_amd64.deb ]] && rm -f google-chrome-stable_current_amd64.deb
 
-    cat << EOF > ~/Desktop/chrome.desktop
-    [Desktop Entry]
-    Name=Google Chrome
-    Type=Application
-    Exec=/usr/bin/google-chrome
-    Icon=/usr/share/icons/hicolor/48x48/apps/google-chrome.png
-    EOF
+    TEMP="
+[Desktop Entry]
+Name=Google Chrome
+Type=Application
+Exec=/usr/bin/google-chrome
+Icon=/usr/share/icons/hicolor/48x48/apps/google-chrome.png
+"
+    echo "${TEMP}" > ~/Desktop/chrome.desktop
+}
+
+
+function gh () {
+    [[ -e "${PREFIX}"/bin/github-desktop ]] && return
+
+    GH_VERSION=3.3.1-linux1
+    [[ ! -e "${PREFIX}"/bin/github-desktop ]] && wget -c -O "${PREFIX}"/bin/github-desktop https://ghproxy.com/https://github.com/shiftkey/desktop/releases/download/release-"${GH_VERSION}"/GitHubDesktop-linux-x86_64-"${GH_VERSION}".AppImage
+    chmod 777 "${PREFIX}"/bin/github-desktop
+
+    TEMP="
+[Desktop Entry]
+Name=Github Desktop
+Type=Application
+Exec="${PREFIX}"/bin/github-desktop
+"
+    echo "${TEMP}" > ~/Desktop/github-desktop.desktop
 }
 
 
