@@ -527,12 +527,14 @@ function gh () {
     GH_VERSION=3.3.1-linux1
     [[ ! -e "${PREFIX}"/bin/github-desktop ]] && wget -c -O "${PREFIX}"/bin/github-desktop https://ghproxy.com/https://github.com/shiftkey/desktop/releases/download/release-"${GH_VERSION}"/GitHubDesktop-linux-x86_64-"${GH_VERSION}".AppImage
     chmod 777 "${PREFIX}"/bin/github-desktop
+    [[ ! -e "${PREFIX}"/bin/.github-desktop.png ]] && wget -c -O "${PREFIX}"/bin/.github-desktop.png https://avatars.githubusercontent.com/u/13171334
 
     TEMP="
 [Desktop Entry]
 Name=Github Desktop
 Type=Application
 Exec="${PREFIX}"/bin/github-desktop
+Icon="${PREFIX}"/bin/.github-desktop.png
 "
     echo "${TEMP}" > ~/Desktop/github-desktop.desktop
 }
