@@ -518,6 +518,7 @@ Exec=/usr/bin/google-chrome
 Icon=/usr/share/icons/hicolor/48x48/apps/google-chrome.png
 "
     echo "${TEMP}" > ~/Desktop/chrome.desktop
+    [[ ! -e /usr/share/applications/chrome.desktop ]] && sudo ln -s ~/Desktop/chrome.desktop /usr/share/applications
 }
 
 
@@ -537,6 +538,7 @@ Exec="${PREFIX}"/bin/github-desktop
 Icon="${PREFIX}"/bin/.github-desktop.png
 "
     echo "${TEMP}" > ~/Desktop/github-desktop.desktop
+    [[ ! -e /usr/share/applications/github-desktop.desktop ]] && sudo ln -s ~/Desktop/github-desktop.desktop /usr/share/applications
 }
 
 
