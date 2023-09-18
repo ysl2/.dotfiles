@@ -571,7 +571,16 @@ function wakatime () {
 
 
 if [[ -z $1 ]]; then
-    echo 'Please select an item to install.'
+    echo 'Please select an item to install:'
+    echo ''
+
+    # Get all function names in the script
+    function_names=$(grep -E '^\s*function\s+' "$0" | awk '{print $2}' | grep -v '^_')
+
+    # Print the function names
+    for func_name in $function_names; do
+      echo "$func_name"
+    done
 fi
 
 while [[ ! -z $1 ]]; do
