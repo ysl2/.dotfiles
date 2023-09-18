@@ -552,7 +552,8 @@ Exec="${PREFIX}"/bin/my/dosbox
 Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
 "
     echo "${TEMP}" > ~/Desktop/dosbox.desktop
-    [[ ! -e /usr/share/applications/dosbox.desktop ]] && sudo ln -s ~/Desktop/dosbox.desktop /usr/share/applications
+    [[ -e /usr/share/applications/dosbox.desktop ]] && sudo rm /usr/share/applications/dosbox.desktop
+    sudo ln -s ~/Desktop/dosbox.desktop /usr/share/applications
 }
 
 
