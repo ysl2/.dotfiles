@@ -557,6 +557,19 @@ Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
 }
 
 
+function wakatime () {
+    [[ -e ~/.wakatime/wakatime-cli ]] && return
+
+    mkdir -p ~/.wakatime/ && cd ~/.wakatime/
+
+    WAKATIME_VERSION=v1.81.0
+
+    wget -c https://ghproxy.com/https://github.com/wakatime/wakatime-cli/releases/download/"${WAKATIME_VERSION}"/wakatime-cli-linux-amd64.zip
+    unzip wakatime-cli-linux-amd64.zip
+    ln -s wakatime-cli-linux-amd64 wakatime-cli
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install.'
 fi
