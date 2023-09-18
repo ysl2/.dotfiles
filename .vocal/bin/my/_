@@ -548,7 +548,7 @@ function dosbox () {
 [Desktop Entry]
 Name=Dosbox
 Type=Application
-Exec=/usr/bin/dosbox
+Exec="${PREFIX}"/bin/my/dosbox
 Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
 "
     echo "${TEMP}" > ~/Desktop/dosbox.desktop
