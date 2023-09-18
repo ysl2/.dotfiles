@@ -500,9 +500,7 @@ function nvtop () {
 
 
 function chrome () {
-    if command -v google-chrome &> /dev/null; then
-        return
-    fi
+    if command -v google-chrome &> /dev/null; then return; fi
 
     cd "${TEMP_FOLDER}"
 
@@ -539,6 +537,22 @@ Icon="${PREFIX}"/bin/.github-desktop.png
 "
     echo "${TEMP}" > ~/Desktop/github-desktop.desktop
     [[ ! -e /usr/share/applications/github-desktop.desktop ]] && sudo ln -s ~/Desktop/github-desktop.desktop /usr/share/applications
+}
+
+
+function dosbox () {
+    # NOTE: Don't use `command -v dosbox &> /dev/null` to check if dosbox has already been installed, beacuse the function name is `dosbox`, and is same with the command.
+    [[ -e /usr/bin/dosbox ]] && return
+    sudo apt install -y dosbox
+    TEMP="
+[Desktop Entry]
+Name=Dosbox
+Type=Application
+Exec=/usr/bin/dosbox
+Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
+"
+    echo "${TEMP}" > ~/Desktop/dosbox.desktop
+    [[ ! -e /usr/share/applications/dosbox.desktop ]] && sudo ln -s ~/Desktop/dosbox.desktop /usr/share/applications
 }
 
 
