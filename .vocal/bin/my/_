@@ -558,9 +558,12 @@ Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
 
 
 function wakatime () {
-    [[ -e ~/.wakatime/wakatime-cli ]] && return
+    mkdir -p ~/.wakatime/
+    cd ~/.wakatime/
 
-    mkdir -p ~/.wakatime/ && cd ~/.wakatime/
+    [[ -e wakatime-cli ]] && rm -f wakatime-cli
+    [[ -e wakatime-cli-linux-amd64 ]] && rm -f wakatime-cli-linux-amd64
+    [[ -e wakatime-cli-linux-amd64.zip ]] && rm -f wakatime-cli-linux-amd64.zip
 
     WAKATIME_VERSION=v1.81.0
 
