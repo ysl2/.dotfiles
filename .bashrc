@@ -56,8 +56,8 @@ function onconda (){
 onconda $([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
 
 addTo PATH $MYBIN
+addTo PATH $MYBIN/_
 addTo PATH $MYBIN/cuda/bin
-addTo PATH $MYBIN/my
 addTo PATH $MYBIN/ANTs/install/bin
 addTo PATH $MYBIN/nodejs/bin
 addTo PATH ~/.cargo/bin
