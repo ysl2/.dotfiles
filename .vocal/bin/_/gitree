@@ -63,14 +63,14 @@ class PathLinkedList:
 
     def get_print_name(self, node):
         full_path = node.get_full_name()
-        if os.path.isdir(full_path):
-            return f'{node.name}/'
         if os.path.islink(full_path):
             cmd = f'realpath {full_path}'
             process = subprocess.Popen(cmd, **KWARGS)
             output, _ = process.communicate()
             output = output.decode('utf-8').strip()
             return f'{node.name} -> {output}'
+        if os.path.isdir(full_path):
+            return f'{node.name}/'
         return node.name
 
 
