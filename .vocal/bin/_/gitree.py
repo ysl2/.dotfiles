@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+import os
+import subprocess
+import sys
+
+
+KWARGS = {'shell': True, 'stdout': subprocess.PIPE}
+
+
+class Node:
+    def __init__(self, name):
+        self.name = name
+        self.parent = None
+        self.children = []
+
+    def get_full_name(self):
+        if self.parent is None:
+            return self.name
+        return f"{self.parent.get_full_name()}/{self.name}"
+
+
+class PathLinkedList:
+    def __init__(self):
+        self.root = Node("")
+
+    def add_path(self, path):
+        path_parts = path.strip('/').split("/")
+        current_node = self.root
+
+        for part in path_parts:
+            if part not in [node.name for node in current_node.children]:
+                new_node = Node(part)
+                new_node.parent = current_node
+                current_node.children.append(new_node)
+                current_node = new_node
+            else:
+                existing_node = [node for node in current_node.children if node.name == part][0]
+                current_node = existing_node
+
+    def print_paths(self, node=None, indent=0, last_child=False, prefix=""):
+        if node is None:
+            node = self.root
+            cwds = os.getcwd().strip('/').split('/')
+            for cwd in cwds:
+                def _fn(_node):
+                    for child in _node.children:
+                        if child.name == cwd:
+                            return child
+                node = _fn(node)
+
+        print(prefix + self.get_node_prefix(last_child) + self.get_print_name(node))
+
+        num_children = len(node.children)
+        for index, child in enumerate(node.children):
+            is_last_child = (index == num_children - 1)
+            child_prefix = prefix + self.get_child_prefix(last_child) if indent > 0 else ""
+            self.print_paths(child, indent + 1, last_child=is_last_child, prefix=child_prefix)
+
+    def get_node_prefix(self, last_child):
+        return "└── " if last_child else "├── "
+
+    def get_child_prefix(self, last_child):
+        return "    " if last_child else "│   "
+
+    def get_print_name(self, node):
+        full_path = node.get_full_name()
+        if os.path.isdir(full_path):
+            return f'{node.name}/'
+        if os.path.islink(full_path):
+            cmd = f'realpath {full_path}'
+            process = subprocess.Popen(cmd, **KWARGS)
+            output, _ = process.communicate()
+            output = output.decode('utf-8').strip()
+            return f'{node.name} -> {output}'
+        return node.name
+
+
+def get_git(cwd):
+    cmd = '/usr/bin/git ls-tree --full-tree --name-only -r HEAD'
+    process = subprocess.Popen(cmd,  cwd=cwd, **KWARGS)
+    output, _ = process.communicate()
+    return list(map(lambda x: f"{cwd}/{x.decode('utf-8').strip()}", output.splitlines()))
+
+
+if __name__ == "__main__":
+    path_list = PathLinkedList()
+
+    git_paths = get_git(os.getcwd())
+
+    for git_path in git_paths:
+        path_list.add_path(git_path)
+
+    path_list.print_paths()
