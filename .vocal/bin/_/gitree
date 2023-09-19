@@ -46,8 +46,8 @@ class PathLinkedList:
                         if child.name == cwd:
                             return child
                 node = _fn(node)
-
-        print(prefix + self.get_node_prefix(last_child) + self.get_print_name(node))
+        else:
+            print(prefix + self.get_node_prefix(last_child) + self.get_print_name(node))
 
         num_children = len(node.children)
         for index, child in enumerate(node.children):
@@ -68,9 +68,9 @@ class PathLinkedList:
             process = subprocess.Popen(cmd, **KWARGS)
             output, _ = process.communicate()
             output = output.decode('utf-8').strip()
-            return f'{node.name} -> {output}'
+            return f'\033[36m{node.name}\033[0m -> {output.split(os.getcwd())[1].strip("/")}'
         if os.path.isdir(full_path):
-            return f'{node.name}/'
+            return f'\033[34m{node.name}/\033[0m'
         return node.name
 
 
