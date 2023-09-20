@@ -69,7 +69,9 @@ class PathLinkedList:
             output, _ = process.communicate()
             output = output.decode('utf-8').strip()
             temp = output.split(os.getcwd())[1].strip("/")
-            if os.path.isdir(output):
+            if not os.path.exists(output):
+                output = f'\033[31m{temp}\033[0m'
+            elif os.path.isdir(output):
                 output = f'\033[34m{temp}\033[0m/'
             return f'\033[36m{node.name}\033[0m -> {output}'
         if os.path.isdir(full_path):
