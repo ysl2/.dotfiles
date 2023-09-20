@@ -81,7 +81,7 @@ class PathLinkedList:
 
 def get_git(cwd):
     cmd = '/usr/bin/git ls-tree --full-tree --name-only -r HEAD'
-    process = subprocess.Popen(cmd,  cwd=cwd, **KWARGS)
+    process = subprocess.Popen(cmd, cwd=cwd, **KWARGS)
     output, _ = process.communicate()
     return list(map(lambda x: f"{cwd}/{x.decode('utf-8').strip()}", output.splitlines()))
 
