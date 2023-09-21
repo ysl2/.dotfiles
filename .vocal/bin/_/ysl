@@ -271,8 +271,6 @@ function lazygit () {
 function nvim () {
     [[ -e ${PREFIX}/bin/nvim ]] && return
 
-    cd ${TEMP_FOLDER}
-
     # fuse
 
     [[ ! -e ${PREFIX}/bin/nvim ]] && wget -c -O ${PREFIX}/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
@@ -570,6 +568,27 @@ function wakatime () {
     wget -c https://ghproxy.com/https://github.com/wakatime/wakatime-cli/releases/download/"${WAKATIME_VERSION}"/wakatime-cli-linux-amd64.zip
     unzip wakatime-cli-linux-amd64.zip
     ln -s wakatime-cli-linux-amd64 wakatime-cli
+}
+
+
+function marksman () {
+    [[ -e "${PREFIX}"/bin/marksman ]] && return
+
+    MARKSMAN_VERSION=2023-07-25
+    wget -c -O "${PREFIX}"/bin/marksman https://ghproxy.com/https://github.com/artempyanykh/marksman/releases/download/"${MARKSMAN_VERSION}"/marksman-linux-x64
+    chmod 777 "${PREFIX}"/bin/marksman
+}
+
+
+function texlab () {
+    [[ -e "${PREFIX}"/bin/texlab ]] && return
+
+    cd ${TEMP_FOLDER}
+
+    TEXLAB_VERSION=v5.9.2
+    wget -c https://ghproxy.com/https://github.com/latex-lsp/texlab/releases/download/"${TEXLAB_VERSION}"/texlab-x86_64-linux.tar.gz
+    tar xvf texlab-x86_64-linux.tar.gz
+    mv texlab "${PREFIX}"/bin/
 }
 
 
