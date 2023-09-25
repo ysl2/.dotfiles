@@ -592,6 +592,23 @@ function texlab () {
 }
 
 
+function coc_lua () {
+    [[ -e ~/.config/coc/extensions/coc-sumneko-lua-data/sumneko-lua-ls/extension/server/bin/lua-language-server ]] && return
+
+    cd ${TEMP_FOLDER}
+
+    LUALS_VERSION=v3.7.0
+    mkdir -p sumneko-lua-ls/
+    cd sumneko-lua-ls/
+    [[ ! -e vscode-lua-"${LUALS_VERSION}"-linux-x64.vsix ]] && wget -c https://ghproxy.com/https://github.com/LuaLS/vscode-lua/releases/download/"${LUALS_VERSION}"/vscode-lua-"${LUALS_VERSION}"-linux-x64.vsix
+    unzip vscode-lua-"${LUALS_VERSION}"-linux-x64.vsix
+    cd ..
+    [[ -e ~/.config/coc/extensions/coc-sumneko-lua-data/ ]] && rm -rf ~/.config/coc/extensions/coc-sumneko-lua-data/
+    mkdir -p ~/.config/coc/extensions/coc-sumneko-lua-data/
+    mv sumneko-lua-ls/ ~/.config/coc/extensions/coc-sumneko-lua-data/
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
