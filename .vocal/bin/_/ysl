@@ -609,6 +609,37 @@ function coc_lua () {
 }
 
 
+function zathura () {
+    [[ -e "${PREFIX}"/bin/zathura ]] && return
+
+    cd "${TEMP_FOLDER}"
+    [[ ! -e zathura ]] && git clone git@git.zhlh6.cn:pwmt/zathura.git
+
+    cd zathura
+
+    # pip install meson ninja
+    # sudo apt install libgtk-3-dev
+    # sudo apt install libjson-glib-dev
+    # sudo apt install libmagic-dev
+
+    meson build --prefix="${PREFIX}"
+    cd build
+    ninja
+    ninja install
+
+    TEMP="
+[Desktop Entry]
+Name=Zathura
+Type=Application
+Exec="${PREFIX}"/bin/zathura
+Icon="${PREFIX}"/share/icons/hicolor/256x256/apps/org.pwmt.zathura.png
+"
+    echo "${TEMP}" > ~/Desktop/zathura.desktop
+    [[ -e /usr/share/applications/zathura.desktop ]] && sudo rm /usr/share/applications/zathura.desktop
+    sudo ln -s ~/Desktop/zathura.desktop /usr/share/applications
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
