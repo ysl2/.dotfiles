@@ -610,6 +610,7 @@ function coc_lua () {
 
 
 function zathura () {
+    _ERR zathura && return
     [[ -e "${PREFIX}"/bin/zathura ]] && return
 
     cd "${TEMP_FOLDER}"
