@@ -650,6 +650,21 @@ function shfmt () {
 }
 
 
+function shellcheck () {
+    [[ -e "${PREFIX}"/bin/shellcheck ]] && return
+
+    cd "${TEMP_FOLDER}"
+
+    mkdir -p shellcheck
+    cd shellcheck
+
+    SHELLCHECK_VERSION=v0.9.0
+    [[ ! -e shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz ]] && wget -c https://ghproxy.com/https://github.com/koalaman/shellcheck/releases/download/"${SHELLCHECK_VERSION}"/shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz
+    tar xvf shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz
+    mv shellcheck-"${SHELLCHECK_VERSION}"/shellcheck "${PREFIX}"/bin/
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
