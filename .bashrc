@@ -57,9 +57,12 @@ onconda $([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/mini
 
 addTo PATH $MYBIN
 addTo PATH $MYBIN/_
-addTo PATH $MYBIN/cuda/bin
+for folder in "${MYBIN}"/*/; do
+    if [ -d "${folder}bin" ]; then
+        addTo PATH "${folder}bin"
+    fi
+done
 addTo PATH $MYBIN/ANTs/install/bin
-addTo PATH $MYBIN/nodejs/bin
 addTo PATH ~/.cargo/bin
 
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
