@@ -269,12 +269,13 @@ function lazygit () {
 
 
 function nvim () {
-    [[ -e ${PREFIX}/bin/nvim ]] && return
+    [[ -e "${PREFIX}"/bin/nvim ]] && return
 
     # fuse
 
-    [[ ! -e ${PREFIX}/bin/nvim ]] && wget -c -O ${PREFIX}/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-    chmod 777 ${PREFIX}/bin/nvim
+    NVIM_VERSION=nightly
+    [[ ! -e "${PREFIX}"/bin/nvim ]] && wget -c -O "${PREFIX}"/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/"${NVIM_VERSION}"/nvim.appimage
+    chmod 777 "${PREFIX}"/bin/nvim
 }
 
 
@@ -684,6 +685,18 @@ function alacritty () {
     wget -c -O ~/Desktop/Alacritty.desktop https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.12.1/Alacritty.desktop
     sed -i 's/Exec=alacritty/Exec=\/home\/yusongli\/.vocal\/bin\/alacritty/g' ~/Desktop/Alacritty.desktop
     sudo ln -s ~/Desktop/Alacritty.desktop /usr/share/applications/
+}
+
+
+function nodejs () {
+    [[ -e "${PREFIX}"/bin/nodejs ]] && return
+
+    cd "${TEMP_FOLDER}"
+
+    NODE_VERSION=v18.18.0
+    wget -c https://nodejs.org/dist/"${NODE_VERSION}"/node-"${NODE_VERSION}"-linux-x64.tar.xz
+    tar xvf node-"${NODE_VERSION}"-linux-x64.tar.xz
+    mv node-"${NODE_VERSION}"-linux-x64/ "${PREFIX}"/bin/nodejs/
 }
 
 
