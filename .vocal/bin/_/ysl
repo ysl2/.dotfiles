@@ -268,14 +268,21 @@ function lazygit () {
 }
 
 
-function nvim () {
-    [[ -e "${PREFIX}"/bin/nvim ]] && return
+function neovim () {
+    [[ -e "${PREFIX}"/bin/neovim ]] && return
 
     # fuse
 
-    NVIM_VERSION=nightly
-    [[ ! -e "${PREFIX}"/bin/nvim ]] && wget -c -O "${PREFIX}"/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/"${NVIM_VERSION}"/nvim.appimage
-    chmod 777 "${PREFIX}"/bin/nvim
+    # NVIM_VERSION=nightly
+    # [[ ! -e "${PREFIX}"/bin/nvim ]] && wget -c -O "${PREFIX}"/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/"${NVIM_VERSION}"/nvim.appimage
+    # chmod 777 "${PREFIX}"/bin/nvim
+
+    sudo apt-get install -y ninja-build gettext cmake unzip curl
+
+    cd "${TEMP_FOLDER}"
+    git clone git@git.zhlh6.cn:neovim/neovim.git
+    cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="${PREFIX}"/bin/neovim
+    make install
 }
 
 
