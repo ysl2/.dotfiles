@@ -340,8 +340,9 @@ function brew () {
 
 
 function firacode () {
-    fonts_dir='/usr/share/fonts/FiraCode'
-    [[ -e $fonts_dir ]] && return
+    [[ -e /usr/share/fonts/FiraCode ]] && return
+
+    cd "${TEMP_FOLDER}"
 
     version=v3.0.2
     [[ ! -e FiraCode.zip ]] && wget -c https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/FiraCode.zip
@@ -662,6 +663,27 @@ function shellcheck () {
     [[ ! -e shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz ]] && wget -c https://ghproxy.com/https://github.com/koalaman/shellcheck/releases/download/"${SHELLCHECK_VERSION}"/shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz
     tar xvf shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz
     mv shellcheck-"${SHELLCHECK_VERSION}"/shellcheck "${PREFIX}"/bin/
+}
+
+
+function alacritty () {
+    [[ -e "${PREFIX}"/bin/alacritty ]] && return
+
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    rustup override set stable
+    rustup update stable
+    sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+
+    cd "${TEMP_FOLDER}"
+
+    git clone git@git.zhlh6.cn:alacritty/alacritty.git -b v0.12.1
+    cd alacritty
+
+    cargo build --release
+    mv target/release/alacritty "${PREFIX}"/bin/
+    wget -c -O ~/Desktop/Alacritty.desktop https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.12.1/Alacritty.desktop
+    sed -i 's/Exec=alacritty/Exec=\/home\/yusongli\/.vocal\/bin\/alacritty/g' ~/Desktop/Alacritty.desktop
+    sudo ln -s ~/Desktop/Alacritty.desktop /usr/share/applications/
 }
 
 
