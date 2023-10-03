@@ -684,12 +684,13 @@ function alacritty () {
 
     cd "${TEMP_FOLDER}"
 
-    git clone git@git.zhlh6.cn:alacritty/alacritty.git -b v0.12.1
+    ALACRITTY_VERSION=v0.12.1
+    git clone git@git.zhlh6.cn:alacritty/alacritty.git -b "${ALACRITTY_VERSION}"
     cd alacritty
 
     cargo build --release
     mv target/release/alacritty "${PREFIX}"/bin/
-    wget -c -O ~/Desktop/Alacritty.desktop https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/v0.12.1/Alacritty.desktop
+    wget -c -O ~/Desktop/Alacritty.desktop https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/"${ALACRITTY_VERSION}"/Alacritty.desktop
     sed -i 's/Exec=alacritty/Exec=\/home\/yusongli\/.vocal\/bin\/alacritty/g' ~/Desktop/Alacritty.desktop
     sudo ln -s ~/Desktop/Alacritty.desktop /usr/share/applications/
 }
