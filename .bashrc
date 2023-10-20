@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+[[ -f ~/.bashrc.localhost.pre ]] && source ~/.bashrc.localhost.pre
+
 _MYLOCAL=$HOME/.vocal
 mkdir -p $_MYLOCAL &> /dev/null
 _MYLOCK=$_MYLOCAL/.lock
@@ -8,9 +10,14 @@ mkdir -p $_MYLOCK &> /dev/null
 export MYBIN=$_MYLOCAL/bin
 mkdir -p $MYBIN &> /dev/null
 
+if [[ -z "${MYCONDA}" ]]; then
+    MYCONDA=$([[ -e $MYBIN/anaconda3 ]] && echo "${MYBIN}"/anaconda3 || echo "${MYBIN}"/miniconda3)
+fi
 if [[ -z "$TMUX" ]]; then
     if [[ -e $MYBIN/tmux ]]; then
         _MYTMUX=$MYBIN/tmux
+    elif [[ -e "${MYCONDA}" ]]; then
+        _MYTMUX="${MYCONDA}"/bin/tmux
     elif command -v tmux &> /dev/null; then
         _MYTMUX=tmux
     fi
@@ -53,7 +60,7 @@ function onconda (){
         # <<< conda initialize <<<
     fi
 }
-onconda $([[ -e $MYBIN/anaconda3 ]] && echo $MYBIN/anaconda3 || echo $MYBIN/miniconda3)
+onconda "${MYCONDA}"
 
 addTo PATH $MYBIN
 addTo PATH $MYBIN/_
@@ -150,4 +157,4 @@ function jo() {
 [[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
-[[ -f ~/.bashrc.localhost ]] && source ~/.bashrc.localhost
+[[ -f ~/.bashrc.localhost.post ]] && source ~/.bashrc.localhost.post
