@@ -154,6 +154,7 @@ function jo() {
 			;;
 	esac
 }
+# https://github.com/TheZoraiz/ascii-image-converter
 alias ass='ascii-image-converter --color --braille --dither --complex'
 
 [[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
