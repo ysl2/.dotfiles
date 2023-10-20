@@ -154,6 +154,7 @@ function jo() {
 			;;
 	esac
 }
+alias ass='ascii-image-converter --color --braille --dither --complex'
 
 [[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
