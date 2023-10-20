@@ -733,7 +733,7 @@ function joshuto () {
 function kitty () {
     [[ -e ~/.local/kitty.app ]] && return
     curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    if [[ ! -e ~/.local/kitty.app ]]; then
+    if [ $? -ne 0 ]; then
         cd "${TEMP_FOLDER}"
         mkdir -p kitty.app
         cd kitty.app
