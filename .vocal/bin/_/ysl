@@ -754,6 +754,17 @@ function kitty () {
 }
 
 
+function ascii () {
+    ASCII_VERSION=v1.13.1
+    cd "${TEMP_FOLDER}"
+    mkdir ascii
+    cd ascii
+    wget -c https://ghproxy.com/https://github.com/TheZoraiz/ascii-image-converter/releases/download/"${ASCII_VERSION}"/ascii-image-converter_Linux_amd64_64bit.tar.gz
+    tar xvf ascii-image-converter_Linux_amd64_64bit.tar.gz
+    mv ascii-image-converter_Linux_amd64_64bit/ascii-image-converter "${PREFIX}"/bin/
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
