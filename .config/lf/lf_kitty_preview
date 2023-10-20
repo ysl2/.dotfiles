@@ -8,6 +8,14 @@ y=$5
 if [[ "$( file -Lb --mime-type "$file")" =~ ^image ]]; then
     kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty
     exit 1
+elif [[ "$(file -Lb --mime-type "$file")" =~ ^application/pdf ]]; then
+    # https://www.reddit.com/r/KittyTerminal/comments/132n4p5/any_lf_file_manager_users_how_to_preview_pdfs_as/
+    filename=$(basename $(echo "$file" | tr ' ' '_'))
+    if [[ ! -f "/tmp/$filename.png" ]]; then
+        pdftoppm -f 1 -l 1 "$file" >> "/tmp/$filename.png"
+    fi
+    kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "/tmp/$filename.png" < /dev/null > /dev/tty
+	exit 1
 fi
 
 cat "$file"
