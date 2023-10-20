@@ -732,18 +732,15 @@ function joshuto () {
 
 function kitty () {
     [[ -e ~/.local/kitty.app ]] && return
-    curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-    if [ $? -ne 0 ]; then
-        cd "${TEMP_FOLDER}"
-        mkdir -p kitty.app
-        cd kitty.app
+    # curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+    # if [ $? -ne 0 ]; then
+    mkdir -p ~/.local/kitty.app
+    cd ~/.local/kitty.app
 
-        KITTY_VERSION=0.30.0
-        wget -c https://ghproxy.com/https://github.com/kovidgoyal/kitty/releases/download/v"${KITTY_VERSION}"/kitty-"${KITTY_VERSION}"-x86_64.txz
-        tar xvf kitty-"${KITTY_VERSION}"-x86_64.txz
-        cd ..
-        mv kitty.app ~/.local/
-    fi
+    KITTY_VERSION=0.30.0
+    wget -c https://ghproxy.com/https://github.com/kovidgoyal/kitty/releases/download/v"${KITTY_VERSION}"/kitty-"${KITTY_VERSION}"-x86_64.txz
+    tar xvf kitty-"${KITTY_VERSION}"-x86_64.txz
+    # fi
     # Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in
     # your system-wide PATH)
     ln -s ~/.local/kitty.app/ "${PREFIX}"/bin/
