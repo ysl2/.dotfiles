@@ -11,10 +11,10 @@ TMP_FILE="$HOME/.cache/joshuto/thumbcache.png"
 mimetype=$(file --mime-type -Lb "$FILE_PATH")
 
 function image {
-    kitten icat \
+    kitty +kitten icat \
         --transfer-mode=file \
         --clear 2>/dev/null
-    kitten icat \
+    kitty +kitten icat \
         --transfer-mode=file \
         --place "${PREVIEW_WIDTH}x${PREVIEW_HEIGHT}@${PREVIEW_X_COORD}x${PREVIEW_Y_COORD}" \
         "$1" 2>/dev/null
@@ -25,7 +25,7 @@ case "$mimetype" in
         image "${FILE_PATH}"
         ;;
     *)
-        kitten icat \
+        kitty +kitten icat \
             --transfer-mode=file \
             --clear 2>/dev/null
         ;;
