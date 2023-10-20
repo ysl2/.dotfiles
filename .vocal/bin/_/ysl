@@ -708,6 +708,22 @@ function nodejs () {
 }
 
 
+function trans () {
+    TRANS_VERSION=0.9.7.1
+    TARGET_FOLDER_NAME=translate-shell-"${TRANS_VERSION}"
+    TARGET_FOLDER_PATH="${PREFIX}"/bin/"${TARGET_FOLDER_NAME}"/bin
+    [[ -e "${TARGET_FOLDER_PATH}" ]] && return
+    mkdir -p "${TARGET_FOLDER_PATH}"
+
+    cd "${TEMP_FOLDER}"
+
+    wget -c -O translate-shell-v"${TRANS_VERSION}".tar.gz https://ghproxy.com/https://github.com/soimort/translate-shell/archive/refs/tags/v"${TRANS_VERSION}".tar.gz
+    tar xvf translate-shell-v"${TRANS_VERSION}".tar.gz
+    mv translate-shell-"${TRANS_VERSION}"/* "${TARGET_FOLDER_PATH}"
+    ln -s "${TARGET_FOLDER_PATH}"/translate "${TARGET_FOLDER_PATH}"/trans
+}
+
+
 function joshuto () {
     INSTALL_PREFIX="${PREFIX}"/bin \
     bash <(curl -s https://ghproxy.com/https://raw.githubusercontent.com/kamiyaa/joshuto/master/utils/install.sh | sed 's#ARCHIVE_URL="#ARCHIVE_URL="https://ghproxy.com/#g')
