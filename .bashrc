@@ -70,6 +70,7 @@ for folder in "${MYBIN}"/*/; do
     fi
 done
 addTo PATH $MYBIN/ANTs/install/bin
+addTo PATH ~/.local/kitty.app/bin
 
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
