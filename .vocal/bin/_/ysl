@@ -708,6 +708,12 @@ function nodejs () {
 }
 
 
+function joshuto () {
+    INSTALL_PREFIX="${PREFIX}"/bin \
+    bash <(curl -s https://ghproxy.com/https://raw.githubusercontent.com/kamiyaa/joshuto/master/utils/install.sh | sed 's#ARCHIVE_URL="#ARCHIVE_URL="https://ghproxy.com/#g')
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''

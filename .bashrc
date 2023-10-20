@@ -63,7 +63,6 @@ for folder in "${MYBIN}"/*/; do
     fi
 done
 addTo PATH $MYBIN/ANTs/install/bin
-addTo PATH ~/.cargo/bin
 
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
@@ -126,4 +125,5 @@ function cht () {
 
 [[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
 [[ -f ~/.bashrc.localhost ]] && source ~/.bashrc.localhost
