@@ -12,7 +12,9 @@ filename=$(basename $(echo "$file" | tr ' ' '_'))
 
 
 function kitty_icat() {
-    kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$1" < /dev/null > /dev/tty
+    if [[ -z "$TMUX" ]]; then
+        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$1" < /dev/null > /dev/tty
+    fi
 }
 
 
