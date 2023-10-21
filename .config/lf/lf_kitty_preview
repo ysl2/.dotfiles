@@ -39,6 +39,7 @@ case "${mimetype}" in
         kitty_icat "/tmp/$filename.jpg"
         ;;
     *zip | *tar | *rar | *x-xz)
+        # sudo apt install atool
         als "$file" | awk '{print $NF}'
         exit 1
         ;;
