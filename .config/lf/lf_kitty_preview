@@ -1,20 +1,37 @@
 #!/usr/bin/env bash
+# Ref:
 # https://www.reddit.com/r/KittyTerminal/comments/132n4p5/any_lf_file_manager_users_how_to_preview_pdfs_as/
+# https://github.com/rafi/.config/blob/master/lf/preview
+
 file=$1
 w=$2
 h=$3
 x=$4
 y=$5
 
-# mimetype="$( file -Lb --mime-type "$file")"
 mimetype="$( file --dereference --brief --mime-type -- "${file}" )"
 filename=$(basename $(echo "$file" | tr ' ' '_'))
 
 
 function kitty_icat() {
-    if [[ -z "$TMUX" ]]; then
+    if [[ -z "$TMUX" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
         kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$1" < /dev/null > /dev/tty
+        return
     fi
+    resolution=$(file "$file" | grep -oP '\d+\s*x\s*\d+')
+    read -r width height <<< $(echo "$resolution" | awk -Fx '{print $1, $2}')
+    if [ "$width" -lt "$height" ]; then
+        viu -sb -h "$h" "$file"
+    else
+        viu -sb -w "$w" "$file"
+    fi
+    if [ $? -eq 0 ]; then
+        return
+    fi
+    chafa -s "$w"x"$h" "$file" || \
+        timg -E -g"$w"x"$h" "$file" || \
+        catimg -r 2 -H "$h" "$file" || \
+        imgcat --depth=256 --width "$w" "$file"
 }
 
 
