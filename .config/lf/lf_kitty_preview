@@ -20,7 +20,7 @@ case "${mimetype}" in
     image/*)
         kitty_icat "$file"
         ;;
-    application/pdf)
+    *pdf)
         if [[ ! -f "/tmp/$filename.png" ]]; then
             pdftoppm -f 1 -l 1 "$file" > "/tmp/$filename.png"
         fi
@@ -37,6 +37,10 @@ case "${mimetype}" in
             ffmpeg -i "$file" -vf "thumbnail" -frames:v 1 "/tmp/$filename.jpg"
         fi
         kitty_icat "/tmp/$filename.jpg"
+        ;;
+    *zip | *tar | *rar | *x-xz)
+        als "$file" | awk '{print $NF}'
+        exit 1
         ;;
     *)
         cat "$file"
