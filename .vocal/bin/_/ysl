@@ -191,7 +191,7 @@ function lf () {
 
     cd ${TEMP_FOLDER}
 
-    LF_VERSION=r28
+    LF_VERSION=r31
     [[ ! -e lf-linux-amd64.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/gokcehan/lf/releases/download/${LF_VERSION}/lf-linux-amd64.tar.gz
     tar xvzf lf-linux-amd64.tar.gz
     mkdir -p ${PREFIX}/bin
