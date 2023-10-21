@@ -128,11 +128,6 @@ cmd yank-basename-without-extension ${{
       xclip -i -selection clipboard
 }}
 
-cmd open-with-gui &$@ $fx ## opens with a gui application outside lf client
-cmd open-with-cli $$@ $fx ## opens with a cli application inside lf client
-map O push :open-with-gui<space> ## input application
-map o push :open-with-cli<space> ## input application
-
 map . :read; cmd-history-prev; cmd-enter
 
 cmd select-files &{{
@@ -227,7 +222,7 @@ cmd open &{{
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
+# cmd trash %set -f; mv $fx ~/.trash
 
 # define a custom 'delete' command
 # cmd delete ${{
