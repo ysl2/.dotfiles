@@ -14,6 +14,9 @@ set smartcase
 set previewer ~/.config/lf/lf_kitty_preview
 set cleaner ~/.config/lf/lf_kitty_clean
 
+map '
+map ` mark-load
+
 
 # ============
 # === Tips ===
