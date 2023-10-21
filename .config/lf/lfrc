@@ -14,7 +14,6 @@ set smartcase
 set previewer ~/.config/lf/lf_kitty_preview
 set cleaner ~/.config/lf/lf_kitty_clean
 
-map '
 map ` mark-load
 
 
@@ -192,7 +191,7 @@ set scrolloff 10
 map <enter> shell
 
 # show the result of execution of previous commands
-map ` !true
+# map ` !true
 
 # execute current file (must be executable)
 map x $$f
