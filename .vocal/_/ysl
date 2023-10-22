@@ -774,6 +774,15 @@ function ascii () {
 }
 
 
+function wezterm () {
+    _ERR 'wezterm'
+    [[ -e "${PREFIX}/wezterm" ]] && return
+    cd "${TEMP_FOLDER}"
+    # wget -c 'https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu20.04.tar.xz'
+    tar xvf 'wezterm-nightly.Ubuntu20.04.tar.xz'
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''

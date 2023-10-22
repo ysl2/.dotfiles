@@ -63,13 +63,14 @@ function onconda (){
 }
 onconda "$MYCONDA"
 
-addTo PATH "$MYBIN"
 addTo PATH "$MYLOCAL/_"
+addTo PATH "$MYBIN"
 for folder in "$MYBIN"/*/; do
     if [ -d "${folder}bin" ]; then
         addTo PATH "${folder}bin"
     fi
 done
+addTo PATH "$MYLOCAL"
 for folder in "$MYLOCAL"/*/; do
     if [ -d "${folder}bin" ]; then
         addTo PATH "${folder}bin"
