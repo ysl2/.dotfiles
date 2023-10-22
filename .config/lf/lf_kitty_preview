@@ -55,8 +55,8 @@ function kitty_icat() {
 
     # If not in tmux, use sixel
     if [[ -z "$TMUX" ]]; then
-        # chafa -f sixels -s "$W"x"$H" "$1"
-        chafa -f sixels "$1"
+        # chafa -f sixels "$1"
+        chafa -f sixels -s "$W"x"$H" "$1"
         if [ $? -eq 0 ]; then
             exit 0
         fi
