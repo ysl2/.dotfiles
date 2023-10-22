@@ -40,7 +40,7 @@ function kitty_icat() {
         if [[ -z "$SSH_TTY" ]]; then
             transfermode='file'
         else
-            transfermode='stream'
+            transfermode='stream' # NOTE: Only when no tmux, this will be executed.
         fi
         kitty +kitten icat --silent --stdin no --transfer-mode "$transfermode" --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
         # Remote machine might not have kitty, so check return value first.
