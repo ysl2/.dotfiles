@@ -20,10 +20,15 @@ function kitty_icat() {
     fi
     resolution=$(file "$1" | grep -oP '\d+\s*x\s*\d+')
     read -r width height <<< "$(echo "$resolution" | awk -Fx '{print $1, $2}')"
+    # if [ "$width" -lt "$height" ]; then
+    #     viu -sb -h "$H" "$1"
+    # else
+    #     viu -sb -w "$W" "$1"
+    # fi
     if [ "$width" -lt "$height" ]; then
-        viu -sb -h "$H" "$1"
+        img2sixel -h "$H"0 "$1"
     else
-        viu -sb -w "$W" "$1"
+        img2sixel -w "$W"0 "$1"
     fi
     if [ $? -eq 0 ]; then
         return
