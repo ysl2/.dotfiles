@@ -162,6 +162,7 @@ function jo() {
 }
 # https://github.com/TheZoraiz/ascii-image-converter
 alias ass='ascii-image-converter --color --braille --dither --complex'
+alias xterm='xterm -ti vt340'
 
 [[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
