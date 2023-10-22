@@ -785,6 +785,18 @@ function wezterm () {
 }
 
 
+function chafa () {
+    [[ -e "${PREFIX}"/chafa ]] && return
+
+    cd "${TEMP_FOLDER}"
+
+    CHAFA_VERSION=1.12.5
+    wget -c https://hpjansson.org/chafa/releases/static/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
+    tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
+    mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
