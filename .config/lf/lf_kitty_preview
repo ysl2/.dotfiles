@@ -33,6 +33,7 @@ function kitty_icat() {
     if [ $? -eq 0 ]; then
         return
     fi
+    # chafa -f sixels image.png
     chafa -s "$W"x"$H" "$1" || \
         timg -E -g"$W"x"$H" "$1" || \
         catimg -r 2 -H "$H" "$1" || \
