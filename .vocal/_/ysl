@@ -140,26 +140,35 @@ function fuse () {
 
 
 function tmux () {
-    [[ -e ${PREFIX}/bin/tmux ]] && return
+    [[ -e "${PREFIX}/tmux/bin/tmux" ]] && return
 
-    cd ${TEMP_FOLDER}
+    cd "$TEMP_FOLDER"
 
-    libevent
-    ncurses
+    # libevent
+    # ncurses
 
-    TMUX_VERSION=3.3a
-    [[ ! -e tmux-${TMUX_VERSION}.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
-    tar xvzf tmux-${TMUX_VERSION}.tar.gz
-    cd tmux-${TMUX_VERSION}
+    # TMUX_VERSION=3.3a
+    # [[ ! -e tmux-${TMUX_VERSION}.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz
+    # tar xvzf tmux-${TMUX_VERSION}.tar.gz
     # ./configure CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-L${PREFIX}/lib -L${PREFIX}/include/ncurses -L${PREFIX}/include"
     # CPPFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib" make
-    ./configure \
-        CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
-        LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib " \
-        --prefix=${PREFIX}
+
+    # ./configure \
+    #     CFLAGS="-I${PREFIX}/include -I${PREFIX}/include/ncurses" \
+    #     LDFLAGS="-static -L${PREFIX}/include -L${PREFIX}/include/ncurses -L${PREFIX}/lib " \
+    #     --prefix=${PREFIX}
+    # make
+    # cp tmux ${PREFIX}/bin
+    # make clean
+
+    sudo apt install -y libevent-dev
+
+    git clone git@git.zhlh6.cn:tmux/tmux.git
+    cd tmux
+    sh autogen.sh
+    ./configure --prefix="${PREFIX}/tmux"
     make
-    cp tmux ${PREFIX}/bin
-    make clean
+    make install
 }
 
 

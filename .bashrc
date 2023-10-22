@@ -3,19 +3,19 @@
 
 [[ -f ~/.bashrc.localhost.pre ]] && source ~/.bashrc.localhost.pre
 
-_MYLOCAL=$HOME/.vocal
-mkdir -p $_MYLOCAL &> /dev/null
-_MYLOCK=$_MYLOCAL/.lock
-mkdir -p $_MYLOCK &> /dev/null
-export MYBIN=$_MYLOCAL/bin
-mkdir -p $MYBIN &> /dev/null
+MYLOCAL="${HOME}/.vocal"
+mkdir -p "$MYLOCAL" &> /dev/null
+_MYLOCK="${MYLOCAL}/.lock"
+mkdir -p "$_MYLOCK" &> /dev/null
+export MYBIN="${MYLOCAL}/bin"
+mkdir -p "$MYBIN" &> /dev/null
 
 if [[ -z "${MYCONDA}" ]]; then
-    MYCONDA=$([[ -e $MYBIN/anaconda3 ]] && echo "${MYBIN}"/anaconda3 || echo "${MYBIN}"/miniconda3)
+    MYCONDA=$([[ -e "${MYBIN}/anaconda3" ]] && echo "${MYBIN}/anaconda3" || echo "${MYBIN}/miniconda3")
 fi
 if [[ -z "$TMUX" ]]; then
-    if [[ -e $MYBIN/tmux ]]; then
-        _MYTMUX=$MYBIN/tmux
+    if [[ -e "${MYLOCAL}/tmux/bin/tmux" ]]; then
+        _MYTMUX="${MYLOCAL}/tmux/bin/tmux"
     elif [[ -e "${MYCONDA}" ]]; then
         _MYTMUX="${MYCONDA}"/bin/tmux
     elif command -v tmux &> /dev/null; then
@@ -25,6 +25,7 @@ if [[ -z "$TMUX" ]]; then
         [[ -f $_MYLOCK/tmux ]] && exec $_MYTMUX new-session -A -s main
     fi
 fi
+export _MYTMUX
 
 if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
     curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
@@ -60,24 +61,29 @@ function onconda (){
         # <<< conda initialize <<<
     fi
 }
-onconda "${MYCONDA}"
+onconda "$MYCONDA"
 
-addTo PATH $MYBIN
-addTo PATH $MYBIN/_
-for folder in "${MYBIN}"/*/; do
+addTo PATH "$MYBIN"
+addTo PATH "$MYLOCAL/_"
+for folder in "$MYBIN"/*/; do
     if [ -d "${folder}bin" ]; then
         addTo PATH "${folder}bin"
     fi
 done
-addTo PATH $MYBIN/ANTs/install/bin
-addTo PATH ~/.local/kitty.app/bin
+for folder in "$MYLOCAL"/*/; do
+    if [ -d "${folder}bin" ]; then
+        addTo PATH "${folder}bin"
+    fi
+done
+addTo PATH "${MYBIN}/ANTs/install/bin"
+addTo PATH "${HOME}/.local/kitty.app/bin"
 
 export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 export LD_LIBRARY_PATH=
-addTo LD_LIBRARY_PATH $_MYLOCAL/lib
-addTo LD_LIBRARY_PATH $_MYLOCAL/lib64
-addTo LD_LIBRARY_PATH $MYBIN/cuda/lib64
+addTo LD_LIBRARY_PATH "${MYLOCAL}/lib"
+addTo LD_LIBRARY_PATH "${MYLOCAL}/lib64"
+addTo LD_LIBRARY_PATH "${MYBIN}/cuda/lib64"
 # 1-May-2020: Fix for Keyring error with pip. Hopefully new pip will fix it
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
