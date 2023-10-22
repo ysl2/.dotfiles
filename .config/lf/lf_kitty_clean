@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-kitty +kitten icat --clear --stdin no --silent --transfer-mode stream < /dev/null > /dev/tty
+if [[ -z "$SSH_TTY" ]]; then
+    transfermode='file'
+else
+    transfermode='stream'
+fi
+kitty +kitten icat --clear --stdin no --silent --transfer-mode "$transfermode" < /dev/null > /dev/tty

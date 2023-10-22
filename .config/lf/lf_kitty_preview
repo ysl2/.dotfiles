@@ -14,7 +14,7 @@ H=$3
 X=$4
 Y=$5
 
-FILENAME=$(basename "$(echo "$FILE" | tr ' ' '_')")
+TMPFILENAME=$(basename "$(echo "$FILE" | tr ' ' '__' | tr '.' '_')")
 # FILE_EXTENSION="${FILE##*.}"
 # FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lower:]')"
 MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
@@ -23,30 +23,63 @@ MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 function kitty_icat() {
     # If: not in tmux, and not in server, and is in kitty, use kitty icat.
     # if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
+
+    # If in kitty, use kitty.
+    # tmux will set $TERM to xterm-256color, so check kitty first.
+    # If $TERM is kitty, that means must no tmux.
+    # Else, that might be in tmux, need further check.
+    if [[ "$TERM" == 'xterm-kitty' ]]; then
+        # If not in remote, use file. else, use stream.
         # Ref: --transfer-mode
         # https://sw.kovidgoyal.net/kitty/kittens/icat/#cmdoption-kitty-kitten-icat-transfer-mode
-        kitty +kitten icat --silent --stdin no --transfer-mode stream --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
+        #
         # NOTE:
         # Must exit 1, for lf running cleaner after the picture shows.
         # If exit 0, lf will not clean the picture after preview.
-        exit 1
-    # fi
+
+        if [[ -z "$SSH_TTY" ]]; then
+            transfermode='file'
+        else
+            transfermode='stream'
+        fi
+        kitty +kitten icat --silent --stdin no --transfer-mode "$transfermode" --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
+        # Remote machine might not have kitty, so check return value first.
+        # If success, exit 1. Else, keep going.
+        if [ $? -eq 0 ]; then
+            exit 1
+        fi
+    fi
+
     local resolution=$(file "$1" | grep -oP '\d+\s*x\s*\d+')
     read -r width height <<< "$(echo "$resolution" | awk -Fx '{print $1, $2}')"
-    # if [ "$width" -lt "$height" ]; then
-    #     viu -sb -h "$H" "$1"
-    # else
-    #     viu -sb -w "$W" "$1"
-    # fi
+
+    # If not in tmux, use sixel
+    if [[ -z "$TMUX" ]]; then
+        chafa -f sixels -s "$W"x"$H" "$1"
+        if [ $? -eq 0 ]; then
+            exit 0
+        fi
+        # If chafa fails, use img2sixel for fallback.
+        if [ "$width" -lt "$height" ]; then
+            # The shape is too small, so add zero for multiple ten.
+            img2sixel -h "$H"0 "$1"
+        else
+            img2sixel -w "$W"0 "$1"
+        fi
+        if [ $? -eq 0 ]; then
+            exit 0
+        fi
+    fi
+
+    # If in tmux, use ascii
     if [ "$width" -lt "$height" ]; then
-        img2sixel -h "$H"0 "$1"
+        viu -sb -h "$H" "$1"
     else
-        img2sixel -w "$W"0 "$1"
+        viu -sb -w "$W" "$1"
     fi
     if [ $? -eq 0 ]; then
         exit 0
     fi
-    # chafa -f sixels image.png
     chafa -s "$W"x"$H" "$1" || \
         timg -E -g"$W"x"$H" "$1" || \
         catimg -r 2 -H "$H" "$1" || \
@@ -60,6 +93,10 @@ function handle_extension() {
         *nii | *nii.gz)
             # pip install niicat
             # sudo apt install libsixel-bin
+            if [[ "$TERM" == 'xterm-kitty' ]]; then
+                echo "kitty terminal doesn't support sixel protocol."
+                exit 0
+            fi
             niicat "$FILE" -lb
             exit 0
             ;;
@@ -74,22 +111,22 @@ function handle_mime() {
             kitty_icat "$FILE"
             ;;
         *pdf)
-            if [[ ! -f "/tmp/$FILENAME.png" ]]; then
-                pdftoppm -f 1 -l 1 "$FILE" > "/tmp/$FILENAME.png"
+            if [[ ! -f "/tmp/$TMPFILENAME.png" ]]; then
+                pdftoppm -f 1 -l 1 -png "$FILE" > "/tmp/$TMPFILENAME.png"
             fi
-            kitty_icat "/tmp/$FILENAME.png"
+            kitty_icat "/tmp/$TMPFILENAME.png"
             ;;
         audio/*)
-            if [[ ! -f "/tmp/$FILENAME.jpg" ]]; then
-                ffmpeg -i "$FILE" -an -c:v copy "/tmp/$FILENAME.jpg"
+            if [[ ! -f "/tmp/$TMPFILENAME.png" ]]; then
+                ffmpeg -i "$FILE" -an -c:v copy "/tmp/$TMPFILENAME.png"
             fi
-            kitty_icat "/tmp/$FILENAME.png"
+            kitty_icat "/tmp/$TMPFILENAME.png"
             ;;
         video/*)
-            if [[ ! -f "/tmp/$FILENAME.jpg" ]]; then
-                ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "/tmp/$FILENAME.jpg"
+            if [[ ! -f "/tmp/$TMPFILENAME.png" ]]; then
+                ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "/tmp/$TMPFILENAME.png"
             fi
-            kitty_icat "/tmp/$FILENAME.png"
+            kitty_icat "/tmp/$TMPFILENAME.png"
             ;;
         *zip | *tar | *rar | *x-xz)
             # sudo apt install atool
