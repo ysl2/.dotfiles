@@ -25,7 +25,6 @@ if [[ -z "$TMUX" ]]; then
         [[ -f $_MYLOCK/tmux ]] && exec $_MYTMUX new-session -A -s main
     fi
 fi
-export _MYTMUX
 
 if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
     curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
