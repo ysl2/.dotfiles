@@ -90,7 +90,7 @@ function kitty_icat() {
 
 function handle_extension() {
     case "$FILE" in
-        *nii | *nii.gz)
+        *.nii | *.nii.gz)
             # pip install niicat
             # sudo apt install libsixel-bin
             if [[ "$TERM" == 'xterm-kitty' ]]; then
@@ -103,6 +103,9 @@ function handle_extension() {
             fi
             niicat "$FILE" -lb
             exit 0
+            ;;
+        *.six | *.sixel)
+            kitty_icat "$FILE"
             ;;
     esac
     # WARNING: Do not add any exit value here!
