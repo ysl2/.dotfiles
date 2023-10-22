@@ -91,8 +91,6 @@ function kitty_icat() {
 function handle_extension() {
     case "$FILE" in
         *.nii | *.nii.gz)
-            # pip install niicat
-            # sudo apt install libsixel-bin
             if [[ "$TERM" == 'xterm-kitty' ]]; then
                 echo "kitty terminal doesn't support sixel protocol."
                 exit 0
@@ -101,6 +99,8 @@ function handle_extension() {
                 echo "tmux doesn't support sixel protocol."
                 exit 0
             fi
+            # pip install niicat
+            # sudo apt install libsixel-bin
             niicat "$FILE" -lb
             exit 0
             ;;
