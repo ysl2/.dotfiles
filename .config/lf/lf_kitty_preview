@@ -3,68 +3,70 @@
 # https://www.reddit.com/r/KittyTerminal/comments/132n4p5/any_lf_file_manager_users_how_to_preview_pdfs_as/
 # https://github.com/rafi/.config/blob/master/lf/preview
 
-file=$1
-w=$2
-h=$3
-x=$4
-y=$5
+FILE=$1
+W=$2
+H=$3
+X=$4
+Y=$5
 
-mimetype="$( file --dereference --brief --mime-type -- "${file}" )"
-filename=$(basename $(echo "$file" | tr ' ' '_'))
+MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE}" )"
+FILENAME=$(basename "$(echo "$FILE" | tr ' ' '_')")
 
 
 function kitty_icat() {
     if [[ -z "$TMUX" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
-        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$1" < /dev/null > /dev/tty
+        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
         return
     fi
-    resolution=$(file "$file" | grep -oP '\d+\s*x\s*\d+')
-    read -r width height <<< $(echo "$resolution" | awk -Fx '{print $1, $2}')
+    resolution=$(file "$1" | grep -oP '\d+\s*x\s*\d+')
+    read -r width height <<< "$(echo "$resolution" | awk -Fx '{print $1, $2}')"
     if [ "$width" -lt "$height" ]; then
-        viu -sb -h "$h" "$file"
+        viu -sb -h "$H" "$1"
     else
-        viu -sb -w "$w" "$file"
+        viu -sb -w "$W" "$1"
     fi
     if [ $? -eq 0 ]; then
         return
     fi
-    chafa -s "$w"x"$h" "$file" || \
-        timg -E -g"$w"x"$h" "$file" || \
-        catimg -r 2 -H "$h" "$file" || \
-        imgcat --depth=256 --width "$w" "$file"
+    chafa -s "$W"x"$H" "$1" || \
+        timg -E -g"$W"x"$H" "$1" || \
+        catimg -r 2 -H "$H" "$1" || \
+        imgcat --depth=256 --width "$W" "$1"
 }
 
 
-case "${mimetype}" in
+case "${MIMETYPE}" in
     image/*)
-        kitty_icat "$file"
+        kitty_icat "$FILE"
+        exit 1
         ;;
     *pdf)
-        if [[ ! -f "/tmp/$filename.png" ]]; then
-            pdftoppm -f 1 -l 1 "$file" > "/tmp/$filename.png"
+        if [[ ! -f "/tmp/$FILENAME.png" ]]; then
+            pdftoppm -f 1 -l 1 "$FILE" > "/tmp/$FILENAME.png"
         fi
-        kitty_icat "/tmp/$filename.png"
+        kitty_icat "/tmp/$FILENAME.png"
+        exit 1
         ;;
     audio/*)
-        if [[ ! -f "/tmp/$filename.jpg" ]]; then
-            ffmpeg -i "$file" -an -c:v copy "/tmp/$filename.jpg"
+        if [[ ! -f "/tmp/$FILENAME.jpg" ]]; then
+            ffmpeg -i "$FILE" -an -c:v copy "/tmp/$FILENAME.jpg"
         fi
-        kitty_icat "/tmp/$filename.jpg"
+        kitty_icat "/tmp/$FILENAME.jpg"
+        exit 1
         ;;
     video/*)
-        if [[ ! -f "/tmp/$filename.jpg" ]]; then
-            ffmpeg -i "$file" -vf "thumbnail" -frames:v 1 "/tmp/$filename.jpg"
+        if [[ ! -f "/tmp/$FILENAME.jpg" ]]; then
+            ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "/tmp/$FILENAME.jpg"
         fi
-        kitty_icat "/tmp/$filename.jpg"
+        kitty_icat "/tmp/$FILENAME.jpg"
+        exit 1
         ;;
     *zip | *tar | *rar | *x-xz)
         # sudo apt install atool
-        als "$file" | awk '{print $NF}'
+        als "$FILE" | awk '{print $NF}'
         exit 1
         ;;
     *)
-        cat "$file"
+        cat "$FILE"
         ;;
 esac
-
-exit 1
