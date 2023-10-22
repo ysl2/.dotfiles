@@ -97,6 +97,10 @@ function handle_extension() {
                 echo "kitty terminal doesn't support sixel protocol."
                 exit 0
             fi
+            if [[ -n "$TMUX" ]]; then
+                echo "tmux doesn't support sixel protocol."
+                exit 0
+            fi
             niicat "$FILE" -lb
             exit 0
             ;;
