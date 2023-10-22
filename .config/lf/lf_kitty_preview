@@ -21,17 +21,16 @@ MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 
 
 function kitty_icat() {
-    # NOTE:
-    # Must exit 1, for lf running cleaner after the picture shows.
-    # If exit 0, lf will not clean the picture after preview.
-
-    # Ref: --transfer-mode
-    # https://sw.kovidgoyal.net/kitty/kittens/icat/#cmdoption-kitty-kitten-icat-transfer-mode
-    local retval=1
-    if [[ -z "$TMUX" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
-        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
-        exit "$retval"
-    fi
+    # If: not in tmux, and not in server, and is in kitty, use kitty icat.
+    # if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
+        # Ref: --transfer-mode
+        # https://sw.kovidgoyal.net/kitty/kittens/icat/#cmdoption-kitty-kitten-icat-transfer-mode
+        kitty +kitten icat --silent --stdin no --transfer-mode stream --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
+        # NOTE:
+        # Must exit 1, for lf running cleaner after the picture shows.
+        # If exit 0, lf will not clean the picture after preview.
+        exit 1
+    # fi
     local resolution=$(file "$1" | grep -oP '\d+\s*x\s*\d+')
     read -r width height <<< "$(echo "$resolution" | awk -Fx '{print $1, $2}')"
     # if [ "$width" -lt "$height" ]; then
@@ -45,20 +44,22 @@ function kitty_icat() {
         img2sixel -w "$W"0 "$1"
     fi
     if [ $? -eq 0 ]; then
-        exit "$retval"
+        exit 0
     fi
     # chafa -f sixels image.png
     chafa -s "$W"x"$H" "$1" || \
         timg -E -g"$W"x"$H" "$1" || \
         catimg -r 2 -H "$H" "$1" || \
         imgcat --depth=256 --width "$W" "$1"
-    exit "$retval"
+    exit 0
 }
 
 
 function handle_extension() {
     case "$FILE" in
         *nii | *nii.gz)
+            # pip install niicat
+            # sudo apt install libsixel-bin
             niicat "$FILE" -lb
             exit 0
             ;;
