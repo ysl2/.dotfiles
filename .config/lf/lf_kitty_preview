@@ -29,7 +29,7 @@ function kitty_icat() {
     # https://sw.kovidgoyal.net/kitty/kittens/icat/#cmdoption-kitty-kitten-icat-transfer-mode
     local retval=1
     if [[ -z "$TMUX" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
-        kitty +kitten icat --silent --stdin no --transfer-mode stream --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
+        kitty +kitten icat --silent --stdin no --transfer-mode file --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
         exit "$retval"
     fi
     local resolution=$(file "$1" | grep -oP '\d+\s*x\s*\d+')
