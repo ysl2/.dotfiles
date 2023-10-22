@@ -3,7 +3,7 @@
 # https://www.reddit.com/r/KittyTerminal/comments/132n4p5/any_lf_file_manager_users_how_to_preview_pdfs_as/
 # https://github.com/rafi/.config/blob/master/lf/preview
 
-FILE=$1
+FILE="$(realpath "$1")"
 W=$2
 H=$3
 X=$4
