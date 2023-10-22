@@ -166,7 +166,7 @@ function tmux () {
     git clone git@git.zhlh6.cn:tmux/tmux.git
     cd tmux
     sh autogen.sh
-    ./configure --prefix="${PREFIX}/tmux"
+    ./configure --prefix="${PREFIX}/tmux" --enable-sixel
     make
     make install
 }
