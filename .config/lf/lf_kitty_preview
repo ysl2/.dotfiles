@@ -21,9 +21,13 @@ MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 
 
 function kitty_icat() {
+    function ascii () {
+        chafa -f symbols -s "$W"x"$H" "$1"
+    }
+
     # For Remote: use ascii.
     if [[ -n "$SSH_TTY" ]]; then
-        chafa -f symbols -s "$W"x"$H" "$1"
+        ascii "$1"
         exit 0
     fi
     # For local:
@@ -41,7 +45,7 @@ function kitty_icat() {
         exit 0
     fi
     # 3. If (not in kitty) and (in tmux), use ascii.
-    chafa -f symbols -s "$W"x"$H" "$1"
+    ascii "$1"
     exit 0
 
     # # If: not in tmux, and not in server, and is in kitty, use kitty icat.
@@ -113,23 +117,29 @@ function kitty_icat() {
 
 
 function handle_extension() {
+    function check_sixel () {
+        if [[ -n "$TMUX" ]]; then
+            echo "tmux doesn't support sixel protocol."
+            exit 0
+        fi
+        if [[ "$TERM" == 'xterm-kitty' ]]; then
+            echo "kitty terminal doesn't support sixel protocol."
+            exit 0
+        fi
+    }
+
     case "$FILE" in
         *.nii | *.nii.gz)
-            if [[ -n "$TMUX" ]]; then
-                echo "tmux doesn't support sixel protocol."
-                exit 0
-            fi
-            if [[ "$TERM" == 'xterm-kitty' ]]; then
-                echo "kitty terminal doesn't support sixel protocol."
-                exit 0
-            fi
+            check_sixel
             # pip install niicat
             # sudo apt install libsixel-bin
             niicat "$FILE" -lb
             exit 0
             ;;
         *.six | *.sixel)
-            kitty_icat "$FILE"
+            check_sixel
+            cat "$FILE"
+            exit 0
             ;;
     esac
     # WARNING: Do not add any exit value here!
