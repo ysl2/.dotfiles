@@ -30,15 +30,6 @@ function kitty_icat() {
     local transfer_mode
     transfer_mode=$([[ -n "$2" ]] && echo "$2" || echo "$DEFAULT_TRANSFER_MODE")
 
-    function ascii() {
-        chafa -f symbols -s "$W"x"$H" "$1"
-        exit 0
-    }
-
-    # if [[ (-n "$TMUX" || -n "$SSH_TTY") && "$transfer_mode" == "$DEFAULT_TRANSFER_MODE" ]]; then
-    #     ascii "$1"
-    # fi
-
     if [[ "$TERM" == xterm-kitty || (-n "$TMUX" && "$transfer_mode" != "$DEFAULT_TRANSFER_MODE") ]]; then
         kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
         if [ $? -eq 0 ]; then
@@ -47,7 +38,8 @@ function kitty_icat() {
     fi
 
     # fallback
-    ascii "$1"
+    chafa -f symbols -s "$W"x"$H" "$1"
+    exit 0
 }
 
 
