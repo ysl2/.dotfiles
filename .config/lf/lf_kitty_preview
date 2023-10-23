@@ -39,8 +39,8 @@ function kitty_icat() {
         exit 0
     fi
 
-    kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
-    if [ $? -eq 0 ]; then
+    if [[ "$TERM" == xterm-kitty ]] || [[ "$transfer_mode" != "$DEFAULT_TRANSFER_MODE" ]]; then
+        kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
         exit 1
     fi
 
