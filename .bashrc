@@ -62,23 +62,25 @@ function onconda (){
 }
 onconda "$MYCONDA"
 
-addTo PATH "$MYLOCAL/_"
-addTo PATH "$MYBIN"
+addTo PATH "${MYBIN}/ANTs/install/bin"
+addTo PATH "${HOME}/.local/kitty.app/bin"
+
 for folder in "$MYBIN"/*/; do
     if [ -d "${folder}bin" ]; then
         addTo PATH "${folder}bin"
     fi
 done
-addTo PATH "$MYLOCAL"
 for folder in "$MYLOCAL"/*/; do
     if [ -d "${folder}bin" ]; then
         addTo PATH "${folder}bin"
     fi
 done
-addTo PATH "${MYBIN}/ANTs/install/bin"
-addTo PATH "${HOME}/.local/kitty.app/bin"
+addTo PATH "$MYBIN"
+addTo PATH "$MYLOCAL"
+addTo PATH "$MYLOCAL/_"
 
-export EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
+export EDITOR
+EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 export LD_LIBRARY_PATH=
 addTo LD_LIBRARY_PATH "${MYLOCAL}/lib"
