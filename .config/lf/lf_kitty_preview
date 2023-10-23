@@ -25,101 +25,19 @@ MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 
 
 function kitty_icat() {
-    local transfer_mode  # Experimental, for ssh use same stretegy as local.
-    transfer_mode=$([[ -n "$2" ]] && echo "$2" || echo file)
+    local DEFAULT_TRANSFER_MODE=file
+    # If transfer_mode is not file (default), open experimental feature.
+    local transfer_mode
+    transfer_mode=$([[ -n "$2" ]] && echo "$2" || echo "$DEFAULT_TRANSFER_MODE")
 
-    function ascii () {
+    if [[ (-n "$TMUX" || -n "$SSH_TTY") && "$transfer_mode" == "$DEFAULT_TRANSFER_MODE" ]]; then
+        # ascii
         chafa -f symbols -s "$W"x"$H" "$1"
-    }
-
-    # For Remote: use ascii.
-    if [[ -n "$SSH_TTY" ]] && [[ -z "$transfer_mode" ]]; then
-        ascii "$1"
         exit 0
     fi
-    # For local:
-    # 1. If in kitty, use kitty.
-    if [[ -n "$KITTY_WINDOW_ID" ]]; then
-        flag=$(ps -p "$KITTY_PID" | grep "$KITTY_PID")
-        if [[ -n "$flag" ]]; then
-            kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
-            exit 1
-        fi
-    fi
-    # 2. If not in tmux, use sixel.
-    if [[ -z "$TMUX" ]]; then
-        chafa -f sixels -s "$W"x"$H" "$1"
-        exit 0
-    fi
-    # 3. If (not in kitty) and (in tmux), use ascii.
-    ascii "$1"
-    exit 0
 
-    # # If: not in tmux, and not in server, and is in kitty, use kitty icat.
-    # # if [[ -z "$TMUX" ]] && [[ -z "$SSH_TTY" ]] && [[ "$TERM" == 'xterm-kitty' ]]; then
-    #
-    # # If in kitty, use kitty.
-    # # tmux will set $TERM to xterm-256color, so check kitty first.
-    # # If $TERM is kitty, that means must no tmux.
-    # # Else, that might be in tmux, need further check.
-    # if [[ "$TERM" == 'xterm-kitty' ]]; then
-    #     # If not in remote, use file. else, use stream.
-    #     # Ref: --transfer-mode
-    #     # https://sw.kovidgoyal.net/kitty/kittens/icat/#cmdoption-kitty-kitten-icat-transfer-mode
-    #     #
-    #     # NOTE:
-    #     # Must exit 1, for lf running cleaner after the picture shows.
-    #     # If exit 0, lf will not clean the picture after preview.
-    #
-    #     if [[ -z "$SSH_TTY" ]]; then
-    #         transfermode='file'
-    #     else
-    #         transfermode='stream' # NOTE: Only when no tmux, this will be executed.
-    #     fi
-    #     kitty +kitten icat --silent --stdin no --transfer-mode "$transfermode" --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
-    #     # Remote machine might not have kitty, so check return value first.
-    #     # If success, exit 1. Else, keep going.
-    #     if [ $? -eq 0 ]; then
-    #         exit 1
-    #     fi
-    # fi
-    #
-    # local resolution=$(file "$1" | grep -oP '\d+\s*x\s*\d+')
-    # read -r width height <<< "$(echo "$resolution" | awk -Fx '{print $1, $2}')"
-    #
-    # # If not in tmux, use sixel
-    # if [[ -z "$TMUX" ]]; then
-    #     # chafa -f sixels "$1"
-    #     chafa -f sixels -s "$W"x"$H" "$1"
-    #     if [ $? -eq 0 ]; then
-    #         exit 0
-    #     fi
-    #     # If chafa fails, use img2sixel for fallback.
-    #     if [ "$width" -lt "$height" ]; then
-    #         # The shape is too small, so add zero for multiple ten.
-    #         img2sixel -h "$H"0 "$1"
-    #     else
-    #         img2sixel -w "$W"0 "$1"
-    #     fi
-    #     if [ $? -eq 0 ]; then
-    #         exit 0
-    #     fi
-    # fi
-    #
-    # # If in tmux, use ascii
-    # if [ "$width" -lt "$height" ]; then
-    #     viu -sb -h "$H" "$1"
-    # else
-    #     viu -sb -w "$W" "$1"
-    # fi
-    # if [ $? -eq 0 ]; then
-    #     exit 0
-    # fi
-    # chafa -s "$W"x"$H" "$1" || \
-    #     timg -E -g"$W"x"$H" "$1" || \
-    #     catimg -r 2 -H "$H" "$1" || \
-    #     imgcat --depth=256 --width "$W" "$1"
-    # exit 0
+    kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
+    exit 1
 }
 
 
@@ -141,7 +59,6 @@ function handle_extension() {
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 niicat "$FILE" "$TMPFILEPATH"
             fi
-            # Experimental, for ssh use same stretegy as local.
             kitty_icat "$TMPFILEPATH" stream
             ;;
         *.six | *.sixel)
