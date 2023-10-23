@@ -30,29 +30,27 @@ function kitty_icat() {
     local transfer_mode
     transfer_mode=$([[ -n "$2" ]] && echo "$2" || echo "$DEFAULT_TRANSFER_MODE")
 
-    if [[ (-n "$TMUX" || -n "$SSH_TTY") && "$transfer_mode" == "$DEFAULT_TRANSFER_MODE" ]]; then
-        # ascii
+    function ascii() {
         chafa -f symbols -s "$W"x"$H" "$1"
+    }
+
+    if [[ (-n "$TMUX" || -n "$SSH_TTY") && "$transfer_mode" == "$DEFAULT_TRANSFER_MODE" ]]; then
+        ascii "$1"
         exit 0
     fi
 
     kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
-    exit 1
+    if [ $? -eq 0 ]; then
+        exit 1
+    fi
+
+    # fallback
+    ascii "$1"
+    exit 0
 }
 
 
 function handle_extension() {
-    function check_sixel () {
-        if [[ -n "$TMUX" ]]; then
-            echo "tmux doesn't support sixel protocol."
-            exit 0
-        fi
-        if [[ "$TERM" == 'xterm-kitty' ]]; then
-            echo "kitty terminal doesn't support sixel protocol."
-            exit 0
-        fi
-    }
-
     case "$FILE" in
         *.nii | *.nii.gz)
             # git clone git@git.zhlh6.cn:ysl2/niicat.git ~/.vocal/niicat
@@ -62,9 +60,10 @@ function handle_extension() {
             kitty_icat "$TMPFILEPATH" stream
             ;;
         *.six | *.sixel)
-            check_sixel
-            cat "$FILE"
-            exit 0
+            if [[ ! -f "$TMPFILEPATH" ]]; then
+                sixel2png "$FILE" > "$TMPFILEPATH"
+            fi
+            kitty_icat "$TMPFILEPATH"
             ;;
     esac
     # WARNING: Do not add any exit value here!
