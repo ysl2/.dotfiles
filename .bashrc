@@ -22,7 +22,7 @@ if [[ -z "$TMUX" ]]; then
         _MYTMUX=tmux
     fi
     if [[ ! -z $_MYTMUX ]]; then
-        [[ -f $_MYLOCK/tmux ]] && exec $_MYTMUX new-session -A -s main
+        [[ -f $_MYLOCK/tmux ]] && exec "$_MYTMUX" new-session -A -s main
     fi
 fi
 
