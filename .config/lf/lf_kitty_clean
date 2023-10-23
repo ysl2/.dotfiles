@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
-DEFAULT_TRANSFER_MODE='file'
-transfer_mode=$([[ -n "$SSH_TTY" ]] && echo stream || echo "$DEFAULT_TRANSFER_MODE")
+transfer_mode=$([[ -n "$SSH_TTY" ]] && echo 'stream' || echo 'file')
 kitty +kitten icat --clear --stdin no --silent --transfer-mode "$transfer_mode" < /dev/null > /dev/tty

@@ -28,12 +28,10 @@ function kitty_icat() {
     local experimental  # 0 is true, 1 is false. Default 1 for false.
     experimental=$([[ -n "$2" ]] && echo "$2" || echo 1)
 
-    local DEFAULT_TRANSFER_MODE='file'
-    local transfer_mode
-    # Only when ssh, use stream mode. If local, use file mode.
-    transfer_mode=$([[ -n "$SSH_TTY" ]] && echo stream || echo "$DEFAULT_TRANSFER_MODE")
+    local transfer_mode  # Only when ssh, use stream mode. If local, use file mode.
+    transfer_mode=$([[ -n "$SSH_TTY" ]] && echo 'stream' || echo 'file')
 
-    if [[ "$TERM" == xterm-kitty || (-n "$TMUX" && "$experimental" -eq 0) ]]; then
+    if [[ "$TERM" == 'xterm-kitty' || (-n "$TMUX" && "$experimental" -eq 0) ]]; then
         kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
         if [ $? -eq 0 ]; then
             exit 1
