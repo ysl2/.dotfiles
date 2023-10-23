@@ -25,12 +25,15 @@ MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 
 
 function kitty_icat() {
+    local transfer_mode  # Experimental, for ssh use same stretegy as local.
+    transfer_mode=$([[ -n "$2" ]] && echo "$2" || echo file)
+
     function ascii () {
         chafa -f symbols -s "$W"x"$H" "$1"
     }
 
     # For Remote: use ascii.
-    if [[ -n "$SSH_TTY" ]]; then
+    if [[ -n "$SSH_TTY" ]] && [[ -z "$transfer_mode" ]]; then
         ascii "$1"
         exit 0
     fi
@@ -39,7 +42,7 @@ function kitty_icat() {
     if [[ -n "$KITTY_WINDOW_ID" ]]; then
         flag=$(ps -p "$KITTY_PID" | grep "$KITTY_PID")
         if [[ -n "$flag" ]]; then
-            kitty +kitten icat --silent --stdin no --transfer-mode file --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
+            kitty +kitten icat --silent --stdin no --transfer-mode "$transfer_mode"  --place "${W}x${H}@${X}x${Y}" "$1" < /dev/null > /dev/tty
             exit 1
         fi
     fi
@@ -138,7 +141,8 @@ function handle_extension() {
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 niicat "$FILE" "$TMPFILEPATH"
             fi
-            kitty_icat "$TMPFILEPATH"
+            # Experimental, for ssh use same stretegy as local.
+            kitty_icat "$TMPFILEPATH" stream
             ;;
         *.six | *.sixel)
             check_sixel
