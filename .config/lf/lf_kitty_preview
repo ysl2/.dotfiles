@@ -14,7 +14,11 @@ H=$3
 X=$4
 Y=$5
 
-TMPFILENAME=$(basename "$(echo "$FILE" | tr ' ' '__' | tr '.' '_')")
+_TMPFILENAME="$(basename "$FILE" | tr ' ' '__' | tr '.' '_')".png
+_TMPFILEDIR=/tmp/lf_img"$(dirname "$FILE")"
+mkdir -p "$_TMPFILEDIR"
+TMPFILEPATH="${_TMPFILEDIR}/${_TMPFILENAME}"
+
 # FILE_EXTENSION="${FILE##*.}"
 # FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lower:]')"
 MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
@@ -130,11 +134,11 @@ function handle_extension() {
 
     case "$FILE" in
         *.nii | *.nii.gz)
-            check_sixel
-            # pip install niicat
-            # sudo apt install libsixel-bin
-            niicat "$FILE" -lb
-            exit 0
+            # git clone git@git.zhlh6.cn:ysl2/niicat.git ~/.vocal/niicat
+            if [[ ! -f "$TMPFILEPATH" ]]; then
+                niicat "$FILE" "$TMPFILEPATH"
+            fi
+            kitty_icat "$TMPFILEPATH"
             ;;
         *.six | *.sixel)
             check_sixel
@@ -152,22 +156,22 @@ function handle_mime() {
             kitty_icat "$FILE"
             ;;
         *pdf)
-            if [[ ! -f "/tmp/$TMPFILENAME.png" ]]; then
-                pdftoppm -f 1 -l 1 -png "$FILE" > "/tmp/$TMPFILENAME.png"
+            if [[ ! -f "$TMPFILEPATH" ]]; then
+                pdftoppm -f 1 -l 1 -png "$FILE" > "$TMPFILEPATH"
             fi
-            kitty_icat "/tmp/$TMPFILENAME.png"
+            kitty_icat "$TMPFILEPATH"
             ;;
         audio/*)
-            if [[ ! -f "/tmp/$TMPFILENAME.png" ]]; then
-                ffmpeg -i "$FILE" -filter_complex "showwavespic=s=640x480" -frames:v 1 "/tmp/$TMPFILENAME.png"
+            if [[ ! -f "$TMPFILEPATH" ]]; then
+                ffmpeg -i "$FILE" -filter_complex "showwavespic=s=640x480" -frames:v 1 "$TMPFILEPATH"
             fi
-            kitty_icat "/tmp/$TMPFILENAME.png"
+            kitty_icat "$TMPFILEPATH"
             ;;
         video/*)
-            if [[ ! -f "/tmp/$TMPFILENAME.png" ]]; then
-                ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "/tmp/$TMPFILENAME.png"
+            if [[ ! -f "$TMPFILEPATH" ]]; then
+                ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "$TMPFILEPATH"
             fi
-            kitty_icat "/tmp/$TMPFILENAME.png"
+            kitty_icat "$TMPFILEPATH"
             ;;
         *zip | *tar | *rar | *x-xz)
             # sudo apt install atool
