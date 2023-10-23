@@ -25,18 +25,18 @@ MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 
 
 function kitty_icat() {
-    local DEFAULT_TRANSFER_MODE=file
-    # If transfer_mode is not file (default), open experimental feature.
+    local DEFAULT_TRANSFER_MODE='file'
+    # If transfer_mode is not default, open experimental feature.
     local transfer_mode
     transfer_mode=$([[ -n "$2" ]] && echo "$2" || echo "$DEFAULT_TRANSFER_MODE")
 
     function ascii() {
         chafa -f symbols -s "$W"x"$H" "$1"
+        exit 0
     }
 
     if [[ (-n "$TMUX" || -n "$SSH_TTY") && "$transfer_mode" == "$DEFAULT_TRANSFER_MODE" ]]; then
         ascii "$1"
-        exit 0
     fi
 
     if [[ "$TERM" == xterm-kitty ]] || [[ "$transfer_mode" != "$DEFAULT_TRANSFER_MODE" ]]; then
@@ -46,7 +46,6 @@ function kitty_icat() {
 
     # fallback
     ascii "$1"
-    exit 0
 }
 
 
