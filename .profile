@@ -9,9 +9,9 @@
 #umask 022
 
 # if running bash
-if [ -n "$BASH_VERSION" ]; then
+if [[ -n "$BASH_VERSION" ]]; then
     # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
+    if [[ -f "$HOME/.bashrc" ]]; then
         . "$HOME/.bashrc"
     fi
 fi
@@ -26,7 +26,7 @@ fi
 #     PATH="$HOME/.local/bin:$PATH"
 # fi
 
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
     # rm -rf ~/.Xauthority-*
     exec startx
 fi
