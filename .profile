@@ -32,5 +32,5 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
 fi
 export DISPLAY=:0
 
-# You can store custom command after entering DE/WM, like `K` in ~/.vocal/_
+# You can store custom command after entering DE/WM, like `~/.vocal/_/K`
 [[ -f ~/.profile.localhost ]] && source ~/.profile.localhost

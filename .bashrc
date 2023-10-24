@@ -1,6 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# For saving $MYCONDA
 [[ -f ~/.bashrc.localhost.pre ]] && source ~/.bashrc.localhost.pre
 
 MYLOCAL="${HOME}/.vocal"
