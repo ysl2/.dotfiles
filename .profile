@@ -12,7 +12,7 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        . "$HOME/.bashrc"
     fi
 fi
 
@@ -30,3 +30,7 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     # rm -rf ~/.Xauthority-*
     exec startx
 fi
+export DISPLAY=:0
+
+# You can store custom command after entering DE/WM, like `K` in ~/.vocal/_
+[[ -f ~/.profile.localhost ]] && source ~/.profile.localhost
