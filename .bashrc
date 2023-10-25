@@ -1,9 +1,6 @@
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-# For saving $MYCONDA
-[[ -f ~/.bashrc.localhost.pre ]] && source ~/.bashrc.localhost.pre
-
+# =============
+# === Utils ===
+# =============
 MYLOCAL="${HOME}/.vocal"
 mkdir -p "$MYLOCAL" &> /dev/null
 _MYLOCK="${MYLOCAL}/.lock"
@@ -11,28 +8,20 @@ mkdir -p "$_MYLOCK" &> /dev/null
 export MYBIN="${MYLOCAL}/bin"
 mkdir -p "$MYBIN" &> /dev/null
 
+
+# ======================================
+# === Pre Load And Set Default Value ===
+# ======================================
+[[ -f ~/.bashrc.localhost.pre ]] && . ~/.bashrc.localhost.pre
+
 if [[ -z "${MYCONDA}" ]]; then
     MYCONDA=$([[ -e "${MYBIN}/anaconda3" ]] && echo "${MYBIN}/anaconda3" || echo "${MYBIN}/miniconda3")
 fi
-if [[ -z "$TMUX" ]]; then
-    if [[ -e "${MYLOCAL}/tmux/bin/tmux" ]]; then
-        _MYTMUX="${MYLOCAL}/tmux/bin/tmux"
-    elif [[ -e "${MYCONDA}" ]]; then
-        _MYTMUX="${MYCONDA}"/bin/tmux
-    elif command -v tmux &> /dev/null; then
-        _MYTMUX=tmux
-    fi
-    if [[ ! -z $_MYTMUX ]]; then
-        [[ -f $_MYLOCK/tmux ]] && exec "$_MYTMUX" new-session -A -s main
-    fi
-fi
 
-if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
-    curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
-    sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' | \
-    sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
-fi
 
+# ============
+# === PATH ===
+# ============
 # Ref:
 # - https://blog.csdn.net/whatday/article/details/105466009
 # - https://unix.stackexchange.com/a/282433
@@ -43,6 +32,73 @@ function addTo () {
       *) eval "$1='$2:${!1}'";;
     esac
 }
+
+# ===
+# === No sequences, but put them last.
+# ===
+addTo PATH "${MYBIN}/ANTs/install/bin"
+addTo PATH "${HOME}/.local/kitty.app/bin"
+addTo PATH "${HOME}/.cargo/bin"
+
+
+# ===
+# === In sequences, last in first out.
+# ===
+
+# {{{ Will be removed in the future
+for folder in "$MYBIN"/*/; do
+    if [ -d "${folder}bin" ]; then
+        addTo PATH "${folder}bin"
+    fi
+done
+addTo PATH "$MYBIN"
+# }}}
+
+for folder in "$MYLOCAL"/*/; do
+    if [ -d "${folder}bin" ]; then
+        addTo PATH "${folder}bin"
+    fi
+done
+addTo PATH "$MYLOCAL"
+addTo PATH "$MYLOCAL/_"
+
+
+# ===========================
+# === For Desktop Manager ===
+# ===========================
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
+# ===========================
+# === For Manually Startx ===
+# ===========================
+if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
+    # rm -rf ~/.Xauthority-*
+    exec startx
+fi
+
+
+# =========================
+# === Boot Tmux If Need ===
+# =========================
+if [[ -z "$TMUX" ]]; then
+    if [[ -e "${MYLOCAL}/tmux/bin/tmux" ]]; then
+        _MYTMUX="${MYLOCAL}/tmux/bin/tmux"
+    elif [[ -e "${MYCONDA}"/bin/tmux ]]; then
+        _MYTMUX="${MYCONDA}"/bin/tmux
+    elif command -v tmux &> /dev/null; then
+        _MYTMUX=tmux
+    fi
+    if [[ ! -z $_MYTMUX ]]; then
+        [[ -f $_MYLOCK/tmux ]] && exec "$_MYTMUX" new-session -A -s main
+    fi
+fi
+
+
+# ==========================
+# === Boot Conda If Need ===
+# ==========================
 function onconda (){
     if [[ -f $_MYLOCK/conda ]] && [[ -e $1 ]]; then
         # >>> conda initialize >>>
@@ -63,23 +119,23 @@ function onconda (){
 }
 onconda "$MYCONDA"
 
-addTo PATH "${MYBIN}/ANTs/install/bin"
-addTo PATH "${HOME}/.local/kitty.app/bin"
 
-for folder in "$MYBIN"/*/; do
-    if [ -d "${folder}bin" ]; then
-        addTo PATH "${folder}bin"
-    fi
-done
-for folder in "$MYLOCAL"/*/; do
-    if [ -d "${folder}bin" ]; then
-        addTo PATH "${folder}bin"
-    fi
-done
-addTo PATH "$MYBIN"
-addTo PATH "$MYLOCAL"
-addTo PATH "$MYLOCAL/_"
+# ==============
+# === Others ===
+# ==============
 
+# ===
+# === Beautify
+# ===
+if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
+    curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+    sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' | \
+    sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
+fi
+
+# ===
+# === Environment Variable
+# ===
 export EDITOR
 EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
@@ -92,8 +148,11 @@ addTo LD_LIBRARY_PATH "${MYBIN}/cuda/lib64"
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export STARSHIP_LOG=error
 
-# Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+# ===
+# === Functions
+# ===
 function lfcd () {
+# Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
     tmp="$(mktemp)"
     # `command` is needed in case `lfcd` is aliased to `lf`
     command lf -last-dir-path="$tmp" "$@"
@@ -108,7 +167,7 @@ function lfcd () {
     fi
 }
 function _to () {
-    [[ ! -e $1 ]] && touch $1 || rm $1; source ~/.bashrc
+    [[ ! -e $1 ]] && touch $1 || rm $1; . ~/.bashrc
 }
 function totmux () {
     _to $_MYLOCK/tmux
@@ -117,6 +176,9 @@ function toconda () {
     _to $_MYLOCK/conda
 }
 
+# ===
+# === Alias
+# ===
 alias :q='exit'
 # https://github.com/ranger/ranger/wiki/Integration-with-other-programs#changing-directories
 ranger='source ranger ranger'
@@ -166,7 +228,15 @@ function jo() {
 alias ass='ascii-image-converter --color --braille --dither --complex'
 alias xterm='xterm -ti vt340'
 
-[[ -f $MYBIN/starship ]] && eval "$(starship init bash)"
-[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
-. "$HOME/.cargo/env"
-[[ -f ~/.bashrc.localhost.post ]] && source ~/.bashrc.localhost.post
+
+# ===
+# === Outside source
+# ===
+[ -f $MYBIN/starship ] && eval "$(starship init bash)"
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
+
+# =================
+# === Post Load ===
+# =================
+[ -f ~/.bashrc.localhost.post ] && . ~/.bashrc.localhost.post

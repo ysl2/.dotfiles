@@ -8,29 +8,35 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [[ -n "$BASH_VERSION" ]]; then
-    # include .bashrc if it exists
-    if [[ -f "$HOME/.bashrc" ]]; then
-        . "$HOME/.bashrc"
-    fi
-fi
+[ -f ~/.bashrc ] && . ~/.bashrc
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+# # if running bash
+# if [[ -n "$BASH_VERSION" ]]; then
+#     # include .bashrc if it exists
+#     if [[ -f "$HOME/.bashrc" ]]; then
+#         . "$HOME/.bashrc"
+#     fi
+# fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
-    # rm -rf ~/.Xauthority-*
-    exec startx
-fi
-export DISPLAY=:0
+# # set PATH so it includes user's private bin if it exists
+# if [ -d "$HOME/bin" ] ; then
+#     PATH="$HOME/bin:$PATH"
+# fi
+#
+# # set PATH so it includes user's private bin if it exists
+# if [ -d "$HOME/.local/bin" ] ; then
+#     PATH="$HOME/.local/bin:$PATH"
+# fi
 
 # You can store custom command after entering DE/WM, like `~/.vocal/_/K`
-[[ -f ~/.profile.localhost ]] && source ~/.profile.localhost
+
+# [ -f "$HOME/.profile.localhost" ] && source "$HOME/.profile.localhost"  # NO
+# [[ -f "$HOME/.profile.localhost" ]] && . "$HOME/.profile.localhost"  # NO
+# [ -f "$HOME/.profile.localhost" ] && . "$HOME/.profile.localhost"  # OK
+# [ -f ~/.profile.localhost ] && . ~/.profile.localhost  # OK
+
+# if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
+#     # rm -rf ~/.Xauthority-*
+#     exec startx
+# fi
+# echo 'login shell' > ~/temp
