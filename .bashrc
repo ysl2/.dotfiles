@@ -1,3 +1,5 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 # =============
 # === Utils ===
 # =============
@@ -66,8 +68,20 @@ addTo PATH "$MYLOCAL/_"
 # ===========================
 # === For Desktop Manager ===
 # ===========================
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# The `~/.profile` limit sourcing `~/.bashrc` by checking `$BASH_VERSION` variable.
+# So in desktop manager, the `~/.bashrc` will not be sourced,
+# beacuse desktop manager does not in a bash shell, it doesn't have `$BASH_VERSION`.
+# Check the below code in `~/.profile`:
+#
+# ```bash
+# # if running bash
+# if [[ -n "$BASH_VERSION" ]]; then
+#     # include .bashrc if it exists
+#     if [[ -f "$HOME/.bashrc" ]]; then
+#         . "$HOME/.bashrc"
+#     fi
+# fi
+# ```
 
 
 # ===========================
@@ -77,6 +91,9 @@ if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
     # rm -rf ~/.Xauthority-*
     exec startx
 fi
+# No need: The $DISPLAY will be auto set after startx.
+# For safety consideration, we still give it a default value.
+[ -z "$DISPLAY" ] && export DISPLAY=:0
 
 
 # =========================
