@@ -91,28 +91,10 @@ fi
 # MYCONDA
 # MYTMUX
 
-# if [ -z "${MYCONDA}" ]; then
-#     MYCONDA=$([ -e "${MYLOCAL}/anaconda3" ] && echo "${MYLOCAL}/anaconda3" || echo "${MYLOCAL}/miniconda3")
-# fi
-#
-# if [ -z "$MYTMUX" ]; then
-#     MYTMUX=tmux
-# fi
 
 # =========================
 # === Boot Tmux If Need ===
 # =========================
-# Manually set load sequence.
-# if [ -f "${_MYLOCK}/tmux" ] && [ -z "$TMUX" ]; then
-#     if [ -e "${MYLOCAL}/tmux/bin/tmux" ]; then
-#         _MYTMUX="${MYLOCAL}/tmux/bin/tmux"
-#     elif [ -e "${MYCONDA}/bin/tmux" ]; then
-#         _MYTMUX="${MYCONDA}"/bin/tmux
-#     elif command -v tmux &> /dev/null; then
-#         _MYTMUX=tmux
-#     fi
-#     [ -n "$_MYTMUX" ] && exec "$_MYTMUX" new-session -A -s main
-# fi
 ontmux() {
     # Define local variables.
     local mytmux="$1"
