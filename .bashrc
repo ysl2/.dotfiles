@@ -101,7 +101,7 @@ ontmux() {
     local LOCK="${_MYLOCK}/tmux"
 
     # Toggle on/off.
-    if [ -n "$TMUX" ] || [ ! -e "$LOCK" ]; then
+    if [ ! -e "$LOCK" ]; then
         return
     fi
     # Clear log.
@@ -118,7 +118,7 @@ ontmux() {
         fi
     fi
     echo "Current tmux value: ${mytmux}" >> "$LOCK"
-    exec "$mytmux" new-session -A -s main
+    [ -z "$TMUX" ] && exec "$mytmux" new-session -A -s main
 }
 ontmux "$MYTMUX"
 
