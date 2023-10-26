@@ -7,8 +7,7 @@ MYLOCAL="${HOME}/.vocal"
 mkdir -p "$MYLOCAL" &> /dev/null
 _MYLOCK="${MYLOCAL}/.lock"
 mkdir -p "$_MYLOCK" &> /dev/null
-export MYBIN="${MYLOCAL}/bin"
-mkdir -p "$MYBIN" &> /dev/null
+MYBIN="${MYLOCAL}/bin"
 
 
 # ======================================
@@ -17,30 +16,40 @@ mkdir -p "$MYBIN" &> /dev/null
 [[ -f ~/.bashrc.localhost.pre ]] && . ~/.bashrc.localhost.pre
 
 if [[ -z "${MYCONDA}" ]]; then
-    MYCONDA=$([[ -e "${MYBIN}/anaconda3" ]] && echo "${MYBIN}/anaconda3" || echo "${MYBIN}/miniconda3")
+    MYCONDA=$([[ -e "${MYLOCAL}/anaconda3" ]] && echo "${MYLOCAL}/anaconda3" || echo "${MYLOCAL}/miniconda3")
 fi
+
+
+# =================================
+# === Define addToPATH Function ===
+# =================================
+addToPATH() {
+    case ":${PATH:=$1}:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="$1:$PATH"
+            ;;
+    esac
+}
 
 
 # ============
 # === PATH ===
 # ============
-# Ref:
-# - https://blog.csdn.net/whatday/article/details/105466009
-# - https://unix.stackexchange.com/a/282433
-function addTo () {
-    [[ -z "${!1}" ]] && eval "$1='$2'"
-    case ":${!1}:" in
-      *":$2:"*) :;;
-      *) eval "$1='$2:${!1}'";;
-    esac
-}
+
+# ===
+# === No sequences, for system default.
+# ===
+addToPATH $HOME/bin
+addToPATH $HOME/.local/bin
 
 # ===
 # === No sequences, but put them last.
 # ===
-addTo PATH "${MYBIN}/ANTs/install/bin"
-addTo PATH "${HOME}/.local/kitty.app/bin"
-addTo PATH "${HOME}/.cargo/bin"
+addToPATH "$MYBIN"/ANTs/install/bin
+addToPATH $HOME/.local/kitty.app/bin
+addToPATH $HOME/.cargo/bin
 
 
 # ===
@@ -50,49 +59,38 @@ addTo PATH "${HOME}/.cargo/bin"
 # {{{ Will be removed in the future
 for folder in "$MYBIN"/*/; do
     if [ -d "${folder}bin" ]; then
-        addTo PATH "${folder}bin"
+        addToPATH "${folder}bin"
     fi
 done
-addTo PATH "$MYBIN"
+addToPATH "$MYBIN"
 # }}}
 
 for folder in "$MYLOCAL"/*/; do
     if [ -d "${folder}bin" ]; then
-        addTo PATH "${folder}bin"
+        addToPATH "${folder}bin"
     fi
 done
-addTo PATH "$MYLOCAL"
-addTo PATH "$MYLOCAL/_"
+addToPATH "$MYLOCAL"
+addToPATH "$MYLOCAL/_"
 
 
 # ===========================
 # === For Desktop Manager ===
 # ===========================
-# The `~/.profile` limit sourcing `~/.bashrc` by checking `$BASH_VERSION` variable.
-# So in desktop manager, the `~/.bashrc` will not be sourced,
-# beacuse desktop manager does not in a bash shell, it doesn't have `$BASH_VERSION`.
-# Check the below code in `~/.profile`:
-#
-# ```bash
-# # if running bash
-# if [[ -n "$BASH_VERSION" ]]; then
-#     # include .bashrc if it exists
-#     if [[ -f "$HOME/.bashrc" ]]; then
-#         . "$HOME/.bashrc"
-#     fi
-# fi
-# ```
+if [ -n "$DISPLAY" ] && [ -z "$BASH_VERSION" ]; then
+    return
+fi
 
 
 # ===========================
 # === For Manually Startx ===
 # ===========================
-if [[ -z "${DISPLAY}" ]] && [[ "${XDG_VTNR}" -eq 1 ]]; then
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     # rm -rf ~/.Xauthority-*
     exec startx
 fi
-# No need: The $DISPLAY will be auto set after startx.
-# For safety consideration, we still give it a default value.
+# # No need: The $DISPLAY will be auto set after startx.
+# # For safety consideration, we still give it a default value.
 [ -z "$DISPLAY" ] && export DISPLAY=:0
 
 
@@ -111,6 +109,21 @@ if [[ -z "$TMUX" ]]; then
         [[ -f $_MYLOCK/tmux ]] && exec "$_MYTMUX" new-session -A -s main
     fi
 fi
+
+
+# =============================
+# === Define addTo Function ===
+# =============================
+# Ref:
+# - https://blog.csdn.net/whatday/article/details/105466009
+# - https://unix.stackexchange.com/a/282433
+addTo() {
+    [ -z "${!1}" ] && eval "$1='$2'"
+    case ":${!1}:" in
+      *":$2:"*) :;;  # What does the colon `:` mean?
+      *) eval "$1='$2:${!1}'";;
+    esac
+}
 
 
 # ==========================
@@ -257,3 +270,5 @@ alias xterm='xterm -ti vt340'
 # === Post Load ===
 # =================
 [ -f ~/.bashrc.localhost.post ] && . ~/.bashrc.localhost.post
+
+echo 'post' >> ~/temp"$XDG_VTNR"
