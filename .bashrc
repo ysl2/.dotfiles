@@ -3,21 +3,11 @@
 # =============
 # === Utils ===
 # =============
-MYLOCAL="${HOME}/.vocal"
+export MYLOCAL="${HOME}/.vocal"
 mkdir -p "$MYLOCAL" &> /dev/null
 _MYLOCK="${MYLOCAL}/.lock"
 mkdir -p "$_MYLOCK" &> /dev/null
 MYBIN="${MYLOCAL}/bin"
-
-
-# ======================================
-# === Pre Load And Set Default Value ===
-# ======================================
-[[ -f ~/.bashrc.localhost.pre ]] && . ~/.bashrc.localhost.pre
-
-if [[ -z "${MYCONDA}" ]]; then
-    MYCONDA=$([[ -e "${MYLOCAL}/anaconda3" ]] && echo "${MYLOCAL}/anaconda3" || echo "${MYLOCAL}/miniconda3")
-fi
 
 
 # =================================
@@ -94,21 +84,61 @@ fi
 [ -z "$DISPLAY" ] && export DISPLAY=:0
 
 
+# ======================================
+# === Pre Load And Set Default Value ===
+# ======================================
+[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
+# MYCONDA
+# MYTMUX
+
+# if [ -z "${MYCONDA}" ]; then
+#     MYCONDA=$([ -e "${MYLOCAL}/anaconda3" ] && echo "${MYLOCAL}/anaconda3" || echo "${MYLOCAL}/miniconda3")
+# fi
+#
+# if [ -z "$MYTMUX" ]; then
+#     MYTMUX=tmux
+# fi
+
 # =========================
 # === Boot Tmux If Need ===
 # =========================
-if [[ -z "$TMUX" ]]; then
-    if [[ -e "${MYLOCAL}/tmux/bin/tmux" ]]; then
-        _MYTMUX="${MYLOCAL}/tmux/bin/tmux"
-    elif [[ -e "${MYCONDA}"/bin/tmux ]]; then
-        _MYTMUX="${MYCONDA}"/bin/tmux
-    elif command -v tmux &> /dev/null; then
-        _MYTMUX=tmux
+# Manually set load sequence.
+# if [ -f "${_MYLOCK}/tmux" ] && [ -z "$TMUX" ]; then
+#     if [ -e "${MYLOCAL}/tmux/bin/tmux" ]; then
+#         _MYTMUX="${MYLOCAL}/tmux/bin/tmux"
+#     elif [ -e "${MYCONDA}/bin/tmux" ]; then
+#         _MYTMUX="${MYCONDA}"/bin/tmux
+#     elif command -v tmux &> /dev/null; then
+#         _MYTMUX=tmux
+#     fi
+#     [ -n "$_MYTMUX" ] && exec "$_MYTMUX" new-session -A -s main
+# fi
+ontmux() {
+    # Define local variables.
+    local mytmux="$1"
+    local LOCK="${_MYLOCK}/tmux"
+
+    # Toggle on/off.
+    if [ -n "$TMUX" ] || [ ! -e "$LOCK" ]; then
+        return
     fi
-    if [[ ! -z $_MYTMUX ]]; then
-        [[ -f $_MYLOCK/tmux ]] && exec "$_MYTMUX" new-session -A -s main
+    # Clear log.
+    echo '' > "$LOCK"
+
+    # Check if the value is legal.
+    if [ ! -e "$mytmux" ] || [ ! -f "$mytmux" ] || [ ! -x "$mytmux" ]; then
+        if command -v tmux &> /dev/null; then
+            mytmux=tmux
+            echo 'Fallback to default tmux in $PATH.' >> "$LOCK"
+        else
+            echo 'No tmux available.' >> "$LOCK"
+            return
+        fi
     fi
-fi
+    echo "Current tmux value: ${mytmux}" >> "$LOCK"
+    exec "$mytmux" new-session -A -s main
+}
+ontmux "$MYTMUX"
 
 
 # =============================
@@ -129,23 +159,46 @@ addTo() {
 # ==========================
 # === Boot Conda If Need ===
 # ==========================
-function onconda (){
-    if [[ -f $_MYLOCK/conda ]] && [[ -e $1 ]]; then
-        # >>> conda initialize >>>
-        # !! Contents within this block are managed by 'conda init' !!
-        __conda_setup="$($1'/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-        if [ $? -eq 0 ]; then
-            eval "$__conda_setup"
-        else
-            if [ -f "$1/etc/profile.d/conda.sh" ]; then
-                . "$1/etc/profile.d/conda.sh"
-            else
-                addTo PATH $1/bin
-            fi
-        fi
-        unset __conda_setup
-        # <<< conda initialize <<<
+onconda() {
+    # Define local variables.
+    local myconda="$1"
+    local LOCK="${_MYLOCK}/conda"
+
+    # Toggle on/off.
+    if [ ! -e "$LOCK" ]; then
+        return
     fi
+    # Clear log.
+    echo '' > "$LOCK"
+
+    # Check if the value is legal.
+    if [ ! -e "$myconda" ] || [ ! -d "$myconda" ]; then
+        if [ -e "${MYLOCAL}/anaconda3" ]; then
+            myconda="${MYLOCAL}/anaconda3"
+            echo 'Fallback to default anaconda3.' >> "$LOCK"
+        elif [ -e "${MYLOCAL}/miniconda3" ]; then
+            myconda="${MYLOCAL}/miniconda3"
+            echo 'Fallback to default miniconda3.' >> "$LOCK"
+        else
+            echo 'No conda available.' >> "$LOCK"
+            return
+        fi
+    fi
+    echo "Current conda value: ${myconda}" >> "$LOCK"
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$("${myconda}/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "${myconda}/etc/profile.d/conda.sh" ]; then
+            . "${myconda}/etc/profile.d/conda.sh"
+        else
+            addTo PATH "${myconda}/bin"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
 }
 onconda "$MYCONDA"
 
@@ -157,10 +210,10 @@ onconda "$MYCONDA"
 # ===
 # === Beautify
 # ===
-if command -v curl &> /dev/null && [[ ! -e $MYBIN/starship ]]; then
+if command -v curl &> /dev/null && [ ! -e "${MYLOCAL}/starship" ]; then
     curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
     sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' | \
-    sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYBIN/g' | sh
+    sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
 fi
 
 # ===
@@ -197,13 +250,18 @@ function lfcd () {
     fi
 }
 function _to () {
-    [[ ! -e $1 ]] && touch $1 || rm $1; . ~/.bashrc
+    if [ ! -e "$1" ]; then
+        touch "$1"
+    else
+        rm "$1";
+    fi
+    . ~/.bashrc
 }
 function totmux () {
-    _to $_MYLOCK/tmux
+    _to "${_MYLOCK}/tmux"
 }
 function toconda () {
-    _to $_MYLOCK/conda
+    _to "${_MYLOCK}/conda"
 }
 
 # ===
@@ -262,7 +320,7 @@ alias xterm='xterm -ti vt340'
 # ===
 # === Outside source
 # ===
-[ -f $MYBIN/starship ] && eval "$(starship init bash)"
+[ -f "${MYLOCAL}/starship" ] && eval "$(starship init bash)"
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 
@@ -270,5 +328,3 @@ alias xterm='xterm -ti vt340'
 # === Post Load ===
 # =================
 [ -f ~/.bashrc.localhost.post ] && . ~/.bashrc.localhost.post
-
-echo 'post' >> ~/temp"$XDG_VTNR"
