@@ -8,6 +8,7 @@
 set -e
 
 PREFIX=$HOME/.vocal
+mkdir -p "$PREFIX"
 TEMP_FOLDER=$HOME/Downloads/_
 
 # create our directories
@@ -196,15 +197,16 @@ function ncdu () {
 
 
 function lf () {
-    [[ -e ${PREFIX}/bin/lf ]] && return
+    [ -e "${PREFIX}/lf" ] && return
 
-    cd ${TEMP_FOLDER}
+    cd "$TEMP_FOLDER"
 
-    LF_VERSION=r31
-    [[ ! -e lf-linux-amd64.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/gokcehan/lf/releases/download/${LF_VERSION}/lf-linux-amd64.tar.gz
-    tar xvzf lf-linux-amd64.tar.gz
-    mkdir -p ${PREFIX}/bin
-    mv lf ${PREFIX}/bin
+    local LF_VERSION=r31
+    local LF_TARNAME=lf-linux-amd64.tar.gz
+    [ -e "$LF_TARNAME" ] && rm "$LF_TARNAME"
+    wget -c https://ghproxy.com/https://github.com/gokcehan/lf/releases/download/"${LF_VERSION}"/"${LF_TARNAME}"
+    tar xvzf "$LF_TARNAME"
+    mv lf "$PREFIX"
 }
 
 
