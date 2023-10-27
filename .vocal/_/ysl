@@ -402,8 +402,8 @@ function ants () {
 }
 
 
-function clash () {
-    _ERR 'Clash not finished yet.'
+function cfw () {
+    _ERR 'cfw not finished yet.'
     return
 
     [[ -e ${PREFIX}/bin/clash ]] && return
@@ -422,6 +422,28 @@ function clash () {
 
     cd ..
     ln -s _lib-clash/clash_ .
+}
+
+
+function clash () {
+    if [ ! -e "$PREFIX"/clash ]; then
+
+        cd "$TEMP_FOLDER"
+
+        CLASH_VERSION=v1.18.0
+        wget -c https://ghproxy.com/https://github.com/Dreamacro/clash/releases/download/"${CLASH_VERSION}"/clash-linux-amd64-"${CLASH_VERSION}".gz
+        gzip -d clash-linux-amd64-"${CLASH_VERSION}".gz
+        chmod 777 clash-linux-amd64-"${CLASH_VERSION}"
+        mv clash-linux-amd64-"${CLASH_VERSION}" "$PREFIX"/clash
+    fi
+    if [ -e ~/.config/clash/Country.mmdb ]; then
+        mkdir -p ~/.config/clash
+        cd ~/.config/clash
+
+        CLASH_MMDB_VERSION=20231012
+
+        wget -c https://ghproxy.com/https://github.com/Dreamacro/maxmind-geoip/releases/download/"${CLASH_MMDB_VERSION}"/Country.mmdb
+    fi
 }
 
 

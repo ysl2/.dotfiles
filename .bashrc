@@ -265,7 +265,7 @@ alias egrep='egrep --color=auto'
 alias pip='python3 -m pip'
 alias ipy='ipython'
 alias lf='lfcd'
-alias ld='lazydocker'
+alias lD='lazydocker'
 alias lg='lazygit'
 cht() {
     curl cht.sh/"${1}"
@@ -297,6 +297,9 @@ jo() {
 # https://github.com/TheZoraiz/ascii-image-converter
 alias ass='ascii-image-converter --color --braille --dither --complex'
 alias xterm='xterm -ti vt340'
+alias ge="google-chrome --proxy-server=localhost:7890 --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT'"
+alias gE="google-chrome --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT'"
+# alias clash="clash -d ~/.config/clash/ -f ~/.config/clash/glados.yaml"
 
 
 # ===
