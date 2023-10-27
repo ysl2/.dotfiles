@@ -216,7 +216,7 @@ export STARSHIP_LOG=error
 # ===
 # === Functions
 # ===
-function lfcd () {
+lfcd() {
 # Ref: https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
     tmp="$(mktemp)"
     # `command` is needed in case `lfcd` is aliased to `lf`
@@ -231,7 +231,7 @@ function lfcd () {
         fi
     fi
 }
-function _to () {
+_to() {
     if [ ! -e "$1" ]; then
         touch "$1"
     else
@@ -239,10 +239,10 @@ function _to () {
     fi
     . ~/.bashrc
 }
-function totmux () {
+totmux() {
     _to "${_MYLOCK}/tmux"
 }
-function toconda () {
+toconda() {
     _to "${_MYLOCK}/conda"
 }
 
@@ -267,10 +267,10 @@ alias ipy='ipython'
 alias lf='lfcd'
 alias ld='lazydocker'
 alias lg='lazygit'
-function cht () {
+cht() {
     curl cht.sh/"${1}"
 }
-function jo() {
+jo() {
 	ID="$$"
 	mkdir -p /tmp/$USER
 	OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
