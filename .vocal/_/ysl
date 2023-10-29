@@ -15,12 +15,12 @@ TEMP_FOLDER=$HOME/Downloads/_
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
 
 
-function _ERR () {
+_ERR () {
     echo "Bug here: $1"
 }
 
 
-function openssl () {
+openssl () {
     [[ -e ${PREFIX}/lib64/pkgconfig/openssl.pc ]] || [[ -e ${PREFIX}/lib/pkgconfig/openssl.pc ]] && return
 
     cd ${TEMP_FOLDER}
@@ -46,7 +46,7 @@ function openssl () {
 }
 
 
-function libevent () {
+libevent () {
     [[ -e ${PREFIX}/lib/pkgconfig/libevent.pc ]] && return
 
     cd ${TEMP_FOLDER}
@@ -69,8 +69,8 @@ function libevent () {
 }
 
 
-function ncurses () {
-    function _ncurses () {
+ncurses () {
+    _ncurses () {
         NCURSES_VERSION=$1
 
         [[ -e ${PREFIX}/lib/libncurses.so.${NCURSES_VERSION} ]] && [[ -e ${PREFIX}/lib/libncursesw.so.${NCURSES_VERSION} ]] && return
@@ -111,7 +111,7 @@ function ncurses () {
 }
 
 
-function fuse () {
+fuse () {
     [[ -e ${PREFIX}/lib/pkgconfig/fuse3.pc ]] && return
 
     cd ${TEMP_FOLDER}
@@ -140,7 +140,7 @@ function fuse () {
 }
 
 
-function tmux () {
+tmux () {
     [[ -e "${PREFIX}/tmux/bin/tmux" ]] && return
 
     cd "$TEMP_FOLDER"
@@ -173,7 +173,7 @@ function tmux () {
 }
 
 
-function ncdu () {
+ncdu () {
     [[ -e ${PREFIX}/bin/ncdu ]] && return
 
     cd ${TEMP_FOLDER}
@@ -196,7 +196,7 @@ function ncdu () {
 }
 
 
-function lf () {
+lf () {
     [ -e "${PREFIX}/lf" ] && return
 
     cd "$TEMP_FOLDER"
@@ -210,7 +210,7 @@ function lf () {
 }
 
 
-function htop () {
+htop () {
     [[ -e ${PREFIX}/bin/htop ]] && return
 
     cd ${TEMP_FOLDER}
@@ -228,7 +228,7 @@ function htop () {
 }
 
 
-function gcc8 () {
+gcc8 () {
     _ERR gcc8
     return
 
@@ -264,7 +264,7 @@ function gcc8 () {
 }
 
 
-function lazygit () {
+lazygit () {
     [[ -e ${PREFIX}/bin/lazygit ]] && return
 
     cd ${TEMP_FOLDER}
@@ -279,7 +279,7 @@ function lazygit () {
 }
 
 
-function neovim () {
+neovim () {
     [[ -e "${PREFIX}"/bin/neovim ]] && return
 
     # fuse
@@ -297,7 +297,7 @@ function neovim () {
 }
 
 
-function termscp () {
+termscp () {
     [[ -e ${PREFIX}/bin/termscp ]] && return
 
     cd ${TEMP_FOLDER}
@@ -310,7 +310,7 @@ function termscp () {
 }
 
 
-function brew () {
+brew () {
     _ERR brew
     return
     # Judge if Linux or Mac
@@ -358,7 +358,7 @@ function brew () {
 }
 
 
-function firacode () {
+firacode () {
     [[ -e /usr/share/fonts/FiraCode ]] && return
 
     cd "${TEMP_FOLDER}"
@@ -371,7 +371,7 @@ function firacode () {
 }
 
 
-function fzf () {
+fzf () {
     # [[ -e ${PREFIX}/bin/fzf ]] && return
 
     # FZF_VERSION=0.39.0
@@ -391,7 +391,7 @@ function fzf () {
 }
 
 
-function ants () {
+ants () {
     cd ${PREFIX}/bin
     mkdir -p ANTs
     cd ANTs
@@ -404,7 +404,7 @@ function ants () {
 }
 
 
-function cfw () {
+cfw () {
     _ERR 'cfw not finished yet.'
     return
 
@@ -427,7 +427,7 @@ function cfw () {
 }
 
 
-function clash () {
+clash () {
     if [ ! -e "$PREFIX"/clash ]; then
 
         cd "$TEMP_FOLDER"
@@ -449,7 +449,7 @@ function clash () {
 }
 
 
-function proxychains () {
+proxychains () {
     [[ -e ${PREFIX}/bin/proxychains4 ]] && return
 
     cd ${TEMP_FOLDER}
@@ -467,7 +467,7 @@ function proxychains () {
 }
 
 
-function libxmu () {
+libxmu () {
     _ERR 'libxmu: no package xext found.'
     return
 
@@ -490,7 +490,7 @@ function libxmu () {
 }
 
 
-function xclip () {
+xclip () {
     _ERR 'xclip need libxmu first.'
     return
 
@@ -517,7 +517,7 @@ function xclip () {
 }
 
 
-function lua () {
+lua () {
     [[ -e ${PREFIX}/bin/lua ]] && return
 
     cd ${TEMP_FOLDER}
@@ -530,7 +530,7 @@ function lua () {
 }
 
 
-function nvtop () {
+nvtop () {
     [[ -e "${PREFIX}"/bin/nvtop ]] && return
 
     NVTOP_VERSION=3.0.2
@@ -539,7 +539,7 @@ function nvtop () {
 }
 
 
-function chrome () {
+chrome () {
     if command -v google-chrome &> /dev/null; then return; fi
 
     cd "${TEMP_FOLDER}"
@@ -560,7 +560,7 @@ Icon=/usr/share/icons/hicolor/48x48/apps/google-chrome.png
 }
 
 
-function gh () {
+gh () {
     [[ -e "${PREFIX}"/bin/github-desktop ]] && return
 
     GH_VERSION=3.3.1-linux1
@@ -580,7 +580,7 @@ Icon="${PREFIX}"/bin/.github-desktop.png
 }
 
 
-function dosbox () {
+dosbox () {
     # NOTE: Don't use `command -v dosbox &> /dev/null` to check if dosbox has already been installed, beacuse the function name is `dosbox`, and is same with the command.
     [[ -e /usr/bin/dosbox ]] && return
     sudo apt install -y dosbox
@@ -597,7 +597,7 @@ Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
 }
 
 
-function wakatime () {
+wakatime () {
     mkdir -p ~/.wakatime/
     cd ~/.wakatime/
 
@@ -613,7 +613,7 @@ function wakatime () {
 }
 
 
-function marksman () {
+marksman () {
     [[ -e "${PREFIX}"/bin/marksman ]] && return
 
     MARKSMAN_VERSION=2023-07-25
@@ -622,7 +622,7 @@ function marksman () {
 }
 
 
-function texlab () {
+texlab () {
     [[ -e "${PREFIX}"/bin/texlab ]] && return
 
     cd ${TEMP_FOLDER}
@@ -634,7 +634,7 @@ function texlab () {
 }
 
 
-function coc_lua () {
+coc_lua () {
     [[ -e ~/.config/coc/extensions/coc-sumneko-lua-data/sumneko-lua-ls/extension/server/bin/lua-language-server ]] && return
 
     cd ${TEMP_FOLDER}
@@ -651,7 +651,7 @@ function coc_lua () {
 }
 
 
-function zathura () {
+zathura () {
     _ERR zathura && return
     [[ -e "${PREFIX}"/bin/zathura ]] && return
 
@@ -683,7 +683,7 @@ Icon="${PREFIX}"/share/icons/hicolor/256x256/apps/org.pwmt.zathura.png
 }
 
 
-function shfmt () {
+shfmt () {
     [[ -e "${PREFIX}"/bin/shfmt ]] && return
 
     SHFMT_VERSION=v3.7.0
@@ -692,7 +692,7 @@ function shfmt () {
 }
 
 
-function shellcheck () {
+shellcheck () {
     [[ -e "${PREFIX}"/bin/shellcheck ]] && return
 
     cd "${TEMP_FOLDER}"
@@ -707,7 +707,7 @@ function shellcheck () {
 }
 
 
-function alacritty () {
+alacritty () {
     [[ -e "$PREFIX"/alacritty ]] && return
 
     if ! command -v cargo &> /dev/null; then
@@ -731,7 +731,7 @@ function alacritty () {
 }
 
 
-function nodejs () {
+nodejs () {
     [[ -e "${PREFIX}"/bin/nodejs ]] && return
 
     cd "${TEMP_FOLDER}"
@@ -743,7 +743,7 @@ function nodejs () {
 }
 
 
-function trans () {
+trans () {
     TRANS_VERSION=0.9.7.1
     TARGET_FOLDER_NAME=translate-shell-"${TRANS_VERSION}"
     TARGET_FOLDER_PATH="${PREFIX}"/bin/"${TARGET_FOLDER_NAME}"/bin
@@ -759,13 +759,13 @@ function trans () {
 }
 
 
-function joshuto () {
+joshuto () {
     INSTALL_PREFIX="${PREFIX}"/bin \
     bash <(curl -s https://ghproxy.com/https://raw.githubusercontent.com/kamiyaa/joshuto/master/utils/install.sh | sed 's#ARCHIVE_URL="#ARCHIVE_URL="https://ghproxy.com/#g')
 }
 
 
-function kitty () {
+kitty () {
     [[ -e ~/.local/kitty.app ]] && return
     mkdir -p ~/.local/kitty.app
     cd ~/.local/kitty.app
@@ -789,7 +789,7 @@ function kitty () {
 }
 
 
-function ascii () {
+ascii () {
     ASCII_VERSION=v1.13.1
     cd "${TEMP_FOLDER}"
     mkdir ascii
@@ -800,7 +800,7 @@ function ascii () {
 }
 
 
-function wezterm () {
+wezterm () {
     _ERR 'wezterm'
     [[ -e "${PREFIX}/wezterm" ]] && return
     cd "${TEMP_FOLDER}"
@@ -809,15 +809,27 @@ function wezterm () {
 }
 
 
-function chafa () {
+chafa () {
     [[ -e "${PREFIX}"/chafa ]] && return
 
-    cd "${TEMP_FOLDER}"
+    cd "$TEMP_FOLDER"
 
     CHAFA_VERSION=1.12.5
     wget -c https://ghproxy.com/https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
+}
+
+
+clang() {
+    [ -e "$PREFIX"/clang/bin/clang ] && return
+
+    cd "$TEMP_FOLDER"
+
+    CLANG_VERSION=16.0.4
+    wget -c https://ghproxy.com/https://github.com/llvm/llvm-project/releases/download/llvmorg-"${CLANG_VERSION}"/clang+llvm-"${CLANG_VERSION}"-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+    tar xvf clang+llvm-"${CLANG_VERSION}"-x86_64-linux-gnu-ubuntu-22.04.tar.xz
+    mv clang+llvm-"${CLANG_VERSION}"-x86_64-linux-gnu-ubuntu-22.04 "$PREFIX"/clang
 }
 
 
