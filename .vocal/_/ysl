@@ -847,6 +847,14 @@ clangd() {
 }
 
 
+smu() {
+    cd "$TEMP_FOLDER"
+    git clone git@git.zhlh6.cn:Gottox/smu.git
+    cd smu
+    make PREFIX="$PREFIX"/smu install
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
