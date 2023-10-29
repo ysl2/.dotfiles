@@ -814,7 +814,7 @@ chafa () {
 
     cd "$TEMP_FOLDER"
 
-    CHAFA_VERSION=1.12.5
+    local CHAFA_VERSION=1.12.5
     wget -c https://ghproxy.com/https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
@@ -822,14 +822,28 @@ chafa () {
 
 
 clang() {
+    _ERR 'Use clangd instead.'
+    return
     [ -e "$PREFIX"/clang/bin/clang ] && return
 
     cd "$TEMP_FOLDER"
 
-    CLANG_VERSION=16.0.4
+    local CLANG_VERSION=16.0.4
     wget -c https://ghproxy.com/https://github.com/llvm/llvm-project/releases/download/llvmorg-"${CLANG_VERSION}"/clang+llvm-"${CLANG_VERSION}"-x86_64-linux-gnu-ubuntu-22.04.tar.xz
     tar xvf clang+llvm-"${CLANG_VERSION}"-x86_64-linux-gnu-ubuntu-22.04.tar.xz
     mv clang+llvm-"${CLANG_VERSION}"-x86_64-linux-gnu-ubuntu-22.04 "$PREFIX"/clang
+}
+
+
+clangd() {
+    [ -e "$PREFIX"/clangd/bin/clangd ] && return
+
+    cd "$TEMP_FOLDER"
+
+    local CLANGD_VERSION=16.0.2
+    wget -c https://ghproxy.com/https://github.com/clangd/clangd/releases/download/"$CLANGD_VERSION"/clangd-linux-"$CLANGD_VERSION".zip
+    unzip clangd-linux-"$CLANGD_VERSION".zip
+    mv clangd_"$CLANGD_VERSION" "$PREFIX"/clangd
 }
 
 
