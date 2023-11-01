@@ -868,6 +868,15 @@ picom() {
     mv build/src/picom "$PREFIX"
 }
 
+
+tdrop() {
+    cd "$TEMP_FOLDER"
+    git clone git@git.zhlh6.cn:noctuid/tdrop.git
+    cd tdrop
+    sudo make install
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
