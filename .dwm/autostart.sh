@@ -5,11 +5,11 @@ picom -b
 ~/.dwm/dwm-natural-scrolling.sh
 
 single_instance() {
-    pid=$(pgrep "$1")
-    if [ ! "$pid" == '' ]; then
-        kill -9 "$pid"
+    result=$(ps aux | grep -v grep | grep  "$1")
+    if [ ! "$result" == '' ]; then
+        killall "$1"
     fi
-    ~/.dwm/"$1".sh &
+    ~/.dwm/"$1" &
 }
 
-single_instance dwm-statusbar
+single_instance dwm-statusbar.sh
