@@ -877,6 +877,16 @@ tdrop() {
 }
 
 
+bluetuith() {
+    _ERR 'bluetuith'
+    cd "$TEMP_FOLDER"
+
+    BLUETUITH_VERSION=0.1.8
+
+    wget -c https://ghproxy.com/https://github.com/darkhz/bluetuith/releases/download/v"${BLUETUITH_VERSION}"/bluetuith_"${BLUETUITH_VERSION}"_Linux_x86_64.tar.gz
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
