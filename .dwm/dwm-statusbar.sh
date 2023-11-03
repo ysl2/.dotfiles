@@ -32,14 +32,30 @@ get_datetime() {
     echo "$clock_icon $datetime"
 }
 
+get_battery() {
+    status=$(cat /sys/class/power_supply/BAT0/status)
+
+    if [ "$status" = "Charging" ]; then
+        battery_icon=""
+    elif [ "$status" = "Discharging" ]; then
+        battery_icon=""
+    else
+        battery_icon=""
+    fi
+    capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+    printf -v capacity "%2s" "$capacity"
+    echo "$battery_icon $capacity%"
+}
+
 while true; do
     cpu_info=$(get_cpu_usage)
     memory_info=$(get_memory_usage)
     disk_info=$(get_root_disk_usage)
     volume_info=$(get_volume)
+    battery_info=$(get_battery)
     datetime_info=$(get_datetime)
 
-    status_text="$cpu_info $memory_info $disk_info $volume_info $datetime_info"
+    status_text="$cpu_info $memory_info $disk_info $volume_info $battery_info $datetime_info"
 
     xsetroot -name "$status_text"
 
