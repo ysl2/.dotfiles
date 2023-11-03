@@ -26,12 +26,6 @@ get_volume() {
     echo "$volume_icon $volume "
 }
 
-get_datetime() {
-    datetime=$(date +"%Y-%m-%d %a %H:%M:%S")
-    clock_icon=""
-    echo "$clock_icon $datetime "
-}
-
 get_battery() {
     status_file=/sys/class/power_supply/BAT0/status
     capacity_file=/sys/class/power_supply/BAT0/capacity
@@ -57,6 +51,12 @@ get_battery() {
 
     printf -v capacity "%3s" "$capacity"
     echo "$battery_icon $capacity% "
+}
+
+get_datetime() {
+    datetime=$(date +"%Y-%m-%d %a %H:%M:%S")
+    clock_icon=""
+    echo "$clock_icon $datetime "
 }
 
 while true; do
