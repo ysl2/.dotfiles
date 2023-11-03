@@ -43,7 +43,7 @@ get_battery() {
         battery_icon=""
     fi
     capacity=$(cat /sys/class/power_supply/BAT0/capacity)
-    printf -v capacity "%2s" "$capacity"
+    printf -v capacity "%3s" "$capacity"
     echo "$battery_icon $capacity%"
 }
 
