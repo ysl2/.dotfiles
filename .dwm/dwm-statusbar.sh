@@ -71,6 +71,6 @@ while true; do
 
     xsetroot -name "$status_text"
 
-    sleep 1
+    # sleep 1
 done
 
