@@ -3,7 +3,7 @@
 get_cpu_usage() {
     cpu_percentage=$(top -bn1 | grep "%Cpu(s)" | awk '{print $2}' | cut -d "." -f 1)
     cpu_icon=""
-    printf -v cpu_percentage "%2s" "$cpu_percentage"
+    # printf -v cpu_percentage "%2s" "$cpu_percentage"
     echo "$cpu_icon $cpu_percentage% "
 }
 
@@ -22,7 +22,7 @@ get_root_disk_usage() {
 get_volume() {
     volume=$(amixer get Master | grep -oE '[0-9]{1,3}%' | head -1)
     volume_icon=""
-    printf -v volume "%3s" "$volume"
+    # printf -v volume "%3s" "$volume"
     echo "$volume_icon $volume "
 }
 
@@ -49,7 +49,7 @@ get_battery() {
         return
     fi
 
-    printf -v capacity "%3s" "$capacity"
+    # printf -v capacity "%3s" "$capacity"
     echo "$battery_icon $capacity% "
 }
 
