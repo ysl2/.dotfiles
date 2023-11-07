@@ -36,7 +36,7 @@ get_battery() {
 
     status=$(cat "$status_file")
     if [ "$status" = "Charging" ]; then
-        battery_icon=""
+        battery_icon=""
     elif [ "$status" = "Discharging" ]; then
         battery_icon=""
     else
