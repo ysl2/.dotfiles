@@ -56,7 +56,7 @@ get_battery() {
 get_datetime() {
     datetime=$(date +"%Y-%m-%d %a %H:%M:%S")
     clock_icon=""
-    echo "$clock_icon $datetime "
+    echo "$clock_icon $datetime"
 }
 
 while true; do
