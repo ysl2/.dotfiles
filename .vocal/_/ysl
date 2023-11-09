@@ -264,23 +264,23 @@ gcc8 () {
 }
 
 
-lazygit () {
-    [[ -e ${PREFIX}/bin/lazygit ]] && return
+lg () {
+    [[ -e ${PREFIX}/lazygit ]] && return
 
     cd ${TEMP_FOLDER}
 
-    LAZYGIT_VERSION=0.37.0
+    LAZYGIT_VERSION=0.40.2
     mkdir lazygit-${LAZYGIT_VERSION}
     cd lazygit-${LAZYGIT_VERSION}
-    [[ ! -e lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
+    wget -c https://ghproxy.com/https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
     tar xvzf lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
-    mkdir -p ${PREFIX}/bin
-    mv lazygit ${PREFIX}/bin
+    mkdir -p ${PREFIX}
+    mv lazygit ${PREFIX}/
 }
 
 
-neovim () {
-    [[ -e "${PREFIX}"/bin/neovim ]] && return
+nvim () {
+    [[ -e "${PREFIX}"/neovim ]] && return
 
     # fuse
 
@@ -292,7 +292,7 @@ neovim () {
 
     cd "${TEMP_FOLDER}"
     git clone git@git.zhlh6.cn:neovim/neovim.git
-    cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="${PREFIX}"/bin/neovim
+    cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="${PREFIX}"/neovim
     make install
 }
 
@@ -614,11 +614,11 @@ wakatime () {
 
 
 marksman () {
-    [[ -e "${PREFIX}"/bin/marksman ]] && return
+    [[ -e "${PREFIX}"/marksman ]] && return
 
     MARKSMAN_VERSION=2023-07-25
-    wget -c -O "${PREFIX}"/bin/marksman https://ghproxy.com/https://github.com/artempyanykh/marksman/releases/download/"${MARKSMAN_VERSION}"/marksman-linux-x64
-    chmod 777 "${PREFIX}"/bin/marksman
+    wget -c -O "${PREFIX}"/marksman https://ghproxy.com/https://github.com/artempyanykh/marksman/releases/download/"${MARKSMAN_VERSION}"/marksman-linux-x64
+    chmod 777 "${PREFIX}"/marksman
 }
 
 
@@ -732,21 +732,21 @@ alacritty () {
 
 
 nodejs () {
-    [[ -e "${PREFIX}"/bin/nodejs ]] && return
+    [[ -e "${PREFIX}"/nodejs ]] && return
 
     cd "${TEMP_FOLDER}"
 
     NODE_VERSION=v18.18.0
     wget -c https://nodejs.org/dist/"${NODE_VERSION}"/node-"${NODE_VERSION}"-linux-x64.tar.xz
     tar xvf node-"${NODE_VERSION}"-linux-x64.tar.xz
-    mv node-"${NODE_VERSION}"-linux-x64/ "${PREFIX}"/bin/nodejs/
+    mv node-"${NODE_VERSION}"-linux-x64/ "${PREFIX}"/nodejs/
 }
 
 
 trans () {
     TRANS_VERSION=0.9.7.1
     TARGET_FOLDER_NAME=translate-shell-"${TRANS_VERSION}"
-    TARGET_FOLDER_PATH="${PREFIX}"/bin/"${TARGET_FOLDER_NAME}"/bin
+    TARGET_FOLDER_PATH="${PREFIX}"/"${TARGET_FOLDER_NAME}"/bin
     [[ -e "${TARGET_FOLDER_PATH}" ]] && return
     mkdir -p "${TARGET_FOLDER_PATH}"
 

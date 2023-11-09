@@ -19,7 +19,7 @@ if has('nvim') || v:version >= 800
 endif
 set guicursor=
 colorscheme default
-set cursorline
+" set cursorline
 if has('nvim')
     set exrc
 endif
