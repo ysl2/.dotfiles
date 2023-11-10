@@ -40,7 +40,7 @@ function kitty_icat() {
 
     # For alacritty, I set alacritty default $TERM to xterm-256color
     # But in tmux, tmux will change the $TERM to screen-256color, this is also I specifically made it.
-    if [[ "$TERM" == 'xterm-256color' && -z "$TMUX" ]]; then
+    if [[ ("$TERM" == 'xterm-256color' && -z "$TMUX") || "$TERM" == 'st-256color' ]]; then
         chafa -f sixels -s "$W"x"$H" "$1"
         if [ $? -eq 0 ]; then
             exit 0
