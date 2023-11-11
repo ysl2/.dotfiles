@@ -79,9 +79,9 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 
-# map I :rename; cmd-home
-# map A :rename; cmd-end
-# map C :rename; cmd-end; cmd-delete-home
+map I :rename; cmd-home
+map A :rename; cmd-end
+map C :rename; cmd-end; cmd-delete-home
 
 cmd follow_link %{{
   lf -remote "send ${id} select '$(readlink $f)'"

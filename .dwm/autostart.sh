@@ -1,5 +1,4 @@
 #!/bin/bash
-feh --bg-scale ~/Pictures/Wallpapers/desktop.jpg
 picom -b
 
 ~/.dwm/dwm-natural-scrolling.sh
