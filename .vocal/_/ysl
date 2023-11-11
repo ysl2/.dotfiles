@@ -896,6 +896,29 @@ gh() {
 }
 
 
+i3() {
+    sudo apt-get install -y libstartup-notification0-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-cursor-dev libxcb-keysyms1-dev libxcb-icccm4-dev libxcb-xrm-dev libxkbcommon-x11-dev libyajl-dev
+
+    cd "$TEMP_FOLDER"
+
+    git clone git@github.com:i3/i3.git
+    cd i3
+    mkdir -p build && cd build
+    meson ..
+    ninja
+
+    cd ..
+    mv build "$PREFIX"/lib-i3
+    ln -s "$PREFIX"/lib-i3/i3 "$PREFIX"/i3
+    ln -s "$PREFIX"/lib-i3/i3-config-wizard "$PREFIX"/i3-config-wizard
+    ln -s "$PREFIX"/lib-i3/i3-dump-log "$PREFIX"/i3-dump-log
+    ln -s "$PREFIX"/lib-i3/i3-input "$PREFIX"/i3-input
+    ln -s "$PREFIX"/lib-i3/i3-msg "$PREFIX"/i3-msg
+    ln -s "$PREFIX"/lib-i3/i3-nagbar "$PREFIX"/i3-nagbar
+    ln -s "$PREFIX"/lib-i3/i3bar "$PREFIX"/i3bar
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
