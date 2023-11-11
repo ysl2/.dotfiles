@@ -11,6 +11,7 @@ single_instance() {
     ~/.dwm/"$1" &
 }
 
-single_instance dwm-statusbar.sh
+#single_instance dwm-statusbar.sh
+slstatus &
 
 [ -f ~/.dwm/autostart.localhost.sh ] && ~/.dwm/autostart.localhost.sh
