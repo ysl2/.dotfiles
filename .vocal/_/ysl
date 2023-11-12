@@ -919,6 +919,20 @@ i3() {
 }
 
 
+i3blocks() {
+    cd "$TEMP_FOLDER"
+    git clone git@github.com:vivien/i3blocks.git
+    cd i3blocks
+    ./autogen.sh
+    ./configure
+    make
+    sudo make install
+
+    cd ~/.config
+    git clone git@github.com:vivien/i3blocks-contrib.git
+}
+
+
 polybar() {
     _ERR polybar
     return
