@@ -919,6 +919,42 @@ i3() {
 }
 
 
+polybar() {
+    _ERR polybar
+    return
+    sudo apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libuv1-dev libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev libpthread-stubs0-dev
+    # # python3-xcbgen
+    #
+    cd "$TEMP_FOLDER"
+
+    git clone --recursive git@github.com:polybar/polybar.git
+    cd polybar
+
+    [ -d build ] && sudo rm -rf build
+    mkdir build
+    cd build
+    [ -f CMakeCache.txt ] && rm CMakeCache.txt
+    cmake ..
+    make -j$(nproc)
+    sudo make install
+}
+
+
+lemonbar() {
+    _ERR lemonbar
+    return
+    cd "$TEMP_FOLDER"
+
+    # git clone git@github.com:LemonBoy/bar.git lemonbar
+    # cd lemonbar
+    # sudo make clean install
+    # mv lemonbar "$PREFIX"/
+
+    pip install i3ipc
+    mkdir -p ~/.i3/lemonbar && git clone git@github.com:mirekys/i3-lemonbar.git ~/.i3/lemonbar
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
