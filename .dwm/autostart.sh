@@ -1,7 +1,6 @@
 #!/bin/bash
-picom -b
 
-~/.dwm/dwm-natural-scrolling.sh
+~/.wm/autostart.sh
 
 single_instance() {
     result=$(ps aux | grep -v grep | grep "$1")
