@@ -901,13 +901,15 @@ i3() {
 
     cd "$TEMP_FOLDER"
 
-    git clone git@github.com:i3/i3.git
+    git clone git@github.com:ysl2/i3wm.git
+
     cd i3
     mkdir -p build && cd build
     meson ..
     ninja
 
     cd ..
+    [ -d "$PREFIX"/lib-i3 ] && rm -rf "$PREFIX"/lib-i3
     mv build "$PREFIX"/lib-i3
     ln -s "$PREFIX"/lib-i3/i3 "$PREFIX"/i3
     ln -s "$PREFIX"/lib-i3/i3-config-wizard "$PREFIX"/i3-config-wizard
@@ -978,6 +980,14 @@ awesome() {
     cd awesome
     make
     sudo make install
+}
+
+
+qlite() {
+    _ERR qlite
+    /usr/bin/python -m pip install xcffib
+    /usr/bin/python -m pip install --no-cache-dir cairocffi
+    /usr/bin/python -m pip install qtile
 }
 
 
