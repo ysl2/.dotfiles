@@ -901,9 +901,10 @@ i3() {
 
     cd "$TEMP_FOLDER"
 
-    [ ! -d i3wm ] && git clone git@github.com:ysl2/i3wm.git
+    [ -d i3 ] && rm -rf i3
+    git clone git@github.com:i3/i3.git
 
-    cd i3wm
+    cd i3
     mkdir -p build && cd build
     meson ..
     ninja
