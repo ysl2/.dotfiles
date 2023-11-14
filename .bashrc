@@ -64,6 +64,15 @@ addToPATH "$MYLOCAL"
 addToPATH "$MYLOCAL/_"
 
 
+# ======================================
+# === Pre Load And Set Default Value ===
+# ======================================
+[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
+# MYCONDA
+# MYTMUX
+[ -n "$MYCONDA" ] && addToPATH "$MYCONDA/bin"
+
+
 # ===========================
 # === For Desktop Manager ===
 # ===========================
@@ -82,14 +91,6 @@ fi
 # # No need: The $DISPLAY will be auto set after startx.
 # # For safety consideration, we still give it a default value.
 [ -z "$DISPLAY" ] && export DISPLAY=:0
-
-
-# ======================================
-# === Pre Load And Set Default Value ===
-# ======================================
-[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
-# MYCONDA
-# MYTMUX
 
 
 # =========================
