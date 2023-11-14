@@ -901,9 +901,9 @@ i3() {
 
     cd "$TEMP_FOLDER"
 
-    git clone git@github.com:ysl2/i3wm.git
+    [ ! -d i3wm ] && git clone git@github.com:ysl2/i3wm.git
 
-    cd i3
+    cd i3wm
     mkdir -p build && cd build
     meson ..
     ninja
@@ -911,13 +911,13 @@ i3() {
     cd ..
     [ -d "$PREFIX"/lib-i3 ] && rm -rf "$PREFIX"/lib-i3
     mv build "$PREFIX"/lib-i3
-    ln -s "$PREFIX"/lib-i3/i3 "$PREFIX"/i3
-    ln -s "$PREFIX"/lib-i3/i3-config-wizard "$PREFIX"/i3-config-wizard
-    ln -s "$PREFIX"/lib-i3/i3-dump-log "$PREFIX"/i3-dump-log
-    ln -s "$PREFIX"/lib-i3/i3-input "$PREFIX"/i3-input
-    ln -s "$PREFIX"/lib-i3/i3-msg "$PREFIX"/i3-msg
-    ln -s "$PREFIX"/lib-i3/i3-nagbar "$PREFIX"/i3-nagbar
-    ln -s "$PREFIX"/lib-i3/i3bar "$PREFIX"/i3bar
+    [ ! -f "$PREFIX"/i3 ] && ln -s "$PREFIX"/lib-i3/i3 "$PREFIX"/i3
+    [ ! -f "$PREFIX"/i3-config-wizard ] && ln -s "$PREFIX"/lib-i3/i3-config-wizard "$PREFIX"/i3-config-wizard
+    [ ! -f "$PREFIX"/i3-dump-log ] && ln -s "$PREFIX"/lib-i3/i3-dump-log "$PREFIX"/i3-dump-log
+    [ ! -f "$PREFIX"/i3-input ] && ln -s "$PREFIX"/lib-i3/i3-input "$PREFIX"/i3-input
+    [ ! -f "$PREFIX"/i3-msg ] && ln -s "$PREFIX"/lib-i3/i3-msg "$PREFIX"/i3-msg
+    [ ! -f "$PREFIX"/i3-nagbar ] && ln -s "$PREFIX"/lib-i3/i3-nagbar "$PREFIX"/i3-nagbar
+    [ ! -f "$PREFIX"/i3bar ] && ln -s "$PREFIX"/lib-i3/i3bar "$PREFIX"/i3bar
 }
 
 
