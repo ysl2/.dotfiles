@@ -251,6 +251,7 @@ toconda() {
 # === Alias
 # ===
 alias :q='exit'
+alias :qa='exit'
 # https://github.com/ranger/ranger/wiki/Integration-with-other-programs#changing-directories
 ranger='source ranger ranger'
 alias ranger=$ranger
