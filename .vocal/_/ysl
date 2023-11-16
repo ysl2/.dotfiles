@@ -10,6 +10,8 @@ set -e
 PREFIX=$HOME/.vocal
 mkdir -p "$PREFIX"
 TEMP_FOLDER=$HOME/Downloads/_
+#GHPROXY=https://ghproxy.com/
+GHPROXY=
 
 # create our directories
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
@@ -989,6 +991,19 @@ qlite() {
     /usr/bin/python -m pip install xcffib
     /usr/bin/python -m pip install --no-cache-dir cairocffi
     /usr/bin/python -m pip install qtile
+}
+
+
+qrcp() {
+    cd "$TEMP_FOLDER"
+
+    QRCP_VERSION=0.10.1
+
+    mkdir qrcp
+    cd qrcp
+    wget -c "$GHPROXY"https://github.com/claudiodangelis/qrcp/releases/download/"${QRCP_VERSION}"/qrcp_"${QRCP_VERSION}"_linux_x86_64.tar.gz
+    tar xvf qrcp_"${QRCP_VERSION}"_linux_x86_64.tar.gz
+    mv qrcp "$PREFIX"
 }
 
 
