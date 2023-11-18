@@ -14,13 +14,19 @@ MYBIN="${MYLOCAL}/bin"
 # === Define addToPATH Function ===
 # =================================
 addToPATH() {
-    case ":${PATH:=$1}:" in
-        *:"$1":*)
-            ;;
-        *)
-            PATH="$1:$PATH"
-            ;;
-    esac
+    PATH="$1:$PATH"
+    # case ":${PATH:=$1}:" in
+    #     *:"$1":*)
+    #         ;;
+    #     *)
+    #         PATH="$1:$PATH"
+    #         ;;
+    # esac
+}
+
+searchToPATH() {
+    find "$1" -maxdepth 1 -type d -exec sh -c 'if [ -d "$1/bin" ]; then echo "export PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
+    [ -f /tmp/paths.sh ] && . /tmp/paths.sh && rm /tmp/paths.sh
 }
 
 
@@ -31,6 +37,8 @@ addToPATH() {
 # ===
 # === No sequences, for system default.
 # ===
+addToPATH /sbin
+addToPATH /usr/sbin
 addToPATH $HOME/bin
 addToPATH $HOME/.local/bin
 
@@ -40,27 +48,19 @@ addToPATH $HOME/.local/bin
 addToPATH "$MYBIN"/ANTs/install/bin
 addToPATH $HOME/.local/kitty.app/bin
 addToPATH $HOME/.cargo/bin
-
+addToPATH $HOME/.fzf/bin
 
 # ===
 # === In sequences, last in first out.
 # ===
+if [ -d "$MYBIN" ]; then
+    searchToPATH "$MYBIN"
+    addToPATH "$MYBIN"
+fi
 
-# {{{ Will be removed in the future
-for folder in "$MYBIN"/*/; do
-    if [ -d "${folder}bin" ]; then
-        addToPATH "${folder}bin"
-    fi
-done
-addToPATH "$MYBIN"
-# }}}
-
-for folder in "$MYLOCAL"/*/; do
-    if [ -d "${folder}bin" ]; then
-        addToPATH "${folder}bin"
-    fi
-done
+searchToPATH "$MYLOCAL"
 addToPATH "$MYLOCAL"
+
 addToPATH "$MYLOCAL/_"
 
 
@@ -74,9 +74,9 @@ addToPATH "$MYLOCAL/_"
 
 
 # ===========================
-# === For Desktop Manager ===
+# === For Display Manager ===
 # ===========================
-if [ -n "$DISPLAY" ] && [ -z "$BASH_VERSION" ]; then
+if [ -n "$DISPLAY" ] && [ -z "$ZSH_VERSION" ] && [ -z "$BASH_VERSION" ]; then
     return
 fi
 
@@ -130,13 +130,13 @@ ontmux "$MYTMUX"
 # Ref:
 # - https://blog.csdn.net/whatday/article/details/105466009
 # - https://unix.stackexchange.com/a/282433
-addTo() {
-    [ -z "${!1}" ] && eval "$1='$2'"
-    case ":${!1}:" in
-      *":$2:"*) :;;  # What does the colon `:` mean?
-      *) eval "$1='$2:${!1}'";;
-    esac
-}
+# addTo() {
+#     [ -z "${!1}" ] && eval "$1='$2'"
+#     case ":${!1}:" in
+#       *":$2:"*) :;;  # What does the colon `:` mean?
+#       *) eval "$1='$2:${!1}'";;
+#     esac
+# }
 
 
 # ==========================
@@ -170,14 +170,14 @@ onconda() {
     echo "Current conda value: ${myconda}" >> "$LOCK"
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$("${myconda}/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$("${myconda}/bin/conda" "shell.$(basename $SHELL)" 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
         if [ -f "${myconda}/etc/profile.d/conda.sh" ]; then
             . "${myconda}/etc/profile.d/conda.sh"
         else
-            addTo PATH "${myconda}/bin"
+            addToPATH "${myconda}/bin"
         fi
     fi
     unset __conda_setup
@@ -303,15 +303,36 @@ alias ge="google-chrome --proxy-server=localhost:7890 --simulate-outdated-no-au=
 alias gE="google-chrome --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT'"
 # alias clash="clash -d ~/.config/clash/ -f ~/.config/clash/glados.yaml"
 
-
 # ===
 # === Outside source
 # ===
-[ -f "${MYLOCAL}/starship" ] && eval "$(starship init bash)"
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+[ -f "${MYLOCAL}/starship" ] && eval "$(starship init $(basename "$SHELL"))"
+fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)"))
+for f in "${fzf_files_array[@]}"; do
+   . "$f"
+done
+
+
+# ===============
+# === For zsh ===
+# ===============
+if [[ "$(echo $(basename $SHELL))" == 'zsh' ]]; then
+    [ -f ~/.bashrc.zsh ] && . ~/.bashrc.zsh
+fi
 
 
 # =================
 # === Post Load ===
 # =================
 [ -f ~/.bashrc.localhost.post ] && . ~/.bashrc.localhost.post
+
+
+# ========================
+# === Unique Varaibles ===
+# ========================
+uniqTo() {
+    content=$(eval "echo \$$1")
+    eval "$1=$(echo -n $content | tr ":" "\n" | awk '!x[$0]++' | tr "\n" ":")"
+}
+
+uniqTo PATH

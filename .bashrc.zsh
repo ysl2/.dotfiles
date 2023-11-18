@@ -1,0 +1,2 @@
+setopt appendhistory
+unsetopt beep
