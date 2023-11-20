@@ -316,7 +316,7 @@ done
 # ===============
 # === For zsh ===
 # ===============
-if [[ "$(echo $(basename $SHELL))" == 'zsh' ]]; then
+if [[ -n "$ZSH_VERSION" ]]; then
     [ -f ~/.bashrc.zsh ] && . ~/.bashrc.zsh
 fi
 
