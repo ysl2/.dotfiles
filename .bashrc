@@ -214,6 +214,7 @@ export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export STARSHIP_LOG=error
+export CONDA_CHANGEPS1=no
 
 # ===
 # === Functions

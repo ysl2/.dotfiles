@@ -1,0 +1,47 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$conda\
+$character"""
+
+[directory]
+style = "bold #57c7ff"
+
+[character]
+success_symbol = "[❯](#f1f1f0)"
+error_symbol = "[❯](218)"
+vimcmd_symbol = "[❮](#f1f1f0)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "#f3f99d"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "bold #f3f99d"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "218"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "#f3f99d"
+
+[conda]
+format = "[$environment]($style) "
+style = "242"
+
