@@ -13,6 +13,7 @@ MYBIN="${MYLOCAL}/bin"
 # =================================
 # === Define addToPATH Function ===
 # =================================
+export PATH
 addToPATH() {
     PATH="$1:$PATH"
     # case ":${PATH:=$1}:" in
@@ -25,7 +26,7 @@ addToPATH() {
 }
 
 searchToPATH() {
-    find "$1" -maxdepth 1 -type d -exec sh -c 'if [ -d "$1/bin" ]; then echo "export PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
+    find "$1" -maxdepth 1 -type d -exec sh -c 'if [ -d "$1/bin" ]; then echo "PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
     [ -f /tmp/paths.sh ] && . /tmp/paths.sh && rm /tmp/paths.sh
 }
 
