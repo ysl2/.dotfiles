@@ -1,2 +1,6 @@
-setopt appendhistory
+# setopt INC_APPEND_HISTORY_TIME
+setopt SHARE_HISTORY
 unsetopt beep
+HISTFILE=~/.bash_history
+HISTSIZE=10000
+SAVEHIST=10000
