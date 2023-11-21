@@ -1,6 +1,6 @@
 #!/bin/bash
 
-~/.wm/autostart.sh
+~/.scripts/window-manager/autostart.sh
 
 single_instance() {
     result=$(ps aux | grep -v grep | grep "$1")
