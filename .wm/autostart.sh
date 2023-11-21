@@ -4,3 +4,4 @@
 ~/.wm/keyboard.sh
 picom -b
 
+[ -f ~/.wm/autostart.localhost.sh ] && ~/.wm/autostart.localhost.sh
