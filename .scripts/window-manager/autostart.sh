@@ -1,7 +1,7 @@
 #!/bin/bash
 
-~/.wm/natural-scrolling.sh
-~/.wm/keyboard.sh
+~/.scripts/window-manager/natural-scrolling.sh
+~/.scripts/window-manager/keyboard.sh
 picom -b
 
-[ -f ~/.wm/autostart.localhost.sh ] && ~/.wm/autostart.localhost.sh
+[ -f ~/.scripts/window-manager/autostart.localhost.sh ] && ~/.scripts/window-manager/autostart.localhost.sh
