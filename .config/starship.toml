@@ -43,5 +43,5 @@ style = "#f3f99d"
 
 [conda]
 format = "[$environment]($style) "
-style = "242"
+style = "#f3f99d"
 
