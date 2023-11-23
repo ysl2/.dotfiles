@@ -3,45 +3,42 @@ $username\
 $hostname\
 $directory\
 $git_branch\
-$git_state\
 $git_status\
 $cmd_duration\
 $line_break\
 $conda\
 $character"""
 
-[directory]
-style = "bold #57c7ff"
+[username]
+format = '[$user](bold 045) '
 
-[character]
-success_symbol = "[❯](218)"
-error_symbol = "[❯](218)"
-vimcmd_symbol = "[❮](218)"
+[hostname]
+format = '[$hostname](bold 045) '
+
+[directory]
+format = '[$path](bold 045)[$read_only](bold 196)'
+read_only = ' (read only)'
 
 [git_branch]
-format = "[$branch]($style)"
-style = "#f3f99d"
+format = " [$branch](229)"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
-style = "bold #f3f99d"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218)( $ahead_behind$stashed)](bold 229)"
 conflicted = "​"
 untracked = "​"
 modified = "​"
 staged = "​"
 renamed = "​"
 deleted = "​"
-stashed = "≡"
-
-[git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "218"
+stashed = "+"
 
 [cmd_duration]
-format = "[$duration]($style) "
-style = "#f3f99d"
+format = " [$duration](229)"
 
 [conda]
-format = "[$environment]($style) "
-style = "white"
+format = "[$environment](250) "
+
+[character]
+success_symbol = "[❯](218)"
+error_symbol = "[❯](218)"
 
