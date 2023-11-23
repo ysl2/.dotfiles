@@ -215,6 +215,8 @@ export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export STARSHIP_LOG=error
 export CONDA_CHANGEPS1=no
+export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
+export FZF_COMPLETION_TRIGGER='\'
 
 # ===
 # === Functions

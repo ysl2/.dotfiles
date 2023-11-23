@@ -29,7 +29,7 @@ language en_US.utf8
 inoremap <C-c> <C-[>
 tnoremap <A-[> <C-\><C-n>
 nnoremap <C-a> <Nop>
-nnoremap <C-i> <C-a>
+nnoremap <C-s> <C-a>
 vnoremap <C-a> <Nop>
 vnoremap <C-i> <C-a>
 
