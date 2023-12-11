@@ -893,12 +893,12 @@ gh() {
 
 
 i3() {
-    sudo apt-get install -y libstartup-notification0-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-cursor-dev libxcb-keysyms1-dev libxcb-icccm4-dev libxcb-xrm-dev libxkbcommon-x11-dev libyajl-dev
+    sudo apt-get install libstartup-notification0-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-cursor-dev libxcb-keysyms1-dev libxcb-icccm4-dev libxcb-xrm-dev libxkbcommon-x11-dev libyajl-dev meson ninja-build libxcb-randr0-dev libxcb-shape0-dev libpcre2-dev libcairo2-dev libpango1.0-dev libev-dev
 
     cd "$TEMP_FOLDER"
 
     [ -d i3 ] && rm -rf i3
-    git clone git@github.com:i3/i3.git
+    git clone git@"$GHSSH":i3/i3.git
 
     cd i3
     mkdir -p build && cd build
@@ -919,16 +919,14 @@ i3() {
 
 
 i3blocks() {
+    sudo apt-get install autoconf
     cd "$TEMP_FOLDER"
-    git clone git@github.com:vivien/i3blocks.git
+    git clone git@"$GHSSH":vivien/i3blocks.git
     cd i3blocks
     ./autogen.sh
     ./configure
     make
     sudo make install
-
-    cd ~/.config
-    git clone git@github.com:vivien/i3blocks-contrib.git
 }
 
 
