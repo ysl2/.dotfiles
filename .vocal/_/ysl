@@ -707,6 +707,7 @@ alacritty () {
     [[ -e "$PREFIX"/alacritty ]] && return
 
     if ! command -v cargo &> /dev/null; then
+        sudo apt-get install curl
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
         rustup override set stable
         rustup update stable
@@ -716,12 +717,12 @@ alacritty () {
     cd "$TEMP_FOLDER"
 
     ALACRITTY_VERSION=v0.12.1
-    git clone git@git.zhlh6.cn:ysl2/alacritty-sixel.git alacritty
+    git clone git@"$GHSSH":ysl2/alacritty-sixel.git alacritty
     cd alacritty
 
     cargo build --release
     mv target/release/alacritty "$PREFIX"/
-    wget -c -O ~/Desktop/Alacritty.desktop https://ghproxy.com/https://github.com/alacritty/alacritty/releases/download/"${ALACRITTY_VERSION}"/Alacritty.desktop
+    wget -c -O ~/Desktop/Alacritty.desktop "$GHPROXY"https://github.com/alacritty/alacritty/releases/download/"${ALACRITTY_VERSION}"/Alacritty.desktop
     sed -i 's/Exec=alacritty/Exec=\/home\/yusongli\/.vocal\/alacritty/g' ~/Desktop/Alacritty.desktop
     ln -s ~/Desktop/Alacritty.desktop ~/.local/share/applications/
 }
@@ -1004,6 +1005,19 @@ etcher () {
     wget -c -O "$PREFIX"/etcher "$GHPROXY"https://github.com/balena-io/etcher/releases/download/v"${ETCHER_VERSION}"/balenaEtcher-"${ETCHER_VERSION}"-x64.AppImage
     chmod 777 "$PREFIX"/etcher
 }
+
+
+starship() {
+    if [ -n "$GHPROXY" ]; then
+        curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+        sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' | \
+        sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
+    else
+        curl -sS https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+        sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
+    fi
+}
+
 
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
