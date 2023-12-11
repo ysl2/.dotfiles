@@ -369,7 +369,7 @@ firacode () {
     cd "${TEMP_FOLDER}"
 
     version=v3.0.2
-    [[ ! -e FiraCode.zip ]] && wget -c https://ghproxy.com/https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/FiraCode.zip
+    wget -c "$GHPROXY"https://github.com/ryanoasis/nerd-fonts/releases/download/${version}/FiraCode.zip
     unzip -d FiraCode FiraCode.zip
     sudo mv FiraCode /usr/share/fonts/
     sudo fc-cache -f -v
@@ -858,7 +858,7 @@ picom() {
     cd "$TEMP_FOLDER"
 
     sudo apt install -y libconfig-dev libdbus-1-dev libegl-dev libev-dev libgl-dev libpcre2-dev libpixman-1-dev libx11-xcb-dev libxcb1-dev libxcb-composite0-dev libxcb-damage0-dev libxcb-dpms0-dev libxcb-glx0-dev libxcb-image0-dev libxcb-present-dev libxcb-randr0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-util-dev libxcb-xfixes0-dev libxext-dev meson ninja-build uthash-dev
-    git clone git@git.zhlh6.cn:yshui/picom.git
+    git clone git@"$GHSSH":yshui/picom.git
     cd picom
     meson setup --buildtype=release build
     ninja -C build
