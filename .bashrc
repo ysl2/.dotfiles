@@ -250,6 +250,9 @@ totmux() {
 toconda() {
     _to "${_MYLOCK}/conda"
 }
+P() {
+    http_proxy=127.0.0.1:7890 https_proxy=127.0.0.1:7890 "$@"
+}
 
 # ===
 # === Alias
@@ -340,3 +343,5 @@ uniqTo() {
 }
 
 uniqTo PATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

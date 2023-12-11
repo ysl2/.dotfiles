@@ -10,8 +10,11 @@ set -e
 PREFIX=$HOME/.vocal
 mkdir -p "$PREFIX"
 TEMP_FOLDER=$HOME/Downloads/_
+
 # GHPROXY=https://ghproxy.com/
 GHPROXY=
+#GHSSH=git.zhlh6.cn
+GHSSH=github.com
 
 # create our directories
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
@@ -266,7 +269,7 @@ gcc8 () {
 }
 
 
-lg () {
+lazygit () {
     [[ -e ${PREFIX}/lazygit ]] && return
 
     cd ${TEMP_FOLDER}
@@ -274,7 +277,7 @@ lg () {
     LAZYGIT_VERSION=0.40.2
     mkdir lazygit-${LAZYGIT_VERSION}
     cd lazygit-${LAZYGIT_VERSION}
-    wget -c https://ghproxy.com/https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
+    wget -c "$GHPROXY"https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
     tar xvzf lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
     mkdir -p ${PREFIX}
     mv lazygit ${PREFIX}/
@@ -374,21 +377,12 @@ firacode () {
 
 
 fzf () {
-    # [[ -e ${PREFIX}/bin/fzf ]] && return
-
-    # FZF_VERSION=0.39.0
-    # mkdir fzf-${FZF_VERSION}
-    # cd fzf-${FZF_VERSION}
-    # [[ ! -e fzf-${FZF_VERSION}-linux_amd64.tar.gz ]] && wget -c https://ghproxy.com/https://github.com/junegunn/fzf/releases/download/${FZF_VERSION}/fzf-${FZF_VERSION}-linux_amd64.tar.gz
-    # tar xvzf fzf-${FZF_VERSION}-linux_amd64.tar.gz
-    # mkdir -p ${PREFIX}/bin
-    # mv fzf ${PREFIX}/bin
-    # cd ..
-
     cd
-    git clone --depth=1 git@git.zhlh6.cn:junegunn/fzf.git ~/.fzf
+    git clone --depth=1 git@"$GHSSH":junegunn/fzf.git ~/.fzf
     cd ~/.fzf
-    sed -i 's/url=/url=https:\/\/ghproxy.com\//g' install
+    if [ -n "$GHPROXY" ]; then
+        sed -i 's/url=/url=https:\/\/ghproxy.com\//g' install
+    fi
     ./install
 }
 

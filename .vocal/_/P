@@ -1,4 +1,0 @@
-#!/bin/bash
-
-
-~/.vocal/bin/proxychains4 -q -f ~/.scripts/proxychains/proxychains.conf $@
