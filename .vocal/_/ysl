@@ -10,7 +10,7 @@ set -e
 PREFIX=$HOME/.vocal
 mkdir -p "$PREFIX"
 TEMP_FOLDER=$HOME/Downloads/_
-#GHPROXY=https://ghproxy.com/
+# GHPROXY=https://ghproxy.com/
 GHPROXY=
 
 # create our directories
@@ -1006,6 +1006,12 @@ qrcp() {
     mv qrcp "$PREFIX"
 }
 
+
+etcher () {
+    ETCHER_VERSION=1.18.11
+    wget -c -O "$PREFIX"/etcher "$GHPROXY"https://github.com/balena-io/etcher/releases/download/v"${ETCHER_VERSION}"/balenaEtcher-"${ETCHER_VERSION}"-x64.AppImage
+    chmod 777 "$PREFIX"/etcher
+}
 
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
