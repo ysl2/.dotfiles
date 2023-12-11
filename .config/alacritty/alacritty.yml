@@ -23,7 +23,7 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
 
-window:
+#window:
   # Window dimensions (changes require restart)
   #
   # Number of lines/columns (not pixels) in the terminal. Both lines and columns
