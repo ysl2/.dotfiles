@@ -24,9 +24,11 @@ addToPATH() {
     #         ;;
     # esac
 }
-
+backToPATH() {
+    PATH="${PATH}:${1}"
+}
 searchToPATH() {
-    find "$1" -maxdepth 1 -type d -exec sh -c 'if [ -d "$1/bin" ]; then echo "PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
+    find "$1" -maxdepth 1 -type d ! -name "*conda*" -exec sh -c 'if [ -d "$1/bin" ]; then echo "PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
     [ -f /tmp/paths.sh ] && . /tmp/paths.sh && rm /tmp/paths.sh
 }
 
@@ -34,6 +36,16 @@ searchToPATH() {
 # ============
 # === PATH ===
 # ============
+
+
+# ===
+# === Set Fallback Value
+# ===
+[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
+# MYCONDA
+# MYTMUX
+[ -n "$MYCONDA" ] && [ -d "$MYCONDA/bin" ] && backToPATH "$MYCONDA/bin"
+
 
 # ===
 # === No sequences, for system default.
@@ -63,15 +75,6 @@ searchToPATH "$MYLOCAL"
 addToPATH "$MYLOCAL"
 
 addToPATH "$MYLOCAL/_"
-
-
-# ======================================
-# === Pre Load And Set Default Value ===
-# ======================================
-[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
-# MYCONDA
-# MYTMUX
-[ -n "$MYCONDA" ] && addToPATH "$MYCONDA/bin"
 
 
 # ===========================
@@ -343,5 +346,3 @@ uniqTo() {
 }
 
 uniqTo PATH
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
