@@ -806,7 +806,7 @@ chafa () {
     cd "$TEMP_FOLDER"
 
     local CHAFA_VERSION=1.12.5
-    wget -c https://ghproxy.com/https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
+    wget -c "$GHPROXY"https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
 }
