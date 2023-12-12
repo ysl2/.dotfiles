@@ -284,19 +284,13 @@ lazygit () {
 }
 
 
-nvim () {
+neovim () {
     [[ -e "${PREFIX}"/neovim ]] && return
-
-    # fuse
-
-    # NVIM_VERSION=nightly
-    # [[ ! -e "${PREFIX}"/bin/nvim ]] && wget -c -O "${PREFIX}"/bin/nvim https://ghproxy.com/https://github.com/neovim/neovim/releases/download/"${NVIM_VERSION}"/nvim.appimage
-    # chmod 777 "${PREFIX}"/bin/nvim
 
     sudo apt-get install -y ninja-build gettext cmake unzip curl
 
     cd "${TEMP_FOLDER}"
-    git clone git@git.zhlh6.cn:neovim/neovim.git
+    git clone git@"$GHSSH":neovim/neovim.git
     cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="${PREFIX}"/neovim
     make install
 }
