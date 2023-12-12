@@ -597,18 +597,18 @@ wakatime () {
 
     WAKATIME_VERSION=v1.81.0
 
-    wget -c https://ghproxy.com/https://github.com/wakatime/wakatime-cli/releases/download/"${WAKATIME_VERSION}"/wakatime-cli-linux-amd64.zip
+    wget -c "$GHPROXY"https://github.com/wakatime/wakatime-cli/releases/download/"$WAKATIME_VERSION"/wakatime-cli-linux-amd64.zip
     unzip wakatime-cli-linux-amd64.zip
     ln -s wakatime-cli-linux-amd64 wakatime-cli
 }
 
 
 marksman () {
-    [[ -e "${PREFIX}"/marksman ]] && return
+    [ -e "$PREFIX"/marksman ] && return
 
     MARKSMAN_VERSION=2023-07-25
-    wget -c -O "${PREFIX}"/marksman https://ghproxy.com/https://github.com/artempyanykh/marksman/releases/download/"${MARKSMAN_VERSION}"/marksman-linux-x64
-    chmod 777 "${PREFIX}"/marksman
+    wget -c -O "$PREFIX"/marksman "$GHPROXY"https://github.com/artempyanykh/marksman/releases/download/"$MARKSMAN_VERSION"/marksman-linux-x64
+    chmod 777 "$PREFIX"/marksman
 }
 
 
