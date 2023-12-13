@@ -1,13 +1,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-# =============
-# === Utils ===
-# =============
+# ===================================================
+# === Utils and some global environment variables ===
+# ===================================================
 export MYLOCAL="${HOME}/.vocal"
 mkdir -p "$MYLOCAL" &> /dev/null
 _MYLOCK="${MYLOCAL}/.lock"
 mkdir -p "$_MYLOCK" &> /dev/null
 MYBIN="${MYLOCAL}/bin"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
 
 
 # =================================
