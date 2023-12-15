@@ -21,6 +21,7 @@ set info size
 set dircounts
 
 map p :paste; clear
+map <c-g> &dragon -a -x $fx
 
 
 # ============
