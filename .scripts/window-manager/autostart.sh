@@ -38,9 +38,9 @@ xset r rate 250 30
 # Disable bell
 xset b off
 # Disable screen blanking
-xset s off
+xset s 0 0
 # Disable screen saver
-xset -dpms
+xset dpms 0 0 0
 
 
 # ==================
