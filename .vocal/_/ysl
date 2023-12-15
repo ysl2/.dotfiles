@@ -1015,6 +1015,16 @@ starship() {
 }
 
 
+dragon() {
+    sudo apt-get install -y libgtk-3-dev
+    cd "$TEMP_FOLDER"
+    git clone git@"$GHSSH":mwh/dragon.git
+    cd dragon
+    make
+    mv dragon "$PREFIX"
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
