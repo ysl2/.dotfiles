@@ -869,13 +869,15 @@ tdrop() {
 
 
 bluetuith() {
-    _ERR 'bluetuith'
-    return
     cd "$TEMP_FOLDER"
+    mkdir -p bluetuith
+    cd bluetuith
 
     BLUETUITH_VERSION=0.1.8
 
-    wget -c https://ghproxy.com/https://github.com/darkhz/bluetuith/releases/download/v"${BLUETUITH_VERSION}"/bluetuith_"${BLUETUITH_VERSION}"_Linux_x86_64.tar.gz
+    wget -c "$GHPROXY"https://github.com/darkhz/bluetuith/releases/download/v"${BLUETUITH_VERSION}"/bluetuith_"${BLUETUITH_VERSION}"_Linux_x86_64.tar.gz
+    tar xvf bluetuith_"${BLUETUITH_VERSION}"_Linux_x86_64.tar.gz
+    mv bluetuith "$PREFIX"
 }
 
 
