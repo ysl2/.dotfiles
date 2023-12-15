@@ -278,13 +278,13 @@ map O $mimeopen --ask $f
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*)
-            lf -remote "send $id \$$EDITOR \$fx"
+            lf -remote "send $id \$$EDITOR \$f"
             ;;
         application/pdf)
-            for f in $fx; do zathura $f > /dev/null 2> /dev/null & done
+            zathura $f &> /dev/null
             ;;
         *)
-            for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done
+            $OPENER $f &> /dev/null
             ;;
     esac
 }}
