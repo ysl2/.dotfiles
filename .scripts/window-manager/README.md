@@ -6,5 +6,3 @@ This is my self common scripts folder specifically for all windows managers like
 picom (from source)
 sudo apt install xinput
 ```
-
-fix-touchpad.sh only run once. For fixing touchpad touch click not respond.
