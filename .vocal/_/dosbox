@@ -1,7 +1,9 @@
 #!/bin/bash
+
 LOCALCONF=~/.dosbox/dosbox.localhost.conf
-if [[ -e "${LOCALCONF}" ]]; then
-    /usr/bin/dosbox -userconf -conf "${LOCALCONF}"
+
+if [[ -e "$LOCALCONF" ]]; then
+    /usr/bin/dosbox -conf ~/.dosbox/dosbox.conf -conf "$LOCALCONF" "$@"
 else
-    /usr/bin/dosbox
+    /usr/bin/dosbox -conf ~/.dosbox/dosbox.conf "$@"
 fi
