@@ -164,6 +164,7 @@ cmd select-dirs &{{
     lf -remote "send $id :unselect; toggle $(get_dirs)"
 }}
 cmd bookmark_create %{{
+    LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     mkdir -p "$LF_BOOKMARK_PATH"
     printf "Mark current path to (string): "
     read ans
@@ -184,6 +185,7 @@ cmd bookmark_create %{{
     lf -remote "send $id reload"
 }}
 cmd bookmark_jump ${{
+    LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     mkdir -p "$LF_BOOKMARK_PATH"
     target_mark="$(ls "$LF_BOOKMARK_PATH" | fzf || exit 0)"
     if [ -z "$target_mark" ]; then
@@ -198,6 +200,7 @@ cmd bookmark_jump ${{
     lf -remote "send $id cd \"$target_path\""
 }}
 cmd bookmark_remove ${{
+    LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     [ ! -d "$LF_BOOKMARK_PATH" ] && exit 0
     for f in "$LF_BOOKMARK_PATH"/*; do
         if [ ! -f "$f" ]; then
@@ -209,6 +212,7 @@ cmd bookmark_remove ${{
     done
 }}
 cmd bookmark_remove_not_exist ${{
+    LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     [ ! -d "$LF_BOOKMARK_PATH" ] && exit 0
     for f in "$LF_BOOKMARK_PATH"/*; do
         if [ ! -f "$f" ]; then
@@ -220,6 +224,7 @@ cmd bookmark_remove_not_exist ${{
     done
 }}
 cmd bookmark_remove_all ${{
+    LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     rm -rf "$LF_BOOKMARK_PATH" 2> /dev/null
 }}
 map m bookmark_create

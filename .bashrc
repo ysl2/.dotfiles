@@ -225,7 +225,6 @@ export STARSHIP_LOG=error
 export CONDA_CHANGEPS1=no
 export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
 export FZF_COMPLETION_TRIGGER='\'
-export LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
 
 # ===
 # === Functions
