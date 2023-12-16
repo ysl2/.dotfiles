@@ -15,6 +15,7 @@ TEMP_FOLDER=$HOME/Downloads/_
 GHPROXY=
 #GHSSH=git.zhlh6.cn
 GHSSH=github.com
+APP_FOLDER=~/.local/share/applications
 
 # create our directories
 mkdir -p ${PREFIX} ${TEMP_FOLDER}
@@ -572,18 +573,16 @@ Icon="${PREFIX}"/bin/.github-desktop.png
 
 dosbox () {
     # NOTE: Don't use `command -v dosbox &> /dev/null` to check if dosbox has already been installed, beacuse the function name is `dosbox`, and is same with the command.
-    [[ -e /usr/bin/dosbox ]] && return
     sudo apt install -y dosbox
     TEMP="
 [Desktop Entry]
 Name=Dosbox
 Type=Application
-Exec="${PREFIX}"/bin/_/dosbox
+Exec="$PREFIX"/bin/_/dosbox
 Icon=/usr/share/icons/hicolor/256x256/apps/dosbox.png
 "
-    echo "${TEMP}" > ~/Desktop/dosbox.desktop
-    [[ -e /usr/share/applications/dosbox.desktop ]] && sudo rm /usr/share/applications/dosbox.desktop
-    sudo ln -s ~/Desktop/dosbox.desktop /usr/share/applications
+    echo "$TEMP" > "$APP_FOLDER"/dosbox.desktop
+    ln -s "$APP_FOLDER"/dosbox.desktop ~/Desktop 2> /dev/null
 }
 
 
@@ -698,8 +697,6 @@ shellcheck () {
 
 
 alacritty () {
-    [[ -e "$PREFIX"/alacritty ]] && return
-
     if ! command -v cargo &> /dev/null; then
         sudo apt-get install curl
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -716,9 +713,9 @@ alacritty () {
 
     cargo build --release
     mv target/release/alacritty "$PREFIX"/
-    wget -c -O ~/Desktop/Alacritty.desktop "$GHPROXY"https://github.com/alacritty/alacritty/releases/download/"${ALACRITTY_VERSION}"/Alacritty.desktop
-    sed -i 's/Exec=alacritty/Exec=\/home\/yusongli\/.vocal\/alacritty/g' ~/Desktop/Alacritty.desktop
-    ln -s ~/Desktop/Alacritty.desktop ~/.local/share/applications/
+    wget -c -O "$APP_FOLDER"/Alacritty.desktop "$GHPROXY"https://github.com/alacritty/alacritty/releases/download/"${ALACRITTY_VERSION}"/Alacritty.desktop
+    sed -i 's/Exec=alacritty/Exec=\/home\/yusongli\/.vocal\/alacritty/g' "$APP_FOLDER"/Alacritty.desktop
+    ln -s "$APP_FOLDER"/Alacritty.desktop ~/Desktop
 }
 
 
