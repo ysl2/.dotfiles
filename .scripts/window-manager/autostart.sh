@@ -36,7 +36,7 @@ xset r rate 250 30
 # === Screen ===
 # ==============
 # Disable bell
-xset b off
+xset b 0 0 0
 # Disable screen blanking
 xset s 0 0
 # Disable screen saver
