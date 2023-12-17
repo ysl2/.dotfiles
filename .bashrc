@@ -57,16 +57,16 @@ searchToPATH() {
 # ===
 addToPATH /sbin
 addToPATH /usr/sbin
-addToPATH $HOME/bin
-addToPATH $HOME/.local/bin
+addToPATH "$HOME"/bin
+addToPATH "$HOME"/.local/bin
 
 # ===
 # === No sequences, but put them last.
 # ===
 addToPATH "$MYBIN"/ANTs/install/bin
-addToPATH $HOME/.local/kitty.app/bin
-addToPATH $HOME/.cargo/bin
-addToPATH $HOME/.fzf/bin
+addToPATH "$HOME"/.local/kitty.app/bin
+addToPATH "$HOME"/.cargo/bin
+addToPATH "$HOME"/.fzf/bin
 
 # ===
 # === In sequences, last in first out.
@@ -269,8 +269,8 @@ alias :q='exit'
 alias :qa='exit'
 # https://github.com/ranger/ranger/wiki/Integration-with-other-programs#changing-directories
 ranger='source ranger ranger'
-alias ranger=$ranger
-alias ra=$ranger
+alias ranger="$ranger"
+alias ra="$ranger"
 alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -285,13 +285,13 @@ alias lf='lfcd'
 alias lD='lazydocker'
 alias lg='lazygit'
 cht() {
-    curl cht.sh/"${1}"
+    curl cht.sh/"$1"
 }
 jo() {
 	ID="$$"
-	mkdir -p /tmp/$USER
-	OUTPUT_FILE="/tmp/$USER/joshuto-cwd-$ID"
-	env joshuto --output-file "$OUTPUT_FILE" $@
+	mkdir -p /tmp/"$USER"
+	OUTPUT_FILE="/tmp/${USER}/joshuto-cwd-${ID}"
+	env joshuto --output-file "$OUTPUT_FILE" "$@"
 	exit_code=$?
 
 	case "$exit_code" in
@@ -317,7 +317,7 @@ alias xterm='xterm -ti vt340'
 # ===
 # === Outside source
 # ===
-[ -f "${MYLOCAL}/starship" ] && eval "$(starship init $(basename "$SHELL"))"
+[ -f "$MYLOCAL"/starship ] && eval "$(starship init $(basename "$SHELL"))"
 fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)"))
 for f in "${fzf_files_array[@]}"; do
    . "$f"
