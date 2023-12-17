@@ -3,17 +3,17 @@
 # =============
 # === Utils ===
 # =============
-# single_instance() {
-#     args="$*"
-#     while [ -n "$1" ]; do
-#         pid="$(ps aux | grep -v grep | grep -v "$0" | grep "$1" | awk '{print $2}')"
-#         [ -n "$pid" ] && kill -9 "$pid"
-#         shift
-#     done
-#     for item in $args; do
-#         $item &
-#     done
-# }
+single_instance() {
+    args="$*"
+    while [ -n "$1" ]; do
+        pid="$(ps aux | grep -v grep | grep -v "$0" | grep "$1" | awk '{print $2}')"
+        [ -n "$pid" ] && kill -9 "$pid"
+        shift
+    done
+    for item in $args; do
+        $item &
+    done
+}
 
 
 # ================
@@ -53,19 +53,7 @@ xset r rate 250 30
 # Disable bell
 xset b 0 0 0
 # Disable screen blanking and screen saver
-keep_screen() {
-    while true; do
-        sleep 60
-        # Disable screen blanking
-        xset s 0 0
-        xset s noblank
-        xset s off
-        # Disable screen saver
-        xset dpms 0 0 0
-        xset -dpms
-    done
-}
-keep_screen &
+single_instance "$HOME"/.scripts/window-manager/keep_screen.sh
 
 
 # ================
