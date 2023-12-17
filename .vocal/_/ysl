@@ -673,26 +673,22 @@ Icon="${PREFIX}"/share/icons/hicolor/256x256/apps/org.pwmt.zathura.png
 
 
 shfmt () {
-    [[ -e "${PREFIX}"/bin/shfmt ]] && return
-
     SHFMT_VERSION=v3.7.0
-    wget -c -O "${PREFIX}"/bin/shfmt https://ghproxy.com/https://github.com/mvdan/sh/releases/download/"${SHFMT_VERSION}"/shfmt_"${SHFMT_VERSION}"_linux_amd64
-    chmod 777 "${PREFIX}"/bin/shfmt
+    wget -c -O "$PREFIX"/shfmt "$GHPROXY"https://github.com/mvdan/sh/releases/download/"$SHFMT_VERSION"/shfmt_"$SHFMT_VERSION"_linux_amd64
+    chmod 777 "$PREFIX"/shfmt
 }
 
 
 shellcheck () {
-    [[ -e "${PREFIX}"/bin/shellcheck ]] && return
-
-    cd "${TEMP_FOLDER}"
+    cd "$TEMP_FOLDER"
 
     mkdir -p shellcheck
     cd shellcheck
 
     SHELLCHECK_VERSION=v0.9.0
-    [[ ! -e shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz ]] && wget -c https://ghproxy.com/https://github.com/koalaman/shellcheck/releases/download/"${SHELLCHECK_VERSION}"/shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz
-    tar xvf shellcheck-"${SHELLCHECK_VERSION}".linux.x86_64.tar.xz
-    mv shellcheck-"${SHELLCHECK_VERSION}"/shellcheck "${PREFIX}"/bin/
+    [[ ! -e shellcheck-"$SHELLCHECK_VERSION".linux.x86_64.tar.xz ]] && wget -c https://ghproxy.com/https://github.com/koalaman/shellcheck/releases/download/"$SHELLCHECK_VERSION"/shellcheck-"$SHELLCHECK_VERSION".linux.x86_64.tar.xz
+    tar xvf shellcheck-"$SHELLCHECK_VERSION".linux.x86_64.tar.xz
+    mv shellcheck-"$SHELLCHECK_VERSION"/shellcheck "$PREFIX"
 }
 
 
