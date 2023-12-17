@@ -794,14 +794,22 @@ wezterm () {
 
 
 chafa () {
-    [[ -e "${PREFIX}"/chafa ]] && return
-
     cd "$TEMP_FOLDER"
 
-    local CHAFA_VERSION=1.12.5
-    wget -c "$GHPROXY"https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
-    tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
-    mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
+    # Install from release (no svg support):
+    # local CHAFA_VERSION=1.12.5
+    # wget -c "$GHPROXY"https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
+    # tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
+    # mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
+
+    # Install from source (no webp support, beacuse it will report error when compiling):
+    sudo apt-get install -y libfreetype-dev libjpeg-dev librsvg2-dev libtiff5-dev gtk-doc-tools libmagickwand-dev
+    [ -d chafa ] && rm -rf chafa
+    git clone git@"$GHSSH":hpjansson/chafa.git -b 1.12.5
+    cd chafa
+    ./autogen.sh --enable-gtk-doc --without-webp
+    make
+    sudo make install
 }
 
 
