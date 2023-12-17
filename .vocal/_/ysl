@@ -796,16 +796,17 @@ wezterm () {
 chafa () {
     cd "$TEMP_FOLDER"
 
-    # Install from release (no svg support):
-    # local CHAFA_VERSION=1.12.5
+    local CHAFA_VERSION=1.12.5
+
+    # Option 1: Install from release (no svg support):
     # wget -c "$GHPROXY"https://github.com/ysl2/chafa/releases/download/"${CHAFA_VERSION}"/chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     # tar xvf chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu.tar.gz
     # mv chafa-"${CHAFA_VERSION}"-1-x86_64-linux-gnu/chafa "${PREFIX}"/
 
-    # Install from source (no webp support, beacuse it will report error when compiling):
+    # Option 2: Install from source (no webp support, beacuse it will report error when compiling):
     sudo apt-get install -y libfreetype-dev libjpeg-dev librsvg2-dev libtiff5-dev gtk-doc-tools libmagickwand-dev
     [ -d chafa ] && rm -rf chafa
-    git clone git@"$GHSSH":hpjansson/chafa.git -b 1.12.5
+    git clone git@"$GHSSH":hpjansson/chafa.git -b "$CHAFA_VERSION"
     cd chafa
     ./autogen.sh --enable-gtk-doc --without-webp
     make
@@ -874,7 +875,7 @@ bluetuith() {
     mkdir -p bluetuith
     cd bluetuith
 
-    BLUETUITH_VERSION=0.1.8
+    local BLUETUITH_VERSION=0.1.8
 
     wget -c "$GHPROXY"https://github.com/darkhz/bluetuith/releases/download/v"${BLUETUITH_VERSION}"/bluetuith_"${BLUETUITH_VERSION}"_Linux_x86_64.tar.gz
     tar xvf bluetuith_"${BLUETUITH_VERSION}"_Linux_x86_64.tar.gz
@@ -987,7 +988,7 @@ qlite() {
 qrcp() {
     cd "$TEMP_FOLDER"
 
-    QRCP_VERSION=0.10.1
+    local QRCP_VERSION=0.10.1
 
     mkdir qrcp
     cd qrcp
@@ -998,7 +999,7 @@ qrcp() {
 
 
 etcher () {
-    ETCHER_VERSION=1.18.11
+    local ETCHER_VERSION=1.18.11
     wget -c -O "$PREFIX"/etcher "$GHPROXY"https://github.com/balena-io/etcher/releases/download/v"${ETCHER_VERSION}"/balenaEtcher-"${ETCHER_VERSION}"-x64.AppImage
     chmod 777 "$PREFIX"/etcher
 }
