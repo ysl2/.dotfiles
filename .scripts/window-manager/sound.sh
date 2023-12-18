@@ -32,6 +32,6 @@ main() {
 
 main &
 # Get the pid of the last background process.
-main_pid=$!
+main_pid="$!"
 # Register a hook to kill the main process when logout.
 hook "$main_pid"
