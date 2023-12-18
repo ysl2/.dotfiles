@@ -72,7 +72,7 @@ single_instance ~/.scripts/window-manager/screen.sh
 # Restore sound settings from file when login.
 [ -f ~/.asound.state ] && alsactl restore -f ~/.asound.state
 # Keep tracking current sound settings into file.
-# In fact, we don't need single_instance here, because the `sound.sh` defines a hook to kill itself when logout.
+# In fact, we don't need single_instance here, because the `sound.sh` defines a condition to exit loop.
 # We use single_instance here only for preventing the accidental case.
 single_instance ~/.scripts/window-manager/sound.sh
 
