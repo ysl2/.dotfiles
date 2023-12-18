@@ -522,11 +522,10 @@ lua () {
 
 
 nvtop () {
-    [[ -e "${PREFIX}"/bin/nvtop ]] && return
-
     NVTOP_VERSION=3.0.2
-    [[ ! -e "${PREFIX}"/bin/nvtop ]] && wget -c -O "${PREFIX}"/bin/nvtop https://ghproxy.com/https://github.com/Syllo/nvtop/releases/download/"${NVTOP_VERSION}"/nvtop-x86_64.AppImage
-    chmod 777 "${PREFIX}"/bin/nvtop
+    rm -rf "$PREFIX"/nvtop 2> /dev/null
+    wget -c -O "$PREFIX"/nvtop "$GHPROXY"https://github.com/Syllo/nvtop/releases/download/"$NVTOP_VERSION"/nvtop-x86_64.AppImage
+    chmod 777 "$PREFIX"/nvtop
 }
 
 
@@ -1024,6 +1023,13 @@ dragon() {
     cd dragon
     make
     mv dragon "$PREFIX"
+}
+
+
+niicat() {
+    git clone git@"$GHSSH":ysl2/niicat.git "$PREFIX"/niicat
+    cd "$PREFIX"/niicat
+    pip install -r requirements.txt
 }
 
 
