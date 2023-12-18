@@ -1,0 +1,8 @@
+#!/bin/sh
+
+ITK_EXE_FOLDER=~/.vocal/itksnap/bin
+if [ ! -d "$ITK_EXE_FOLDER" ]; then
+    echo "${ITK_EXE_FOLDER} not found." && exit 1
+fi
+cd "$ITK_EXE_FOLDER" 2> /dev/null
+./itksnap "$@"

@@ -282,15 +282,27 @@ map O $mimeopen --ask $f
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
 cmd open &{{
-    case $(file --mime-type -Lb $f) in
+    # Open by extension name
+    case "$f" in
+        *.nii | *.nii.gz)
+            itksnap "$f"
+            exit 0
+            ;;
+    esac
+
+    # Open by mimetype
+    case $(file --mime-type -Lb "$f") in
         text/*)
             lf -remote "send $id \$$EDITOR \$f"
+            exit 0
             ;;
         application/pdf)
-            zathura $f &> /dev/null
+            zathura "$f" &> /dev/null
+            exit 0
             ;;
         *)
-            $OPENER $f &> /dev/null
+            $OPENER "$f" &> /dev/null
+            exit 0
             ;;
     esac
 }}
