@@ -1033,6 +1033,17 @@ niicat() {
 }
 
 
+itksnap() {
+    cd "$TEMP_FOLDER"
+    mkdir itksnap
+    cd itksnap
+    ITKSNAP_VERSION=4.0.2
+    wget -c "$GHPROXY"https://github.com/ysl2/itksnap/releases/download/v"$ITKSNAP_VERSION"/itksnap-"$ITKSNAP_VERSION"-Linux-gcc64.tar.gz
+    tar xvf itksnap-"$ITKSNAP_VERSION"-Linux-gcc64.tar.gz
+    mv "$(ls | grep -v tar)" "$PREFIX"/itksnap
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
