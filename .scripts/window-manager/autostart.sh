@@ -81,6 +81,8 @@ single_instance ~/.scripts/window-manager/sound.sh
 # === Programs ===
 # ================
 picom -b
+# Clean dmenu cache
+rm ~/.cache/dmenu_run 2> /dev/null
 
 
 # =============================
