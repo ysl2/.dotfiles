@@ -40,6 +40,8 @@ function kitty_icat() {
 
     # For alacritty, I set alacritty default $TERM to xterm-256color
     # But in tmux, tmux will change the $TERM to screen-256color, this is also I specifically made it.
+    # However, if one day in the future, I set tmux $TERM to xterm-256color, it will cause the picture to be displayed incorrectly.
+    # So now I have to add the condition of -z "$TMUX" to prevent things happening in the future, even if this is an accidental case.
     if [[ ("$TERM" == 'xterm-256color' && -z "$TMUX") || "$TERM" == 'st-256color' ]]; then
         chafa -f sixels -s "$W"x"$H" "$1"
         if [ $? -eq 0 ]; then
