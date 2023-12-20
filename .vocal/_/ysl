@@ -1060,7 +1060,8 @@ darkman() {
     cd darkman
     DARKMAN_VERSION="$(git describe --tags --dirty 2>/dev/null || echo 0.0.0-dev)"
     go build -ldflags "-X main.Version=${DARKMAN_VERSION}" ./cmd/darkman
-    mv darkman "$PREFIX"
+    sed -i 's/go /echo go /' Makefile
+    sudo make install
 }
 
 
