@@ -1054,6 +1054,16 @@ golang() {
 }
 
 
+darkman() {
+    cd "$TEMP_FOLDER"
+    git clone https://gitlab.com/WhyNotHugo/darkman.git
+    cd darkman
+    DARKMAN_VERSION="$(git describe --tags --dirty 2>/dev/null || echo 0.0.0-dev)"
+    go build -ldflags "-X main.Version=${DARKMAN_VERSION}" ./cmd/darkman
+    mv darkman "$PREFIX"
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
