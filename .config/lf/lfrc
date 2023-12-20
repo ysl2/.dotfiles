@@ -48,7 +48,7 @@ map K move-parent up
 cmd mkdir %{{
     printf "Make directory: "
     read ans
-    mkdir $ans
+    mkdir -p $ans
     lf -remote "send $id select \"$ans\""
 }}
 map a mkdir
