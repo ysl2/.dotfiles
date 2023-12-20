@@ -23,6 +23,8 @@ set dircounts
 map p :paste; clear
 map <c-g> &dragon -a -x $fx
 map R :reload
+map <tab> $$PAGER "$f"
+map m
 
 
 # ============
@@ -51,7 +53,7 @@ cmd mkdir %{{
     mkdir -p $ans
     lf -remote "send $id select \"$ans\""
 }}
-map a mkdir
+map md mkdir
 
 cmd touch %{{
     printf "Make file: "
@@ -59,7 +61,7 @@ cmd touch %{{
     touch $ans
     lf -remote "send $id select \"$ans\""
 }}
-map b touch
+map mf touch
 
 cmd bulk-rename ${{
     old="$(mktemp)"
@@ -85,9 +87,9 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 
-map I :rename; cmd-home
-map A :rename; cmd-end
-map C :rename; cmd-end; cmd-delete-home
+map i :rename; cmd-home
+map a :rename; cmd-end
+map c :rename; cmd-end; cmd-delete-home
 
 cmd follow_link %{{
   lf -remote "send ${id} select '$(readlink $f)'"
@@ -228,7 +230,7 @@ cmd bookmark_remove_all ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     rm -rf "$LF_BOOKMARK_PATH" 2> /dev/null
 }}
-map m bookmark_create
+map mm bookmark_create
 map ` bookmark_jump
 map <a-m> bookmark_remove
 map <a-'> bookmark_remove_not_exist
