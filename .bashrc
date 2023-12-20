@@ -226,7 +226,7 @@ export CONDA_CHANGEPS1=no
 export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
 export FZF_COMPLETION_TRIGGER='\'
 export GO111MODULE=on
-export GOPROXY=https://mirrors.aliyun.com/goproxy/
+export GOPROXY=https://goproxy.cn
 
 # ===
 # === Functions
