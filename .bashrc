@@ -227,6 +227,9 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
 export FZF_COMPLETION_TRIGGER='\'
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
+_go=$(which go)
+export GOPATH
+GOPATH="${_go%/*/*}"/gopath
 
 # ===
 # === Functions
