@@ -1044,6 +1044,16 @@ itksnap() {
 }
 
 
+golang() {
+    cd "$TEMP_FOLDER"
+
+    GO_VERSION=1.21.5
+    wget -c https://go.dev/dl/go"$GO_VERSION".linux-amd64.tar.gz
+    tar xvf go"$GO_VERSION".linux-amd64.tar.gz
+    mv go "$PREFIX"/golang
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
