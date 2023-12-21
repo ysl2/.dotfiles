@@ -60,7 +60,7 @@ xset b 0 0 0
 # ================
 # === Programs ===
 # ================
-picom -b
+picom -D 5 -c -f -i 0.85 -b --vsync
 # Clean dmenu cache
 rm ~/.cache/dmenu_run 2> /dev/null
 
