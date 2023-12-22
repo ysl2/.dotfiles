@@ -295,7 +295,7 @@ cmd open &{{
 
     # Open by mimetype
     case $(file --mime-type -Lb "$f") in
-        text/*)
+        text/* | inode/x-empty)
             lf -remote "send $id \$$EDITOR \$f"
             exit 0
             ;;
