@@ -286,11 +286,10 @@ lazygit () {
 
 
 neovim () {
-    [[ -e "${PREFIX}"/neovim ]] && return
-
     sudo apt-get install -y ninja-build gettext cmake unzip curl
 
     cd "${TEMP_FOLDER}"
+
     git clone git@"$GHSSH":neovim/neovim.git
     cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="${PREFIX}"/neovim
     make install
