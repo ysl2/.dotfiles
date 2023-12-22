@@ -204,6 +204,15 @@ cmd bookmark_jump ${{
 }}
 cmd bookmark_remove ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
+    mkdir -p "$LF_BOOKMARK_PATH"
+    target_mark="$(ls "$LF_BOOKMARK_PATH" | fzf || exit 0)"
+    if [ -z "$target_mark" ]; then
+        exit 0
+    fi
+    rm "${LF_BOOKMARK_PATH}/${target_mark}" 2> /dev/null
+}}
+cmd bookmark_remove_current_path ${{
+    LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     [ ! -d "$LF_BOOKMARK_PATH" ] && exit 0
     for f in "$LF_BOOKMARK_PATH"/*; do
         if [ ! -f "$f" ]; then
@@ -232,7 +241,8 @@ cmd bookmark_remove_all ${{
 }}
 map mm bookmark_create
 map ` bookmark_jump
-map <a-m> bookmark_remove
+map mM bookmark_remove
+map <a-m> bookmark_remove_current_path
 map <a-'> bookmark_remove_not_exist
 map <a-"> bookmark_remove_all
 
