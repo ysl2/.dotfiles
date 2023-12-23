@@ -13,3 +13,5 @@
 	required = true
 [remote "origin"]
 	prune = true
+[advice]
+	addIgnoredFile = false
