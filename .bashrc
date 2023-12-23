@@ -319,8 +319,8 @@ jo() {
 alias xterm='xterm -ti vt340'
 # alias clash="clash -d ~/.config/clash/ -f ~/.config/clash/glados.yaml"
 alias bfg="java -jar ${MYLOCAL}/bfg.jar"
-alias dl='git --git-dir ~/.dotlib.git --work-tree ~'
-alias dal='lazygit --git-dir ~/.dotlib.git --work-tree ~'
+alias fit='git --git-dir ~/.dotfiles.git --work-tree ~'
+alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 
 
 # ===
