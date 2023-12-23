@@ -268,7 +268,7 @@ P() {
 }
 
 # ===
-# === Alias
+# === Aliases
 # ===
 alias :q='exit'
 alias :qa='exit'
@@ -318,9 +318,10 @@ jo() {
 }
 alias xterm='xterm -ti vt340'
 # alias clash="clash -d ~/.config/clash/ -f ~/.config/clash/glados.yaml"
+alias bfg="java -jar ${MYLOCAL}/bfg.jar"
 
 # ===
-# === Outside source
+# === Outside sources
 # ===
 [ -f "$MYLOCAL"/starship ] && eval "$(starship init $(basename "$SHELL"))"
 fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)"))
@@ -338,7 +339,7 @@ fi
 
 
 # =================
-# === Post Load ===
+# === Post Loads ===
 # =================
 [ -f ~/.bashrc.localhost.post ] && . ~/.bashrc.localhost.post
 

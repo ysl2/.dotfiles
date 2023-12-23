@@ -1071,6 +1071,15 @@ drawio() {
 }
 
 
+bfg() {
+    sudo apt install -y openjdk-22-jdk
+    cd "$PREFIX"
+
+    BFG_VERSION=1.14.0
+    wget -c -O bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/"$BFG_VERSION"/bfg-"$BFG_VERSION".jar
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
