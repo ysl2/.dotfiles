@@ -23,7 +23,7 @@ set dircounts
 map p :paste; clear
 map <c-g> &dragon -a -x $fx
 map R :reload
-map <tab> $$PAGER "$f"
+# map i $$PAGER "$f"
 map m
 
 
@@ -87,9 +87,11 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 
-map i :rename; cmd-home
-map a :rename; cmd-end
-# map c :rename; cmd-end; cmd-delete-home
+map r
+map rr :rename
+map ri :rename; cmd-home
+map ra :rename; cmd-end
+map rc :rename; cmd-end; cmd-delete-home
 
 cmd follow_link %{{
   lf -remote "send ${id} select '$(readlink $f)'"
@@ -166,6 +168,7 @@ cmd select-dirs &{{
 
     lf -remote "send $id :unselect; toggle $(get_dirs)"
 }}
+
 cmd bookmark_create %{{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     mkdir -p "$LF_BOOKMARK_PATH"
