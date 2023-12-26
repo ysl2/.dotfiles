@@ -33,8 +33,14 @@ backToPATH() {
     PATH="${PATH}:${1}"
 }
 searchToPATH() {
-    find "$1" -maxdepth 1 -type d ! -name "*conda*" -exec sh -c 'if [ -d "$1/bin" ]; then echo "PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
-    [ -f /tmp/paths.sh ] && . /tmp/paths.sh && rm /tmp/paths.sh
+    # find "$1" -maxdepth 1 -type d ! -name "*conda*" -exec sh -c 'if [ -d "$1/bin" ]; then echo "PATH=\"$1/bin:\$PATH\"" >> /tmp/paths.sh; fi' sh {} \;
+    # [ -f /tmp/paths.sh ] && . /tmp/paths.sh && rm /tmp/paths.sh
+    [ -z "$(ls "$1")" ] && return
+    for item in "$1"/*; do
+        if [ -d "$item"/bin ] && echo "$item" | grep -qv 'conda'; then
+            PATH="${item}/bin:${PATH}"
+        fi
+    done
 }
 
 
