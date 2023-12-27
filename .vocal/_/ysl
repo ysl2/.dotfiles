@@ -508,15 +508,13 @@ xclip () {
 
 
 lua () {
-    [[ -e ${PREFIX}/bin/lua ]] && return
-
-    cd ${TEMP_FOLDER}
+    cd "$TEMP_FOLDER"
 
     LUA_VERSION=v2.1
-    [[ ! -e LuaJIT ]] && git clone git@git.zhlh6.cn:LuaJIT/LuaJIT.git -b "${LUA_VERSION}"
+    git clone git@"$GHSSH":LuaJIT/LuaJIT.git -b "$LUA_VERSION"
     cd LuaJIT
     make
-    mv src/luajit "${PREFIX}"/bin/
+    mv src/luajit "$PREFIX"/lua
 }
 
 
