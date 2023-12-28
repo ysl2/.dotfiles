@@ -271,17 +271,17 @@ gcc8 () {
 
 
 lazygit () {
-    [[ -e ${PREFIX}/lazygit ]] && return
+    [ -e "$PREFIX"/lazygit ] && return
 
-    cd ${TEMP_FOLDER}
+    cd "$TEMP_FOLDER"
 
     LAZYGIT_VERSION=0.40.2
-    mkdir lazygit-${LAZYGIT_VERSION}
-    cd lazygit-${LAZYGIT_VERSION}
-    wget -c "$GHPROXY"https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
-    tar xvzf lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz
-    mkdir -p ${PREFIX}
-    mv lazygit ${PREFIX}/
+    mkdir -p lazygit-"$LAZYGIT_VERSION"
+    cd lazygit-"$LAZYGIT_VERSION"
+    wget -c "$GHPROXY"https://github.com/jesseduffield/lazygit/releases/download/v"$LAZYGIT_VERSION"/lazygit_"$LAZYGIT_VERSION"_Linux_x86_64.tar.gz
+    tar xvzf lazygit_"$LAZYGIT_VERSION"_Linux_x86_64.tar.gz
+    mkdir -p "$PREFIX"
+    mv lazygit "$PREFIX"
 }
 
 
