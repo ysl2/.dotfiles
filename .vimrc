@@ -31,10 +31,11 @@ autocmd BufWritePre * set ff=unix
 autocmd FileType json,markdown,html,css setlocal tabstop=2 shiftwidth=2
 
 " ===
-" ===keymaps
+" === Keymaps
 " ===
 inoremap <C-c> <C-[>
 tnoremap <A-[> <C-\><C-n>
+" Change <C-a> and <C-x> to <A-a> and <A-x> in normal and visual mode.
 nnoremap <C-a> <Nop>
 nnoremap <A-a> <C-a>
 vnoremap <C-a> <Nop>
@@ -49,7 +50,7 @@ vnoremap s <Nop>
 nnoremap S <Nop>
 vnoremap S <Nop>
 
-" === emacs cmdline
+" === Emacs cmdline
 " start of line
 :cnoremap <C-A>		<Home>
 " back one character
@@ -70,7 +71,7 @@ vnoremap S <Nop>
 :cnoremap <Esc><C-F>	<S-Right>
 
 " ===
-" ===Functions
+" === Functions
 " ===
 autocmd VimEnter * silent! NoMatchParen
 function! TrimWhitespace()
