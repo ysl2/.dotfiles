@@ -1,0 +1,3 @@
+#!/bin/sh
+
+/opt/apps/cajviewer/start.sh "$@"

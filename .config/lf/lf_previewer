@@ -24,7 +24,7 @@ TMPFILEPATH="${_TMPFILEDIR}/${_TMPFILENAME}"
 MIMETYPE="$( file --dereference --brief --mime-type -- "$FILE" )"
 
 
-function kitty_icat() {
+function image_previewer() {
     local experimental  # 0 is true, 1 is false. Default 1 for false.
     experimental=$([[ -n "$2" ]] && echo "$2" || echo 1)
 
@@ -68,14 +68,14 @@ function handle_extension() {
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 niicat "$FILE" "$TMPFILEPATH"
             fi
-            # kitty_icat "$TMPFILEPATH" 0
-            kitty_icat "$TMPFILEPATH"
+            # image_previewer "$TMPFILEPATH" 0
+            image_previewer "$TMPFILEPATH"
             ;;
         *.six | *.sixel)
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 sixel2png "$FILE" > "$TMPFILEPATH"
             fi
-            kitty_icat "$TMPFILEPATH"
+            image_previewer "$TMPFILEPATH"
             ;;
     esac
     # WARNING: Do not add any exit value here!
@@ -85,25 +85,25 @@ function handle_extension() {
 function handle_mime() {
     case "$MIMETYPE" in
         image/*)
-            kitty_icat "$FILE"
+            image_previewer "$FILE"
             ;;
         *pdf)
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 pdftoppm -f 1 -l 1 -png "$FILE" > "$TMPFILEPATH"
             fi
-            kitty_icat "$TMPFILEPATH"
+            image_previewer "$TMPFILEPATH"
             ;;
         audio/*)
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 ffmpeg -i "$FILE" -filter_complex "showwavespic=s=640x480" -frames:v 1 "$TMPFILEPATH"
             fi
-            kitty_icat "$TMPFILEPATH"
+            image_previewer "$TMPFILEPATH"
             ;;
         video/*)
             if [[ ! -f "$TMPFILEPATH" ]]; then
                 ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "$TMPFILEPATH"
             fi
-            kitty_icat "$TMPFILEPATH"
+            image_previewer "$TMPFILEPATH"
             ;;
         *zip | *tar | *rar | *x-xz)
             # sudo apt install atool

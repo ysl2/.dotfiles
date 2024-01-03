@@ -1,18 +1,19 @@
 &[ $LF_LEVEL -eq 1 ] || lf -remote "send $id echoerr \"Warning: You're in a nested lf instance!\""
 
 
-# ============
-# === self ===
-# ============
+# =====================
+# === self settings ===
+# =====================
 
+# ===
+# === settings
+# ===
 set number
 set relativenumber
 set icons
 set incsearch
 set incfilter
 set smartcase
-set previewer ~/.config/lf/lf_kitty_preview
-set cleaner ~/.config/lf/lf_kitty_clean
 set sixel true
 set scrolloff 1
 set mouse
@@ -20,6 +21,14 @@ set period 1
 set info size
 set dircounts
 
+# === engines
+source ~/.config/lf/lf_opener
+set previewer ~/.config/lf/lf_previewer
+set cleaner ~/.config/lf/lf_cleaner
+
+# ===
+# === keymaps
+# ===
 map p :paste; clear
 map <c-g> &dragon -a -x $fx
 map R :reload
@@ -27,9 +36,9 @@ map R :reload
 map m
 
 
-# ============
-# === Tips ===
-# ============
+# =====================
+# === Tips settings ===
+# =====================
 # https://github.com/gokcehan/lf/wiki/Tips
 
 cmd edit-config ${{
@@ -250,9 +259,9 @@ map <a-'> bookmark_remove_not_exist
 map <a-"> bookmark_remove_all
 
 
-# ===============
-# === Default ===
-# ===============
+# ========================
+# === Default settings ===
+# ========================
 
 # interpreter for shell commands
 set shell sh
@@ -292,36 +301,6 @@ map X !$f
 # dedicated keys for file opener actions
 map o &mimeopen $f
 map O $mimeopen --ask $f
-
-# define a custom 'open' command
-# This command is called when current file is not a directory. You may want to
-# use either file extensions and/or mime types here. Below uses an editor for
-# text files and a file opener for the rest.
-cmd open &{{
-    # Open by extension name
-    case "$f" in
-        *.nii | *.nii.gz)
-            itksnap "$f"
-            exit 0
-            ;;
-    esac
-
-    # Open by mimetype
-    case $(file --mime-type -Lb "$f") in
-        text/* | inode/x-empty | application/json)
-            lf -remote "send $id \$$EDITOR \$f"
-            exit 0
-            ;;
-        application/pdf)
-            zathura "$f" &> /dev/null
-            exit 0
-            ;;
-        *)
-            $OPENER "$f" &> /dev/null
-            exit 0
-            ;;
-    esac
-}}
 
 # mkdir command. See wiki if you want it to select created dir
 # map a :push %mkdir<space>

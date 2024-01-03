@@ -1078,6 +1078,13 @@ bfg() {
 }
 
 
+cajviewer() {
+    cd "$TEMP_FOLDER"
+    wget -c https://download.cnki.net/cajviewer_1.3.22-1_amd64.deb
+    sudo dpkg -i cajviewer_1.3.22-1_amd64.deb
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
