@@ -236,6 +236,8 @@ export GOPROXY=https://goproxy.cn
 _go=$(which go)
 export GOPATH
 GOPATH="${_go%/*/*}"/gopath
+# export TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
+export TESSDATA_PREFIX="$MYLOCAL"/tessdata_best
 
 # ===
 # === Functions
