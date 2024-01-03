@@ -209,7 +209,7 @@ cmd bookmark_jump ${{
     target_path="$(cat "${LF_BOOKMARK_PATH}/${target_mark}" 2> /dev/null)"
     if [ ! -d "$target_path" ]; then
         rm "${LF_BOOKMARK_PATH}/${target_mark}"
-        printf 'Path not found, Removed from bookmarks.'
+        lf -remote "send $id echo \"Path not found, Removed from bookmarks.\""
         exit 0
     fi
     lf -remote "send $id cd \"$target_path\""
