@@ -15,6 +15,10 @@ cmd open &{{
             cajviewer "$f"
             exit 0
             ;;
+        *.drawio)
+            drawio "$f"
+            exit 0
+            ;;
     esac
 
     # Open by mimetype
