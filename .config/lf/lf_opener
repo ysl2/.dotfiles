@@ -31,6 +31,10 @@ cmd open &{{
             zathura "$f" &> /dev/null
             exit 0
             ;;
+        image/*)
+            feh "$f" &> /dev/null
+            exit 0
+            ;;
         *)
             $OPENER "$f" &> /dev/null
             exit 0
