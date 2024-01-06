@@ -1104,6 +1104,34 @@ tesseract() {
 }
 
 
+wps() {
+    # Install wps
+    sudo apt install -y wps-office
+
+    cd "$TEMP_FOLDER"
+
+    # Downgrade dependencies to fix bold font error.
+    wget -c https://mirrors.tuna.tsinghua.edu.cn/debian/pool/main/f/freetype/libfreetype6_2.12.1%2Bdfsg-5_amd64.deb
+    sudo dpkg -i libfreetype6_2.12.1+dfsg-5_amd64.deb
+    wget -c https://mirrors.tuna.tsinghua.edu.cn/debian/pool/main/f/freetype/libfreetype-dev_2.12.1%2Bdfsg-5_amd64.deb
+    sudo dpkg -i libfreetype-dev_2.12.1+dfsg-5_amd64.deb
+
+    # Ref: https://askubuntu.com/questions/18654/how-to-prevent-updating-of-a-specific-package
+    # Disable dpkg auto update
+    echo "libfreetype6 hold" | sudo dpkg --set-selections
+    echo "libfreetype-dev hold" | sudo dpkg --set-selections
+    # Disable apt auto update
+    sudo apt-mark hold libfreetype6
+    sudo apt-mark hold libfreetype-dev
+
+    # Install wps fonts
+    git clone git@"$GHSSH":dv-anomaly/ttf-wps-fonts.git
+    sudo mkdir /usr/share/fonts/wps-fonts
+    sudo chmod 644 /usr/share/fonts/wps-fonts/*
+    sudo fc-cache -vfs
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
