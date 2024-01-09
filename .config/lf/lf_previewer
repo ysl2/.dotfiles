@@ -101,6 +101,7 @@ function handle_mime() {
             ;;
         video/*)
             if [[ ! -f "$TMPFILEPATH" ]]; then
+                # sudo apt install -y ffmpeg
                 ffmpeg -i "$FILE" -vf "thumbnail" -frames:v 1 "$TMPFILEPATH"
             fi
             image_previewer "$TMPFILEPATH"
