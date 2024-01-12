@@ -22,6 +22,7 @@ if has('nvim')
     set exrc
 endif
 language en_US.utf8
+set scrolloff=1
 
 " === Filetype settings.
 set tabstop=4
