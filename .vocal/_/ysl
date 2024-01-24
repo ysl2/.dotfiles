@@ -1151,9 +1151,15 @@ typst_lsp() {
 typstfmt() {
     TYPSTFMT=0.2.7
     cd "$TEMP_FOLDER"
-    wget https://github.com/astrale-sharp/typstfmt/releases/download/"$TYPSTFMT"/typstfmt-x86_64-unknown-linux-musl.tar.xz
+    wget -c "$GHPROXY"https://github.com/astrale-sharp/typstfmt/releases/download/"$TYPSTFMT"/typstfmt-x86_64-unknown-linux-musl.tar.xz
     tar xvf typstfmt-x86_64-unknown-linux-musl.tar.xz
     mv typstfmt-x86_64-unknown-linux-musl/typstfmt "$PREFIX"
+}
+
+typst_preview() {
+    TYPST_PREVIEW=v0.10.6
+    wget -c -O "$PREFIX"/typst-preview "$GHPROXY"https://github.com/Enter-tainer/typst-preview/releases/download/"$TYPST_PREVIEW"/typst-preview-linux-x64
+    chmod 777 "$PREFIX"/typst-preview
 }
 
 
