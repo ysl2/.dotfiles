@@ -1132,6 +1132,15 @@ wps() {
 }
 
 
+typst() {
+    cd "$TEMP_FOLDER"
+    TYPST_VERSION=v0.10.0
+    wget -c "$GHPROXY"https://github.com/typst/typst/releases/download/"$TYPST_VERSION"/typst-x86_64-unknown-linux-musl.tar.xz
+    tar xvf typst-x86_64-unknown-linux-musl.tar.xz
+    mv typst-x86_64-unknown-linux-musl/typst "$PREFIX"
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
