@@ -1160,6 +1160,8 @@ typst_preview() {
     TYPST_PREVIEW=v0.10.6
     wget -c -O "$PREFIX"/typst-preview "$GHPROXY"https://github.com/Enter-tainer/typst-preview/releases/download/"$TYPST_PREVIEW"/typst-preview-linux-x64
     chmod 777 "$PREFIX"/typst-preview
+    mkdir -p ~/.local/share/nvim/typst-preview/
+    ln -s "$PREFIX"/typst-preview ~/.local/share/nvim/typst-preview/typst-preview
 }
 
 
