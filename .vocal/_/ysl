@@ -1156,12 +1156,24 @@ typstfmt() {
     mv typstfmt-x86_64-unknown-linux-musl/typstfmt "$PREFIX"
 }
 
-typst_preview() {
-    TYPST_PREVIEW=v0.10.6
-    wget -c -O "$PREFIX"/typst-preview "$GHPROXY"https://github.com/Enter-tainer/typst-preview/releases/download/"$TYPST_PREVIEW"/typst-preview-linux-x64
-    chmod 777 "$PREFIX"/typst-preview
-    mkdir -p ~/.local/share/nvim/typst-preview/
-    ln -s "$PREFIX"/typst-preview ~/.local/share/nvim/typst-preview/typst-preview
+nvim_typst_preview() {
+    FOLDER=~/.local/share/nvim/typst-preview/
+    mkdir -p "$FOLDER"
+    cd "$FOLDER"
+
+    TYPST_PREVIEW_VERSION=v0.10.4
+    TYPST_PREVIEW_NAME=typst-preview-linux-x64
+    TYPST_PREVIEW_URL=https://github.com/Enter-tainer/typst-preview/releases/download/"$TYPST_PREVIEW_VERSION"/"$TYPST_PREVIEW_NAME"
+    wget -c "$GHPROXY""$TYPST_PREVIEW_URL"
+    chmod 777 "$TYPST_PREVIEW_NAME"
+
+    WEBSOCAT_VERSION=v1.12.0
+    WEBSOCAT_NAME=websocat.x86_64-unknown-linux-musl
+    WEBSOCAT_URL=https://github.com/vi/websocat/releases/download/"$WEBSOCAT_VERSION"/"$WEBSOCAT_NAME"
+    wget -c "$GHPROXY""$WEBSOCAT_URL"
+    chmod 777 "$WEBSOCAT_NAME"
+
+    echo -e "${TYPST_PREVIEW_URL}\n${WEBSOCAT_URL}" > version_record.txt
 }
 
 
