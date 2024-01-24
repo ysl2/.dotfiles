@@ -1157,7 +1157,7 @@ typstfmt() {
 }
 
 nvim_typst_preview() {
-    FOLDER=~/.local/share/nvim/typst-preview/
+    FOLDER=~/.local/share/nvim/typst-preview
     mkdir -p "$FOLDER"
     cd "$FOLDER"
 
@@ -1166,6 +1166,7 @@ nvim_typst_preview() {
     TYPST_PREVIEW_URL=https://github.com/Enter-tainer/typst-preview/releases/download/"$TYPST_PREVIEW_VERSION"/"$TYPST_PREVIEW_NAME"
     wget -c "$GHPROXY""$TYPST_PREVIEW_URL"
     chmod 777 "$TYPST_PREVIEW_NAME"
+    ln -s "$FOLDER"/"$TYPST_PREVIEW_NAME" "$PREFIX"/typst-preview
 
     WEBSOCAT_VERSION=v1.12.0
     WEBSOCAT_NAME=websocat.x86_64-unknown-linux-musl
