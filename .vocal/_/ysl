@@ -1142,8 +1142,18 @@ typst() {
 
 
 typst_lsp() {
-    wget -c -O "$PREFIX"/typst-lsp "$GHPROXY"https://github.com/nvarner/typst-lsp/releases/download/v0.12.1/typst-lsp-x86_64-unknown-linux-gnu
+    TYPST_LSP_VERSION=v0.12.1
+    wget -c -O "$PREFIX"/typst-lsp "$GHPROXY"https://github.com/nvarner/typst-lsp/releases/download/"$TYPST_LSP_VERSION"/typst-lsp-x86_64-unknown-linux-gnu
     chmod 777 "$PREFIX"/typst-lsp
+}
+
+
+typstfmt() {
+    TYPSTFMT=0.2.7
+    cd "$TEMP_FOLDER"
+    wget https://github.com/astrale-sharp/typstfmt/releases/download/"$TYPSTFMT"/typstfmt-x86_64-unknown-linux-musl.tar.xz
+    tar xvf typstfmt-x86_64-unknown-linux-musl.tar.xz
+    mv typstfmt-x86_64-unknown-linux-musl/typstfmt "$PREFIX"
 }
 
 
