@@ -11,7 +11,7 @@ PREFIX=$HOME/.vocal
 mkdir -p "$PREFIX"
 TEMP_FOLDER=$HOME/Downloads/_
 
-# GHPROXY=https://ghproxy.com/
+#GHPROXY=https://mirror.ghproxy.com/
 GHPROXY=
 #GHSSH=git.zhlh6.cn
 GHSSH=github.com
@@ -203,14 +203,12 @@ ncdu () {
 
 
 lf () {
-    [ -e "${PREFIX}/lf" ] && return
-
     cd "$TEMP_FOLDER"
 
     LF_VERSION=r31
     LF_TARNAME=lf-linux-amd64.tar.gz
     [ -e "$LF_TARNAME" ] && rm "$LF_TARNAME"
-    wget -c https://ghproxy.com/https://github.com/gokcehan/lf/releases/download/"${LF_VERSION}"/"${LF_TARNAME}"
+    wget -c "$GHPROXY"https://github.com/gokcehan/lf/releases/download/"${LF_VERSION}"/"${LF_TARNAME}"
     tar xvzf "$LF_TARNAME"
     mv lf "$PREFIX"
 }
@@ -271,8 +269,6 @@ gcc8 () {
 
 
 lazygit () {
-    [ -e "$PREFIX"/lazygit ] && return
-
     cd "$TEMP_FOLDER"
 
     LAZYGIT_VERSION=0.40.2
