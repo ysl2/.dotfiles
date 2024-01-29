@@ -1,5 +1,5 @@
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+#[ $- != *i* ] && return
 # ===================================================
 # === Utils and some global environment variables ===
 # ===================================================
@@ -99,12 +99,12 @@ fi
 # ===========================
 # === For Manually Startx ===
 # ===========================
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+if [ -z "${DISPLAY}" ] && [ -n "${XDG_VTNR}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     # rm -rf ~/.Xauthority-*
     exec startx
 fi
-# # No need: The $DISPLAY will be auto set after startx.
-# # For safety consideration, we still give it a default value.
+# No need: The $DISPLAY will be auto set after startx.
+# For safety consideration, we still give it a default value.
 [ -z "$DISPLAY" ] && export DISPLAY=:0
 
 
@@ -204,13 +204,12 @@ onconda "$MYCONDA"
 # ==============
 # === Others ===
 # ==============
-
 # ===
 # === Beautify
 # ===
 if command -v curl &> /dev/null && [ ! -e "${MYLOCAL}/starship" ]; then
-    curl -sS https://ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
-    sed 's/https\:\/\/github\.com/https\:\/\/ghproxy\.com\/https\:\/\/github\.com/g' | \
+    curl -sS https://mirror.ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+    sed 's/https\:\/\/github\.com/https\:\/\/mirror\.ghproxy\.com\/https\:\/\/github\.com/g' | \
     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
 fi
 
@@ -335,7 +334,7 @@ alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 # === Outside sources
 # ===
 [ -f "$MYLOCAL"/starship ] && eval "$(starship init $(basename "$SHELL"))"
-fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)"))
+fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2> /dev/null))
 for f in "${fzf_files_array[@]}"; do
    . "$f"
 done
@@ -344,7 +343,7 @@ done
 # ===============
 # === For zsh ===
 # ===============
-if [[ -n "$ZSH_VERSION" ]]; then
+if [ -n "$ZSH_VERSION" ]; then
     [ -f ~/.bashrc.zsh ] && . ~/.bashrc.zsh
 fi
 
