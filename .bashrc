@@ -1,5 +1,7 @@
 # If not running interactively, don't do anything
-#[ $- != *i* ] && return
+if [ -n "$-" ] && ! echo "$-" | grep -q "i"; then
+   return
+fi
 # ===================================================
 # === Utils and some global environment variables ===
 # ===================================================
