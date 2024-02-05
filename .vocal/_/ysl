@@ -708,14 +708,12 @@ alacritty () {
 
 
 nodejs () {
-    [[ -e "${PREFIX}"/nodejs ]] && return
-
-    cd "${TEMP_FOLDER}"
+    cd "$TEMP_FOLDER"
 
     NODE_VERSION=v18.18.0
-    wget -c https://nodejs.org/dist/"${NODE_VERSION}"/node-"${NODE_VERSION}"-linux-x64.tar.xz
-    tar xvf node-"${NODE_VERSION}"-linux-x64.tar.xz
-    mv node-"${NODE_VERSION}"-linux-x64/ "${PREFIX}"/nodejs/
+    wget -c https://nodejs.org/dist/"$NODE_VERSION"/node-"$NODE_VERSION"-linux-x64.tar.xz
+    tar xvf node-"$NODE_VERSION"-linux-x64.tar.xz
+    mv node-"$NODE_VERSION"-linux-x64/ "$PREFIX"/nodejs/
 }
 
 
@@ -1152,6 +1150,7 @@ typstfmt() {
     mv typstfmt-x86_64-unknown-linux-musl/typstfmt "$PREFIX"
 }
 
+
 nvim_typst_preview() {
     FOLDER=~/.local/share/nvim/typst-preview
     mkdir -p "$FOLDER"
@@ -1173,9 +1172,17 @@ nvim_typst_preview() {
     echo -e "${TYPST_PREVIEW_URL}\n${WEBSOCAT_URL}" > version_record.txt
 }
 
+
 typstudio() {
     wget -c -O "$PREFIX"/typstudio "$GHPROXY"https://github.com/Cubxity/typstudio/releases/download/v0.1.0-dev.32/typstudio_0.1.0_amd64.AppImage
     chmod 777 "$PREFIX"/typstudio
+}
+
+
+miniconda() {
+    cd "$TEMP_FOLDER"
+    wget -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py311_23.11.0-1-Linux-x86_64.sh
+    sh Miniconda3-py311_23.11.0-1-Linux-x86_64.sh -b -p "$PREFIX"/miniconda3
 }
 
 
