@@ -223,9 +223,12 @@ colors:
   line_indicator:
     foreground: None
     background: None
+  # selection:
+  #   text: CellForeground
+  #   background: '#44475a'
   selection:
-    text: CellForeground
-    background: '#44475a'
+    text: CellBackground
+    background: CellForeground
   normal:
     black: '#21222c'
     red: '#ff5555'
