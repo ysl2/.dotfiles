@@ -14,7 +14,8 @@ H=$3
 X=$4
 Y=$5
 
-_TMPFILENAME="$(basename "$FILE" | tr ' ' '__' | tr '.' '_')".png
+# _TMPFILENAME="$(basename "$FILE" | tr ' ' '__' | tr '.' '_')".png
+_TMPFILENAME="$(sha256sum "$FILE" | awk '{print $1}')".png
 _TMPFILEDIR=/tmp/lf_img"$(dirname "$FILE")"
 mkdir -p "$_TMPFILEDIR"
 TMPFILEPATH="${_TMPFILEDIR}/${_TMPFILENAME}"
