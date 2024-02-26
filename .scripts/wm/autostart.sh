@@ -3,7 +3,7 @@
 # =============
 # === Utils ===
 # =============
-single_instance=~/.scripts/window-manager/utils/single_instance.sh
+single_instance=~/.scripts/wm/utils/single_instance.sh
 
 
 # ================
@@ -31,14 +31,14 @@ esac
 # ================
 # === Keyboard ===
 # ================
-~/.scripts/window-manager/autostart/keyboard.sh
+~/.scripts/wm/autostart/keyboard.sh
 
 
 # ==============
 # === Screen ===
 # ==============
 # Disable screen blanking and screen saver
-"$single_instance" ~/.scripts/window-manager/autostart/screen.sh
+"$single_instance" ~/.scripts/wm/autostart/screen.sh
 
 
 # =============
@@ -49,7 +49,7 @@ esac
 # Keep tracking current sound settings into file.
 # In fact, we don't need single_instance here, because the `sound.sh` defines a condition to exit loop.
 # We use single_instance here only for preventing the accidental case.
-"$single_instance" ~/.scripts/window-manager/autostart/sound.sh
+"$single_instance" ~/.scripts/wm/autostart/sound.sh
 
 
 # ================
@@ -64,4 +64,4 @@ killall unclutter 2> /dev/null; unclutter --timeout 1 &
 # =============================
 # === Load localhost config ===
 # =============================
-[ -f ~/.scripts/window-manager/autostart.localhost.sh ] && ~/.scripts/window-manager/autostart.localhost.sh
+[ -f ~/.scripts/wm/autostart.localhost.sh ] && ~/.scripts/wm/autostart.localhost.sh
