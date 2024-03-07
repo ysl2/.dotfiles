@@ -719,17 +719,17 @@ nodejs () {
 
 trans () {
     TRANS_VERSION=0.9.7.1
-    TARGET_FOLDER_NAME=translate-shell-"${TRANS_VERSION}"
-    TARGET_FOLDER_PATH="${PREFIX}"/"${TARGET_FOLDER_NAME}"/bin
-    [[ -e "${TARGET_FOLDER_PATH}" ]] && return
-    mkdir -p "${TARGET_FOLDER_PATH}"
+    TARGET_FOLDER_NAME=translate-shell-"$TRANS_VERSION"
+    TARGET_FOLDER_PATH="$PREFIX"/"$TARGET_FOLDER_NAME"/bin
+    [ -e "$TARGET_FOLDER_PATH" ] && return
+    mkdir -p "$TARGET_FOLDER_PATH"
 
-    cd "${TEMP_FOLDER}"
+    cd "$TEMP_FOLDER"
 
-    wget -c -O translate-shell-v"${TRANS_VERSION}".tar.gz https://ghproxy.com/https://github.com/soimort/translate-shell/archive/refs/tags/v"${TRANS_VERSION}".tar.gz
-    tar xvf translate-shell-v"${TRANS_VERSION}".tar.gz
-    mv translate-shell-"${TRANS_VERSION}"/* "${TARGET_FOLDER_PATH}"
-    ln -s "${TARGET_FOLDER_PATH}"/translate "${TARGET_FOLDER_PATH}"/trans
+    wget -c -O translate-shell-v"$TRANS_VERSION".tar.gz "$GHPROXY"/https://github.com/soimort/translate-shell/archive/refs/tags/v"$TRANS_VERSION".tar.gz
+    tar xvf translate-shell-v"$TRANS_VERSION".tar.gz
+    mv translate-shell-"$TRANS_VERSION"/* "$TARGET_FOLDER_PATH"
+    ln -s "$TARGET_FOLDER_PATH"/translate "$TARGET_FOLDER_PATH"/trans
 }
 
 
@@ -740,7 +740,7 @@ joshuto () {
 
 
 kitty () {
-    [[ -e ~/.local/kitty.app ]] && return
+    [ -e ~/.local/kitty.app ] && return
     mkdir -p ~/.local/kitty.app
     cd ~/.local/kitty.app
 
