@@ -699,8 +699,9 @@ key_bindings:
   #- { key: F,      mods: Control,       mode: Vi|~Search, action: ScrollPageDown          }
   #- { key: U,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageUp        }
   #- { key: D,      mods: Control,       mode: Vi|~Search, action: ScrollHalfPageDown      }
-  #- { key: Y,                           mode: Vi|~Search, action: Copy                    }
-  #- { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
+  - { key: Y,                           mode: Vi|~Search, action: Copy                    }
+  - { key: Y,                           mode: Vi|~Search, action: ClearSelection          }
+  - { key: Y,                           mode: Vi|~Search, action: ToggleViMode            }
   #- { key: Copy,                        mode: Vi|~Search, action: ClearSelection          }
   #- { key: V,                           mode: Vi|~Search, action: ToggleNormalSelection   }
   #- { key: V,      mods: Shift,         mode: Vi|~Search, action: ToggleLineSelection     }
