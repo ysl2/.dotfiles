@@ -1,0 +1,10 @@
+configuration {
+  	modes: "window,drun,run,ssh,combi";
+  	combi-modes: "drun,run";
+	kb-remove-to-eol: "";
+  	kb-accept-entry: "Return,KP_Enter";
+  	kb-row-up: "Up,Control+p,Control+k";
+  	kb-row-down: "Down,Control+n,Control+j";
+	kb-cancel: "Escape,Control+g,Control+bracketleft,Control+c";
+}
+@theme "dracula"
