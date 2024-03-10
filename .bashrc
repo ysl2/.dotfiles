@@ -239,6 +239,11 @@ export GOPATH
 GOPATH="${_go%/*/*}"/gopath
 # export TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
 export TESSDATA_PREFIX="$MYLOCAL"/tessdata_best
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
 # ===
 # === Functions
@@ -340,6 +345,15 @@ fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2>
 for f in "${fzf_files_array[@]}"; do
    . "$f"
 done
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then  # To simulate the brew shellenv command but backToPATH.
+    backToPATH "/home/linuxbrew/.linuxbrew/sbin"
+    backToPATH "/home/linuxbrew/.linuxbrew/bin"
+    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+    export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:"
+    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}"
+fi
 
 
 # ===============
