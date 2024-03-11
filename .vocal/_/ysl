@@ -1150,6 +1150,11 @@ neovide() {
 }
 
 
+nix() {
+    sh <(curl https://mirrors.tuna.tsinghua.edu.cn/nix/latest/install) --daemon
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
