@@ -7,7 +7,7 @@ sound() {
 # The mod() function shound be put near the main loop for better precision.
 curtime="$(date +%s)"
 mod() {
-    echo "$(( ($(date +%s) - curtime)  % $1 ))"
+    echo "$(( ($(date +%s) - curtime) % $1 ))"
 }
 
 # Once we logout, stop writing alsa config
@@ -21,7 +21,7 @@ mod() {
 while who | grep -v pts | grep -q "^$(whoami) "; do
     # Execute `sound()` every 1 second.
     [ "$(mod 1)" = 0 ] && sound &
-    # We can defule more commands here, like:
+    # We can define more commands here, like:
     # [ "$(mod 60)" = 0 ] && screen &
     sleep 1
 done
