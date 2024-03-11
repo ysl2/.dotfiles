@@ -10,6 +10,7 @@ mkdir -p "$MYLOCAL" &> /dev/null
 _MYLOCK="${MYLOCAL}/.lock"
 mkdir -p "$_MYLOCK" &> /dev/null
 MYBIN="${MYLOCAL}/bin"
+# The fcitx things must be put here, because it should be sourced when system booting.
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
