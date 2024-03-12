@@ -3,7 +3,7 @@
 # =============
 # === Utils ===
 # =============
-single_instance=~/.scripts/wm/utils/single_instance.sh
+# single_instance=~/.scripts/wm/utils/single_instance.sh
 
 
 # ================
@@ -38,18 +38,35 @@ esac
 # === Screen ===
 # ==============
 # Disable screen blanking and screen saver
-"$single_instance" ~/.scripts/wm/autostart/screen.sh
+# "$single_instance" ~/.scripts/wm/autostart/screen.sh
+
+# Disable screen blanking
+xset s 0 0
+xset s noblank
+xset s off
+# Disable screen saver
+xset dpms 0 0 0
+xset -dpms
 
 
 # =============
 # === Sound ===
 # =============
 # Restore sound settings from file when login.
-[ -f ~/.asound.state ] && alsactl restore -f ~/.asound.state
+# [ -f ~/.asound.state ] && alsactl restore -f ~/.asound.state
 # Keep tracking current sound settings into file.
 # In fact, we don't need single_instance here, because the `sound.sh` defines a condition to exit loop.
 # We use single_instance here only for preventing the accidental case.
-"$single_instance" ~/.scripts/wm/autostart/sound.sh
+# "$single_instance" ~/.scripts/wm/autostart/sound.sh
+
+# Ref: https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Pulse_overwrites_ALSA_settings
+restore_alsa() {
+    while [ -z "$(pidof pulseaudio)" ]; do
+        sleep 0.5
+    done
+    alsactl -f /var/lib/alsa/asound.state restore
+}
+restore_alsa &
 
 
 # ================
