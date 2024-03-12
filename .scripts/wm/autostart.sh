@@ -74,7 +74,7 @@ restore_alsa &
 # ================
 killall picom 2> /dev/null; picom -D 5 -f -b --vsync
 # Clean dmenu cache
-rm ~/.cache/dmenu_run 2> /dev/null
+# rm ~/.cache/dmenu_run 2> /dev/null
 killall unclutter 2> /dev/null; unclutter --timeout 1 &
 
 
