@@ -5,17 +5,25 @@ fi
 # ===================================================
 # === Utils and some global environment variables ===
 # ===================================================
-export MYLOCAL="${HOME}/.vocal"
+export MYLOCAL="$HOME"/.vocal
 mkdir -p "$MYLOCAL" &> /dev/null
-_MYLOCK="${MYLOCAL}/.lock"
+_MYLOCK="$MYLOCAL"/.lock
 mkdir -p "$_MYLOCK" &> /dev/null
-MYBIN="${MYLOCAL}/bin"
+MYBIN="$MYLOCAL"/bin
+
 # The fcitx things must be put here, because it should be sourced when system booting.
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 export GLFW_IM_MODULE=ibus
+
+HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+
+# Get value from localhost.
+[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
+# MYCONDA
+# MYTMUX
 
 
 # =================================
@@ -51,15 +59,18 @@ searchToPATH() {
 # === PATH ===
 # ============
 
+# ===
+# === For homebrew apps.
+# ===
+if [ -d "$HOMEBREW_PREFIX" ]; then
+    addToPATH "$HOMEBREW_PREFIX"/sbin
+    addToPATH "$HOMEBREW_PREFIX"/bin
+fi
 
 # ===
-# === Set Fallback Value
+# === For conda apps.
 # ===
-[ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
-# MYCONDA
-# MYTMUX
-[ -n "$MYCONDA" ] && [ -d "$MYCONDA/bin" ] && backToPATH "$MYCONDA/bin"
-
+[ -n "$MYCONDA" ] && [ -d "$MYCONDA/bin" ] && addToPATH "$MYCONDA/bin"
 
 # ===
 # === No sequences, for system default.
@@ -245,6 +256,13 @@ export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bot
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+if [ -d "$HOMEBREW_PREFIX" ]; then  # To simulate the brew shellenv command.
+    export HOMEBREW_PREFIX
+    export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
+    export HOMEBREW_REPOSITORY="${HOMEBREW_PREFIX}/Homebrew"
+    export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+    export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
+fi
 
 # ===
 # === Functions
@@ -346,15 +364,6 @@ fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2>
 for f in "${fzf_files_array[@]}"; do
    . "$f"
 done
-if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then  # To simulate the brew shellenv command but backToPATH.
-    backToPATH "/home/linuxbrew/.linuxbrew/sbin"
-    backToPATH "/home/linuxbrew/.linuxbrew/bin"
-    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
-    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
-    export MANPATH="/home/linuxbrew/.linuxbrew/share/man${MANPATH+:$MANPATH}:"
-    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}"
-fi
 
 
 # ===============
