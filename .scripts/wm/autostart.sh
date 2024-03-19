@@ -59,14 +59,14 @@ xset -dpms
 # We use single_instance here only for preventing the accidental case.
 # "$single_instance" ~/.scripts/wm/autostart/sound.sh
 
-# Ref: https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Pulse_overwrites_ALSA_settings
-restore_alsa() {
-    while [ -z "$(pidof pulseaudio)" ]; do
-        sleep 0.5
-    done
-    alsactl -f /var/lib/alsa/asound.state restore
-}
-restore_alsa &
+# # Ref: https://wiki.archlinux.org/title/PulseAudio/Troubleshooting#Pulse_overwrites_ALSA_settings
+# restore_alsa() {
+#     while command -v pulseaudio > /dev/null 2>&1 && [ -z "$(pidof pulseaudio)" ]; do
+#         sleep 0.5
+#     done
+#     alsactl -f /var/lib/alsa/asound.state restore
+# }
+# restore_alsa &
 
 
 # ================

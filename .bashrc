@@ -221,7 +221,7 @@ onconda "$MYCONDA"
 # ===
 # === Beautify
 # ===
-if command -v curl &> /dev/null && [ ! -e "${MYLOCAL}/starship" ]; then
+if ! command -v starship > /dev/null 2>&1 && command -v curl > /dev/null 2>&1; then
     curl -sS https://mirror.ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
     sed 's/https\:\/\/github\.com/https\:\/\/mirror\.ghproxy\.com\/https\:\/\/github\.com/g' | \
     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
