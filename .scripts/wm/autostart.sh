@@ -3,7 +3,7 @@
 # =============
 # === Utils ===
 # =============
-# single_instance=~/.scripts/wm/utils/single_instance.sh
+single_instance=~/.scripts/wm/utils/single_instance.sh
 
 
 # ================
@@ -38,15 +38,15 @@ esac
 # === Screen ===
 # ==============
 # Disable screen blanking and screen saver
-# "$single_instance" ~/.scripts/wm/autostart/screen.sh
+"$single_instance" ~/.scripts/wm/autostart/screen.sh
 
-# Disable screen blanking
-xset s 0 0
-xset s noblank
-xset s off
-# Disable screen saver
-xset dpms 0 0 0
-xset -dpms
+# # Disable screen blanking
+# xset s 0 0
+# xset s noblank
+# xset s off
+# # Disable screen saver
+# xset dpms 0 0 0
+# xset -dpms
 
 
 # =============
