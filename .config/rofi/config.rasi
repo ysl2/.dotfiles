@@ -8,3 +8,7 @@ configuration {
 	kb-cancel: "Escape,Control+g,Control+bracketleft,Control+c";
 }
 @theme "dracula"
+window {
+    width: 50%;
+    height: 50%;
+}
