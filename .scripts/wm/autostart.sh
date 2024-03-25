@@ -52,6 +52,8 @@ esac
 # =============
 # === Sound ===
 # =============
+# NOTE: You only need to `sudo systemctl disable gdm` then nothing else should be done here.
+
 # Restore sound settings from file when login.
 # [ -f ~/.asound.state ] && alsactl restore -f ~/.asound.state
 # Keep tracking current sound settings into file.
