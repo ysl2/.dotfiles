@@ -78,6 +78,7 @@ killall picom 2> /dev/null; picom -D 5 -f -b --vsync
 # Clean dmenu cache
 # rm ~/.cache/dmenu_run 2> /dev/null
 killall unclutter 2> /dev/null; unclutter --timeout 1 &
+killall dunst 2> /dev/null; dunst -config ~/.config/dunst/dunstrc &
 
 
 # =============================
