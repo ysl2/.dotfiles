@@ -83,6 +83,7 @@ addToPATH "$HOME"/.local/bin
 # ===
 # === No sequences, but put them last.
 # ===
+# addToPATH /var/lib/flatpak/exports/bin  # Not needed.
 addToPATH "$MYBIN"/ANTs/install/bin
 addToPATH "$HOME"/.local/kitty.app/bin
 addToPATH "$HOME"/.cargo/bin
@@ -100,6 +101,10 @@ searchToPATH "$MYLOCAL"
 addToPATH "$MYLOCAL"
 
 addToPATH "$MYLOCAL/_"
+
+_go=$(which go)
+GOPATH="${_go%/*/*}"/gopath
+backToPATH "${GOPATH}/bin"
 
 
 # ===========================
@@ -246,10 +251,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
 export FZF_COMPLETION_TRIGGER='\'
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
-_go=$(which go)
 export GOPATH
-GOPATH="${_go%/*/*}"/gopath
-backToPATH "${GOPATH}/bin"
 # export TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
 export TESSDATA_PREFIX="$MYLOCAL"/tessdata_best
 export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
