@@ -1155,6 +1155,14 @@ nix() {
 }
 
 
+ngrams() {
+    mkdir -p ~/.ngrams
+    cd ~/.ngrams
+    wget -c https://languagetool.org/download/ngram-data/ngrams-en-20150817.zip
+    unzip ngrams-en-20150817.zip && rm ngrams-en-20150817.zip
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
