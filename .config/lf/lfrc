@@ -33,7 +33,14 @@ map p :paste; clear
 map <c-g> &dragon -a -x $fx
 map R :reload
 # map i $$PAGER "$f"
-map m
+
+cmd chmod %{{
+    printf "Change permission: "
+    read ans
+    chmod $ans $f
+    lf -remote "send $id :reload"
+}}
+map + :chmod
 
 
 # =====================
@@ -56,6 +63,7 @@ cmd move-parent &{{
 map J move-parent down
 map K move-parent up
 
+map m
 cmd mkdir %{{
     printf "Make directory: "
     read ans
@@ -63,7 +71,6 @@ cmd mkdir %{{
     lf -remote "send $id select \"$ans\""
 }}
 map md mkdir
-
 cmd touch %{{
     printf "Make file: "
     read ans
