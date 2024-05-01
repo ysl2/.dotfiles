@@ -362,7 +362,7 @@ alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 # ===
 # === Outside sources
 # ===
-[ -f "$MYLOCAL"/starship ] && eval "$(starship init $(basename "$SHELL"))"
+command -v starship > /dev/null 2>&1 && eval "$(starship init $(basename "$SHELL"))"
 fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2> /dev/null))
 for f in "${fzf_files_array[@]}"; do
    . "$f"

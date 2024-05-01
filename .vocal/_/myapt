@@ -327,9 +327,7 @@ fzf () {
     cd
     git clone --depth=1 git@"$GHSSH":junegunn/fzf.git ~/.fzf
     cd ~/.fzf
-    if [ -n "$GHPROXY" ]; then
-        sed -i 's/url=/url=https:\/\/ghproxy.com\//g' install
-    fi
+    sed -i 's/url=/url=https:\/\/mirror.ghproxy.com\//g' install
     ./install
 }
 
