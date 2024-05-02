@@ -1,5 +1,6 @@
 # If not running interactively, don't do anything
-if [ -z "$DESKTOP_SESSION" ] && [ -n "$-" ] && ! echo "$-" | grep -q "i"; then
+# if [ -z "$DESKTOP_SESSION" ] && [ -n "$-" ] && ! echo "$-" | grep -q "i"; then
+if [ -t 0 ] && [ -n "$-" ] && ! echo "$-" | grep -q "i"; then
    return
 fi
 # ===================================================
