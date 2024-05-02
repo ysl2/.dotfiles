@@ -104,8 +104,10 @@ addToPATH "$MYLOCAL"
 addToPATH "$MYLOCAL/_"
 
 _go=$(which go)
-GOPATH="${_go%/*/*}"/gopath
-[ -e "$GOPATH" ] && backToPATH "${GOPATH}/bin"
+if [ -n "$_go" ]; then
+    GOPATH="${_go%/*/*}"/gopath
+    backToPATH "${GOPATH}/bin"
+fi
 
 
 # ===========================
