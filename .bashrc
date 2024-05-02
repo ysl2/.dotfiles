@@ -104,7 +104,7 @@ addToPATH "$MYLOCAL/_"
 
 _go=$(which go)
 GOPATH="${_go%/*/*}"/gopath
-[ -e "$GPATH" ] && backToPATH "${GOPATH}/bin"
+[ -e "$GOPATH" ] && backToPATH "${GOPATH}/bin"
 
 
 # ===========================
@@ -114,9 +114,10 @@ GOPATH="${_go%/*/*}"/gopath
 #     return
 # fi
 # if [ "$XDG_SESSION_TYPE" != 'tty' ] && [ ! -t 0 ]; then
-if [ ! -t 0 ]; then
-    return
-fi
+
+# Ref: https://stackoverflow.com/questions/54933530/bash-script-determine-if-script-launched-in-terminal-console-or-gui
+[ ! -t 0 ] && return
+
 
 
 # ===========================
