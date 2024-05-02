@@ -1,5 +1,5 @@
 # If not running interactively, don't do anything
-if [ -n "$-" ] && ! echo "$-" | grep -q "i"; then
+if [ -z "$DESKTOP_SESSION" ] && [ -n "$-" ] && ! echo "$-" | grep -q "i"; then
    return
 fi
 # ===================================================
@@ -110,7 +110,11 @@ GOPATH="${_go%/*/*}"/gopath
 # ===========================
 # === For Display Manager ===
 # ===========================
-if [ -n "$DISPLAY" ] && [ -z "$ZSH_VERSION" ] && [ -z "$BASH_VERSION" ]; then
+# if [ -n "$DISPLAY" ] && [ -z "$ZSH_VERSION" ] && [ -z "$BASH_VERSION" ]; then
+#     return
+# fi
+# if [ "$XDG_SESSION_TYPE" != 'tty' ] && [ ! -t 0 ]; then
+if [ ! -t 0 ]; then
     return
 fi
 
