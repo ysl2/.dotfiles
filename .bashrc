@@ -84,8 +84,8 @@ addToPATH "$HOME"/.local/bin
 # === No sequences, but put them last.
 # ===
 # addToPATH /var/lib/flatpak/exports/bin  # Not needed.
-addToPATH "$MYBIN"/ANTs/install/bin
-addToPATH "$HOME"/.local/kitty.app/bin
+#addToPATH "$MYBIN"/ANTs/install/bin
+#addToPATH "$HOME"/.local/kitty.app/bin
 addToPATH "$HOME"/.cargo/bin
 addToPATH "$HOME"/.fzf/bin
 
