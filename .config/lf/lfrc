@@ -37,7 +37,8 @@ map R :reload
 cmd chmod %{{
     printf "Change permission: "
     read ans
-    chmod $ans $f
+    chmod $ans $fx
+    lf -remote "send $id :unselect"
     lf -remote "send $id :reload"
 }}
 map + :chmod
