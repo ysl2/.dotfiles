@@ -323,7 +323,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias py='python3'
+alias py='python'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -335,28 +335,28 @@ cht() {
     curl cht.sh/"$1"
 }
 jo() {
-	ID="$$"
-	mkdir -p /tmp/"$USER"
-	OUTPUT_FILE="/tmp/${USER}/joshuto-cwd-${ID}"
-	env joshuto --output-file "$OUTPUT_FILE" "$@"
-	exit_code=$?
+    ID="$$"
+    mkdir -p /tmp/"$USER"
+    OUTPUT_FILE="/tmp/${USER}/joshuto-cwd-${ID}"
+    env joshuto --output-file "$OUTPUT_FILE" "$@"
+    exit_code=$?
 
-	case "$exit_code" in
-		# regular exit
-		0)
-			;;
-		# output contains current directory
-		101)
-			JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
-			cd "$JOSHUTO_CWD"
-			;;
-		# output selected files
-		102)
-			;;
-		*)
-			echo "Exit code: $exit_code"
-			;;
-	esac
+    case "$exit_code" in
+        # regular exit
+        0)
+            ;;
+        # output contains current directory
+        101)
+            JOSHUTO_CWD=$(cat "$OUTPUT_FILE")
+            cd "$JOSHUTO_CWD"
+            ;;
+        # output selected files
+        102)
+            ;;
+        *)
+            echo "Exit code: $exit_code"
+            ;;
+    esac
 }
 alias xterm='xterm -ti vt340'
 # alias clash="clash -d ~/.config/clash/ -f ~/.config/clash/glados.yaml"
