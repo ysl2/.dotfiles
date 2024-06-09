@@ -88,7 +88,8 @@ addToPATH "$HOME"/.local/bin
 #addToPATH "$MYBIN"/ANTs/install/bin
 #addToPATH "$HOME"/.local/kitty.app/bin
 addToPATH "$HOME"/.cargo/bin
-addToPATH "$HOME"/.fzf/bin
+# In case if the fzf is manually installed.
+# addToPATH "$HOME"/.fzf/bin
 
 # ===
 # === In sequences, last in first out.
@@ -233,11 +234,11 @@ onconda "$MYCONDA"
 # ===
 # === Beautify
 # ===
-if ! command -v starship > /dev/null 2>&1 && command -v curl > /dev/null 2>&1; then
-    curl -sS https://mirror.ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
-    sed 's/https\:\/\/github\.com/https\:\/\/mirror\.ghproxy\.com\/https\:\/\/github\.com/g' | \
-    sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
-fi
+# if ! command -v starship > /dev/null 2>&1 && command -v curl > /dev/null 2>&1; then
+#     curl -sS https://mirror.ghproxy.com/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+#     sed 's/https\:\/\/github\.com/https\:\/\/mirror\.ghproxy\.com\/https\:\/\/github\.com/g' | \
+#     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$MYLOCAL/g' | sh
+# fi
 
 # ===
 # === Environment Variable
@@ -369,10 +370,15 @@ alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 # === Outside sources
 # ===
 command -v starship > /dev/null 2>&1 && eval "$(starship init $(basename "$SHELL"))"
-fzf_files_array=($(find ~/.fzf/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2> /dev/null))
-for f in "${fzf_files_array[@]}"; do
-   . "$f"
-done
+fzf_bin="$(which fzf)"
+if [ -n "$fzf_bin" ]; then
+    fzf_bin="$(realpath "$fzf_bin")"
+    fzf_root_dir="$(dirname "$(dirname "$fzf_bin")")"
+    fzf_files_array=($(find "$fzf_root_dir"/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2> /dev/null))
+    for f in "${fzf_files_array[@]}"; do
+       . "$f"
+    done
+fi
 
 
 # ===============
