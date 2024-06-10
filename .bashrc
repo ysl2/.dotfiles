@@ -274,6 +274,7 @@ if [ -d "$HOMEBREW_PREFIX" ]; then  # To simulate the brew shellenv command.
     export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
     export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 fi
+export HISTFILE=~/.bash_history
 
 # ===
 # === Functions
@@ -381,6 +382,7 @@ if [ -n "$fzf_bin" ]; then
 fi
 # Note: autin must be inited after fzf beacuse there are keybinding conflict between them.
 command -v atuin > /dev/null 2>&1 && eval "$(atuin init $(basename "$SHELL"))"
+# command -v mcfly > /dev/null 2>&1 && eval "$(mcfly init $(basename "$SHELL"))"
 
 
 # ===============
