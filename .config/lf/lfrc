@@ -266,6 +266,23 @@ map <a-m> bookmark_remove_current_path
 map <a-'> bookmark_remove_not_exist
 map <a-"> bookmark_remove_all
 
+cmd z %{{
+    printf "Zoxide goto: "
+    read ans
+    result="$(zoxide query --exclude $PWD "$ans" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+    lf -remote "send clear"
+}}
+cmd zi ${{
+    result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    lf -remote "send $id cd \"$result\""
+}}
+cmd on-cd &{{
+    zoxide add "$PWD"
+}}
+map zz z
+map zi zi
+
 
 # ========================
 # === Default settings ===
