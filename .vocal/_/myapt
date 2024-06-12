@@ -1161,6 +1161,14 @@ ngrams() {
 }
 
 
+tinymist() {
+    TINYMIST_VERSION=v0.11.10
+    TARGET=~/.vocal/tinymist
+    wget -c -O "$TARGET" "$GHPROXY"https://github.com/Myriad-Dreamin/tinymist/releases/download/"$TINYMIST_VERSION"/tinymist-linux-x64
+    chmod 777 "$TARGET"
+}
+
+
 if [[ -z $1 ]]; then
     echo 'Please select an item to install:'
     echo ''
