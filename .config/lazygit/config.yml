@@ -9,27 +9,27 @@ gui:
     language: 'en' # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko'
     timeFormat: '02 Jan 06 15:04 MST' # https://pkg.go.dev/time#Time.Format
     theme:
-      activeBorderColor:
-        - '#eebebe'
-        - bold
-      inactiveBorderColor:
-        - '#a5adce'
-      optionsTextColor:
-        - '#8caaee'
-      selectedLineBgColor:
-        - '#414559'
-      selectedRangeBgColor:
-        - '#414559'
-      cherryPickedCommitBgColor:
-        - '#51576d'
-      cherryPickedCommitFgColor:
-        - '#eebebe'
-      unstagedChangesColor:
-        - '#e78284'
-      defaultFgColor:
-        - '#c6d0f5'
-      searchingActiveBorderColor:
-        - '#e5c890'
+        activeBorderColor:
+            - '#eebebe'
+            - bold
+        inactiveBorderColor:
+            - '#a5adce'
+        optionsTextColor:
+            - '#8caaee'
+        selectedLineBgColor:
+            - '#414559'
+        selectedRangeBgColor:
+            - '#414559'
+        cherryPickedCommitBgColor:
+            - '#51576d'
+        cherryPickedCommitFgColor:
+            - '#eebebe'
+        unstagedChangesColor:
+            - '#e78284'
+        defaultFgColor:
+            - '#c6d0f5'
+        searchingActiveBorderColor:
+            - '#e5c890'
     commitLength:
         show: true
     mouseEvents: true
@@ -97,7 +97,7 @@ keybinding:
         quit-alt1: '<c-c>' # alternative/alias of quit
         return: '<esc>' # return to previous menu, will quit if there's nowhere to return
         # When set to a printable character, this will work for returning from non-prompt panels
-        return-alt1: null
+        return-alt1: <disabled>
         quitWithoutChangingDirectory: 'Q'
         togglePanel: '<tab>' # goto the next panel
         prevItem: '<up>' # go one line up
