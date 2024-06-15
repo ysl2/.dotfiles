@@ -384,6 +384,8 @@ fi
 command -v atuin > /dev/null 2>&1 && eval "$(atuin init $(basename "$SHELL"))"
 # command -v mcfly > /dev/null 2>&1 && eval "$(mcfly init $(basename "$SHELL"))"
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init $(basename "$SHELL"))"
+# Prevent nautilus from generating core dump file.
+ulimit -c 0
 
 
 # ===============
