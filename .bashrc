@@ -104,8 +104,8 @@ addToPATH "$MYLOCAL"
 
 addToPATH "$MYLOCAL/_"
 
-_go=$(which go)
-if [ -n "$_go" ]; then
+if command -v go > /dev/null 2>&1; then
+    _go="$(which go)"
     GOPATH="${_go%/*/*}"/gopath
     backToPATH "${GOPATH}/bin"
 fi
@@ -371,8 +371,8 @@ alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 # === Outside sources
 # ===
 command -v starship > /dev/null 2>&1 && eval "$(starship init $(basename "$SHELL"))"
-fzf_bin="$(which fzf)"
-if [ -n "$fzf_bin" ]; then
+if command -v fzf > /dev/null 2>&1; then
+    fzf_bin="$(which fzf)"
     fzf_bin="$(realpath "$fzf_bin")"
     fzf_root_dir="$(dirname "$(dirname "$fzf_bin")")"
     fzf_files_array=($(find "$fzf_root_dir"/shell -maxdepth 1 -name "*.$(basename $SHELL)" 2> /dev/null))
