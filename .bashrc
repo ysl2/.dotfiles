@@ -18,13 +18,24 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 export GLFW_IM_MODULE=ibus
-
-HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+# Ref: https://stackoverflow.com/a/27776822/13379393
+case "$(uname -sr)" in
+    Darwin*)
+        HOMEBREW_PREFIX="/opt/homebrew"
+        ;;
+    # Linux*)
+    #
+    #     ;;
+    *)
+        HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+        ;;
+esac
 
 # Get value from localhost.
 [ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
-# MYCONDA
-# MYTMUX
+# MYCONDA: str
+# MYTMUX: str
+# MYNOMIRRORFLAG: int
 
 
 # =================================
@@ -245,7 +256,6 @@ onconda "$MYCONDA"
 # ===
 export EDITOR
 EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
-export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
 # export LD_LIBRARY_PATH=
 # addTo LD_LIBRARY_PATH "${MYLOCAL}/lib"
 # addTo LD_LIBRARY_PATH "${MYLOCAL}/lib64"
@@ -258,15 +268,9 @@ export CONDA_CHANGEPS1=no
 export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
 export FZF_COMPLETION_TRIGGER='\'
 export GO111MODULE=on
-export GOPROXY=https://goproxy.cn
 export GOPATH
 # export TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
 export TESSDATA_PREFIX="$MYLOCAL"/tessdata_best
-export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
-export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 if [ -d "$HOMEBREW_PREFIX" ]; then  # To simulate the brew shellenv command.
     export HOMEBREW_PREFIX
     export HOMEBREW_CELLAR="${HOMEBREW_PREFIX}/Cellar"
@@ -275,6 +279,19 @@ if [ -d "$HOMEBREW_PREFIX" ]; then  # To simulate the brew shellenv command.
     export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 fi
 export HISTFILE=~/.bash_history
+# For Chinese mirrors:
+if [ "$MYNOMIRRORFLAG" != 1 ]; then
+    # Node.js
+    export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
+    # Golang
+    export GOPROXY=https://goproxy.cn
+    # Homebrew
+    export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+    export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+fi
 
 # ===
 # === Functions
