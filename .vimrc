@@ -21,7 +21,10 @@ colorscheme default
 if has('nvim')
     set exrc
 endif
-language en_US.utf8
+let os_name = system('uname -s')
+if os_name !=# "Darwin\n"
+    language en_US.UTF-8
+endif
 set scrolloff=1
 
 " === Filetype settings.
