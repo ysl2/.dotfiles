@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import sys
+from pathlib import Path
+import os
+
+def create_symlink(targets, dest_dir='.'):
+    """
+    Create symbolic links for the given targets in the specified destination directory.
+
+    :param targets: List of file paths to create symbolic links for.
+    :param dest_dir: Directory where the symbolic links will be created.
+    """
+    dest_path = Path(dest_dir).resolve()
+
+    for target in targets:
+        target_path = Path(target).resolve()
+        symlink_path = dest_path / target_path.name
+
+        # Calculate relative path from the destination directory to the target
+        # relative_target_path = target_path.relative_to(dest_path)
+        relative_target_path = os.path.relpath(target_path, symlink_path.parent)
+
+        try:
+            symlink_path.symlink_to(relative_target_path)
+            print(f"Created symlink: {symlink_path} -> {relative_target_path}")
+        except FileExistsError:
+            print(f"Symlink already exists: {symlink_path}")
+        except OSError as e:
+            print(f"Failed to create symlink for {target}: {e}")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <target1> <target2> ...")
+        sys.exit(1)
+
+    targets = sys.argv[1:]
+    create_symlink(targets)
+

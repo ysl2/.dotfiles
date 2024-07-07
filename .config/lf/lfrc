@@ -127,7 +127,10 @@ cmd link %{{
     fi
     case "$mode" in
         # symbolically copy mode is indicating a soft link
-        copy) ln -sr -t . -- "$@";;
+        copy)
+            # ln -sr -t . -- "$@"
+            ~/.config/lf/scripts/lf_symlink "$@"
+            ;;
         # while a move mode is indicating a hard link
         move) ln -t . -- "$@";;
     esac
