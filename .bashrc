@@ -197,7 +197,7 @@ onconda() {
     echo '' > "$LOCK"
 
     # Check if the value is legal.
-    if [ ! -e "$myconda" ] || [ ! -d "$myconda" ]; then
+    if [ ! -d "$myconda" ]; then
         if [ -e "${MYLOCAL}/anaconda3" ]; then
             myconda="${MYLOCAL}/anaconda3"
             echo 'Fallback to default anaconda3.' >> "$LOCK"
@@ -300,7 +300,7 @@ _to() {
     else
         rm "$1";
     fi
-    . ~/.bashrc
+    . ~/."$(basename "$SHELL")"rc
 }
 totmux() {
     _to "${_MYLOCK}/tmux"
