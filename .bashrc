@@ -382,7 +382,7 @@ alias xterm='xterm -ti vt340'
 alias bfg="java -jar ${MYLOCAL}/bfg.jar"
 alias fit='git --git-dir ~/.dotfiles.git --work-tree ~'
 alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
-
+alias aim='nvim -u ~/.vimrc'
 
 # ===
 # === Outside sources
