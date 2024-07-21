@@ -31,11 +31,19 @@ cmd open &{{
             exit 0
             ;;
         application/pdf)
-            zathura "$f" &> /dev/null
+            if [ "$(uname)" = Darwin ]; then
+                $OPENER "$f" &> /dev/null
+            else
+                zathura "$f" &> /dev/null
+            fi
             exit 0
             ;;
         image/*)
-            feh "$f" &> /dev/null
+            if [ "$(uname)" = Darwin ]; then
+                $OPENER "$f" &> /dev/null
+            else
+                feh "$f" &> /dev/null
+            fi
             exit 0
             ;;
         *)
