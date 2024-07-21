@@ -19,17 +19,11 @@ export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 export GLFW_IM_MODULE=ibus
 # Ref: https://stackoverflow.com/a/27776822/13379393
-case "$(uname -sr)" in
-    Darwin*)
-        HOMEBREW_PREFIX="/opt/homebrew"
-        ;;
-    # Linux*)
-    #
-    #     ;;
-    *)
-        HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-        ;;
-esac
+if [ "$(uname)" = Darwin ]; then
+    HOMEBREW_PREFIX="/opt/homebrew"
+else
+    HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+fi
 
 # Get value from localhost.
 [ -f ~/.bashrc.localhost.pre ] && . ~/.bashrc.localhost.pre
