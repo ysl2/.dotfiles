@@ -22,9 +22,9 @@ set info size
 set dircounts
 
 # === engines
-source ~/.config/lf/lf_opener
-set previewer ~/.config/lf/lf_previewer
-set cleaner ~/.config/lf/lf_cleaner
+source ~/.config/lf/lfrc.opener
+set previewer ~/.config/lf/scripts/previewer
+set cleaner ~/.config/lf/scripts/cleaner
 
 # ===
 # === keymaps
@@ -129,7 +129,7 @@ cmd link %{{
         # symbolically copy mode is indicating a soft link
         copy)
             # ln -sr -t . -- "$@"
-            ~/.config/lf/scripts/lf_symlink "$@"
+            ~/.config/lf/scripts/linker "$@"
             ;;
         # while a move mode is indicating a hard link
         move) ln -t . -- "$@";;
