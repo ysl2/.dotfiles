@@ -37,7 +37,9 @@ autocmd FileType json,markdown,html,css,lua,yaml setlocal tabstop=2 shiftwidth=2
 " === Keymaps
 " ===
 inoremap <C-c> <C-[>
-tnoremap <A-[> <C-\><C-n>
+if has('nvim') || v:version >= 800
+    tnoremap <A-[> <C-\><C-n>
+endif
 " Change <C-a> and <C-x> to <A-a> and <A-x> in normal and visual mode.
 nnoremap <C-a> <Nop>
 nnoremap <A-a> <C-a>
