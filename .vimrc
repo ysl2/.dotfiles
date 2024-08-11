@@ -31,7 +31,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 autocmd BufWritePre * set ff=unix
-autocmd FileType json,markdown,html,css,lua setlocal tabstop=2 shiftwidth=2
+autocmd FileType json,markdown,html,css,lua,yaml setlocal tabstop=2 shiftwidth=2
 
 " ===
 " === Keymaps
