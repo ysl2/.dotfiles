@@ -139,9 +139,27 @@ cmd link %{{
 }}
 map P :link
 
-cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
-cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
-cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+cmd yank-dirname ${{
+    if [ "$(uname)" = 'Darwin' ]; then
+        dirname -- "$f" | tr -d '\n' | pbcopy
+    else
+        dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+    fi
+}}
+cmd yank-path ${{
+    if [ "$(uname)" = 'Darwin' ]; then
+        printf '%s' "$f" | pbcopy
+    else
+        printf '%s' "$f" | xclip -i -selection clipboard
+    fi
+}}
+cmd yank-basename ${{
+    if [ "$(uname)" = 'Darwin' ]; then
+        basename -- "$f" | tr -d '\n' | pbcopy
+    else
+        basename -- "$f" | head -c-1 | xclip -i -selection clipboard
+    fi
+}}
 cmd yank-basename-without-extension ${{
     echo "$fx" |
       xargs -r -d '\n' basename -a |
@@ -161,6 +179,13 @@ cmd yank-basename-without-extension ${{
       if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
       xclip -i -selection clipboard
 }}
+map y
+map yy :copy
+map yd :yank-dirname
+map yp :yank-path
+map yb :yank-basename
+map d
+map dd :cut
 
 map . :read; cmd-history-prev; cmd-enter
 
