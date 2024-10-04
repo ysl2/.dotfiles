@@ -30,7 +30,13 @@ set cleaner ~/.config/lf/scripts/cleaner
 # === keymaps
 # ===
 map p :paste; clear
-map <c-g> &dragon -a -x $fx
+map <c-g> %{{
+    if [ "$(uname)" = 'Darwin' ]; then
+        open -a yoink $fx
+    else
+        dragon -a -x $fx
+    fi
+}}
 map R :reload
 # map i $$PAGER "$f"
 
