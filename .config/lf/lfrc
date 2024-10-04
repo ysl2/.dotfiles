@@ -30,14 +30,17 @@ set cleaner ~/.config/lf/scripts/cleaner
 # === keymaps
 # ===
 map p :paste; clear
-map <c-g> %{{
+map <c-g> &{{
     if [ "$(uname)" = 'Darwin' ]; then
         open -a yoink $fx
     else
         dragon -a -x $fx
     fi
 }}
-map R :reload
+map <c-s> ${{
+    miniserve . -qu
+}}
+# map R :reload
 # map i $$PAGER "$f"
 
 cmd chmod %{{
@@ -116,10 +119,10 @@ map ri :rename; cmd-home
 map ra :rename; cmd-end
 map rc :rename; cmd-end; cmd-delete-home
 
-cmd follow_link %{{
+cmd follow-link %{{
   lf -remote "send ${id} select '$(readlink $f)'"
 }}
-map gL follow_link
+map gL follow-link
 
 # y (select for copy) and P to paste soft-link
 # d (select for cut) and P to paste hard-link
@@ -223,7 +226,7 @@ cmd select-dirs &{{
     lf -remote "send $id :unselect; toggle $(get_dirs)"
 }}
 
-cmd bookmark_create %{{
+cmd bookmark-create %{{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     mkdir -p "$LF_BOOKMARK_PATH"
     printf "Mark current path to (string): "
@@ -244,7 +247,7 @@ cmd bookmark_create %{{
     echo "$PWD" > "${LF_BOOKMARK_PATH}/${ans}"
     lf -remote "send $id reload"
 }}
-cmd bookmark_jump ${{
+cmd bookmark-jump ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     mkdir -p "$LF_BOOKMARK_PATH"
     target_mark="$(ls "$LF_BOOKMARK_PATH" | fzf || exit 0)"
@@ -259,7 +262,7 @@ cmd bookmark_jump ${{
     fi
     lf -remote "send $id cd \"$target_path\""
 }}
-cmd bookmark_remove ${{
+cmd bookmark-remove ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     mkdir -p "$LF_BOOKMARK_PATH"
     target_mark="$(ls "$LF_BOOKMARK_PATH" | fzf || exit 0)"
@@ -268,7 +271,7 @@ cmd bookmark_remove ${{
     fi
     rm "${LF_BOOKMARK_PATH}/${target_mark}" 2> /dev/null
 }}
-cmd bookmark_remove_current_path ${{
+cmd bookmark-remove-current-path ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     [ ! -d "$LF_BOOKMARK_PATH" ] && exit 0
     for f in "$LF_BOOKMARK_PATH"/*; do
@@ -280,7 +283,7 @@ cmd bookmark_remove_current_path ${{
         fi
     done
 }}
-cmd bookmark_remove_not_exist ${{
+cmd bookmark-remove-not-exist ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     [ ! -d "$LF_BOOKMARK_PATH" ] && exit 0
     for f in "$LF_BOOKMARK_PATH"/*; do
@@ -292,16 +295,16 @@ cmd bookmark_remove_not_exist ${{
         fi
     done
 }}
-cmd bookmark_remove_all ${{
+cmd bookmark-remove-all ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     rm -rf "$LF_BOOKMARK_PATH" 2> /dev/null
 }}
-map mm bookmark_create
-map ` bookmark_jump
-map mM bookmark_remove
-map <a-m> bookmark_remove_current_path
-map <a-'> bookmark_remove_not_exist
-map <a-"> bookmark_remove_all
+map mm bookmark-create
+map ` bookmark-jump
+map mM bookmark-remove
+map <a-m> bookmark-remove-current-path
+map <a-'> bookmark-remove-not-exist
+map <a-"> bookmark-remove-all
 
 cmd z %{{
     printf "Zoxide goto: "
