@@ -273,6 +273,8 @@ if [ -d "$HOMEBREW_PREFIX" ]; then  # To simulate the brew shellenv command.
     export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 fi
 export HISTFILE=~/.bash_history
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 # For Chinese mirrors:
 if [ "$MYNOMIRRORFLAG" != 1 ]; then
     # Node.js
