@@ -115,6 +115,11 @@ if command -v go > /dev/null 2>&1; then
     backToPATH "${GOPATH}/bin"
 fi
 
+if [ "$(uname)" = Darwin ]; then
+    # brew install gnu-sed
+    addToPATH "$HOMEBREW_PREFIX"/opt/gnu-sed/libexec/gnubin
+fi
+
 
 # ===========================
 # === For Display Manager ===
