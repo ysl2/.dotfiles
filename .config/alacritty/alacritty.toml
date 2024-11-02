@@ -3,6 +3,9 @@ import = ['~/.config/alacritty/alacritty.localhost.toml']
 [env]
 TERM = 'xterm-256color'
 
+[window]
+option_as_alt = 'Both'
+
 [font]
 normal = { family = 'FiraCode Nerd Font' }
 bold = { family = 'FiraCode Nerd Font' }
