@@ -280,6 +280,8 @@ fi
 export HISTFILE=~/.bash_history
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+# For lazygit in MacOS:
+export XDG_CONFIG_HOME=~/.config
 # For Chinese mirrors:
 if [ "$MYNOMIRRORFLAG" != 1 ]; then
     # Node.js
