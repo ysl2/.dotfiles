@@ -73,21 +73,18 @@ cmd move-parent &{{
 map J move-parent down
 map K move-parent up
 
-map m
-cmd mkdir %{{
-    printf "Make directory: "
+cmd create %{{
+    printf "Create: "
     read ans
-    mkdir -p $ans
+    if [[ "$ans" == */ ]]; then
+        mkdir -p "$ans"
+    else
+        mkdir -p "$(dirname "$ans")"
+        touch "$ans"
+    fi
     lf -remote "send $id select \"$ans\""
 }}
-map md mkdir
-cmd touch %{{
-    printf "Make file: "
-    read ans
-    touch $ans
-    lf -remote "send $id select \"$ans\""
-}}
-map mf touch
+map a create
 
 cmd bulk-rename ${{
     old="$(mktemp)"
@@ -299,6 +296,7 @@ cmd bookmark-remove-all ${{
     LF_BOOKMARK_PATH=~/.local/share/lf/bookmarks
     rm -rf "$LF_BOOKMARK_PATH" 2> /dev/null
 }}
+map m
 map mm bookmark-create
 map ` bookmark-jump
 map mM bookmark-remove
