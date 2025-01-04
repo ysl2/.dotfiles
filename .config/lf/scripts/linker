@@ -14,24 +14,29 @@ def create_symlink(targets, dest_dir='.'):
     dest_path = Path(dest_dir).resolve()
 
     for target in targets:
-        target_path = Path(target).resolve()
+        target_path = Path(target)
+        resolved_target_path = Path(target).resolve()
         symlink_path = dest_path / target_path.name
 
         # Calculate relative path from the destination directory to the target
         # relative_target_path = target_path.relative_to(dest_path)
-        relative_target_path = os.path.relpath(target_path, symlink_path.parent)
+        relative_target_path = os.path.relpath(resolved_target_path, symlink_path.parent)
 
-        try:
-            symlink_path.symlink_to(relative_target_path)
-            print(f"Created symlink: {symlink_path} -> {relative_target_path}")
-        except FileExistsError:
-            print(f"Symlink already exists: {symlink_path}")
-        except OSError as e:
-            print(f"Failed to create symlink for {target}: {e}")
+        while True:
+            try:
+                symlink_path.symlink_to(relative_target_path)
+                print(f'Created symlink: {symlink_path} -> {relative_target_path}')
+                break
+            except FileExistsError:
+                symlink_path = Path(f'{symlink_path}_')
+                continue
+            except OSError as e:
+                print(f'Failed to create symlink for {target}: {e}')
+                break
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print("Usage: python script.py <target1> <target2> ...")
+        print('Usage: python script.py <target1> <target2> ...')
         sys.exit(1)
 
     targets = sys.argv[1:]
