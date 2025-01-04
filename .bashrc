@@ -277,6 +277,7 @@ if [ -d "$HOMEBREW_PREFIX" ]; then  # To simulate the brew shellenv command.
     export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
     export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 fi
+export HOMEBREW_NO_AUTO_UPDATE=1
 export HISTFILE=~/.bash_history
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
