@@ -32,6 +32,8 @@ set shiftwidth=4
 set expandtab
 autocmd BufWritePre * set ff=unix
 autocmd FileType json,markdown,html,css,lua,yaml setlocal tabstop=2 shiftwidth=2
+autocmd FileType c,cpp,go,gitconfig setlocal noexpandtab
+autocmd BufRead,BufNewFile .gitconfig set filetype=gitconfig
 
 " ===
 " === Keymaps
