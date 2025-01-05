@@ -22,7 +22,6 @@
 ; ======================
 ; === Delta Settings ===
 ; ======================
-;
 [core]
 	pager = delta
 
@@ -36,7 +35,6 @@
 	hyperlinks = true
 	keep-plus-minus-markers = true
 	line-numbers = true
-	syntax-theme = Nord
 
 	; https://github.com/catppuccin/delta/blob/main/catppuccin.gitconfig
 	blame-palette = "#1e1e2e #181825 #11111b #313244 #45475a"
@@ -69,8 +67,8 @@
 	# Should match the name of the bat theme
 	syntax-theme = Catppuccin Mocha
 
-[merge]
-	conflictstyle = zdiff3
+; [merge]
+; 	conflictstyle = zdiff3  ; Throws an error in lishui linux server
 
 
 ; ==========================
