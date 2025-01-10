@@ -1,0 +1,4 @@
+font-family = FiraCode Nerd Font
+font-size = 18
+theme = catppuccin-mocha
+confirm-close-surface = false
