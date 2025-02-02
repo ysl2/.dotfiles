@@ -32,4 +32,4 @@ git:
 keybinding:
     universal:
         quit-alt1: <disabled>
-        return: <c-c>
+        # return: <c-c>
