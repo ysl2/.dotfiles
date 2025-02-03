@@ -185,13 +185,13 @@ cmd yank-basename-without-extension ${{
       if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
       xclip -i -selection clipboard
 }}
-#\ map y
-#\ map yy :copy
-#\ map yd :yank-dirname
-#\ map yp :yank-path
-#\ map yb :yank-basename
-#\ map d
-#\ map dd :cut
+# map y
+# map yy :copy
+# map yd :yank-dirname
+# map yp :yank-path
+# map yb :yank-basename
+# map d
+# map dd :cut
 map gd :yank-dirname
 map gp :yank-path
 map gb :yank-basename
@@ -362,7 +362,13 @@ map x $$f
 map X !$f
 
 # dedicated keys for file opener actions
-map o &mimeopen $f
+map o &{{
+    if [ "$(uname)" = 'Darwin' ]; then
+        open $f
+    else
+        mimeopen $f
+    fi
+}}
 map O $mimeopen --ask $f
 
 # mkdir command. See wiki if you want it to select created dir
