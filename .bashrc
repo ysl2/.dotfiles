@@ -30,6 +30,7 @@ fi
 # MYCONDA: str
 # MYTMUX: str
 # MYNOMIRRORFLAG: int
+export MYTMUX
 
 
 # =================================
