@@ -41,7 +41,7 @@ map <c-s> ${{
     miniserve . -qu
 }}
 # map R :reload
-# map i $$PAGER "$f"
+map i $~/.config/lf/scripts/previewer $f | $PAGER
 
 cmd chmod %{{
     printf "Change permission: "
