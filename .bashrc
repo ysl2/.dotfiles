@@ -388,6 +388,7 @@ alias bfg="java -jar ${MYLOCAL}/bfg.jar"
 alias fit='git --git-dir ~/.dotfiles.git --work-tree ~'
 alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 alias aim='nvim -u ~/.vimrc'
+alias nim='nvim -u NONE'
 alias ms='miniserve . -qu'
 
 # ===
