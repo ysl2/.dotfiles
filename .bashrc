@@ -390,6 +390,7 @@ alias fat='lazygit --git-dir ~/.dotfiles.git --work-tree ~'
 alias aim='nvim -u ~/.vimrc'
 alias nim='nvim -u NONE'
 alias ms='miniserve . -qu'
+alias doom='~/.config/emacs/bin/doom'
 
 # ===
 # === Outside sources
