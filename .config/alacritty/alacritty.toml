@@ -1,4 +1,8 @@
-import = ['~/.config/alacritty/alacritty.localhost.toml']
+[general]
+import = [
+    '~/.config/alacritty/alacritty.dotlinks.toml',
+    '~/.config/alacritty/alacritty.localhost.toml',
+]
 
 [env]
 TERM = 'xterm-256color'
@@ -89,7 +93,24 @@ bindings = [
     { key = 'G', mods = 'Alt',       mode = '~Alt', action = 'ScrollToTop'        },
     { key = 'G', mods = 'Shift|Alt', mode = '~Alt', action = 'ScrollToBottom'     },
 
-    { key = 'Y', mode = 'Vi|~Search', action = 'Copy'           },
-    { key = 'Y', mode = 'Vi|~Search', action = 'ClearSelection' },
-    { key = 'Y', mode = 'Vi|~Search', action = 'ToggleViMode'   }
+    { key = 'Y',                         mode = 'Vi|~Search', action = 'Copy'           },
+    { key = 'Y',                         mode = 'Vi|~Search', action = 'ToggleViMode'   },
+    { key = 'Y',                         mode = 'Vi|~Search', action = 'ScrollToBottom' },
+    { key = 'Y',                         mode = 'Vi|~Search', action = 'ClearSelection' },
+
+    { key = 'I',     mods = 'Shift',     mode = 'Vi|~Search', action = 'ToggleViMode'   },
+    { key = 'I',     mods = 'Shift',     mode = 'Vi|~Search', action = 'ScrollToBottom' },
+    { key = 'I',                         mode = 'Vi|~Search', action = 'ClearSelection' },
+
+    { key = 'A',                         mode = 'Vi|~Search', action = 'ToggleViMode'   },
+    { key = 'A',                         mode = 'Vi|~Search', action = 'ScrollToBottom' },
+    { key = 'A',                         mode = 'Vi|~Search', action = 'ClearSelection' },
+
+    { key = 'A',     mods = 'Shift',     mode = 'Vi|~Search', action = 'ToggleViMode'   },
+    { key = 'A',     mods = 'Shift',     mode = 'Vi|~Search', action = 'ScrollToBottom' },
+    { key = 'A',     mods = 'Shift',     mode = 'Vi|~Search', action = 'ClearSelection' },
+
+    { key = 'Escape',                    mode = 'Vi|~Search', action = 'ToggleViMode'   },
+    { key = 'Escape',                    mode = 'Vi|~Search', action = 'ScrollToBottom' },
+    { key = 'Escape',                    mode = 'Vi|~Search', action = 'ClearSelection' },
 ]
