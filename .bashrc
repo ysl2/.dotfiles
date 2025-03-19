@@ -10,7 +10,6 @@ export MYLOCAL="$HOME"/.vocal
 mkdir -p "$MYLOCAL" &> /dev/null
 _MYLOCK="$MYLOCAL"/.lock
 mkdir -p "$_MYLOCK" &> /dev/null
-MYBIN="$MYLOCAL"/bin
 
 # The fcitx things must be put here, because it should be sourced when system booting.
 export GTK_IM_MODULE=fcitx
@@ -30,7 +29,7 @@ fi
 # MYCONDA: str
 # MYTMUX: str
 # MYNOMIRRORFLAG: int
-export MYTMUX
+export MYTMUX  # For neovide to use tmux.
 
 
 # =================================
@@ -91,7 +90,6 @@ addToPATH "$HOME"/.local/bin
 # === No sequences, but put them last.
 # ===
 # addToPATH /var/lib/flatpak/exports/bin  # Not needed.
-#addToPATH "$MYBIN"/ANTs/install/bin
 #addToPATH "$HOME"/.local/kitty.app/bin
 addToPATH "$HOME"/.cargo/bin
 # In case if the fzf is manually installed.
@@ -100,10 +98,6 @@ addToPATH "$HOME"/.cargo/bin
 # ===
 # === In sequences, last in first out.
 # ===
-if [ -d "$MYBIN" ]; then
-    searchToPATH "$MYBIN"
-    addToPATH "$MYBIN"
-fi
 
 searchToPATH "$MYLOCAL"
 addToPATH "$MYLOCAL"
@@ -150,32 +144,21 @@ fi
 # === Boot Tmux If Need ===
 # =========================
 ontmux() {
-    # Define local variables.
-    local mytmux="$1"
-    local LOCK="${_MYLOCK}/tmux"
+    local lock="${_MYLOCK}/tmux"
+    [ ! -e "$lock" ] && return
 
-    # Toggle on/off.
-    if [ ! -e "$LOCK" ]; then
-        return
-    fi
-    # Clear log.
-    echo '' > "$LOCK"
-
-    # Check if the value is legal.
-    if [ ! -e "$mytmux" ] || [ ! -f "$mytmux" ] || [ ! -x "$mytmux" ]; then
+    local mytmux="$MYTMUX"
+    if [ ! -f "$mytmux" ] || [ ! -x "$mytmux" ]; then
         if command -v tmux &> /dev/null; then
             mytmux=tmux
-            echo 'Fallback to default tmux in $PATH.' >> "$LOCK"
-        else
-            echo 'No tmux available.' >> "$LOCK"
-            return
         fi
     fi
-    echo "Current tmux value: ${mytmux}" >> "$LOCK"
+    echo "Current tmux value: \"${mytmux}\"" > "$lock"
+    [ -z "$mytmux" ] && return
+
     [ -z "$TMUX" ] && exec "$mytmux" new-session -A -s main
 }
-ontmux "$MYTMUX"
-
+ontmux
 
 # =============================
 # === Define addTo Function ===
@@ -196,31 +179,20 @@ ontmux "$MYTMUX"
 # === Boot Conda If Need ===
 # ==========================
 onconda() {
-    # Define local variables.
-    local myconda="$1"
-    local LOCK="${_MYLOCK}/conda"
+    local lock="${_MYLOCK}/conda"
+    [ ! -e "$lock" ] && return
 
-    # Toggle on/off.
-    if [ ! -e "$LOCK" ]; then
-        return
-    fi
-    # Clear log.
-    echo '' > "$LOCK"
-
-    # Check if the value is legal.
+    local myconda="$MYCONDA"
     if [ ! -d "$myconda" ]; then
-        if [ -e "${MYLOCAL}/anaconda3" ]; then
+        if [ -d "${MYLOCAL}/anaconda3" ]; then
             myconda="${MYLOCAL}/anaconda3"
-            echo 'Fallback to default anaconda3.' >> "$LOCK"
-        elif [ -e "${MYLOCAL}/miniconda3" ]; then
+        elif [ -d "${MYLOCAL}/miniconda3" ]; then
             myconda="${MYLOCAL}/miniconda3"
-            echo 'Fallback to default miniconda3.' >> "$LOCK"
-        else
-            echo 'No conda available.' >> "$LOCK"
-            return
         fi
     fi
-    echo "Current conda value: ${myconda}" >> "$LOCK"
+    echo "Current conda value: \"${myconda}\"" > "$lock"
+    [ -z "$myconda" ] && return
+
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$("${myconda}/bin/conda" "shell.$(basename $SHELL)" 'hook' 2> /dev/null)"
@@ -236,7 +208,7 @@ onconda() {
     unset __conda_setup
     # <<< conda initialize <<<
 }
-onconda "$MYCONDA"
+onconda
 
 
 # ==============
@@ -259,7 +231,6 @@ EDITOR=$(command -v nvim &> /dev/null && echo nvim || echo vim)
 # export LD_LIBRARY_PATH=
 # addTo LD_LIBRARY_PATH "${MYLOCAL}/lib"
 # addTo LD_LIBRARY_PATH "${MYLOCAL}/lib64"
-# addTo LD_LIBRARY_PATH "${MYBIN}/cuda/lib64"
 # 1-May-2020: Fix for Keyring error with pip. Hopefully new pip will fix it
 # soon https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
@@ -318,19 +289,15 @@ lfcd() {
         fi
     fi
 }
-_to() {
-    if [ ! -e "$1" ]; then
-        touch "$1"
-    else
-        rm "$1";
-    fi
+_toggle() {
+    [ ! -e "$1" ] && touch "$1" || rm "$1"
     . ~/."$(basename "$SHELL")"rc
 }
 totmux() {
-    _to "${_MYLOCK}/tmux"
+    _toggle "${_MYLOCK}/tmux"
 }
 toconda() {
-    _to "${_MYLOCK}/conda"
+    _toggle "${_MYLOCK}/conda"
 }
 P() {
     http_proxy=127.0.0.1:7890 https_proxy=127.0.0.1:7890 "$@"
@@ -436,5 +403,6 @@ uniqTo() {
     content=$(eval "echo \$$1")
     eval "$1=$(echo -n $content | tr ":" "\n" | awk '!x[$0]++' | tr "\n" ":")"
 }
-
-uniqTo PATH
+if [[ ! "$(uname)" == MINGW64* ]]; then
+    uniqTo PATH
+fi
