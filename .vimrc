@@ -20,8 +20,7 @@ set guicursor=
 if has('nvim')
     set exrc
 endif
-let os_name = system('uname -s')
-if os_name !=# "Darwin\n"
+if has('win32') || has('win64') || (has('unix') && system('uname -s') !=# "Darwin\n")
     language en_US.UTF-8
 endif
 set scrolloff=1
