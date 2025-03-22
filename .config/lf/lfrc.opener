@@ -42,7 +42,7 @@ cmd open &{{
             if [ "$(uname)" = Darwin ]; then
                 $OPENER "$f" &> /dev/null
             else
-                feh "$f" &> /dev/null
+                feh --scale-down "$f" &> /dev/null
             fi
             exit 0
             ;;
