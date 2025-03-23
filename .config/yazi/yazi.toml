@@ -22,7 +22,7 @@ tab_size        = 2
 max_width       = 600
 max_height      = 900
 cache_dir       = ""
-image_delay     = 30
+image_delay     = 0
 image_filter    = "triangle"
 image_quality   = 75
 sixel_fraction  = 15
@@ -32,8 +32,10 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 [opener]
 edit = [
 	{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-	{ run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
-	{ run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
+	# { run = 'code -w %*', block = true,  desc = "code (block)",   for = "windows" },
+	# { run = 'code %*',    orphan = true, desc = "code",           for = "windows" },
+	# { run = '%EDITOR% %* || vim %*', block = true,  desc = "nvim",   for = "windows" },
+	{ run = 'if defined EDITOR (%EDITOR% %*) else (vim %*)', block = true,  desc = "%EDITOR%",   for = "windows" },
 ]
 open = [
 	{ run = 'xdg-open "$1"',                desc = "Open", for = "linux" },
