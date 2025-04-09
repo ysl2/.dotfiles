@@ -9,7 +9,9 @@ set smartcase
 set nowrap
 " set noswapfile
 set incsearch
-set smartindent
+" Ref: https://www.reddit.com/r/vim/comments/s9gqgr/smartindent_messing_with_comment_indents
+" Ref: https://www.reddit.com/r/vim/wiki/vimrctips/#wiki_do_not_use_smartindent
+" set smartindent
 set splitright
 set splitbelow
 if has('nvim') || v:version >= 800
