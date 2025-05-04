@@ -1,6 +1,6 @@
 #!/bin/bash
 
-~/.scripts/window-manager/autostart.sh
+~/.vocal/0/scripts/window-manager/autostart.sh
 
 killall slstatus 2> /dev/null
 slstatus &

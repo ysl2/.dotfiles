@@ -109,7 +109,7 @@ fi
 # ===
 searchToPATH "$VOCAL"
 addToPATH "$VOCAL"
-addToPATH "$VOCAL/_"
+addToPATH "$VOCAL"/0/bin
 
 
 # ===========================
