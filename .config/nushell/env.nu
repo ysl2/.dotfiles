@@ -56,8 +56,8 @@ let vocalbins = (ls -a $vocal | where type == "dir" | each { |it|
         $vocalbin
     }
 })
-let vocalunderscore = ($vocal | path join "_")
-$env.PATH = ([$vocalunderscore, $vocal] | append $vocalbins | append $env.PATH)
+let vocalzerobin = ($vocal | path join "0" | path join "bin")
+$env.PATH = ([$vocalzerobin, $vocal] | append $vocalbins | append $env.PATH)
 
 
 # ===================================
