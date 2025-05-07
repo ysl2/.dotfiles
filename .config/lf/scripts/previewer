@@ -10,7 +10,7 @@
 
 FILE="$(realpath "$1")"
 W=$2
-H=$3
+H=$(echo "$3 * 0.99 / 1" | bc)  # 99% of the height
 X=$4
 Y=$5
 
