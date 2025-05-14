@@ -347,6 +347,7 @@ alias nim='nvim -u NONE'
 alias ms='miniserve . -qu'
 alias doom='~/.config/emacs/bin/doom'
 alias y='yazi'
+alias yoink='open -a yoink'
 
 # ===
 # === Outside sources
