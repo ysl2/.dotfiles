@@ -298,7 +298,6 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias pip='python -m pip'
 alias py=python
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
