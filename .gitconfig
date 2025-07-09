@@ -4,6 +4,7 @@
 [core]
 	autocrlf = input
 	safecrlf = true
+	ignorecase = false
 [credential]
 	helper = store
 [filter "lfs"]
