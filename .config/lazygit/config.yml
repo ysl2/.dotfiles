@@ -1,3 +1,4 @@
+# Ref: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 gui:
   language: en
   # https://github.com/catppuccin/lazygit/blob/d3c95a67ea3f778f7705d8ef814f87ac5213436d/themes-mergable/frappe/flamingo.yml
@@ -33,3 +34,4 @@ keybinding:
     universal:
         quit-alt1: <disabled>
         # return: <c-c>
+        pushFiles: <disabled>
