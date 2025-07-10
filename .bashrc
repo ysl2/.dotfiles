@@ -362,7 +362,13 @@ if command -v fzf > /dev/null 2>&1; then
     done
 fi
 # Note: autin must be inited after fzf beacuse there are keybinding conflict between them.
-command -v atuin > /dev/null 2>&1 && eval "$(atuin init $(basename "$SHELL"))"
+if command -v atuin > /dev/null 2>&1; then
+    # NOTE: For bash, manually download the `bash-preexec` at first.
+    # Ref: https://setup.atuin.sh
+    # curl https://ghfast.top/https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh -o ~/.bashrc.bash-preexec
+    [ -f ~/.bashrc.bash-preexec ] && . ~/.bashrc.bash-preexec
+    eval "$(atuin init $(basename "$SHELL"))"
+fi
 # command -v mcfly > /dev/null 2>&1 && eval "$(mcfly init $(basename "$SHELL"))"
 command -v zoxide > /dev/null 2>&1 && eval "$(zoxide init $(basename "$SHELL"))"
 # Prevent nautilus from generating core dump file.
