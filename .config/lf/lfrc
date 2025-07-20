@@ -76,13 +76,15 @@ map K move-parent up
 cmd create %{{
     printf "Create: "
     read ans
+    [ -z "$ans" ] && exit
     if [[ "$ans" == */ ]]; then
         mkdir -p "$ans"
+        lf -remote "send $id cd \"$ans\""
     else
         mkdir -p "$(dirname "$ans")"
         touch "$ans"
+        lf -remote "send $id select \"$ans\""
     fi
-    lf -remote "send $id select \"$ans\""
 }}
 map a create
 
