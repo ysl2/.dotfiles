@@ -111,7 +111,9 @@ forwardAgent: false
 #
 # Colima default behaviour: buildkit enabled
 # Default: {}
-docker: {}
+docker:
+  registry-mirrors:
+    - https://docker.m.daocloud.io
 
 # Virtual Machine type (qemu, vz)
 # NOTE: this is macOS 13 only. For Linux and macOS <13.0, qemu is always used.
@@ -175,7 +177,7 @@ provision: []
 # Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
 # SSH config will still be generated in $COLIMA_HOME/ssh_config regardless.
 # Default: true
-sshConfig: true
+sshConfig: false
 
 # The port number for the SSH server for the virtual machine.
 # When set to 0, a random available port is used.
