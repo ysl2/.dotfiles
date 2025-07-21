@@ -233,7 +233,7 @@ export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 export STARSHIP_LOG=error
 export CONDA_CHANGEPS1=no
 export FZF_DEFAULT_COMMAND='rg --files --hidden --no-ignore -g !.git'
-export FZF_COMPLETION_TRIGGER=\\  # Double backslash for escaping. Single backslash for actual use.
+export FZF_COMPLETION_TRIGGER=\\  # Press single `\<Tab>` to trigger. Double backslash for escaping.
 export GO111MODULE=on
 export GOPATH
 # export TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
