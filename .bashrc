@@ -364,10 +364,10 @@ if command -v fzf > /dev/null 2>&1; then
 fi
 # Note: autin must be inited after fzf beacuse there are keybinding conflict between them.
 if command -v atuin > /dev/null 2>&1; then
-    # NOTE: For bash, manually download the `bash-preexec` at first.
-    # Ref: https://setup.atuin.sh
-    # curl https://ghfast.top/https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh -o ~/.bashrc.bash-preexec
-    [ -f ~/.bashrc.bash-preexec ] && . ~/.bashrc.bash-preexec
+    if [ "$(basename "$SHELL")" = bash ]; then
+        [ ! -f ~/.bashrc.bash-preexec ] && command -v curl > /dev/null 2>&1 && curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh -o ~/.bashrc.bash-preexec
+        [ -f ~/.bashrc.bash-preexec ] && . ~/.bashrc.bash-preexec
+    fi
     eval "$(atuin init $(basename "$SHELL"))"
 fi
 # command -v mcfly > /dev/null 2>&1 && eval "$(mcfly init $(basename "$SHELL"))"
