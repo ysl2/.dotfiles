@@ -214,7 +214,7 @@ onconda
 # === Beautify
 # ===
 # if ! command -v starship > /dev/null 2>&1 && command -v curl > /dev/null 2>&1; then
-#     curl -sS https://ghfast.top/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
+#     curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/starship/starship/master/install/install.sh | \
 #     sed 's/https\:\/\/github\.com/https\:\/\/ghfast\.top\/https\:\/\/github\.com/g' | \
 #     sed 's/BIN_DIR=\/usr\/local\/bin/BIN_DIR=$VOCAL/g' | sh
 # fi
@@ -311,7 +311,7 @@ lf() {
 alias lD=lazydocker
 alias lg=lazygit
 cht() {
-    curl cht.sh/"$1"
+    curl -fsSL cht.sh/"$1"
 }
 jo() {
     ID="$$"
